@@ -1,1 +1,8 @@
-Test
+#########
+# Step 1
+Code Affected: None
+Created MazeManager, MazeItem, Maze, MazeBlock, Wall and Character
+#########
+# Step 2
+Code Affected: None
+Created MazeNotes.txt under project files

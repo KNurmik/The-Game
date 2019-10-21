@@ -16,3 +16,9 @@ Created MazeNotes.txt under project files
 Name: Ramzi
 Code Affected: All MazeItems
 Established inheritance and created x/y attributes.
+
+#########
+# Step 4
+Name: Ramzi
+Code Affected: Maze.java
+Created walls, blocks, and winBlock

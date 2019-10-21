@@ -1,8 +1,18 @@
 #########
 # Step 1
+Name: Henry
 Code Affected: None
 Created MazeManager, MazeItem, Maze, MazeBlock, Wall and Character
+
+
 #########
 # Step 2
+Name: Henry
 Code Affected: None
 Created MazeNotes.txt under project files
+
+#########
+# Step 3
+Name: Ramzi
+Code Affected: All MazeItems
+Established inheritance and created x/y attributes.

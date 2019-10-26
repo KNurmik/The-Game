@@ -57,3 +57,8 @@ Created the appearance of the walls and character and added a draw method.
 # Step 12:
 Code Affected: Wall, Maze
 Added comments and annotations
+
+#########
+# Step 13:
+Code Affected: Character class
+Added comments and annotations

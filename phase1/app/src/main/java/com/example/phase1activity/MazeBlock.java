@@ -2,10 +2,10 @@ package com.example.phase1activity;
 
 public class MazeBlock extends MazeItem {
 
-    private MazeBlock up;
-    private MazeBlock down;
-    private MazeBlock right;
-    private MazeBlock left;
+    private MazeItem up;
+    private MazeItem down;
+    private MazeItem right;
+    private MazeItem left;
 
     public MazeBlock(double a, double b){
         super(a, b);
@@ -15,35 +15,45 @@ public class MazeBlock extends MazeItem {
         left = null;
     }
 
-    public MazeBlock getUp() {
+    public MazeItem getUp() {
         return up;
     }
 
-    public void setUp(MazeBlock up) {
+    public void setUp(MazeItem up) {
         this.up = up;
     }
 
-    public MazeBlock getDown() {
+    public MazeItem getDown() {
         return down;
     }
 
-    public void setDown(MazeBlock down) {
+    public void setDown(MazeItem down) {
         this.down = down;
     }
 
-    public MazeBlock getRight() {
+    public MazeItem getRight() {
         return right;
     }
 
-    public void setRight(MazeBlock right) {
+    public void setRight(MazeItem right) {
         this.right = right;
     }
 
-    public MazeBlock getLeft() {
+    public MazeItem getLeft() {
         return left;
     }
 
-    public void setLeft(MazeBlock left) {
+    public void setLeft(MazeItem left) {
         this.left = left;
+    }
+
+    public void createVertLink(MazeBlock other){
+        setUp(other);
+        other.setDown(this);
+    }
+
+    public void createHorzLink(MazeBlock other){
+        setLeft(other);
+        other.setRight(this);
     }
 }

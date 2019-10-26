@@ -18,3 +18,8 @@ Fix: Extended the above classes to MazeItem
 Code Affected: Maze
 Fix: Added CreateMaze method and public attributes for Maze
 
+#########
+# Step 5:
+Code Affected: Maze.createMaze, MazeBlock
+Fix: Minor changes to Maze.createMaze, up/down/left/right in MazeBlock are now MazeItem types.
+

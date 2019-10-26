@@ -40,13 +40,13 @@ public class Maze {
                 }
 
                 if (j == 0) {
-                    mazeBlocks[i][j].setLeft(new Wall(i, j, true));
+                    mazeBlocks[i][j].setUp(new Wall(i, j, true));
                 }
                 else {
                     mazeBlocks[i][j].createVertLink(mazeBlocks[i][j-1]);
                 }
                 if (j == mazeHeight - 1){
-                    mazeBlocks[i][j].setRight(new Wall(i, j, true));
+                    mazeBlocks[i][j].setDown(new Wall(i, j, true));
                 }
             }
         }

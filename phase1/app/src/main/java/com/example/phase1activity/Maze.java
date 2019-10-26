@@ -47,9 +47,4 @@ public class Maze {
         mazeWalls.add(new Wall(x, y, horz));
     }
 
-    public
-
-    public void draw(){
-
-    }
 }

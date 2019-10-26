@@ -1,0 +1,20 @@
+#########
+# Step 1:
+Code Affected: All Maze files
+Fix: Created maze classes: Maze, MazeItem, MazeManager, MazeBlock, Character, Wall
+
+#########
+# Step 2:
+Code Affected: All maze classes
+Fix: Created constructor for all maze classes
+
+#########
+# Step 3:
+Code Affected: MazeBlock, Wall and Character
+Fix: Extended the above classes to MazeItem
+
+#########
+# Step 4:
+Code Affected: Maze
+Fix: Added CreateMaze method and public attributes for Maze
+

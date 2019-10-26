@@ -41,7 +41,7 @@ public class Maze {
      * @param width  The width of the maze
      * @param height The height of the maze
      */
-    public Maze(int width, int height) {
+    public Maze(int width, int height, ArrayList<Wall> innerWalls) {
         mazeHeight = height;
         mazeWidth = width;
 
@@ -49,6 +49,7 @@ public class Maze {
         mazeBlocks = new MazeBlock[mazeWidth][mazeHeight];
 
         createMaze();
+        makeInnerWalls(innerWalls);
         player = new Character(mazeBlocks[0][mazeHeight - 1]);
     }
 
@@ -100,12 +101,13 @@ public class Maze {
     /**
      * Adds a new wall to the maze
      *
-     * @param x    The x coordinate of the new wall
-     * @param y    The y coordinate of the new wall
-     * @param horz Whether the wall goes from left to right or from up to down
+     * @param newWall the wall instances that will be added to the maze
      */
-    public void addWall(int x, int y, boolean horz) {
-        Wall newWall = new Wall(x, y, horz);
+    public void addWall(Wall newWall) {
+        int x = newWall.getX();
+        int y = newWall.getY();
+        boolean horz = newWall.isHorz();
+
         mazeWalls.add(newWall);
 
         //Breaks a link between two MazeBlocks and puts a wall between them.
@@ -118,6 +120,15 @@ public class Maze {
         }
     }
 
+    /**
+     * Adds all the walls in innerWalls array list to the mazeWalls array list
+     * @param innerWalls list of inner walls that will added ot the mazeWalls array list
+     */
+    public void makeInnerWalls(ArrayList<Wall> innerWalls){
+        for (int i = 0; i < innerWalls.size(); i++){
+            addWall(innerWalls.get(i));
+        }
+    }
     /**
      * Checks if the player has won the game
      * @return Whether the player is currently standing on the winning block or not.

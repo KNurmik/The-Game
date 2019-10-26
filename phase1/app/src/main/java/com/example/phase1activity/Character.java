@@ -53,23 +53,23 @@ public class Character {
      */
     public void move(Direction direction) {
         switch (direction) {
-            case UP:
-                if (currentBlock.getUp() instanceof MazeBlock) { // moves up if the MazeItem above is a MazeBlock
+            case UP: // moves up if the MazeItem above is a MazeBlock
+                if (currentBlock.getUp() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getUp();
                 }
                 break;
-            case DOWN:
-                if (currentBlock.getDown() instanceof MazeBlock) { // moves down if the MazeItem above is a MazeBlock
+            case DOWN: // moves down if the MazeItem above is a MazeBlock
+                if (currentBlock.getDown() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getDown();
                 }
                 break;
-            case LEFT:
-                if (currentBlock.getLeft() instanceof MazeBlock) { // moves left if the MazeItem above is a MazeBlock
+            case LEFT: // moves left if the MazeItem above is a MazeBlock
+                if (currentBlock.getLeft() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getLeft();
                 }
                 break;
-            case RIGHT:
-                if (currentBlock.getRight() instanceof MazeBlock) { // moves right if the MazeItem above is a MazeBlock
+            case RIGHT: // moves right if the MazeItem above is a MazeBlock
+                if (currentBlock.getRight() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getRight();
                 }
                 break;

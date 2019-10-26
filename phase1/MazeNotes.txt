@@ -67,3 +67,8 @@ Added comments and annotations
 # Step 14:
 Code Affected: Maze
 Fix: Added Maze.checkWin()
+
+#########
+# Step 14=5:
+Code Affected: Maze and MazeView
+Fix: Added Maze.makeInnerWalls and created MazeView class

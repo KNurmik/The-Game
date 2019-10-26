@@ -4,11 +4,24 @@ import java.util.ArrayList;
 
 public class Maze {
 
+    /**
+     * An instance of the character that this maze is using.
+     */
     public Character player;
 
+    /**
+     * The height of the maze
+     */
     public int mazeHeight;
+    /**
+     * The Width of the maze
+     */
     public int mazeWidth;
 
+
+    /**
+     *
+     */
     public ArrayList<Wall> mazeWalls;
 
     public MazeBlock[][] mazeBlocks;

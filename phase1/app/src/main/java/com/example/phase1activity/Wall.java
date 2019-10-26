@@ -1,6 +1,18 @@
 package com.example.phase1activity;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.Paint;
+
 public class Wall extends MazeItem {
+
+    /**
+     * Represents what the Wall looks like on the screen
+     */
+    public String appearance;
+
+    private Paint paintText = new Paint();
 
     /**
      * Whether this wall is horizontal or vertical
@@ -17,6 +29,16 @@ public class Wall extends MazeItem {
     public Wall(int a, int b, boolean horz) {
         super(a, b);
         horizontal = horz;
+
+        if (horz) {
+            appearance = "_";
+        } else {
+            appearance = "|";
+        }
+
+        paintText.setTextSize(36);
+        paintText.setColor(Color.WHITE);
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
     /**
@@ -28,5 +50,13 @@ public class Wall extends MazeItem {
         return horizontal;
     }
 
+    /**
+     * Draws the Wall on the phone screen
+     *
+     * @param canvas The canvas that the Wall instance will be drawn on
+     */
+    public void draw(Canvas canvas) {
+        canvas.drawText(appearance, getX(), getY(), paintText);
+    }
 
 }

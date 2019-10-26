@@ -49,6 +49,11 @@ Code Affected: MazeItem
 Created new Getters/Setters for x and y
 
 #########
-# Step 10:
+# Step 11:
 Code Affected: Character and wall
 Created the appearance of the walls and character and added a draw method.
+
+#########
+# Step 12:
+Code Affected: Wall, Maze
+Added comments and annotations

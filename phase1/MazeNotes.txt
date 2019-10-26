@@ -28,3 +28,8 @@ Fix: Minor changes to Maze.createMaze, up/down/left/right in MazeBlock are now M
 Code Affected: Maze.createMaze
 Fix: Maze skeleton is now made in createMaze
 
+#########
+# Step 7:
+Code Affected: Character
+Fix: Character is no longer a MazeItem, and I created the move() method
+

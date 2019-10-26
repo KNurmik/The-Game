@@ -23,3 +23,8 @@ Fix: Added CreateMaze method and public attributes for Maze
 Code Affected: Maze.createMaze, MazeBlock
 Fix: Minor changes to Maze.createMaze, up/down/left/right in MazeBlock are now MazeItem types.
 
+#########
+# Step 6:
+Code Affected: Maze.createMaze
+Fix: Maze skeleton is now made in createMaze
+

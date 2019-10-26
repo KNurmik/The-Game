@@ -30,7 +30,23 @@ public class Maze {
                 mazeBlocks[i][j] = new MazeBlock(i, j);
 
                 if (i == 0) {
-                    mazeBlocks[0][j].setLeft(new Wall(0, j, false));
+                    mazeBlocks[i][j].setLeft(new Wall(i, j, false));
+                }
+                else {
+                    mazeBlocks[i][j].createHorzLink(mazeBlocks[i-1][j]);
+                }
+                if (i == mazeWidth - 1){
+                    mazeBlocks[i][j].setRight(new Wall(i, j, false));
+                }
+
+                if (j == 0) {
+                    mazeBlocks[i][j].setLeft(new Wall(i, j, true));
+                }
+                else {
+                    mazeBlocks[i][j].createVertLink(mazeBlocks[i][j-1]);
+                }
+                if (j == mazeHeight - 1){
+                    mazeBlocks[i][j].setRight(new Wall(i, j, true));
                 }
             }
         }

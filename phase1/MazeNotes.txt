@@ -43,3 +43,8 @@ Fix: Add new walls to the mazeWalls array list and changed the coordinates from 
 Code Affected: MazeBlock
 Fix: Added comments
 
+#########
+# Step 10:
+Code Affected: MazeItem
+Created new Getters/Setters for x and y
+

@@ -38,3 +38,8 @@ Fix: Character is no longer a MazeItem, and I created the move() method
 Code Affected: Maze.createMaze and Maze.addWall and MazeItem class and its subclasses
 Fix: Add new walls to the mazeWalls array list and changed the coordinates from double to int
 
+########
+# Step 9:
+Code Affected: MazeBlock
+Fix: Added comments
+

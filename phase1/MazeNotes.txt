@@ -33,3 +33,8 @@ Fix: Maze skeleton is now made in createMaze
 Code Affected: Character
 Fix: Character is no longer a MazeItem, and I created the move() method
 
+#########
+# Step 8:
+Code Affected: Maze.createMaze and Maze.addWall and MazeItem class and its subclasses
+Fix: Add new walls to the mazeWalls array list and changed the coordinates from double to int
+

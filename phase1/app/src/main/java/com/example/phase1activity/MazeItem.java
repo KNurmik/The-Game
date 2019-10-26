@@ -5,14 +5,14 @@ public class MazeItem {
     /**
      * The MazeItem's x coordinate
      */
-    private double x;
+    private int x;
 
     /**
      * The MazeItem's y coordinate
      */
-    private double y;
+    private int y;
 
-    public MazeItem(double a, double b){
+    public MazeItem(int a, int b) {
         x = a;
         y = b;
     }

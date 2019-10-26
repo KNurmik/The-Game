@@ -4,12 +4,14 @@ public class Wall extends MazeItem {
 
     public boolean horizontal;
 
-    public Wall(double a, double b, boolean horz){
+    public Wall(int a, int b, boolean horz) {
         super(a, b);
         horizontal = horz;
     }
 
-    public boolean isHorz(){
+    public boolean isHorz() {
         return horizontal;
     }
+
+
 }

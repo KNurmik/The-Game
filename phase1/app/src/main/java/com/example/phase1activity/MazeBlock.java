@@ -7,7 +7,7 @@ public class MazeBlock extends MazeItem {
     private MazeItem right;
     private MazeItem left;
 
-    public MazeBlock(double a, double b){
+    public MazeBlock(int a, int b) {
         super(a, b);
         up = null;
         down = null;
@@ -47,12 +47,12 @@ public class MazeBlock extends MazeItem {
         this.left = left;
     }
 
-    public void createVertLink(MazeBlock other){
+    public void createVertLink(MazeBlock other) {
         setUp(other);
         other.setDown(this);
     }
 
-    public void createHorzLink(MazeBlock other){
+    public void createHorzLink(MazeBlock other) {
         setLeft(other);
         other.setRight(this);
     }

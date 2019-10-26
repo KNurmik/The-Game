@@ -118,4 +118,11 @@ public class Maze {
         }
     }
 
+    /**
+     * Checks if the player has won the game
+     * @return Whether the player is currently standing on the winning block or not.
+     */
+    public boolean checkWin() {
+        return player.currentBlock == winningBlock;
+    }
 }

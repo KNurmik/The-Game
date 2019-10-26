@@ -60,5 +60,10 @@ Added comments and annotations
 
 #########
 # Step 13:
-Code Affected: Character class
+Code Affected: Character
 Added comments and annotations
+
+#########
+# Step 14:
+Code Affected: Maze
+Fix: Added Maze.checkWin()

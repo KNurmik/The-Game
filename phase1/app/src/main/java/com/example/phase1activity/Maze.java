@@ -37,7 +37,8 @@ public class Maze {
 
     /**
      * A constructor for the Maze. Creates the whole maze with all the Walls and MazeBlocks
-     * @param width The width of the maze
+     *
+     * @param width  The width of the maze
      * @param height The height of the maze
      */
     public Maze(int width, int height) {
@@ -98,8 +99,9 @@ public class Maze {
 
     /**
      * Adds a new wall to the maze
-     * @param x The x coordinate of the new wall
-     * @param y The y coordinate of the new wall
+     *
+     * @param x    The x coordinate of the new wall
+     * @param y    The y coordinate of the new wall
      * @param horz Whether the wall goes from left to right or from up to down
      */
     public void addWall(int x, int y, boolean horz) {

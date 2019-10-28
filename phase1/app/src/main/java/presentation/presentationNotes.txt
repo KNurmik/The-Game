@@ -3,3 +3,8 @@ Date: 28 Oct 2019, 19:32
 By: Karl
 Changes: Created new package "presentation" to implement MVP design pattern. Moved MainActivity
          to this package. Created this file.
+
+############
+Date: 28 Oct 2019, 19:42
+By: Karl
+Changes: Created design for MainActivity.

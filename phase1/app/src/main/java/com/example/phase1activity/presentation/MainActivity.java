@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.phase1activity.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +13,26 @@ import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.presentation.Register.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
+=======
+<<<<<<< HEAD:phase1/app/src/main/java/com/example/phase1activity/presentation/LogIn/LogInActivity.java
+package com.example.phase1activity.presentation.LogIn;
+=======
+package com.example.phase1activity.presentation;
+>>>>>>> 28193c14bcdd69d96c4ac640c30bbabe0b74a093:phase1/app/src/main/java/com/example/phase1activity/presentation/MainActivity.java
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.example.phase1activity.R;
+
+public class LogInActivity extends AppCompatActivity {
+>>>>>>> 28193c14bcdd69d96c4ac640c30bbabe0b74a093
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
 
         Button logInBtn = findViewById(R.id.logInButton);
@@ -35,5 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
+=======
+        setContentView(R.layout.activity_log_in);
+>>>>>>> 28193c14bcdd69d96c4ac640c30bbabe0b74a093
     }
 }

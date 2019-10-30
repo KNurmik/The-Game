@@ -1,0 +1,20 @@
+############
+Date: 28 Oct 2019, 19:32
+By: Karl
+Changes: Created new package "com.example.phase1activity.presentation" to implement MVP design pattern. Moved MainActivity
+         to this package. Created this file.
+
+############
+Date: 28 Oct 2019, 19:42
+By: Karl
+Changes: Created design for MainActivity.
+
+############
+Date: 28 Oct 2019, 19:52
+By: Karl
+Changes: Slight design changes for MainActivity.
+
+############
+Date: 30 Oct 2019, 15:00
+By: Karl
+Changes: Created LogInActivity and RegisterActivity and their designs.

@@ -1,7 +1,7 @@
 ############
 Date: 28 Oct 2019, 19:32
 By: Karl
-Changes: Created new package "presentation" to implement MVP design pattern. Moved MainActivity
+Changes: Created new package "com.example.phase1activity.presentation" to implement MVP design pattern. Moved MainActivity
          to this package. Created this file.
 
 ############

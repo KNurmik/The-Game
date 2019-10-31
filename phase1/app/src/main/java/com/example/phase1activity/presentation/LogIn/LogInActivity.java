@@ -42,14 +42,10 @@ public class LogInActivity extends AppCompatActivity {
                 String result = logInInterface.logInAction(getUsername(),getPassword());
                 handleLogInResult(result);
             }
+
+
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, StartActivity.class));
-            }
-        });
 
 
     }
@@ -79,7 +75,7 @@ public class LogInActivity extends AppCompatActivity {
             passwordText.setText("");
         }
         else{
-            startActivity(new Intent(LogInActivity.this, MainMenuActivity.class));
+            startActivity(new Intent(LogInActivity.this, StartActivity.class));
         }
     }
 

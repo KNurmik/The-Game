@@ -1,5 +1,9 @@
 package com.example.phase1activity.presentation.LogIn;
 
+import com.example.phase1activity.Profile.AppManager;
+import com.example.phase1activity.Profile.Profile;
+
+
 public class LogInManager implements LogInInterface {
     private String username;
     private String password;
@@ -16,7 +20,7 @@ public class LogInManager implements LogInInterface {
     }
 
 
-    public String logInAction(String user, String pass){
+    public String logInAction(String user, String pass, AppManager app){
         setUsername(user);
         setPassword(pass);
 
@@ -33,6 +37,7 @@ public class LogInManager implements LogInInterface {
         }
 
         else{
+            app.setProfile(new Profile(user, pass));
             return "valid login";
         }
 

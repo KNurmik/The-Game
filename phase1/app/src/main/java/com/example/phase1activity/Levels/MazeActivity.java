@@ -1,7 +1,6 @@
 package com.example.phase1activity.Levels;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +10,14 @@ import com.example.phase1activity.R;
 
 public class MazeActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "com.example.mazegame.MESSAGE";
-
+    public static final String EXTRA_MESSAGE = "com.example.phase1activity.Levels.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    /**
-     * Called when the user taps the Send button
-     */
+    /** Called when the user taps the Send button */
     public void startMazeGame(View view) {
         Intent intent = new Intent(this, TheMaze.class);
         // EditText editText = (EditText) findViewById(R.id.editText);

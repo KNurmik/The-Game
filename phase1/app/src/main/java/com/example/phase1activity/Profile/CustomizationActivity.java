@@ -38,4 +38,11 @@ public class CustomizationActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Called when the user taps the Set button
+     */
+    public void setNickname(View view) {
+        // Do something in response to button
+    }
 }

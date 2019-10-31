@@ -7,22 +7,32 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
+// TODO: class should not be public.
 public class AndroidSaver implements ISaver {
 
     /** The file to read and write data to. */
     private static final String SAVE_FILE = "userInfo.txt";
 
     /** The tag used for logging information written and read. */
-    private static final String TAG = "AndroidSave";
+    private static final String TAG = "AndroidSaver";
+
+    /** The context data is to be written and read from. */
+    private final Context context;
+
+    public AndroidSaver(Context context) {
+        this.context = context;
+        this.saveData("");
+    }
 
     /**
-     * Save contents from Context context to SAVE_FILE.
+     * Save contents to SAVE_FILE.
      * @param contents the contents to be saved.
-     * @param context the context the contents are to be saved from.
      */
-    public void saveData(String contents, Context context) {
+    public void saveData(String contents) {
         PrintWriter out = null;
 
         try {
@@ -37,11 +47,10 @@ public class AndroidSaver implements ISaver {
     }
 
     /**
-     * Load contents from Context context.
-     * @param context the context the contents are to be loaded to.
+     * Load contents.
      * @return previously saved contents.
      */
-    public String loadData(Context context) {
+    public String loadData() {
         StringBuilder data = new StringBuilder();
         try (Scanner scanner = new Scanner(context.openFileInput(SAVE_FILE))) {
             while (scanner.hasNextLine()) {
@@ -53,5 +62,28 @@ public class AndroidSaver implements ISaver {
         }
 
         return data.toString();
+    }
+
+    // TODO: should not be public
+    public Set<String> getExistingUsernames() {
+        return getExistingUserPassCombos().keySet();
+    }
+
+    private HashMap<String, String> getExistingUserPassCombos() {
+        HashMap<String, String> usernamesToPasswords = new HashMap<>();
+
+        String[] splitByEntry = splitDataByEntry();
+        for (String entry : splitByEntry) {
+            String[] splitByInfo = entry.split(",");
+            if (splitByInfo[1].equals("")) {
+                usernamesToPasswords.put(splitByInfo[0], splitByInfo[1]);
+            }
+        }
+        return usernamesToPasswords;
+    }
+
+    private String[] splitDataByEntry() {
+        String data = loadData();
+        return data.split("\n");
     }
 }

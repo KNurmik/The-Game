@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.MainMenu.StartActivity"></activity>
+        <activity android:name=".presentation.MainMenu.LeaderboardActivity"></activity>
+        <activity android:name=".presentation.MainMenu.StartActivity" />
         <activity android:name=".Profile.CustomizationActivity" />
         <activity android:name=".presentation.MainMenu.MainMenuActivity" />
         <activity android:name=".presentation.Register.RegisterActivity" />

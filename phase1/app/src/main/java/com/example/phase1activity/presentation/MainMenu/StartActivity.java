@@ -19,11 +19,18 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Button button = findViewById(R.id.settings);
+        Button settingsbtn = findViewById(R.id.settings);
+        Button leaderbtn = findViewById(R.id.Leaderboard);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        settingsbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, CustomizationActivity.class));
+            }
+        });
+
+        leaderbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, LeaderboardActivity.class));
             }
         });
 

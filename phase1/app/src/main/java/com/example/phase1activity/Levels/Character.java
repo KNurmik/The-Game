@@ -11,10 +11,18 @@ import android.graphics.Typeface;
 
 public class Character {
 
+    public MazeBlock getCurrentBlock() {
+        return currentBlock;
+    }
+
+    public void setCurrentBlock(MazeBlock currentBlock) {
+        this.currentBlock = currentBlock;
+    }
+
     /**
      * The current maze block that the character is in
      */
-    MazeBlock currentBlock;
+    public MazeBlock currentBlock;
 
     /**
      * The number of moves this character has taken in the maze.
@@ -27,6 +35,7 @@ public class Character {
     private Paint paintText = new Paint();
 
     /**
+     *
      * @param block the current MazeBlock instance that the character is on
      */
     public Character(MazeBlock block) {
@@ -47,46 +56,44 @@ public class Character {
 
     /**
      * Method that moves the character in <direction> if and only if there is no wall blocking it
-     *
      * @param direction the direction that the user wishes the character to move in
      */
     public void move(Direction direction) {
         switch (direction) {
             case UP: // moves up if the MazeItem above is a MazeBlock
                 if (currentBlock.getUp() instanceof MazeBlock) {
-                    currentBlock = (MazeBlock) currentBlock.getUp();
+                    setCurrentBlock((MazeBlock) currentBlock.getUp());
                     moves++;
                 }
                 break;
             case DOWN: // moves down if the MazeItem above is a MazeBlock
                 if (currentBlock.getDown() instanceof MazeBlock) {
-                    currentBlock = (MazeBlock) currentBlock.getDown();
+                    setCurrentBlock((MazeBlock) currentBlock.getDown());
                     moves++;
                 }
                 break;
             case LEFT: // moves left if the MazeItem above is a MazeBlock
                 if (currentBlock.getLeft() instanceof MazeBlock) {
-                    currentBlock = (MazeBlock) currentBlock.getLeft();
+                    setCurrentBlock((MazeBlock) currentBlock.getLeft());
                     moves++;
                 }
 
                 break;
             case RIGHT: // moves right if the MazeItem above is a MazeBlock
                 if (currentBlock.getRight() instanceof MazeBlock) {
-                    currentBlock = (MazeBlock) currentBlock.getRight();
+                    setCurrentBlock((MazeBlock) currentBlock.getRight());
                     moves++;
+
                 }
                 break;
-
         }
     }
 
     /**
      * Draws the character
-     *
      * @param canvas the canvas that the phone is using
      */
     public void draw(Canvas canvas) {
-        canvas.drawCircle(currentBlock.getX() * 100 + 150, currentBlock.getY() * 100 + 160, 35, paintText);
+        canvas.drawCircle(currentBlock.getX() * 100 + 150, currentBlock.getY()*100 + 150, 40, paintText);
     }
 }

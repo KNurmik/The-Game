@@ -56,10 +56,11 @@ public class Wall extends MazeItem {
      * @param canvas The canvas that the Wall instance will be drawn on
      */
     public void draw(Canvas canvas) {
-        if (isHorz()) {
-            canvas.drawLine((float) (getX() * 100 + 100), (float) (getY() * 100 + 100), (float) (getX() * 100 + 200), (float) (getY() * 100 + 100), paintText);
-        } else {
-            canvas.drawLine((float) (getX() * 100 + 100), (float) (getY() * 100 + 100), (float) (getX() * 100 + 100), (float) (getY() * 100 + 200), paintText);
+        if (isHorz()){
+            canvas.drawLine((float)(getX() * 100 + 100), (float)(getY() * 100 + 100), (float)(getX() * 100 + 200), (float)(getY() * 100 + 100), paintText);
+        }
+        else{
+            canvas.drawLine((float)(getX() * 100+ 100), (float)(getY() * 100+ 100), (float)(getX()*100+ 100), (float)(getY()*100+200), paintText);
 
         }
 

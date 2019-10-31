@@ -1,5 +1,6 @@
 package com.example.phase1activity.Levels;
 
+
 public class MazeItem {
 
     /**
@@ -14,7 +15,6 @@ public class MazeItem {
 
     /**
      * The MazeItem constructor
-     *
      * @param a The initial x value of the MazeItem
      * @param b The initial y value of the MazeItem
      */
@@ -25,7 +25,6 @@ public class MazeItem {
 
     /**
      * Getter for MazeItem.x
-     *
      * @return x
      */
     public int getX() {
@@ -34,7 +33,6 @@ public class MazeItem {
 
     /**
      * Setter for MazeItem.x
-     *
      * @param x The new x value of this MazeItem
      */
     public void setX(int x) {
@@ -43,7 +41,6 @@ public class MazeItem {
 
     /**
      * Getter for MazeItem.y
-     *
      * @return y
      */
     public int getY() {
@@ -52,7 +49,6 @@ public class MazeItem {
 
     /**
      * Setter for MazeItem.y
-     *
      * @param y The new y value of this MazeItem
      */
     public void setY(int y) {

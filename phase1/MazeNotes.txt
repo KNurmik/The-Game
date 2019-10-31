@@ -82,3 +82,8 @@ Fix: Added a constructor and a makeWalls method
 # Step 17:
 Code Affected: Character
 Fix: Added a moves attribute that records the number of moves a player has taken.
+
+#########
+# Step 18:
+Code Affected: Maze
+Fix: It is now possible to win the maze.

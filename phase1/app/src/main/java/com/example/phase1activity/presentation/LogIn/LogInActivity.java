@@ -14,6 +14,7 @@ import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainActivity;
 import com.example.phase1activity.presentation.MainMenu.MainMenuActivity;
+import com.example.phase1activity.presentation.MainMenu.StartActivity;
 import com.example.phase1activity.presentation.Register.RegisterActivity;
 
 public class LogInActivity extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class LogInActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, CustomizationActivity.class));
+                startActivity(new Intent(LogInActivity.this, StartActivity.class));
             }
         });
 

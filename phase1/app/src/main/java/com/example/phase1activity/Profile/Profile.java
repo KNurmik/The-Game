@@ -3,17 +3,19 @@ package com.example.phase1activity.Profile;
 public class Profile {
     String username;
     String password;
-    int gameLevel = 0;
+    int gameLevel;
     String colour;
-    String difficulty;
-
+    int song;
     String nickname;
     Stats statistics;
 
-    Profile(String username, String password){
+    Profile(String username, String password) {
         this.username = username;
         this.password = password;
         this.nickname = username;
+        this.colour = "Red";
+        this.gameLevel = 0;
+        this.song = 0;
     }
 
     String getUsername(){

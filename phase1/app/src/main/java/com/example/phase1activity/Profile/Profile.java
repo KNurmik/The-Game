@@ -9,7 +9,7 @@ public class Profile {
     String nickname;
     Stats statistics;
 
-    Profile(String username, String password) {
+    public Profile(String username, String password) {
         this.username = username;
         this.password = password;
         this.nickname = username;

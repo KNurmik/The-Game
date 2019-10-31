@@ -14,7 +14,7 @@ import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class CustomizationActivity extends AppCompatActivity {
-    AppManager app = (AppManager) getApplication();
+    AppManager app;
 //    EditText nickname = findViewById(R.id.nickname);
 
     @Override
@@ -26,6 +26,7 @@ public class CustomizationActivity extends AppCompatActivity {
         RadioButton blue = findViewById(R.id.Blue);
         RadioButton song1 = findViewById(R.id.Song1);
         RadioButton song2 = findViewById(R.id.Song2);
+        app = (AppManager) getApplication();
 //        Button set = findViewById(R.id.set);
 
 

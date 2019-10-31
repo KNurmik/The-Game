@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
+import com.example.phase1activity.presentation.MainActivity;
 import com.example.phase1activity.presentation.MainMenu.MainMenuActivity;
+import com.example.phase1activity.presentation.Register.RegisterActivity;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -38,8 +41,13 @@ public class LogInActivity extends AppCompatActivity {
                 String result = logInInterface.logInAction(getUsername(),getPassword());
                 handleLogInResult(result);
             }
+        });
 
-
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this, CustomizationActivity.class));
+            }
         });
 
 

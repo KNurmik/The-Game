@@ -17,4 +17,8 @@ public class Profile {
         return this.username;
     }
 
+    void setcolour(String colour){
+        this.colour = colour;
+    }
+
 }

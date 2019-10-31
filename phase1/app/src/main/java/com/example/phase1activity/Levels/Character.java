@@ -19,7 +19,7 @@ public class Character {
     /**
      * The number of moves this character has taken in the maze.
      */
-    int moves;
+    public int moves;
 
     /**
      * Pain attribute for the character
@@ -79,7 +79,6 @@ public class Character {
                 break;
 
         }
-        System.out.println(currentBlock.getX() + ", " + currentBlock.getY());
     }
 
     /**

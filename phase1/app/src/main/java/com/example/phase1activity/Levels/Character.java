@@ -14,7 +14,12 @@ public class Character {
     /**
      * The current maze block that the character is in
      */
-    public MazeBlock currentBlock;
+    MazeBlock currentBlock;
+
+    /**
+     * The number of moves this character has taken in the maze.
+     */
+    int moves;
 
     /**
      * Pain attribute for the character
@@ -26,6 +31,7 @@ public class Character {
      */
     public Character(MazeBlock block) {
         currentBlock = block;
+        moves = 0;
 
         paintText.setTextSize(80);
         paintText.setColor(Color.BLUE);
@@ -49,23 +55,26 @@ public class Character {
             case UP: // moves up if the MazeItem above is a MazeBlock
                 if (currentBlock.getUp() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getUp();
+                    moves++;
                 }
                 break;
             case DOWN: // moves down if the MazeItem above is a MazeBlock
                 if (currentBlock.getDown() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getDown();
+                    moves++;
                 }
                 break;
             case LEFT: // moves left if the MazeItem above is a MazeBlock
                 if (currentBlock.getLeft() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getLeft();
+                    moves++;
                 }
 
                 break;
             case RIGHT: // moves right if the MazeItem above is a MazeBlock
                 if (currentBlock.getRight() instanceof MazeBlock) {
                     currentBlock = (MazeBlock) currentBlock.getRight();
-
+                    moves++;
                 }
                 break;
 

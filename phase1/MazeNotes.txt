@@ -77,3 +77,8 @@ Fix: Added Maze.makeInnerWalls and created MazeView class
 # Step 16:
 Code Affected: MazeManager
 Fix: Added a constructor and a makeWalls method
+
+#########
+# Step 17:
+Code Affected: Character
+Fix: Added a moves attribute that records the number of moves a player has taken.

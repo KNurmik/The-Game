@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.LogIn.LogInActivity;
+import com.example.phase1activity.Levels.ReactionGame.ReactionInstructionsActivity;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class StartActivity extends AppCompatActivity {
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.Leaderboard);
+        Button startButton = findViewById(R.id.Start);
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -31,6 +33,12 @@ public class StartActivity extends AppCompatActivity {
         leaderbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, LeaderboardActivity.class));
+            }
+        });
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, ReactionInstructionsActivity.class));
             }
         });
 

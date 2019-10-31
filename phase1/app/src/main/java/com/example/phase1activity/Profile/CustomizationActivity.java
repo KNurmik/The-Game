@@ -3,6 +3,7 @@ package com.example.phase1activity.Profile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import com.example.phase1activity.Profile.AppManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -11,6 +12,7 @@ import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class CustomizationActivity extends AppCompatActivity {
+    AppManager app = (AppManager) getApplication();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +24,19 @@ public class CustomizationActivity extends AppCompatActivity {
 
         red.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //CHANGE PROFILE COLOUR TO RED HERE
+                app.getProfile().setcolour("Red");
             }
         });
 
         blue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //CHANGE PROFILE COLOUR TO BLUE HERE
+                app.getProfile().setcolour("Blue");
             }
         });
 
         green.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //CHANGE PROFILE COLOUR TO GREEN HERE
+                app.getProfile().setcolour("Green");
             }
         });
     }
@@ -43,6 +45,5 @@ public class CustomizationActivity extends AppCompatActivity {
      * Called when the user taps the Set button
      */
     public void setNickname(View view) {
-        // Do something in response to button
     }
 }

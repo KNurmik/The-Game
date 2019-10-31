@@ -6,8 +6,7 @@ import android.content.res.Configuration;
 public class AppManager extends Application {
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
-    Profile profile;
-
+    private Profile profile;
 
     @Override
     public void onCreate() {
@@ -30,7 +29,12 @@ public class AppManager extends Application {
         super.onLowMemory();
     }
 
-    void setProfile(Profile profile){
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
+
+    public Profile getProfile() {
+        return this.profile;
+    }
 }
+

@@ -17,6 +17,7 @@ public class TheMaze extends AppCompatActivity {
 
     DrawView drawView;
     MazeManager newMazeManager;
+    private double score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class TheMaze extends AppCompatActivity {
                     }
                 }
                 drawView.invalidate();
-                if (newMazeManager.mazeObject.checkWin()) {
+                if (checkWin()) {
 
                 }
                 return true;
@@ -96,6 +97,15 @@ public class TheMaze extends AppCompatActivity {
             return super.onTouchEvent(event);
         }
 
+    }
+
+    /**
+     * Checks if the player has won the game
+     *
+     * @return Whether the player is currently standing on the winning block or not.
+     */
+    public boolean checkWin(){
+        return newMazeManager.mazeObject.player.currentBlock == newMazeManager.mazeObject.winningBlock;
     }
 
 

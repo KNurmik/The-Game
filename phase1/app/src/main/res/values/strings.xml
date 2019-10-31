@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Phase1Activity</string>
+    <string name="edit_nickname">Enter a nickname</string>
+    <string name="set_nickname">Set</string>
 </resources>

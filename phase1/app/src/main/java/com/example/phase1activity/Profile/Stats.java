@@ -3,44 +3,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Stats {
-    ArrayList<Integer> mazeScore;
-    ArrayList<Integer> cardScore;
-    ArrayList<Integer> reactionScore;
+    private int mazeScore;
+    private int cardScore;
+    private int reactionScore;
 
     void setMazeScore(int n){
-        this.mazeScore.add(n);
+        this.mazeScore = n;
     }
 
     void setCardScore(int n){
-        this.cardScore.add(n);
+        this.cardScore = n;
     }
 
     void setReactionScore(int n){
-        this.reactionScore.add(n);
+        this.reactionScore = n;
     }
 
     int getMazeScore(){
-        return this.mazeScore.get(this.mazeScore.size()-1);
+        return this.mazeScore;
     }
 
     int getCardScore(){
-        return this.cardScore.get(this.cardScore.size()-1);
+        return this.cardScore;
     }
 
     int getReactionScore(){
-        return this.reactionScore.get(this.reactionScore.size()-1);
+        return this.reactionScore;
     }
-
-    int bestCardScore(){
-        return Collections.max(this.cardScore);
-    }
-
-    int bestReactionScore(){
-        return Collections.max(this.reactionScore);
-    }
-
-    int bestMazeScore() {
-        return Collections.max(this.mazeScore);
-    }
-
 }

@@ -7,15 +7,16 @@ public class Profile {
     String colour;
     int song;
     String nickname;
-    Stats statistics;
+    Stats stats;
 
-    public Profile(String username, String password) {
+    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song) {
         this.username = username;
         this.password = password;
-        this.nickname = username;
-        this.colour = "Red";
-        this.gameLevel = 0;
-        this.song = 0;
+        this.nickname = nickname;
+        this.colour = colour;
+        this.gameLevel = gameLevel;
+        this.song = song;
+        this.stats = new Stats();
     }
 
     public String getUsername() {

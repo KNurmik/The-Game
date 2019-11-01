@@ -15,7 +15,6 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class CustomizationActivity extends AppCompatActivity {
     AppManager app;
-//    EditText nickname = findViewById(R.id.nickname);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,8 @@ public class CustomizationActivity extends AppCompatActivity {
         RadioButton song1 = findViewById(R.id.Song1);
         RadioButton song2 = findViewById(R.id.Song2);
         app = (AppManager) getApplication();
-//        Button set = findViewById(R.id.set);
+        Button set = findViewById(R.id.set);
+        final EditText name = findViewById(R.id.nickname);
 
 
         red.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +61,12 @@ public class CustomizationActivity extends AppCompatActivity {
         });
 
 
-//        set.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                app.getProfile().setNickname(nickname.getText().toString());
-//            }
-//        });
+        set.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String nickname = name.getText().toString();
+                app.getProfile().setNickname(nickname);
+                System.out.println(nickname);
+            }
+        });
     }
 }

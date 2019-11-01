@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         usernameText = findViewById(R.id.NewUsernameText);
         passwordText = findViewById(R.id.NewPasswordText);
         instructionText = findViewById(R.id.logInInstructionText);
-        btn = findViewById(R.id.RegisterButton);
+        btn = findViewById(R.id.CreateAccountButton);
 
         final Activity thisActivity = this;
 

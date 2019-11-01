@@ -62,6 +62,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
      */
     Button finishMatches;
     Button nextLevel;
+    TextView nickname;
 
     /**
      * Set content view to this activity. Randomly assign values to this activity's cards, and
@@ -119,6 +120,9 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         nextLevel.setOnClickListener(this);
 
         manager = new MatchingGameManager(this.cardsToValues.size());
+        nickname = findViewById(R.id.hello);
+        String hello = "Hi " + app.getProfile().getNickname() + "!!!";
+        nickname.setText(hello);
     }
 
     /**

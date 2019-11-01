@@ -58,8 +58,9 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
     TextView statDisplay;
 
     /**
-     * The button that allows the user to advance to the last level.
+     * The buttons that allow the user to advance to the last level.
      */
+    Button finishMatches;
     Button nextLevel;
 
     /**
@@ -91,6 +92,7 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
         final Button button4 = findViewById(R.id.button4);
         final Button button5 = findViewById(R.id.button5);
         final Button button6 = findViewById(R.id.button6);
+        finishMatches = findViewById(R.id.finishMatches);
         nextLevel = findViewById(R.id.nextLevel);
 
         cardsToValues = new HashMap<Button, String>() {{
@@ -113,6 +115,7 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
             card.setBackgroundColor(Color.LTGRAY);
         }
 
+        finishMatches.setOnClickListener(this);
         nextLevel.setOnClickListener(this);
 
         manager = new MatchingGameManager(this.cardsToValues.size());
@@ -137,14 +140,14 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
                 double score = manager.getScore();
                 String statDisplayText = SCORE + score;
                 this.statDisplay.setText(statDisplayText);
-                nextLevel.setVisibility(View.VISIBLE);
+                finishMatches.setVisibility(View.VISIBLE);
             } else {
                 int turnsTaken = manager.getTurnsTaken();
                 String statDisplayText = TURNSTAKEN + turnsTaken;
                 this.statDisplay.setText(statDisplayText);
             }
         }
-        else if (button.getText().equals(NEXT)){
+        else if (button.getText().equals(NEXT) || button.getText().equals("Next")){
             startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
         }
 

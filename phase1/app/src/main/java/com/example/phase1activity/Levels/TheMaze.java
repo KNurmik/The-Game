@@ -33,10 +33,6 @@ public class TheMaze extends AppCompatActivity implements View.OnClickListener {
         setContentView(drawView);
         newMazeManager = new MazeManager();
         score = 0;
-        mainMenu = findViewById(R.id.mainMenu);
-        mainMenu.setOnClickListener(this);
-
-
     }
 
     @Override

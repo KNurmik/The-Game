@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import com.example.phase1activity.R;
 import com.example.phase1activity.SaveAPI.AndroidSaver;
 import com.example.phase1activity.SaveAPI.ISaver;
-import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class CustomizationActivity extends AbstractActivities {
@@ -63,14 +62,18 @@ public class CustomizationActivity extends AbstractActivities {
 
         song1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setSong(1);
+                profile.setSong(0);
+                app.setSongNumber(0);
+                app.changeMusic();
                 saveProfileData(profile);
             }
         });
 
         song2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setSong(2);
+                profile.setSong(1);
+                app.setSongNumber(1);
+                app.changeMusic();
                 saveProfileData(profile);
             }
         });

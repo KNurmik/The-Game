@@ -22,14 +22,19 @@ public class AppManager extends Application {
         super.onCreate();
 
 
-        player = MediaPlayer.create(this, Tracks[0]);
+        player = MediaPlayer.create(this, Tracks[songNumber]);
         player.setLooping(true);
         player.setVolume(100, 100);
         player.start();
     }
 
-    // Called by the system when the device configuration changes while your component is running.
-    // Overriding this method is totally optional!
+    public void changeMusic(){
+        player.release();
+        player = MediaPlayer.create(this, Tracks[songNumber]);
+        player.setLooping(true);
+        player.setVolume(100, 100);
+        player.start();
+    }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);

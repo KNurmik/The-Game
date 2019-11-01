@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.MatchingGameActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Activity for displaying ReactionGame.
  */
-public class ReactionGameActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReactionGameActivity extends AbstractActivities implements View.OnClickListener {
     ReactionGameManager manager;
     Button btn;
     ColorStateList defaultColor;

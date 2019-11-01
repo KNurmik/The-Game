@@ -3,6 +3,8 @@ package com.example.phase1activity.Profile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.Profile.AppManager;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +17,7 @@ import com.example.phase1activity.SaveAPI.AndroidSaver;
 import com.example.phase1activity.SaveAPI.ISaver;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
-public class CustomizationActivity extends AppCompatActivity {
-    AppManager app;
+public class CustomizationActivity extends AbstractActivities {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class CustomizationActivity extends AppCompatActivity {
         Button set = findViewById(R.id.set);
         final EditText name = findViewById(R.id.nickname);
 
-        app = (AppManager) getApplication();
         final ISaver iSaver = new AndroidSaver(this.getApplicationContext());
 
         red.setOnClickListener(new View.OnClickListener() {

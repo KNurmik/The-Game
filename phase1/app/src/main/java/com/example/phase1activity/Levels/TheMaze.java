@@ -1,28 +1,21 @@
 package com.example.phase1activity.Levels;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-
 import java.text.DecimalFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.phase1activity.R;
-import com.example.phase1activity.presentation.MainMenu.StartActivity;
-
-public class TheMaze extends AppCompatActivity{
+public class TheMaze extends AppCompatActivity {
     private static DecimalFormat df = new DecimalFormat("0.00");
     DrawView drawView;
     MazeManager newMazeManager;
     private double score;
-    Button mainMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +29,6 @@ public class TheMaze extends AppCompatActivity{
     }
 
     public class DrawView extends View {
-        public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
         Paint paint = new Paint();
 
@@ -55,13 +47,11 @@ public class TheMaze extends AppCompatActivity{
             super.onDraw(canvas);
             newMazeManager.draw(canvas);
 
-            canvas.drawText("Your current score" + df.format(score), 400, 1000, paint);
-            if (checkWin()) {
-                canvas.drawText("You escaped the maze!", 400, 800, paint);
-            } else {
-                canvas.drawText("Can you escape the maze?", 400, 800, paint);
-            }
+            canvas.drawText("Your current score" + df.format(score), 500, 1000, paint);
+            if (checkWin()){ canvas.drawText("You escaped the maze!", 500, 800, paint);}
+            else {canvas.drawText("Can you escape the maze?", 500, 800, paint);}
         }
+
 
         /**
          * Moves according to where the user touches the screen
@@ -99,12 +89,7 @@ public class TheMaze extends AppCompatActivity{
                         newMazeManager.mazeObject.player.move(Character.Direction.UP);
                     }
                 }
-                if (checkWin()) {
-                    Intent intent = new Intent(TheMaze.this, MazeFinish.class);
-                    intent.putExtra(EXTRA_MESSAGE, score);
-                    startActivity(intent);
-                }
-                score = (double) (Math.pow(2.71, (int) ((newMazeManager.mazeObject.player.moves) / (-10))) * 100);
+                score = calculateScore();
                 drawView.invalidate();
                 return true;
             }
@@ -118,9 +103,12 @@ public class TheMaze extends AppCompatActivity{
      *
      * @return Whether the player is currently standing on the winning block or not.
      */
-    public boolean checkWin() {
-        return newMazeManager.mazeObject.player.currentBlock == newMazeManager.mazeObject.winningBlock;
-    }
+    public boolean checkWin() { return newMazeManager.mazeObject.player.currentBlock == newMazeManager.mazeObject.winningBlock; }
 
-
+    /**
+     * Updates the score of the player after they move
+     *
+     * @return The updated score of the player after they move
+     */
+    public double calculateScore(){ return (double) (Math.pow(2.71, (int)((newMazeManager.mazeObject.player.moves)/(-10))) * 100); }
 }

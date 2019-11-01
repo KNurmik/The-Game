@@ -2,6 +2,9 @@ package com.example.phase1activity.SaveAPI;
 
 import android.content.Context;
 
+import java.util.HashMap;
+import java.util.Set;
+
 public interface ISaver {
     /**
      * Save contents.
@@ -14,4 +17,8 @@ public interface ISaver {
      * @return previously saved contents.
      */
     String loadData();
+
+    HashMap<String, HashMap<String, String>> getExistingUserData();
+
+    Set<String> getExistingUsernames();
 }

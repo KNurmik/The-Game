@@ -2,6 +2,7 @@ package com.example.phase1activity.presentation.LogIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,10 +40,12 @@ public class LogInActivity extends AppCompatActivity {
         instructionText = findViewById(R.id.logInInstructionText);
         btn = findViewById(R.id.logInButton);
 
+        final Activity thisAcitivity = this;
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = logInInterface.logInAction(getUsername(),getPassword(), app);
+                String result = logInInterface.logInAction(thisAcitivity, getUsername(),getPassword(), app);
                 handleLogInResult(result);
             }
 
@@ -79,6 +82,7 @@ public class LogInActivity extends AppCompatActivity {
         }
         else{
             startActivity(new Intent(LogInActivity.this, StartActivity.class));
+            finish();
         }
     }
 

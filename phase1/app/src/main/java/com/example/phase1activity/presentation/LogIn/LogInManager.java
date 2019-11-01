@@ -1,59 +1,58 @@
 package com.example.phase1activity.presentation.LogIn;
 
+import android.content.Context;
+
 import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.Profile.Profile;
+import com.example.phase1activity.SaveAPI.AndroidSaver;
+import com.example.phase1activity.SaveAPI.ISaver;
 
+import java.util.HashMap;
+import java.util.Set;
 
 public class LogInManager implements LogInInterface {
-    private String username;
-    private String password;
 
-    LogInManager(){
-    }
+    public String logInAction(Context context, String username, String password, AppManager app){
 
-    private void setUsername(String username) {
-        this.username = username;
-    }
-
-    private void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public String logInAction(String user, String pass, AppManager app){
-        setUsername(user);
-        setPassword(pass);
-
-        if(!isValidPassword()){
+        if(!isValidPassword(password)){
             return "empty password";
         }
-        else if(!isValidUsername()){
+        else if(!isValidUsername(username)){
             return "empty username";
         }
 
         // Deal with incorrect username-password combinations.
-        else if(!isValidLogin()){
+        else if(!isValidLogin(context, username, password)){
             return "incorrect username/password";
         }
 
         else{
-            app.setProfile(new Profile(user, pass));
+            app.setProfile(new Profile(username, password));
             return "valid login";
         }
 
     }
 
-    private boolean isValidUsername(){
+    private boolean isValidUsername(String username){
         return !username.isEmpty();
     }
 
-    private boolean isValidPassword(){
+    private boolean isValidPassword(String password){
         return !password.isEmpty();
     }
 
-    // TODO: Implement actual method.
-    private boolean isValidLogin(){
-        return (username.equals("admin") && password.equals("admin"));
+    private boolean isValidLogin(Context context, String username, String password){
+        ISaver iSaver = new AndroidSaver(context);
+
+        Set<String> existingUsernames = iSaver.getExistingUsernames();
+
+        if (existingUsernames.contains(username)) {
+            HashMap<String, HashMap<String, String>> data = iSaver.getExistingUserData();
+            String registeredPassword = data.get(username).get("password");
+            return password.equals(registeredPassword);
+        } else {
+            return false;
+        }
     }
 
 

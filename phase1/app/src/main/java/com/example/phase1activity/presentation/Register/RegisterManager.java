@@ -13,8 +13,11 @@ import java.util.logging.Handler;
 
 // TODO: shouldn't have a public class here, and should use enums
 public class RegisterManager {
+
     public String registerAction(Context context, String username, String password) {
-        if ((new AndroidSaver(context)).getExistingUsernames().contains(username)) {
+        System.out.println("FILE DIRECTORY IN REGISTER MANAGER" + context.getFilesDir());
+        ISaver iSaver = new AndroidSaver(context);
+        if (iSaver.getExistingUsernames().contains(username)) {
             return "taken username";
         }
         else if(!isValidPassword(password)){
@@ -24,6 +27,7 @@ public class RegisterManager {
             return "username length error";
         }
         else{
+            iSaver.saveData(username + "," + password + "," + "red," + username + ",song 1");
             return "valid combination";
         }
     }

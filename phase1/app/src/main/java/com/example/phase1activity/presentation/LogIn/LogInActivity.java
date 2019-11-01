@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
@@ -19,21 +20,19 @@ import com.example.phase1activity.presentation.MainMenu.MainMenuActivity;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 import com.example.phase1activity.presentation.Register.RegisterActivity;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends AbstractActivities {
 
     LogInInterface logInInterface;
     EditText usernameText;
     EditText passwordText;
     TextView instructionText;
     Button btn;
-    AppManager app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         logInInterface = new LogInManager();
-        app = (AppManager) getApplication();
 
         usernameText = findViewById(R.id.UsernameText);
         passwordText = findViewById(R.id.PasswordText);

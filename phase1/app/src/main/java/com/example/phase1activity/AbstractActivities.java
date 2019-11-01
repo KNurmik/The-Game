@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.phase1activity.Profile.AppManager;
 
 public abstract class AbstractActivities extends AppCompatActivity {
-    AppManager app;
+    public AppManager app;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -11,12 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 // TODO: duplicate code in RegisterActivity and LoginActivity
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AbstractActivities {
 
     EditText usernameText;
     EditText passwordText;

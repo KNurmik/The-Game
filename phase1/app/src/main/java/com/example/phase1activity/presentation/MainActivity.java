@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.presentation.Register.RegisterActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AbstractActivities {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

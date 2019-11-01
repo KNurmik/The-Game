@@ -1,11 +1,7 @@
 package com.example.phase1activity.Levels.ReactionGame;
 
-import android.os.CountDownTimer;
-
 import org.springframework.util.StopWatch;
 
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Class for running backend processes for ReactionGame.

@@ -1,7 +1,5 @@
 package com.example.phase1activity.Levels.ReactionGame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -14,10 +12,6 @@ import android.widget.TextView;
 import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.MatchingGameActivity;
 import com.example.phase1activity.R;
-import com.example.phase1activity.presentation.MainMenu.StartActivity;
-
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Activity for displaying ReactionGame.
@@ -44,6 +38,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         btn = findViewById(R.id.reactButton);
 
         btn.setOnClickListener(this);
+        btn.setBackgroundColor(app.getProfileColour());
 
         TextView textView = findViewById(R.id.gameStateView);
         defaultColor = textView.getTextColors();

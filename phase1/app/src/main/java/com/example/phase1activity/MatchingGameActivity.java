@@ -1,7 +1,5 @@
 package com.example.phase1activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase1activity.Levels.MazeActivity;
+import com.example.phase1activity.Levels.ReactionGame.ReactionGameActivity;
+import com.example.phase1activity.Levels.ReactionGame.ReactionInstructionsActivity;
+import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
     Button finishMatches;
     Button nextLevel;
     TextView nickname;
+    Button menu;
 
     /**
      * Set content view to this activity. Randomly assign values to this activity's cards, and
@@ -95,6 +97,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         final Button button6 = findViewById(R.id.button6);
         finishMatches = findViewById(R.id.finishMatches);
         nextLevel = findViewById(R.id.nextLevel);
+        menu = findViewById(R.id.menu1);
 
         cardsToValues = new HashMap<Button, String>() {{
             put(button1, cardValues.get(0));
@@ -123,6 +126,14 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         nickname = findViewById(R.id.hello);
         String hello = "Hi " + app.getProfile().getNickname() + "!!!";
         nickname.setText(hello);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            /** Allow user to continue to the game using the button. */
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
+            }
+        });
     }
 
     /**
@@ -133,6 +144,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
      */
     @Override
     public void onClick(View view) {
+
         Button button = (Button) view;
 
         if (button.getText().equals(BACKOFCARD)) {
@@ -152,6 +164,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
             }
         }
         else if (button.getText().equals(NEXT) || button.getText().equals("Next")){
+            app.getProfile().setGameLevel(2);
             startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
         }
 

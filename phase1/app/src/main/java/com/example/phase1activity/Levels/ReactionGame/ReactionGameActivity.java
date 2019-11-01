@@ -38,6 +38,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         btn = findViewById(R.id.reactButton);
 
         btn.setOnClickListener(this);
+        btn.setBackgroundColor(app.getProfileColour());
 
         TextView textView = findViewById(R.id.gameStateView);
         defaultColor = textView.getTextColors();

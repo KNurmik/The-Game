@@ -43,7 +43,6 @@ public class AndroidSaver implements ISaver {
         } catch (FileNotFoundException e) {
             Log.e(TAG, "Cannot save data: " + SAVE_FILE);
         }
-
         out.println(contents);
         out.close();
     }
@@ -91,7 +90,7 @@ public class AndroidSaver implements ISaver {
                 HashMap<String, String> userData = new HashMap<String, String>() {{
                     put("password", splitByInfo[PASSWORD_INDEX]);
                     put("nickname", splitByInfo[NICKNAME_INDEX]);
-                    put("color", splitByInfo[COLOUR_INDEX]);
+                    put("colour", splitByInfo[COLOUR_INDEX]);
                     put("song", splitByInfo[SONG_INDEX]);
                     put("game level", splitByInfo[GAME_LEVEL_INDEX]);
                 }};

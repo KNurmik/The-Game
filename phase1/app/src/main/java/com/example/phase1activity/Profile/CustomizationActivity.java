@@ -88,6 +88,6 @@ public class CustomizationActivity extends AbstractActivities {
 
     void saveProfileData(Profile profile) {
         ISaver iSaver = new AndroidSaver(this.getApplicationContext());
-        iSaver.saveData(profile.username + "," + profile.password + "," + profile.colour + "," + profile.nickname + "," + profile.song);
+        iSaver.saveData(profile.username + "," + profile.password + "," + profile.nickname + "," + profile.colour + "," + profile.song + "," + profile.gameLevel);
     }
 }

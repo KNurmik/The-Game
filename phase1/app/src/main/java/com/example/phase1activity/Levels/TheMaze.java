@@ -17,7 +17,7 @@ import com.example.phase1activity.AbstractActivities;
 public class TheMaze extends AbstractActivities {
     DrawView drawView;
     MazeManager newMazeManager;
-    private int score;
+    public int score;
     Button mainMenu;
     public String playerNickname;
 
@@ -78,8 +78,8 @@ public class TheMaze extends AbstractActivities {
                 float x = event.getX();
                 float y = event.getY();
 
-                float playerX = newMazeManager.mazeObject.player.currentBlock.getX() * 100 + 300;
-                float playerY = newMazeManager.mazeObject.player.currentBlock.getY() * 100 + 210;
+                float playerX = newMazeManager.mazeObject.player.coordinateX();
+                float playerY = newMazeManager.mazeObject.player.coordinateY();
                 float diffX = x - playerX;
                 float diffY = y - playerY;
 
@@ -130,5 +130,5 @@ public class TheMaze extends AbstractActivities {
      *
      * @return The updated score of the player after they move
      */
-    public int calculateScore(){ return Math.max(100000 - (newMazeManager.mazeObject.player.moves)*1000, 0); }
+    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*150, 0); }
 }

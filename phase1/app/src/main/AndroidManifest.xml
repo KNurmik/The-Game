@@ -19,7 +19,6 @@
         <activity android:name=".presentation.MainMenu.StartActivity" />
         <activity android:name=".Profile.CustomizationActivity" />
         <activity android:name=".MatchingGameActivity" />
-        <activity android:name=".presentation.MainMenu.MainMenuActivity" />
         <activity android:name=".presentation.Register.RegisterActivity" />
         <activity android:name=".presentation.LogIn.LogInActivity" />
         <activity android:name=".presentation.MainActivity">

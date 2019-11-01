@@ -18,7 +18,7 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class ReactionGameActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReactionGameActivity extends AppCompatActivity{
     ReactionGameManager manager;
     Button btn;
     ColorStateList defaultColor;
@@ -47,32 +47,30 @@ public class ReactionGameActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-    }
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(manager.getGameState().equals("beginning")){
+                    beginGame();
+                }
+                // Game has begun, user pressed button too early.
+                else if(manager.getGameState().equals("do not react")){
+                    manager.press();
+                    updateGameStateView("Too soon! Don't press the button!!", Color.RED);
+                }
+                // User reacted correctly.
+                else if (manager.getGameState().equals("react")){
+                    manager.press();
+                    updateGameStateView("Well done!", Color.BLUE);
+                    updateScoreView("Your score is: " + manager.getScore());
+                    manager.setGameState("beginning");
+                }
 
-    @Override
-    public void onClick(View v) {
+                // Game is over.
+                else{
 
-        // Turn hasn't stated, begin the game.
-        if(manager.getGameState().equals("beginning")){
-            beginGame();
-        }
-        // Game has begun, user pressed button too early.
-        else if(manager.getGameState().equals("do not react")){
-            manager.press();
-            updateGameStateView("Too soon! Don't press the button!!", Color.RED);
-        }
-        // User reacted correctly.
-        else if (manager.getGameState().equals("react")){
-            manager.press();
-            updateGameStateView("Well done!", Color.BLUE);
-            updateScoreView("Your score is: " + manager.getScore());
-            manager.setGameState("beginning");
-        }
-
-        // Game is over.
-        else{
-
-        }
+                }
+            }
+        });
 
     }
 

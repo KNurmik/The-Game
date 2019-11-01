@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.MatchingGameActivity;
 import com.example.phase1activity.R;
+import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 /**
  * Activity for displaying ReactionGame.
@@ -21,6 +22,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
     Button btn;
     ColorStateList defaultColor;
     Button nextbtn;
+    Button menu;
 
 
     /**
@@ -36,6 +38,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         manager = new ReactionGameManager("easy");
         nextbtn = findViewById(R.id.Next);
         btn = findViewById(R.id.reactButton);
+        menu = findViewById(R.id.button7);
 
         btn.setOnClickListener(this);
         btn.setBackgroundColor(app.getProfileColour());
@@ -43,16 +46,23 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         TextView textView = findViewById(R.id.gameStateView);
         defaultColor = textView.getTextColors();
 
-
         updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
         updateScoreView(app.getProfile().getNickname() + "'s score is: 0");
 
         // Button to skip the game.
         nextbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                app.getProfile().setGameLevel(1);
                 startActivity(new Intent(ReactionGameActivity.this, MatchingGameActivity.class));
             }
         });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(ReactionGameActivity.this, StartActivity.class));
+            }
+        });
+
 
     }
 

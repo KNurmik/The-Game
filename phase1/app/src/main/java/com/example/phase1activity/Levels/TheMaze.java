@@ -10,17 +10,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.phase1activity.R;
-import com.example.phase1activity.presentation.MainMenu.StartActivity;
+import com.example.phase1activity.AbstractActivities;
 
-public class TheMaze extends AppCompatActivity{
+public class TheMaze extends AbstractActivities {
     DrawView drawView;
     MazeManager newMazeManager;
     private int score;
     Button mainMenu;
+    public String playerNickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +30,8 @@ public class TheMaze extends AppCompatActivity{
         setContentView(drawView);
         newMazeManager = new MazeManager();
         score = 0;
+        playerNickname = app.getProfile().getNickname();
+        newMazeManager.mazeObject.player.setPaintText(app.getProfile().getColour());
     }
 
     public class DrawView extends View {
@@ -53,9 +54,9 @@ public class TheMaze extends AppCompatActivity{
             super.onDraw(canvas);
             newMazeManager.draw(canvas);
 
-            canvas.drawText("Your current score: " + score, 250, 1000, paint);
+            canvas.drawText(playerNickname + " current score: " + score, 250, 1000, paint);
             if (checkWin()) {
-                canvas.drawText("You escaped the maze!", 250, 800, paint);
+                canvas.drawText( playerNickname + " escaped the maze!", 250, 800, paint);
             } else {
                 canvas.drawText("Can you escape the maze?", 250, 800, paint);
             }
@@ -129,5 +130,5 @@ public class TheMaze extends AppCompatActivity{
      *
      * @return The updated score of the player after they move
      */
-    public int calculateScore(){ return Math.max(100000 - (newMazeManager.mazeObject.player.moves)*3000, 0); }
+    public int calculateScore(){ return Math.max(100000 - (newMazeManager.mazeObject.player.moves)*1000, 0); }
 }

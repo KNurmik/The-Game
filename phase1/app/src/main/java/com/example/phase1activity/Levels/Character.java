@@ -46,6 +46,10 @@ public class Character {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
+    public void setPaintText(int color){
+        paintText.setColor(color);
+    }
+
     /**
      * Possible directions that the character could move
      */

@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import android.view.View;
 
+import com.example.phase1activity.Profile.AppManager;
+
 // TODO: make game extendable (add levels without replacing code, i.e open closed principle), clean code, srp
 
 /**
@@ -51,9 +53,9 @@ public class MatchingGameManager {
      * @param card the card clicked.
      * @param cardValues a map of cards to their respective values.
      */
-    void recordClick(Button card, Map<Button, String> cardValues) {
+    void recordClick(Button card, Map<Button, String> cardValues, AppManager app) {
         card.setText(cardValues.get(card));
-        card.setBackgroundColor(Color.CYAN);
+        card.setBackgroundColor(app.getProfileColour());
 
         if (this.cardsClicked[0] == null) {
             this.cardsClicked[0] = card;

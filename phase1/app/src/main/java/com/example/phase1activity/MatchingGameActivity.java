@@ -148,7 +148,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         Button button = (Button) view;
 
         if (button.getText().equals(BACKOFCARD)) {
-            manager.recordClick(button, cardsToValues);
+            manager.recordClick(button, cardsToValues, app);
 
             int matchesToBeMade = manager.getMatchesToBeMade();
 

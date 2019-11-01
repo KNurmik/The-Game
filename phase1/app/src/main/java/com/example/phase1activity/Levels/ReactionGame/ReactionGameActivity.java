@@ -50,7 +50,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
 
 
         updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
-        updateScoreView("Your score is: 0");
+        updateScoreView(app.getProfile().getNickname() + "'s score is: 0");
 
         // Button to skip the game.
         nextbtn.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         else if (manager.getGameState().equals("react")) {
             manager.press();
             updateGameStateView("Well done!", Color.BLUE);
-            updateScoreView("Your score is: " + manager.getScore());
+            updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
             manager.setGameState("beginning");
         }
 
@@ -150,7 +150,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         else {
             updateGameStateView("GAME OVER", defaultColor.getDefaultColor());
             manager.setGameState("game over");
-            updateScoreView("Your score is: " + manager.getScore());
+            updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
         }
     }
 

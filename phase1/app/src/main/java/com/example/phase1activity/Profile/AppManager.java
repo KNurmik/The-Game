@@ -10,14 +10,21 @@ public class AppManager extends Application {
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
     private Profile profile;
+    private int songNumber = 0;
+
+    private final int song1 = R.raw.sillychicken;
+    private final int song2 = R.raw.jazzy;
+    private final int[] Tracks = new int[]{song1, song2};
+    MediaPlayer player;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        MediaPlayer player = MediaPlayer.create(this, R.raw.sillychicken);
+
+        player = MediaPlayer.create(this, Tracks[0]);
         player.setLooping(true);
-        player.setVolume(100,100);
+        player.setVolume(100, 100);
         player.start();
     }
 
@@ -42,6 +49,10 @@ public class AppManager extends Application {
 
     public Profile getProfile() {
         return this.profile;
+    }
+
+    public void setSongNumber(int n){
+        this.songNumber = n;
     }
 }
 

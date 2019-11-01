@@ -1,18 +1,13 @@
 package com.example.phase1activity.presentation.MainMenu;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.phase1activity.AbstractActivities;
-import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
-import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.Levels.ReactionGame.ReactionInstructionsActivity;
 
 public class StartActivity extends AbstractActivities {

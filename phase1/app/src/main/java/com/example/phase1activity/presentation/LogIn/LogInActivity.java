@@ -1,7 +1,5 @@
 package com.example.phase1activity.presentation.LogIn;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,12 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.phase1activity.AbstractActivities;
-import com.example.phase1activity.Profile.AppManager;
-import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
-import com.example.phase1activity.presentation.MainActivity;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
-import com.example.phase1activity.presentation.Register.RegisterActivity;
 
 public class LogInActivity extends AbstractActivities {
 

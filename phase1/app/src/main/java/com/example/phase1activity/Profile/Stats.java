@@ -1,6 +1,5 @@
 package com.example.phase1activity.Profile;
-import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class Stats {
     private int mazeScore;

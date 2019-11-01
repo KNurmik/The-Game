@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
@@ -27,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         final RegisterManager registerManager = new RegisterManager();
+        final AppManager app = (AppManager) getApplication();
 
         usernameText = findViewById(R.id.NewUsernameText);
         passwordText = findViewById(R.id.NewPasswordText);
@@ -38,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = registerManager.registerAction(thisActivity, getUsername(), getPassword());
+                String result = registerManager.registerAction(thisActivity, getUsername(), getPassword(), app);
                 handleRegisterResult(result);
             }
         });

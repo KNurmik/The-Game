@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.Levels.ReactionGame.ReactionInstructionsActivity;
 
 public class StartActivity extends AppCompatActivity {
+    AppManager app;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +26,27 @@ public class StartActivity extends AppCompatActivity {
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.Leaderboard);
         Button startButton = findViewById(R.id.Start);
+        app = (AppManager) getApplication();
+
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, CustomizationActivity.class));
+                finish();
             }
         });
 
         leaderbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, LeaderboardActivity.class));
+                finish();
             }
         });
 
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, ReactionInstructionsActivity.class));
+                finish();
             }
         });
 

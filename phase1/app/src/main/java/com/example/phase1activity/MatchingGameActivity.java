@@ -20,7 +20,7 @@ import java.util.Collections;
 /**
  * A MatchingGameActivity.
  */
-public class MatchingGameActivity extends AppCompatActivity implements View.OnClickListener {
+public class MatchingGameActivity extends AbstractActivities implements View.OnClickListener {
 
     /**
      * This MatchingGameActivity's MatchingGameManager

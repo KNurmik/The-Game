@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.R;
 
-public class LeaderboardActivity extends AppCompatActivity {
+public class LeaderboardActivity extends AbstractActivities {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

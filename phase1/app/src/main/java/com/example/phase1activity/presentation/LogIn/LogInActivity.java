@@ -76,7 +76,6 @@ public class LogInActivity extends AbstractActivities {
         }
         else{
             startActivity(new Intent(LogInActivity.this, StartActivity.class));
-            finish();
         }
     }
 

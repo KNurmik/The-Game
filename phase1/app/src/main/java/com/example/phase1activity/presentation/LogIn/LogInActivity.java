@@ -48,12 +48,7 @@ public class LogInActivity extends AppCompatActivity {
                 String result = logInInterface.logInAction(thisAcitivity, getUsername(),getPassword(), app);
                 handleLogInResult(result);
             }
-
-
         });
-
-
-
     }
 
     private String getUsername(){

@@ -24,7 +24,7 @@ tools:context=".MatchingGameActivity">
     android:layout_marginTop="100dp"
     android:text="Button"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    app:layout_constraintTop_toBottomOf="@+id/hello" />
 
     <Button
         android:id="@+id/button2"
@@ -34,7 +34,7 @@ tools:context=".MatchingGameActivity">
         android:text="Button"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/hello" />
 
 <Button
     android:id="@+id/button3"
@@ -43,7 +43,7 @@ tools:context=".MatchingGameActivity">
     android:layout_marginTop="100dp"
     android:layout_marginEnd="16dp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    app:layout_constraintTop_toBottomOf="@+id/hello" />
 
 <Button
     android:id="@+id/button4"
@@ -73,19 +73,19 @@ tools:context=".MatchingGameActivity">
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/button3" />
 
-<TextView
-    android:id="@+id/textView3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40sp"
-    android:text="PlaceHolder"
-    android:textSize="40sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:text="PlaceHolder"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
+    <TextView
     android:id="@+id/statDisplay"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

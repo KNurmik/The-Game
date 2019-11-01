@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
-public class TheMaze extends AppCompatActivity implements View.OnClickListener {
+public class TheMaze extends AppCompatActivity{
     private static DecimalFormat df = new DecimalFormat("0.00");
     DrawView drawView;
     MazeManager newMazeManager;
@@ -35,12 +35,8 @@ public class TheMaze extends AppCompatActivity implements View.OnClickListener {
         score = 0;
     }
 
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(TheMaze.this, StartActivity.class));
-    }
-
     public class DrawView extends View {
+        public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
         Paint paint = new Paint();
 
@@ -104,7 +100,9 @@ public class TheMaze extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
                 if (checkWin()) {
-                    mainMenu.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(TheMaze.this, MazeFinish.class);
+                    intent.putExtra(EXTRA_MESSAGE, score);
+                    startActivity(intent);
                 }
                 score = (double) (Math.pow(2.71, (int) ((newMazeManager.mazeObject.player.moves) / (-10))) * 100);
                 drawView.invalidate();

@@ -34,8 +34,6 @@ public class ReactionGameActivity extends AppCompatActivity implements View.OnCl
         nextbtn = findViewById(R.id.Next);
         btn = findViewById(R.id.reactButton);
 
-        btn = findViewById(R.id.reactButton);
-
         btn.setOnClickListener(this);
 
         TextView textView = findViewById(R.id.gameStateView);

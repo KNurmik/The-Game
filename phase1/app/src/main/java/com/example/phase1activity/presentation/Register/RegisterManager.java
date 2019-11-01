@@ -13,6 +13,8 @@ import java.util.logging.Handler;
 
 // TODO: shouldn't have a public class here, and should use enums
 public class RegisterManager {
+    private final int MAX_ENTRY_LENGTH = 16;
+    final int MIN_ENTRY_LENGTH = 0;
 
     public String registerAction(Context context, String username, String password) {
         System.out.println("FILE DIRECTORY IN REGISTER MANAGER" + context.getFilesDir());
@@ -21,22 +23,23 @@ public class RegisterManager {
             return "taken username";
         }
         else if(!isValidPassword(password)){
-            return "empty password";
+            return "password length error";
         }
         else if (!isValidUsername(username)) {
             return "username length error";
         }
         else{
-            iSaver.saveData(username + "," + password + "," + "red," + username + ",song 1");
+            final String DEFAULT_VALUES = ",red,song 1,0,0,0,0";
+            iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
             return "valid combination";
         }
     }
 
     private boolean isValidUsername(String username){
-        return username.length() > 0 && username.length() < 16;
+        return username.length() > MIN_ENTRY_LENGTH && username.length() < MAX_ENTRY_LENGTH;
     }
 
     private boolean isValidPassword(String password){
-        return password.length() > 0;
+        return password.length() > MIN_ENTRY_LENGTH && password.length() < MAX_ENTRY_LENGTH;
     }
 }

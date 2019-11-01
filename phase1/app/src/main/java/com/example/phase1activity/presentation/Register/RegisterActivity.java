@@ -49,8 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
             updateInstructionText("Username is taken!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("empty password")) {
-            updateInstructionText("You can't have an empty password!", Color.RED);
+        } else if (result.equals("password length error")) {
+            updateInstructionText("Password length must be <16, and >0!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
         } else if (result.equals("username length error")) {

@@ -74,24 +74,32 @@ public class AndroidSaver implements ISaver {
     }
 
     public HashMap<String, HashMap<String, String>> getExistingUserData() {
+        HashMap<String, HashMap<String, String>> usernamesToData = new HashMap<>();
+
         final int USERNAME_INDEX = 0;
         final int PASSWORD_INDEX = 1;
-        final int COLOUR_INDEX = 2;
-        final int NICKNAME_INDEX = 3;
+        final int NICKNAME_INDEX = 2;
+        final int COLOUR_INDEX = 3;
         final int SONG_INDEX = 4;
-
-        HashMap<String, HashMap<String, String>> usernamesToData = new HashMap<>();
+        final int GAME_LEVEL_INDEX = 5;
+        final int STAT1_INDEX = 6;
+        final int STAT2_INDEX = 7;
+        final int STAT3_INDEX = 8;
 
         String[] splitByEntry = splitDataByEntry();
         for (String entry : splitByEntry) {
             final String[] splitByInfo = entry.split(",");
 
-            if (splitByInfo.length == 5) {
+            if (splitByInfo.length == 9) {
                 HashMap<String, String> userData = new HashMap<String, String>() {{
                     put("password", splitByInfo[PASSWORD_INDEX]);
-                    put("color", splitByInfo[COLOUR_INDEX]);
                     put("nickname", splitByInfo[NICKNAME_INDEX]);
+                    put("color", splitByInfo[COLOUR_INDEX]);
                     put("song", splitByInfo[SONG_INDEX]);
+                    put("game level", splitByInfo[GAME_LEVEL_INDEX]);
+                    put("stat 1", splitByInfo[STAT1_INDEX]);
+                    put("stat 2", splitByInfo[STAT2_INDEX]);
+                    put("stat 3", splitByInfo[STAT3_INDEX]);
                 }};
                 usernamesToData.put(splitByInfo[USERNAME_INDEX], userData);
             }

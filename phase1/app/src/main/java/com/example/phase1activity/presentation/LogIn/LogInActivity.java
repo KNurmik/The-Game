@@ -51,9 +51,6 @@ public class LogInActivity extends AppCompatActivity {
 
 
         });
-
-
-
     }
 
     private String getUsername(){

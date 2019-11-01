@@ -10,21 +10,19 @@ import com.example.phase1activity.SaveAPI.ISaver;
 import java.util.HashMap;
 import java.util.Set;
 
-public class LogInManager implements LogInInterface {
+public class LogInManager extends SignupManager {
 
-    public String logInAction(Context context, String username, String password, AppManager app){
+    protected String signupAction(Context context, String username, String password, AppManager app) {
 
-        if(!isValidPassword(password)){
+        if (!isValidPassword(password)) {
             return "empty password";
-        }
-        else if(!isValidUsername(username)){
+        } else if (!isValidUsername(username)) {
             return "empty username";
         }
         // Deal with incorrect username-password combinations.
-        else if(!isValidLogin(context, username, password)){
+        else if (!isValidLogin(context, username, password)) {
             return "incorrect username/password";
-        }
-        else{
+        } else {
             ISaver iSaver = new AndroidSaver(context.getApplicationContext());
             HashMap<String, HashMap<String, String>> userData = iSaver.getExistingUserData();
             String nickname = userData.get(username).get("nickname");
@@ -36,15 +34,7 @@ public class LogInManager implements LogInInterface {
         }
     }
 
-    private boolean isValidUsername(String username){
-        return !username.isEmpty();
-    }
-
-    private boolean isValidPassword(String password){
-        return !password.isEmpty();
-    }
-
-    private boolean isValidLogin(Context context, String username, String password){
+    boolean isValidLogin(Context context, String username, String password) {
         ISaver iSaver = new AndroidSaver(context);
 
         Set<String> existingUsernames = iSaver.getExistingUsernames();

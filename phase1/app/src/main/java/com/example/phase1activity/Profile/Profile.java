@@ -38,6 +38,12 @@ public class Profile {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+    public int getGameLevel(){
+        return this.gameLevel;
+    }
+    public void setGameLevel(int n){
+        this.gameLevel = n;
+    }
 
     public String getNickname() {
         return this.nickname;
@@ -50,5 +56,9 @@ public class Profile {
     public int getSong(){
         return this.song;
 }
+
+
+
+
 
 }

@@ -2,8 +2,8 @@ package com.example.phase1activity.Levels;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 public class Wall extends MazeItem {
 
@@ -56,11 +56,10 @@ public class Wall extends MazeItem {
      * @param canvas The canvas that the Wall instance will be drawn on
      */
     public void draw(Canvas canvas) {
-        if (isHorz()){
-            canvas.drawLine((float)(getX() * 100 + 100), (float)(getY() * 100 + 100), (float)(getX() * 100 + 200), (float)(getY() * 100 + 100), paintText);
-        }
-        else{
-            canvas.drawLine((float)(getX() * 100+ 100), (float)(getY() * 100+ 100), (float)(getX()*100+ 100), (float)(getY()*100+200), paintText);
+        if (isHorz()) {
+            canvas.drawLine((float) (getX() * 100 + 250), (float) (getY() * 100 + 160), (float) (getX() * 100 + 350), (float) (getY() * 100 + 160), paintText);
+        } else {
+            canvas.drawLine((float) (getX() * 100 + 250), (float) (getY() * 100 + 160), (float) (getX() * 100 + 250), (float) (getY() * 100 + 260), paintText);
 
         }
 

@@ -94,6 +94,6 @@ public class Character {
      * @param canvas the canvas that the phone is using
      */
     public void draw(Canvas canvas) {
-        canvas.drawCircle(currentBlock.getX() * 100 + 150, currentBlock.getY()*100 + 150, 40, paintText);
+        canvas.drawCircle(currentBlock.getX() * 100 + 300, currentBlock.getY()*100 + 210, 40, paintText);
     }
 }

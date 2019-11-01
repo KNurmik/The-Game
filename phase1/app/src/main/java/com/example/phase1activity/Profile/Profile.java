@@ -1,5 +1,7 @@
 package com.example.phase1activity.Profile;
 
+import android.graphics.Color;
+
 public class Profile {
     String username;
     String password;
@@ -27,8 +29,10 @@ public class Profile {
         this.colour = colour;
     }
 
-    public String getColour() {
-        return colour;
+    public int getColour() {
+        if(colour.equals("red")){return Color.RED;}
+        else if(colour.equals("blue")){return Color.BLUE;}
+        else{return Color.GREEN;}
     }
 
     public void setNickname(String nickname) {

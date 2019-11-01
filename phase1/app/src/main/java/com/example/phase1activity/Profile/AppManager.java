@@ -51,6 +51,8 @@ public class AppManager extends Application {
         return this.profile;
     }
 
+    public int getProfileColour(){return getProfile().getColour();}
+
     public void setSongNumber(int n){
         this.songNumber = n;
     }

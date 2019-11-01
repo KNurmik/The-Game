@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.phase1activity.AbstractActivities;
+import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 // TODO: duplicate code in RegisterActivity and LoginActivity
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AbstractActivities {
 
     EditText usernameText;
     EditText passwordText;
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         final RegisterManager registerManager = new RegisterManager();
+        final AppManager app = (AppManager) getApplication();
 
         usernameText = findViewById(R.id.NewUsernameText);
         passwordText = findViewById(R.id.NewPasswordText);
@@ -38,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = registerManager.registerAction(thisActivity, getUsername(), getPassword());
+                String result = registerManager.registerAction(thisActivity, getUsername(), getPassword(), app);
                 handleRegisterResult(result);
             }
         });
@@ -49,8 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
             updateInstructionText("Username is taken!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("empty password")) {
-            updateInstructionText("You can't have an empty password!", Color.RED);
+        } else if (result.equals("password length error")) {
+            updateInstructionText("Password length must be <16, and >0!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
         } else if (result.equals("username length error")) {

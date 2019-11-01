@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.phase1activity.AbstractActivities;
 import com.example.phase1activity.Profile.AppManager;
 import com.example.phase1activity.Profile.CustomizationActivity;
 import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.LogIn.LogInActivity;
 import com.example.phase1activity.Levels.ReactionGame.ReactionInstructionsActivity;
 
-public class StartActivity extends AppCompatActivity {
-    AppManager app;
+public class StartActivity extends AbstractActivities {
 
 
     @Override
@@ -26,7 +26,6 @@ public class StartActivity extends AppCompatActivity {
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.Leaderboard);
         Button startButton = findViewById(R.id.Start);
-        app = (AppManager) getApplication();
 
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {

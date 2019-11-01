@@ -27,6 +27,10 @@ public class Profile {
         this.colour = colour;
     }
 
+    public String getColour() {
+        return colour;
+    }
+
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

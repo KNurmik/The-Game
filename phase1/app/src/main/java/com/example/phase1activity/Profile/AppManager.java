@@ -15,27 +15,17 @@ public class AppManager extends Application {
     private final int song1 = R.raw.sillychicken;
     private final int song2 = R.raw.jazzy;
     private final int[] Tracks = new int[]{song1, song2};
+    MediaPlayer player;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
 
-
-        MediaPlayer player = MediaPlayer.create(this, Tracks[songNumber]);
+        player = MediaPlayer.create(this, Tracks[0]);
         player.setLooping(true);
-        player.setVolume(100,100);
+        player.setVolume(100, 100);
         player.start();
-
-//        if (this.profile.getSong() == 1){
-//            player.stop();
-//            MediaPlayer player2 = MediaPlayer.create(this, R.raw.sillychicken);
-//            player2.setLooping(true);
-//            player2.setVolume(100,100);
-//            player2.start();
-//        }
-
-
     }
 
     // Called by the system when the device configuration changes while your component is running.

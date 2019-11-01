@@ -18,27 +18,27 @@ public class Profile {
         this.song = 0;
     }
 
-    String getUsername() {
+    public String getUsername() {
         return this.username;
     }
 
-    void setColour(String colour) {
+    public void setColour(String colour) {
         this.colour = colour;
     }
 
-    void setNickname(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    String getNickname() {
+    public String getNickname() {
         return this.nickname;
     }
 
-    void setSong(int n) {
+    public void setSong(int n) {
         this.song = n;
     }
 
-    int getSong(){
+    public int getSong(){
         return this.song;
 }
 

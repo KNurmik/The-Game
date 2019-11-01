@@ -12,10 +12,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Levels.ReactionGame.ReactionGameActivity"></activity>
         <activity android:name=".Levels.ReactionGame.ReactionInstructionsActivity" />
-        <activity android:name=".MatchingGameActivity" />
+        <activity android:name=".Levels.MazeActivity" />
+        <activity android:name=".Levels.TheMaze" />
         <activity android:name=".presentation.MainMenu.LeaderboardActivity" />
         <activity android:name=".presentation.MainMenu.StartActivity" />
         <activity android:name=".Profile.CustomizationActivity" />
+        <activity android:name=".MatchingGameActivity" />
         <activity android:name=".presentation.MainMenu.MainMenuActivity" />
         <activity android:name=".presentation.Register.RegisterActivity" />
         <activity android:name=".presentation.LogIn.LogInActivity" />

@@ -2,11 +2,14 @@ package com.example.phase1activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.phase1activity.Levels.MazeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,11 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
     final static String SCORE = "Final Score: ";
 
     /**
+     * The string to be displayed on the Next Level button.
+     */
+    final static String NEXT = "Next Level";
+
+    /**
      * A map of this MatchingGameActivity's cards to their respective values.
      */
     Map<Button, String> cardsToValues;
@@ -48,6 +56,11 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
      * The View that displays the user's stats.
      */
     TextView statDisplay;
+
+    /**
+     * The button that allows the user to advance to the last level.
+     */
+    Button nextLevel;
 
     /**
      * Set content view to this activity. Randomly assign values to this activity's cards, and
@@ -78,6 +91,7 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
         final Button button4 = findViewById(R.id.button4);
         final Button button5 = findViewById(R.id.button5);
         final Button button6 = findViewById(R.id.button6);
+        nextLevel = findViewById(R.id.nextLevel);
 
         cardsToValues = new HashMap<Button, String>() {{
             put(button1, cardValues.get(0));
@@ -99,6 +113,8 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
             card.setBackgroundColor(Color.LTGRAY);
         }
 
+        nextLevel.setOnClickListener(this);
+
         manager = new MatchingGameManager(this.cardsToValues.size());
     }
 
@@ -112,7 +128,7 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         Button button = (Button) view;
 
-        if (button.getText() == BACKOFCARD) {
+        if (button.getText().equals(BACKOFCARD)) {
             manager.recordClick(button, cardsToValues);
 
             int matchesToBeMade = manager.getMatchesToBeMade();
@@ -121,11 +137,15 @@ public class MatchingGameActivity extends AppCompatActivity implements View.OnCl
                 double score = manager.getScore();
                 String statDisplayText = SCORE + score;
                 this.statDisplay.setText(statDisplayText);
+                nextLevel.setVisibility(View.VISIBLE);
             } else {
                 int turnsTaken = manager.getTurnsTaken();
                 String statDisplayText = TURNSTAKEN + turnsTaken;
                 this.statDisplay.setText(statDisplayText);
             }
+        }
+        else if (button.getText().equals(NEXT)){
+            startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
         }
 
     }

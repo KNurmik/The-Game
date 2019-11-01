@@ -18,7 +18,7 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class ReactionGameActivity extends AppCompatActivity{
+public class ReactionGameActivity extends AppCompatActivity implements View.OnClickListener {
     ReactionGameManager manager;
     Button btn;
     ColorStateList defaultColor;
@@ -34,6 +34,10 @@ public class ReactionGameActivity extends AppCompatActivity{
         nextbtn = findViewById(R.id.Next);
         btn = findViewById(R.id.reactButton);
 
+        btn = findViewById(R.id.reactButton);
+
+        btn.setOnClickListener(this);
+
         TextView textView = findViewById(R.id.gameStateView);
         defaultColor = textView.getTextColors();
 
@@ -47,30 +51,32 @@ public class ReactionGameActivity extends AppCompatActivity{
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(manager.getGameState().equals("beginning")){
-                    beginGame();
-                }
-                // Game has begun, user pressed button too early.
-                else if(manager.getGameState().equals("do not react")){
-                    manager.press();
-                    updateGameStateView("Too soon! Don't press the button!!", Color.RED);
-                }
-                // User reacted correctly.
-                else if (manager.getGameState().equals("react")){
-                    manager.press();
-                    updateGameStateView("Well done!", Color.BLUE);
-                    updateScoreView("Your score is: " + manager.getScore());
-                    manager.setGameState("beginning");
-                }
+    }
 
-                // Game is over.
-                else{
+    @Override
+    public void onClick(View v) {
 
-                }
-            }
-        });
+        // Turn hasn't stated, begin the game.
+        if(manager.getGameState().equals("beginning")){
+            beginGame();
+        }
+        // Game has begun, user pressed button too early.
+        else if(manager.getGameState().equals("do not react")){
+            manager.press();
+            updateGameStateView("Too soon! Don't press the button!!", Color.RED);
+        }
+        // User reacted correctly.
+        else if (manager.getGameState().equals("react")){
+            manager.press();
+            updateGameStateView("Well done!", Color.BLUE);
+            updateScoreView("Your score is: " + manager.getScore());
+            manager.setGameState("beginning");
+        }
+
+        // Game is over.
+        else if (manager.getGameState().equals("game over")){
+            startActivity(new Intent(ReactionGameActivity.this, MatchingGameActivity.class));
+        }
 
     }
 

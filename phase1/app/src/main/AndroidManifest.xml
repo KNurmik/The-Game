@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Levels.ReactionGame.ReactionGameActivity"></activity>
         <activity android:name=".Levels.ReactionGame.ReactionInstructionsActivity" />
+        <activity android:name=".MatchingGameActivity" />
         <activity android:name=".presentation.MainMenu.LeaderboardActivity" />
         <activity android:name=".presentation.MainMenu.StartActivity" />
         <activity android:name=".Profile.CustomizationActivity" />

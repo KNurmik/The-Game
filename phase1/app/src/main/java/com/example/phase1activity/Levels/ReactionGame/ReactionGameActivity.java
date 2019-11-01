@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.phase1activity.MatchingGameActivity;
 import com.example.phase1activity.R;
+import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +22,7 @@ public class ReactionGameActivity extends AppCompatActivity implements View.OnCl
     ReactionGameManager manager;
     Button btn;
     ColorStateList defaultColor;
+    Button nextbtn;
 
 
     @Override
@@ -28,8 +31,8 @@ public class ReactionGameActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_reaction_game);
 
         manager = new ReactionGameManager("easy");
+        nextbtn = findViewById(R.id.Next);
         btn = findViewById(R.id.reactButton);
-        btn.setOnClickListener(this);
 
         TextView textView = findViewById(R.id.gameStateView);
         defaultColor = textView.getTextColors();
@@ -37,6 +40,12 @@ public class ReactionGameActivity extends AppCompatActivity implements View.OnCl
 
         updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
         updateScoreView("Your score is: 0");
+
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(ReactionGameActivity.this, MatchingGameActivity.class));
+            }
+        });
 
     }
 

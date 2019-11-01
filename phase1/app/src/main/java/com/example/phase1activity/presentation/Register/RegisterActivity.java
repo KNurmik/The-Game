@@ -52,12 +52,12 @@ public class RegisterActivity extends AbstractActivities {
             updateInstructionText("Username is taken!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("password length error")) {
-            updateInstructionText("Password length must be <16, and >0!", Color.RED);
+        } else if (result.equals("password error")) {
+            updateInstructionText("Password length must be <16, and >0! No commas!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("username length error")) {
-            updateInstructionText("Username length must be <16, and >0!", Color.RED);
+        } else if (result.equals("username error")) {
+            updateInstructionText("Username length must be <16, and >0! No commas!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
         } else {

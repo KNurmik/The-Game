@@ -29,4 +29,5 @@ dependencies {
     implementation 'org.springframework:beandoc:0.7.0'
     implementation 'org.springframework:beandoc:0.7.0'
     implementation 'org.springframework:beandoc:0.7.0'
+    implementation 'org.springframework:beandoc:0.7.0'
 }

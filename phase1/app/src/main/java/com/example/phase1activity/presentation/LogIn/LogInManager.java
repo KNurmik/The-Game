@@ -20,17 +20,20 @@ public class LogInManager implements LogInInterface {
         else if(!isValidUsername(username)){
             return "empty username";
         }
-
         // Deal with incorrect username-password combinations.
         else if(!isValidLogin(context, username, password)){
             return "incorrect username/password";
         }
-
         else{
-            app.setProfile(new Profile(username, password));
+            ISaver iSaver = new AndroidSaver(context.getApplicationContext());
+            HashMap<String, HashMap<String, String>> userData = iSaver.getExistingUserData();
+            String nickname = userData.get(username).get("nickname");
+            String colour = userData.get(username).get("colour");
+            int gameLevel = Integer.parseInt(userData.get(username).get("game level"));
+            int song = Integer.parseInt(userData.get(username).get("song"));
+            app.setProfile(new Profile(username, password, nickname, colour, gameLevel, song));
             return "valid login";
         }
-
     }
 
     private boolean isValidUsername(String username){
@@ -54,6 +57,4 @@ public class LogInManager implements LogInInterface {
             return false;
         }
     }
-
-
 }

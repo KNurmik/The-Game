@@ -14,35 +14,35 @@ import java.util.Set;
 import java.util.logging.Handler;
 
 // TODO: shouldn't have a public class here, and should use enums
-public class RegisterManager {
+class RegisterManager {
     private final int MAX_ENTRY_LENGTH = 16;
-    final int MIN_ENTRY_LENGTH = 0;
+    private final int MIN_ENTRY_LENGTH = 0;
 
-    public String registerAction(Context context, String username, String password, AppManager app) {
+    String registerAction(Context context, String username, String password, AppManager app) {
         System.out.println("FILE DIRECTORY IN REGISTER MANAGER" + context.getFilesDir());
         ISaver iSaver = new AndroidSaver(context);
         if (iSaver.getExistingUsernames().contains(username)) {
             return "taken username";
         }
         else if(!isValidPassword(password)){
-            return "password length error";
+            return "password error";
         }
         else if (!isValidUsername(username)) {
-            return "username length error";
+            return "username error";
         }
         else{
-            final String DEFAULT_VALUES = ",red,song 1,0,0,0,0";
+            final String DEFAULT_VALUES = ",red,0,0";
             iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
-            app.setProfile(new Profile(username, password));
+            app.setProfile(new Profile(username, password, username, "red", 0, 0));
             return "valid combination";
         }
     }
 
     private boolean isValidUsername(String username){
-        return username.length() > MIN_ENTRY_LENGTH && username.length() < MAX_ENTRY_LENGTH;
+        return username.length() > MIN_ENTRY_LENGTH && username.length() < MAX_ENTRY_LENGTH && !username.contains(",");
     }
 
     private boolean isValidPassword(String password){
-        return password.length() > MIN_ENTRY_LENGTH && password.length() < MAX_ENTRY_LENGTH;
+        return password.length() > MIN_ENTRY_LENGTH && password.length() < MAX_ENTRY_LENGTH && !password.contains(",");
     }
 }

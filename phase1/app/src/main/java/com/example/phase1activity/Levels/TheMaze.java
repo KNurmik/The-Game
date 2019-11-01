@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import java.text.DecimalFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,10 +17,9 @@ import com.example.phase1activity.R;
 import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class TheMaze extends AppCompatActivity{
-    private static DecimalFormat df = new DecimalFormat("0.00");
     DrawView drawView;
     MazeManager newMazeManager;
-    private double score;
+    private int score;
     Button mainMenu;
 
     @Override
@@ -55,7 +53,7 @@ public class TheMaze extends AppCompatActivity{
             super.onDraw(canvas);
             newMazeManager.draw(canvas);
 
-            canvas.drawText("Your current score: " + df.format(score), 250, 1000, paint);
+            canvas.drawText("Your current score: " + score, 250, 1000, paint);
             if (checkWin()) {
                 canvas.drawText("You escaped the maze!", 250, 800, paint);
             } else {
@@ -131,5 +129,5 @@ public class TheMaze extends AppCompatActivity{
      *
      * @return The updated score of the player after they move
      */
-    public double calculateScore(){ return (Math.pow(2.71, (int)((newMazeManager.mazeObject.player.moves)/(-10))) * 10000); }
+    public int calculateScore(){ return Math.max(100000 - (newMazeManager.mazeObject.player.moves)*3000, 0); }
 }

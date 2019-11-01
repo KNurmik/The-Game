@@ -41,7 +41,6 @@ public class Character {
     public Character(MazeBlock block) {
         currentBlock = block;
         moves = 0;
-
         paintText.setTextSize(80);
         paintText.setColor(Color.BLUE);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);

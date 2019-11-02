@@ -67,6 +67,7 @@ public class Profile {
 
     /**
      * Getter for the user's username
+     *
      * @return
      */
     public String getUsername() {
@@ -75,6 +76,7 @@ public class Profile {
 
     /**
      * Changes the color preference of the user
+     *
      * @param colour The new color that will be used in the games.
      */
     public void setColour(String colour) {
@@ -116,8 +118,9 @@ public class Profile {
 
     /**
      * Setter for the current level the user is playing
+     *
      * @param activity The activity used to save the data
-     * @param n The new level
+     * @param n        The new level
      */
     public void setGameLevel(Activity activity, int n) {
         ISaver iSaver = new AndroidSaver(activity);
@@ -127,6 +130,7 @@ public class Profile {
 
     /**
      * Getter for the user's nickname
+     *
      * @return String representation of the user's nickname
      */
     public String getNickname() {
@@ -142,6 +146,7 @@ public class Profile {
 
     /**
      * Gets the song that is currently playing
+     *
      * @return the numerical id of the song being played
      */
     public int getSong() {
@@ -150,18 +155,30 @@ public class Profile {
 
     /**
      * Sets the Fastest reaction time statistic
+     *
      * @param time the fastest time a user reacts in the Reaction Game.
      */
     public void setFastestRxnStat(double time) {
         this.fastestRxnStat = time;
     }
 
-    public void updateTotalMovesStat(int moves){this.totalMovesStat += moves;}
+    /**
+     * Increments total moves statistic
+     *
+     * @param moves totalMovesStat is incremented by moves
+     */
+    public void updateTotalMovesStat(int moves) {
+        this.totalMovesStat += moves;
+    }
 
-    void updateTotalScoreStat(int score){this.totalScoreStat += score;}
-
-
-
+    /**
+     * Increments total score statistic
+     *
+     * @param score totalScoreStat is incremented by score
+     */
+    void updateTotalScoreStat(int score) {
+        this.totalScoreStat += score;
+    }
 
 
 }

@@ -25,7 +25,7 @@ public class StartActivity extends AbstractActivities {
 
 
         Button settingsbtn = findViewById(R.id.settings);
-        Button leaderbtn = findViewById(R.id.Leaderboard);
+        Button leaderbtn = findViewById(R.id.stat);
         Button startButton = findViewById(R.id.Start);
 
 

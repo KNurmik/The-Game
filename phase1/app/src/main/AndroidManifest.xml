@@ -3,25 +3,25 @@
     package="com.example.phase1activity">
 
     <application
-        android:name=".Profile.AppManager"
+        android:name=".Domain.AppManager"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Levels.MazeFinish"></activity>
-        <activity android:name=".Levels.ReactionGame.ReactionGameActivity" />
-        <activity android:name=".Levels.ReactionGame.ReactionInstructionsActivity" />
-        <activity android:name=".Levels.MazeActivity" />
-        <activity android:name=".Levels.TheMaze" />
-        <activity android:name=".presentation.MainMenu.LeaderboardActivity" />
-        <activity android:name=".presentation.MainMenu.StartActivity" />
-        <activity android:name=".Profile.CustomizationActivity" />
-        <activity android:name=".MatchingGameActivity" />
-        <activity android:name=".presentation.Register.RegisterActivity" />
-        <activity android:name=".presentation.LogIn.LogInActivity" />
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".Infrastructure.MazeFinish"></activity>
+        <activity android:name=".Infrastructure.ReactionGameActivity" />
+        <activity android:name=".Infrastructure.ReactionInstructionsActivity" />
+        <activity android:name=".Infrastructure.MazeActivity" />
+        <activity android:name=".Infrastructure.TheMaze" />
+        <activity android:name=".Infrastructure.LeaderboardActivity" />
+        <activity android:name=".Infrastructure.StartActivity" />
+        <activity android:name=".Infrastructure.CustomizationActivity" />
+        <activity android:name=".Infrastructure.MatchingGameActivity" />
+        <activity android:name=".Infrastructure.RegisterActivity" />
+        <activity android:name=".Infrastructure.LogInActivity" />
+        <activity android:name=".Infrastructure.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

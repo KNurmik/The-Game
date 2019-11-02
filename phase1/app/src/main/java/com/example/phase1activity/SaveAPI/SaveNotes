@@ -1,5 +1,0 @@
-##########
-Date: 30 Oct 2019, 21:40
-By: Mark
-Changes: created files ISave.java and AndroidSave.java. Defined abstract methods, saveData() and
-loadData() in ISave interface, and implemented them in AndroidSave, which implements ISave.

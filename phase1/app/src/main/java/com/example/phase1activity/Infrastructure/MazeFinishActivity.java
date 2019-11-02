@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.example.phase1activity.R;
 
+/**
+ * Interface that shows the congratulations screen after user wins the maze
+ */
 public class MazeFinishActivity extends AbstractActivities implements View.OnClickListener{
 
     public Button menuButton;

@@ -5,8 +5,19 @@ import android.content.Context;
 import com.example.phase1activity.Infrastructure.AndroidSaver;
 import com.example.phase1activity.Infrastructure.ISaver;
 
+/**
+ * Class that manages registration of new users
+ */
 public class RegisterManager extends SignupManager {
 
+    /**
+     * Function to sign up
+     * @param context context of the app
+     * @param username username you input
+     * @param password password you input
+     * @param app instance of the AppManager that is running
+     * @return a string "valid combination" if the registration is successful
+     */
     public String signupAction(Context context, String username, String password, AppManager app) {
         System.out.println("FILE DIRECTORY IN REGISTER MANAGER" + context.getFilesDir());
         ISaver iSaver = new AndroidSaver(context);

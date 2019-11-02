@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-// TODO: class should not be public.
 public class AndroidSaver implements ISaver {
 
     /**
@@ -73,7 +72,6 @@ public class AndroidSaver implements ISaver {
         return data.toString();
     }
 
-    // TODO: should not be public
     public Set<String> getExistingUsernames() {
         return getExistingUserData().keySet();
     }

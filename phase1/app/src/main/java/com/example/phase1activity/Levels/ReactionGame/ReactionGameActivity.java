@@ -155,6 +155,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         else {
             updateGameStateView("GAME OVER", defaultColor.getDefaultColor());
             manager.setGameState("game over");
+            app.setProfileReactionTime(manager.getFastestReaction());
             updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
         }
     }

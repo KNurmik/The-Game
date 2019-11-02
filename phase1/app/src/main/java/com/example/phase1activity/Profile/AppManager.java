@@ -61,5 +61,7 @@ public class AppManager extends Application {
     public void setSongNumber(int n){
         this.songNumber = n;
     }
+
+    public void setProfileReactionTime(double time){profile.setFastestRxnStat(time);}
 }
 

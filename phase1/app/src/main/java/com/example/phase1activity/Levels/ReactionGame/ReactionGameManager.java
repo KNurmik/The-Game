@@ -2,12 +2,16 @@ package com.example.phase1activity.Levels.ReactionGame;
 
 import org.springframework.util.StopWatch;
 
+import static java.lang.Math.min;
+import static java.lang.Math.round;
+
 
 /**
  * Class for running backend processes for ReactionGame.
  */
 public class ReactionGameManager {
     private double score = 0;
+    private double fastestReaction = 5;
     /**
      * StopWatch object for timing user reaction time.
      */
@@ -81,8 +85,15 @@ public class ReactionGameManager {
 
             // Score is calculated 100 times 1 / time it took to react.
             score += 100 * (1 / (startTime - timeLimit));
+
+            if(startTime - timeLimit > 0) {
+                fastestReaction = min(fastestReaction, startTime - timeLimit);
+            }
+
         }
     }
+
+    double getFastestReaction(){return Math.floor(fastestReaction * 100) / 100;}
 
     /**
      * Start the timer.

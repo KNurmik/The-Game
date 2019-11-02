@@ -9,16 +9,21 @@ public class Profile {
     String colour;
     int song;
     String nickname;
-    Stats stats;
+    double fastestRxnStat;
+    int totalScoreStat;
+    int totalMovesStat;
 
-    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song) {
+
+    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song, double fastestReactionTime, int totalScore, int totalMoves) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.colour = colour;
         this.gameLevel = gameLevel;
         this.song = song;
-        this.stats = new Stats();
+        this.fastestRxnStat = fastestReactionTime;
+        this.totalScoreStat = totalScore;
+        this.totalMovesStat = totalMoves;
     }
 
     public String getUsername() {
@@ -56,6 +61,8 @@ public class Profile {
     public int getSong(){
         return this.song;
 }
+
+    public void setFastestRxnStat(double time){this.fastestRxnStat = time;}
 
 
 

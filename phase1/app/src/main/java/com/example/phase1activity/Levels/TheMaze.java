@@ -8,9 +8,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1activity.AbstractActivities;
 
@@ -18,7 +15,6 @@ public class TheMaze extends AbstractActivities {
     DrawView drawView;
     MazeManager newMazeManager;
     public int score;
-    Button mainMenu;
     public String playerNickname;
 
     @Override
@@ -130,5 +126,5 @@ public class TheMaze extends AbstractActivities {
      *
      * @return The updated score of the player after they move
      */
-    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*150, 0); }
+    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*100, 0); }
 }

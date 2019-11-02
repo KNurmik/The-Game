@@ -91,10 +91,19 @@ public class Character {
                 break;
         }
     }
+
+    /**
+     *
+     * @return the x coordinate of the character in Android coordinates
+     */
     public int coordinateX(){
         return currentBlock.getX() * 100 + 300;
     }
 
+    /**
+     *
+     * @return the y coordinate of the character in Android coordinates
+     */
     public int coordinateY(){
         return currentBlock.getY() * 100 + 210;
     }

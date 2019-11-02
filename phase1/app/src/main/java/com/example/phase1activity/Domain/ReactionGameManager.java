@@ -110,6 +110,9 @@ public class ReactionGameManager {
         }
     }
 
+    /**
+     * @return the fastest reaction in seconds for user, rounded to 2 decimal places.
+     */
     public double getFastestReaction(){return Math.floor(fastestReaction * 100) / 100;}
 
     /**

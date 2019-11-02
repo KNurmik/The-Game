@@ -61,8 +61,7 @@ public class ReactionGameManager {
      * @return the user's score.
      */
     public int getScore() {
-        int scoreInt = (int) score;
-        return scoreInt;
+        return (int) score;
     }
 
     /**
@@ -85,19 +84,21 @@ public class ReactionGameManager {
             // Score is calculated 100 times 1 / time it took to react.
             score += 100 * (1 / (startTime - timeLimit));
 
-            if(startTime - timeLimit > 0) {
+            if (startTime - timeLimit > 0) {
                 fastestReaction = min(fastestReaction, startTime - timeLimit);
             }
 
         }
     }
 
-    public double getFastestReaction(){return Math.floor(fastestReaction * 100) / 100;}
+    public double getFastestReaction() {
+        return Math.floor(fastestReaction * 100) / 100;
+    }
 
     /**
      * Start the timer.
      */
-    void startTimer() {
+    private void startTimer() {
         timer.start("time");
     }
 

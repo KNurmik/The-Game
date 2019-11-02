@@ -14,13 +14,19 @@ import java.util.Set;
 // TODO: class should not be public.
 public class AndroidSaver implements ISaver {
 
-    /** The file to read and write data to. */
+    /**
+     * The file to read and write data to.
+     */
     private static final String SAVE_FILE = "userInfo.txt";
 
-    /** The tag used for logging information written and read. */
+    /**
+     * The tag used for logging information written and read.
+     */
     private static final String TAG = "AndroidSaver";
 
-    /** The context data is to be written and read from. */
+    /**
+     * The context data is to be written and read from.
+     */
     private final Context context;
 
     public AndroidSaver(Context context) {
@@ -30,6 +36,7 @@ public class AndroidSaver implements ISaver {
 
     /**
      * Save contents to SAVE_FILE.
+     *
      * @param contents the contents to be saved.
      */
     public void saveData(String contents) {
@@ -47,6 +54,7 @@ public class AndroidSaver implements ISaver {
 
     /**
      * Load contents.
+     *
      * @return previously saved contents.
      */
     public String loadData() {

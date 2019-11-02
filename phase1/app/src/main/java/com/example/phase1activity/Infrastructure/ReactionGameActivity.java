@@ -59,7 +59,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         // Button to skip the game.
         nextbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                app.getProfile().setGameLevel(activity,1);
+                app.getProfile().setGameLevel(activity, 1);
                 startActivity(new Intent(ReactionGameActivity.this, MatchingGameActivity.class));
             }
         });

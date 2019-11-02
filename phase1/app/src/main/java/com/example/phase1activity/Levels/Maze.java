@@ -2,6 +2,7 @@ package com.example.phase1activity.Levels;
 
 
 import java.util.ArrayList;
+
 import android.graphics.Canvas;
 
 public class Maze {
@@ -55,7 +56,7 @@ public class Maze {
 
     }
 
-    public void createPlayer(){
+    public void createPlayer() {
         this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
     }
 
@@ -78,14 +79,14 @@ public class Maze {
                 }
                 //The rightmost walls are added
                 if (i == mazeWidth - 1) {
-                    Wall newWall = new Wall(i+1 , j, false);
+                    Wall newWall = new Wall(i + 1, j, false);
                     mazeBlocks[i][j].setRight(newWall);
                     mazeWalls.add(newWall);
                 }
 
                 //The topmost walls are added
                 if (j == 0) {
-                    if (i != mazeWidth -1) {
+                    if (i != mazeWidth - 1) {
                         Wall newWall = new Wall(i, j, true);
                         mazeBlocks[i][j].setUp(newWall);
                         mazeWalls.add(newWall);
@@ -130,10 +131,11 @@ public class Maze {
 
     /**
      * Adds all the walls in innerWalls array list to the mazeWalls array list
+     *
      * @param innerWalls list of inner walls that will added ot the mazeWalls array list
      */
-    public void makeInnerWalls(ArrayList<Wall> innerWalls){
-        for (int i = 0; i < innerWalls.size(); i++){
+    public void makeInnerWalls(ArrayList<Wall> innerWalls) {
+        for (int i = 0; i < innerWalls.size(); i++) {
             addWall(innerWalls.get(i));
         }
     }

@@ -11,10 +11,11 @@ import android.graphics.Typeface;
 
 public class Character {
 
-    public MazeBlock getCurrentBlock() {
-        return currentBlock;
-    }
-
+    /**
+     * Changes the block that the character is located in
+     *
+     * @param currentBlock the MazeBlock that the character will go to.
+     */
     public void setCurrentBlock(MazeBlock currentBlock) {
         this.currentBlock = currentBlock;
     }
@@ -35,7 +36,6 @@ public class Character {
     private Paint paintText = new Paint();
 
     /**
-     *
      * @param block the current MazeBlock instance that the character is on
      */
     public Character(MazeBlock block) {
@@ -46,7 +46,7 @@ public class Character {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
-    public void setPaintText(int color){
+    public void setPaintText(int color) {
         paintText.setColor(color);
     }
 
@@ -59,6 +59,7 @@ public class Character {
 
     /**
      * Method that moves the character in <direction> if and only if there is no wall blocking it
+     *
      * @param direction the direction that the user wishes the character to move in
      */
     public void move(Direction direction) {
@@ -91,16 +92,18 @@ public class Character {
                 break;
         }
     }
-    public int coordinateX(){
+
+    public int coordinateX() {
         return currentBlock.getX() * 100 + 300;
     }
 
-    public int coordinateY(){
+    public int coordinateY() {
         return currentBlock.getY() * 100 + 210;
     }
 
     /**
      * Draws the character
+     *
      * @param canvas the canvas that the phone is using
      */
     public void draw(Canvas canvas) {

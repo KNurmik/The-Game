@@ -12,8 +12,9 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class MazeFinish extends AbstractActivities implements View.OnClickListener{
 
-    Button menuButton;
-    TextView nickName;
+    public Button menuButton;
+    public TextView nickName;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

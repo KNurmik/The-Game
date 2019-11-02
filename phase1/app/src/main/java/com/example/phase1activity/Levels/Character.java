@@ -36,6 +36,7 @@ public class Character {
     private Paint paintText = new Paint();
 
     /**
+     *
      * @param block the current MazeBlock instance that the character is on
      */
     public Character(MazeBlock block) {
@@ -93,11 +94,19 @@ public class Character {
         }
     }
 
-    public int coordinateX() {
+    /**
+     *
+     * @return the x coordinate of the character in Android coordinates
+     */
+    public int coordinateX(){
         return currentBlock.getX() * 100 + 300;
     }
 
-    public int coordinateY() {
+    /**
+     *
+     * @return the y coordinate of the character in Android coordinates
+     */
+    public int coordinateY(){
         return currentBlock.getY() * 100 + 210;
     }
 

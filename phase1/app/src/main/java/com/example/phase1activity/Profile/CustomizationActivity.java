@@ -124,6 +124,6 @@ public class CustomizationActivity extends AbstractActivities {
     void saveProfileData(Profile profile) {
         //Saves the user's customization options to a local file.
         ISaver iSaver = new AndroidSaver(this.getApplicationContext());
-        iSaver.saveData(profile.username + "," + profile.password + "," + profile.nickname + "," + profile.colour + "," + profile.song + "," + profile.gameLevel);
+        iSaver.saveData(profile.username + "," + profile.password + "," + profile.nickname + "," + profile.colour + "," + profile.song + "," + profile.gameLevel + "," + profile.totalScoreStat + "," + profile.fastestRxnStat + "," + profile.totalMovesStat);
     }
 }

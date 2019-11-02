@@ -20,7 +20,6 @@ public class Maze {
      */
     private int mazeWidth;
 
-
     /**
      * A list containing all of the walls in the maze
      */

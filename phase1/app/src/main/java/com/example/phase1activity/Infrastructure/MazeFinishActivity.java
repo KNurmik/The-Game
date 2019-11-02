@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.phase1activity.R;
 
 /**
- * The activity is displayed after completing the maze level
+ * Interface that shows the congratulations screen after user wins the maze
  */
 public class MazeFinishActivity extends AbstractActivities implements View.OnClickListener{
 

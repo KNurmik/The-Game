@@ -15,7 +15,7 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 public class LogInActivity extends AbstractActivities {
 
-    LogInInterface logInInterface;
+    SignupManager logInInterface;
     EditText usernameText;
     EditText passwordText;
     TextView instructionText;
@@ -37,37 +37,34 @@ public class LogInActivity extends AbstractActivities {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = logInInterface.logInAction(thisAcitivity, getUsername(),getPassword(), app);
+                String result = logInInterface.signupAction(thisAcitivity, getUsername(), getPassword(), app);
                 handleLogInResult(result);
             }
         });
     }
 
-    private String getUsername(){
-        return  usernameText.getText().toString();
+    private String getUsername() {
+        return usernameText.getText().toString();
     }
 
-    private String getPassword(){
+    private String getPassword() {
         return passwordText.getText().toString();
     }
 
-    private void handleLogInResult(String result){
-        if(result.equals("empty username")){
+    private void handleLogInResult(String result) {
+        if (result.equals("empty username")) {
             updateInstructionText("Username cannot be empty!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        }
-        else if(result.equals("empty password")){
+        } else if (result.equals("empty password")) {
             updateInstructionText("Password cannot be empty!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        }
-        else if(result.equals("incorrect username/password")){
+        } else if (result.equals("incorrect username/password")) {
             updateInstructionText("Incorrect username/password.", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        }
-        else{
+        } else {
             startActivity(new Intent(LogInActivity.this, StartActivity.class));
         }
     }

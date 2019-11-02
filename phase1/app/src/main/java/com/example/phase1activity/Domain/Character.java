@@ -6,13 +6,13 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 /**
- * A character class for the user's character
+ * A character class for the user's character.
  */
 
 public class Character {
 
     /**
-     * Changes the block that the character is located in
+     * Changes the block that the character is located in.
      *
      * @param currentBlock the MazeBlock that the character will go to.
      */
@@ -21,7 +21,7 @@ public class Character {
     }
 
     /**
-     * The current maze block that the character is in
+     * The current maze block that the character is in.
      */
     public MazeBlock currentBlock;
 
@@ -36,8 +36,9 @@ public class Character {
     private Paint paintText = new Paint();
 
     /**
+     * Initialize a MazeBlock, and set its initial appearance.
      *
-     * @param block the current MazeBlock instance that the character is on
+     * @param block the current MazeBlock instance that the character is on.
      */
     Character(MazeBlock block) {
         currentBlock = block;
@@ -52,14 +53,14 @@ public class Character {
     }
 
     /**
-     * Possible directions that the character could move
+     * Possible directions that the character could move.
      */
     public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
 
     /**
-     * Method that moves the character in <direction> if and only if there is no wall blocking it
+     * Method that moves the character in <direction> if and only if there is no wall blocking it.
      *
      * @param direction the direction that the user wishes the character to move in
      */
@@ -95,27 +96,29 @@ public class Character {
     }
 
     /**
+     * Return the x coordinate of the character in Android coordinates.
      *
-     * @return the x coordinate of the character in Android coordinates
+     * @return the x coordinate of the character in Android coordinates.
      */
     public int coordinateX(){
         return currentBlock.getX() * 100 + 300;
     }
 
     /**
+     * Return the y coordinate of the character in Android coordinates.
      *
-     * @return the y coordinate of the character in Android coordinates
+     * @return the y coordinate of the character in Android coordinates.
      */
     public int coordinateY(){
         return currentBlock.getY() * 100 + 210;
     }
 
     /**
-     * Draws the character
+     * Draw the character.
      *
-     * @param canvas the canvas that the phone is using
+     * @param canvas the canvas that the device is using.
      */
-    public void draw(Canvas canvas) {
+    void draw(Canvas canvas) {
         canvas.drawCircle(coordinateX(), coordinateY(), 40, paintText);
     }
 }

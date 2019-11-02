@@ -14,3 +14,5 @@ To do so, follow these instructions:
 
 This dependency is necessary for an imported stopwatch object, which was impossible to implement
 using pre-existing Java and Android Studio packages.
+
+Thank you for understanding!

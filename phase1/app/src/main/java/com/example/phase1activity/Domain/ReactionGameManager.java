@@ -1,3 +1,21 @@
+/*
+ * Copyright 2002-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// This license is necessary for the imported org.springframework.util.StopWatch package.
+
 package com.example.phase1activity.Domain;
 
 import org.springframework.util.StopWatch;
@@ -61,7 +79,8 @@ public class ReactionGameManager {
      * @return the user's score.
      */
     public int getScore() {
-        return (int) score;
+        int scoreInt = (int) score;
+        return scoreInt;
     }
 
     /**
@@ -84,21 +103,22 @@ public class ReactionGameManager {
             // Score is calculated 100 times 1 / time it took to react.
             score += 100 * (1 / (startTime - timeLimit));
 
-            if (startTime - timeLimit > 0) {
+            if(startTime - timeLimit > 0) {
                 fastestReaction = min(fastestReaction, startTime - timeLimit);
             }
 
         }
     }
 
-    public double getFastestReaction() {
-        return Math.floor(fastestReaction * 100) / 100;
-    }
+    /**
+     * @return the fastest reaction in seconds for user, rounded to 2 decimal places.
+     */
+    public double getFastestReaction(){return Math.floor(fastestReaction * 100) / 100;}
 
     /**
      * Start the timer.
      */
-    private void startTimer() {
+    void startTimer() {
         timer.start("time");
     }
 

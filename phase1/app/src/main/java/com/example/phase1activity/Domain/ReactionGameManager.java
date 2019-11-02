@@ -79,8 +79,7 @@ public class ReactionGameManager {
      * @return the user's score.
      */
     public int getScore() {
-        int scoreInt = (int) score;
-        return scoreInt;
+        return (int) score;
     }
 
     /**

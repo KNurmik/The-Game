@@ -7,7 +7,12 @@ import android.widget.Button;
 
 import com.example.phase1activity.R;
 
-
+/**
+ * Shows the start activity screen with three buttons.
+ * Statistics shows the users statistics
+ * Start lets the user start the game
+ * Settings allows the user to customize their profile
+ */
 public class StartActivity extends AbstractActivities {
     int level;
 

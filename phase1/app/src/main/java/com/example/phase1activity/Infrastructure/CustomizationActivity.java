@@ -12,6 +12,9 @@ import android.widget.RadioGroup;
 import com.example.phase1activity.Domain.Profile;
 import com.example.phase1activity.R;
 
+/**
+ * Customization Activity
+ */
 public class CustomizationActivity extends AbstractActivities {
 
     @Override
@@ -19,6 +22,7 @@ public class CustomizationActivity extends AbstractActivities {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customization);
 
+        //Initializes all the buttons and text fields
         RadioButton red = findViewById(R.id.Red);
         RadioButton green = findViewById(R.id.Green);
         RadioButton blue = findViewById(R.id.Blue);

@@ -15,14 +15,17 @@ public class LeaderboardActivity extends AbstractActivities {
         String temp = app.getProfileNickname() + "'s Statistics";
         top.setText(temp);
 
+        //Displays Total Score
         TextView total = findViewById(R.id.total);
         String temp1 = "Total score: " + app.getProfile().getTotalScoreStat();
         total.setText(temp1);
 
+        //Displays Total Moves
         TextView moves = findViewById(R.id.moves);
         String temp2 = "Total moves: " + app.getProfile().getTotalMovesStat();
         moves.setText(temp2);
 
+        //Displays Fastest Reaction Time
         TextView reaction = findViewById(R.id.reaction);
         String temp3 = "Fastest reaction: " + app.getProfile().getFastestRxnStat() + " seconds";
         reaction.setText(temp3);

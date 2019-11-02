@@ -130,5 +130,5 @@ public class TheMaze extends AbstractActivities {
      *
      * @return The updated score of the player after they move
      */
-    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*150, 0); }
+    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*100, 0); }
 }

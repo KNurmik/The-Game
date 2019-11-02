@@ -195,18 +195,30 @@ public class Profile {
      */
     void resetFastestRxnStat(){fastestRxnStat = 5;}
 
+    /**
+     * @return fastestRxnStat.
+     */
     public double getFastestRxnStat(){
         return this.fastestRxnStat;
     }
 
+    /**
+     * @return totalScoreStat.
+     */
     public int getTotalScoreStat(){
         return this.totalScoreStat;
     }
 
+    /**
+     * @return totalMovesStat.
+     */
     public int getTotalMovesStat(){
         return this.totalMovesStat;
     }
 
+    /**
+     * @return password.
+     */
     public String getPassword(){
         return this.password;
     }

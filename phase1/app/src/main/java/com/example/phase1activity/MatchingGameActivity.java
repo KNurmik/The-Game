@@ -46,7 +46,12 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
     /**
      * The string to be displayed on the Next Level button.
      */
-    final static String NEXT = "Next Level";
+    final static String NEXT_LEVEL = "Next Level";
+
+    /**
+     * The string to be displayed on the Next button.
+     */
+    final static String NEXT = "Next";
 
     /**
      * A map of this MatchingGameActivity's cards to their respective values.
@@ -157,21 +162,18 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
                 String statDisplayText = SCORE + score;
                 this.statDisplay.setText(statDisplayText);
                 finishMatches.setVisibility(View.VISIBLE);
+
+                app.updateProfileScore(manager.getScore());
+                app.updateProfileMoves(manager.getTurnsTaken());
             } else {
                 int turnsTaken = manager.getTurnsTaken();
                 String statDisplayText = TURNSTAKEN + turnsTaken;
                 this.statDisplay.setText(statDisplayText);
             }
         }
-        else if (button.getText().equals(NEXT) || button.getText().equals("Next")){
+        else if (button.getText().equals(NEXT_LEVEL) || button.getText().equals(NEXT)){
             app.getProfile().setGameLevel(this,2);
             startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
         }
-
-        else if (button.getText().equals(NEXT) || button.getText().equals("Next Level")){
-            app.getProfile().setGameLevel(this,2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
-        }
-
     }
 }

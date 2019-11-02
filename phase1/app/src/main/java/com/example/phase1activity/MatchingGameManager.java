@@ -116,7 +116,9 @@ public class MatchingGameManager {
      *
      * @return the score.
      */
-    double getScore() {
+    int getScore() {
         return Math.max(5000 - 500 * turnsTaken, 0);
     }
+
+    int getTurns() { return this.turnsTaken; }
 }

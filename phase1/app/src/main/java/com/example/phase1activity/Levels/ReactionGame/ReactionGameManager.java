@@ -61,9 +61,9 @@ public class ReactionGameManager {
     /**
      * @return the user's score.
      */
-    String getScore() {
+    int getScore() {
         int scoreInt = (int) score;
-        return Integer.toString(scoreInt);
+        return scoreInt;
     }
 
     /**

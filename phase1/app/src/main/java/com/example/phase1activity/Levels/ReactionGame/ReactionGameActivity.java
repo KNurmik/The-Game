@@ -163,6 +163,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
             manager.setGameState("game over");
             app.setProfileReactionTime(manager.getFastestReaction());
             app.updateProfileMoves(totalClicks);
+            app.updateProfileScore(manager.getScore());
             updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
         }
     }

@@ -72,6 +72,8 @@ public class Profile {
 
     public void updateTotalMovesStat(int moves){this.totalMovesStat += moves;}
 
+    void updateTotalScoreStat(int score){this.totalScoreStat += score;}
+
 
 
 

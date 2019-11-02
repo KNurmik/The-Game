@@ -73,11 +73,11 @@ public class MazeGameActivity extends AbstractActivities {
             init();
         }
 
-        @Override
         /**
          *
          * Draws the maze, character and displays the current score of the player
          */
+        @Override
         public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             newMazeManager.draw(canvas); // draws the maze and character

@@ -13,7 +13,6 @@ import com.example.phase1activity.Domain.AppManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.Domain.RegisterManager;
 
-// TODO: duplicate code in RegisterActivity and LoginActivity
 public class RegisterActivity extends AbstractActivities {
     /**
      * The text field for the username

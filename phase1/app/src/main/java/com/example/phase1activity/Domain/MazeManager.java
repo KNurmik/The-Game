@@ -23,7 +23,7 @@ public class MazeManager {
      * Manual wall creation
                 * @return A list of all the walls that will be added to the maze skeleton.
                 */
-        public ArrayList<Wall> makeWalls(){
+        private ArrayList<Wall> makeWalls(){
             ArrayList<Wall> walls = new ArrayList<>();
 
             walls.add(new Wall(0,1, true));

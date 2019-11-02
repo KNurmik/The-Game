@@ -10,50 +10,50 @@ public class Profile {
     /**
      * A string representing the id of the user
      */
-    String username;
+    private String username;
 
     /**
      * The user's password
      */
-    String password;
+    private String password;
 
     /**
      * The current/last-played level
      */
-    int gameLevel;
+    private int gameLevel;
 
     /**
      * A customization option for the color of various objects in the levels
      */
-    String colour;
+    private String colour;
 
     /**
      * The song that will be playing while the user has the app open
      */
-    int song;
+    private int song;
 
     /**
      * A nickname that is displayed in each of the levels. Set to username by default
      */
-    String nickname;
+    private String nickname;
 
     /**
      * Fastest reaction time statistic (Reaction Game)
      */
-    double fastestRxnStat;
+    private double fastestRxnStat;
 
     /**
      * The cumulative score for all three levels
      */
-    int totalScoreStat;
+    private int totalScoreStat;
 
     /**
      * The cumulative number of moves for all three levels
      */
-    int totalMovesStat;
+    private int totalMovesStat;
 
 
-    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
+    Profile(String username, String password, String nickname, String colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;

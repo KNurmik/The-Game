@@ -35,7 +35,7 @@ public class LogInManager extends SignupManager {
         }
     }
 
-    boolean isValidLogin(Context context, String username, String password) {
+    private boolean isValidLogin(Context context, String username, String password) {
         ISaver iSaver = new AndroidSaver(context);
 
         Set<String> existingUsernames = iSaver.getExistingUsernames();

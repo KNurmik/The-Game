@@ -18,7 +18,7 @@ public class MazeItem {
      * @param a The initial x value of the MazeItem
      * @param b The initial y value of the MazeItem
      */
-    public MazeItem(int a, int b) {
+    MazeItem(int a, int b) {
         x = a;
         y = b;
     }
@@ -27,7 +27,7 @@ public class MazeItem {
      * Getter for MazeItem.x
      * @return x
      */
-    public int getX() {
+    int getX() {
         return x;
     }
 
@@ -43,7 +43,7 @@ public class MazeItem {
      * Getter for MazeItem.y
      * @return y
      */
-    public int getY() {
+    int getY() {
         return y;
     }
 

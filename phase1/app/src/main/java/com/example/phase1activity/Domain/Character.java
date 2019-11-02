@@ -16,7 +16,7 @@ public class Character {
      *
      * @param currentBlock the MazeBlock that the character will go to.
      */
-    public void setCurrentBlock(MazeBlock currentBlock) {
+    private void setCurrentBlock(MazeBlock currentBlock) {
         this.currentBlock = currentBlock;
     }
 
@@ -39,7 +39,7 @@ public class Character {
      *
      * @param block the current MazeBlock instance that the character is on
      */
-    public Character(MazeBlock block) {
+    Character(MazeBlock block) {
         currentBlock = block;
         moves = 0;
         paintText.setTextSize(80);

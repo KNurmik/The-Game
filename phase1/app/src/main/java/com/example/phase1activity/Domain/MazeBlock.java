@@ -22,7 +22,7 @@ public class MazeBlock extends MazeItem {
      */
     private MazeItem left;
 
-    public MazeBlock(int a, int b) {
+    MazeBlock(int a, int b) {
         super(a, b);
         up = null;
         down = null;
@@ -35,7 +35,7 @@ public class MazeBlock extends MazeItem {
      *
      * @return up
      */
-    public MazeItem getUp() {
+    MazeItem getUp() {
         return up;
     }
 
@@ -53,7 +53,7 @@ public class MazeBlock extends MazeItem {
      *
      * @return down
      */
-    public MazeItem getDown() {
+    MazeItem getDown() {
         return down;
     }
 
@@ -62,7 +62,7 @@ public class MazeBlock extends MazeItem {
      *
      * @param down The MazeBlock or Wall that will be below this MazeBlock
      */
-    public void setDown(MazeItem down) {
+    void setDown(MazeItem down) {
         this.down = down;
     }
 
@@ -71,7 +71,7 @@ public class MazeBlock extends MazeItem {
      *
      * @return right
      */
-    public MazeItem getRight() {
+    MazeItem getRight() {
         return right;
     }
 
@@ -80,7 +80,7 @@ public class MazeBlock extends MazeItem {
      *
      * @param right The MazeBlock or Wall that will be to the right of this MazeBlock
      */
-    public void setRight(MazeItem right) {
+    void setRight(MazeItem right) {
         this.right = right;
     }
 
@@ -89,7 +89,7 @@ public class MazeBlock extends MazeItem {
      *
      * @return left
      */
-    public MazeItem getLeft() {
+    MazeItem getLeft() {
         return left;
     }
 
@@ -98,7 +98,7 @@ public class MazeBlock extends MazeItem {
      *
      * @param left The MazeBlock or Wall that will be to the left of this MazeBlock
      */
-    public void setLeft(MazeItem left) {
+    void setLeft(MazeItem left) {
         this.left = left;
     }
 
@@ -107,7 +107,7 @@ public class MazeBlock extends MazeItem {
      *
      * @param other The MazeBlock that will be linked to this MazeBlock
      */
-    public void createVertLink(MazeBlock other) {
+    void createVertLink(MazeBlock other) {
         setUp(other);
         other.setDown(this);
     }
@@ -117,7 +117,7 @@ public class MazeBlock extends MazeItem {
      *
      * @param other The MazeBlock that will be linked to this MazeBlock
      */
-    public void createHorzLink(MazeBlock other) {
+    void createHorzLink(MazeBlock other) {
         setLeft(other);
         other.setRight(this);
     }

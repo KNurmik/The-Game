@@ -14,22 +14,22 @@ public class Maze {
     /**
      * The height of the maze
      */
-    public int mazeHeight;
+    private int mazeHeight;
     /**
      * The Width of the maze
      */
-    public int mazeWidth;
+    private int mazeWidth;
 
 
     /**
      * A list containing all of the walls in the maze
      */
-    public ArrayList<Wall> mazeWalls;
+    ArrayList<Wall> mazeWalls;
 
     /**
      * A 2D array storing all the MazeBlocks in the maze
      */
-    public MazeBlock[][] mazeBlocks;
+    private MazeBlock[][] mazeBlocks;
 
     /**
      * The block that the player needs to get to in order to win.
@@ -43,7 +43,7 @@ public class Maze {
      * @param width  The width of the maze
      * @param height The height of the maze
      */
-    public Maze(int width, int height, ArrayList<Wall> innerWalls) {
+    Maze(int width, int height, ArrayList<Wall> innerWalls) {
         mazeHeight = height;
         mazeWidth = width;
 
@@ -55,7 +55,7 @@ public class Maze {
 
     }
 
-    public void createPlayer() {
+    void createPlayer() {
         this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
     }
 
@@ -63,7 +63,7 @@ public class Maze {
      * Creates the Maze itself, adds all the Walls and MazeBlocks to the lists and arrays they
      * belong in.
      */
-    public void createMaze() {
+    private void createMaze() {
         for (int i = 0; i < mazeWidth; i++) {
             for (int j = 0; j < mazeHeight; j++) {
                 mazeBlocks[i][j] = new MazeBlock(i, j);
@@ -111,7 +111,7 @@ public class Maze {
      *
      * @param newWall the wall instances that will be added to the maze
      */
-    public void addWall(Wall newWall) {
+    private void addWall(Wall newWall) {
         int x = newWall.getX();
         int y = newWall.getY();
         boolean horz = newWall.isHorz();
@@ -133,7 +133,7 @@ public class Maze {
      *
      * @param innerWalls list of inner walls that will added ot the mazeWalls array list
      */
-    public void makeInnerWalls(ArrayList<Wall> innerWalls) {
+    private void makeInnerWalls(ArrayList<Wall> innerWalls) {
         for (int i = 0; i < innerWalls.size(); i++) {
             addWall(innerWalls.get(i));
         }

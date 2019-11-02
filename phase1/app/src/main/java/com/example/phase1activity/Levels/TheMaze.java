@@ -133,6 +133,8 @@ public class TheMaze extends AbstractActivities {
                     startActivity(intent);
                 }
                 score = calculateScore(); // calculates the new score after the user moves the character
+                app.updateProfileScore(score); // updates the score for the user's profile
+                app.updateProfileMoves(newMazeManager.mazeObject.player.moves); //updates the number of moves for the user's profile
                 drawView.invalidate(); // updates the location of the character on the phone screen and the user's score
                 return true;
             }

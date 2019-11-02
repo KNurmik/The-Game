@@ -39,15 +39,13 @@ public class StartActivity extends AbstractActivities {
 
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(level == 0) {
+                if (level == 0) {
                     startActivity(new Intent(StartActivity.this, ReactionInstructionsActivity.class));
                     finish();
-                }
-                else if(level == 1){
+                } else if (level == 1) {
                     startActivity(new Intent(StartActivity.this, MatchingGameActivity.class));
                     finish();
-                }
-                else if(level == 2){
+                } else if (level == 2) {
                     startActivity(new Intent(StartActivity.this, MazeMenuActivity.class));
                     finish();
                 }

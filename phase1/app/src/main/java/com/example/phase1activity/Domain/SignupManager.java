@@ -21,7 +21,7 @@ public abstract class SignupManager {
      * @param username The username that the user wants
      * @return true iff username is valid
      */
-    protected boolean isValidUsername(String username) {
+    boolean isValidUsername(String username) {
         return username.length() > MIN_ENTRY_LENGTH && username.length() < MAX_ENTRY_LENGTH && !username.contains(",");
     }
 
@@ -30,7 +30,7 @@ public abstract class SignupManager {
      * @param password The password that the user wants
      * @return true iff password is valid
      */
-    protected boolean isValidPassword(String password) {
+    boolean isValidPassword(String password) {
         return password.length() > MIN_ENTRY_LENGTH && password.length() < MAX_ENTRY_LENGTH && !password.contains(",");
     }
 }

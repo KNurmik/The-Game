@@ -180,5 +180,20 @@ public class Profile {
         this.totalScoreStat += score;
     }
 
+    /**
+     * Reset totalScoreStat to 0.
+     * */
+    void resetTotalScoreStat(){totalScoreStat = 0;}
+
+    /**
+     * Reset totalMovesStat to 0.
+     */
+    void resetTotalMovesStat(){totalMovesStat = 0;}
+
+    /**
+     * Reset fastestRxnStat to 5.
+     */
+    void resetFastestRxnStat(){fastestRxnStat = 5;}
+
 
 }

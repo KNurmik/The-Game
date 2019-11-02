@@ -67,5 +67,9 @@ public class AppManager extends Application {
     public void updateProfileMoves(int moves){profile.updateTotalMovesStat(moves);}
 
     public void updateProfileScore(int score){profile.updateTotalScoreStat(score);}
+
+    public void resetProfileScore(){profile.resetTotalScoreStat();}
+    public void resetProfileMoves(){profile.resetTotalMovesStat();}
+    public void resetProfileRxnStat(){profile.resetFastestRxnStat();}
 }
 

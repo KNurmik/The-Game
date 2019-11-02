@@ -42,6 +42,11 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         btn = findViewById(R.id.reactButton);
         menu = findViewById(R.id.button7);
 
+        // Game is started from the beginning, reset all profile stats to default values.
+        app.resetProfileMoves();
+        app.resetProfileRxnStat();
+        app.resetProfileScore();
+
         btn.setOnClickListener(this);
         btn.setBackgroundColor(app.getProfileColour());
 

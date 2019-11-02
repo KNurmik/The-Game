@@ -5,8 +5,10 @@ import android.widget.TextView;
 
 import com.example.phase1activity.R;
 
+/**
+ * Interface that shows the user's statistics
+ */
 public class LeaderboardActivity extends AbstractActivities {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

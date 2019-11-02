@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.example.phase1activity.R;
 
+/**
+ * The activity is displayed after completing the maze level
+ */
 public class MazeFinishActivity extends AbstractActivities implements View.OnClickListener{
 
     public Button menuButton;

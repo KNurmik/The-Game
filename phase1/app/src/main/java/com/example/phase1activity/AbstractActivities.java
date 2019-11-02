@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1activity.Profile.AppManager;
 
+/**
+ * Base activity, every Activity in the application inherits this class
+ */
 public abstract class AbstractActivities extends AppCompatActivity {
     public AppManager app;
 

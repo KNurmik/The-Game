@@ -94,8 +94,6 @@ public class MatchingGameManager {
     }
 
     /**
-     *
-     *
      * @return the number of turns taken.
      */
     int getTurnsTaken() {
@@ -120,5 +118,7 @@ public class MatchingGameManager {
         return Math.max(5000 - 500 * turnsTaken, 0);
     }
 
-    int getTurns() { return this.turnsTaken; }
+    int getTurns() {
+        return this.turnsTaken;
+    }
 }

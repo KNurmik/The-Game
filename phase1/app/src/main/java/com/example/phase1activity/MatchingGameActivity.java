@@ -94,6 +94,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         }};
         Collections.shuffle(cardValues);
 
+        //Initializes all buttons
         final Button button1 = findViewById(R.id.button1);
         final Button button2 = findViewById(R.id.button2);
         final Button button3 = findViewById(R.id.button3);
@@ -104,6 +105,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         nextLevel = findViewById(R.id.nextLevel);
         menu = findViewById(R.id.menu1);
 
+        //assigns the buttons to the card values
         cardsToValues = new HashMap<Button, String>() {{
             put(button1, cardValues.get(0));
             put(button2, cardValues.get(1));
@@ -152,11 +154,13 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
 
         Button button = (Button) view;
 
+        //If the button is not flipped
         if (button.getText().equals(BACKOFCARD)) {
             manager.recordClick(button, cardsToValues, app);
 
             int matchesToBeMade = manager.getMatchesToBeMade();
 
+            //The user successfully matches all cards
             if (matchesToBeMade == 0) {
                 double score = manager.getScore();
                 String statDisplayText = SCORE + score;
@@ -165,14 +169,17 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
 
                 app.updateProfileScore(manager.getScore());
                 app.updateProfileMoves(manager.getTurnsTaken());
-            } else {
+            }
+            //The user still has matches to make
+            else {
                 int turnsTaken = manager.getTurnsTaken();
                 String statDisplayText = TURNSTAKEN + turnsTaken;
                 this.statDisplay.setText(statDisplayText);
             }
         }
-        else if (button.getText().equals(NEXT_LEVEL) || button.getText().equals(NEXT)){
-            app.getProfile().setGameLevel(this,2);
+        //The user presses one of the 'next' buttons
+        else if (button.getText().equals(NEXT_LEVEL) || button.getText().equals(NEXT)) {
+            app.getProfile().setGameLevel(this, 2);
             startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
         }
     }

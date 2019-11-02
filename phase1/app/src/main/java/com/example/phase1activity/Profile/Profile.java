@@ -70,6 +70,8 @@ public class Profile {
 
     public void setFastestRxnStat(double time){this.fastestRxnStat = time;}
 
+    public void updateTotalMovesStat(int moves){this.totalMovesStat += moves;}
+
 
 
 

@@ -24,6 +24,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
     ColorStateList defaultColor;
     Button nextbtn;
     Button menu;
+    int totalClicks;
 
 
     /**
@@ -83,6 +84,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         else if (manager.getGameState().equals("do not react")) {
             manager.press();
             updateGameStateView("Too soon! Don't press the button!!", Color.RED);
+            totalClicks += 1;
         }
         // User reacted correctly.
         else if (manager.getGameState().equals("react")) {
@@ -90,6 +92,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
             updateGameStateView("Well done!", Color.BLUE);
             updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
             manager.setGameState("beginning");
+            totalClicks += 1;
         }
 
         // Game is over.
@@ -159,6 +162,7 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
             updateGameStateView("GAME OVER", defaultColor.getDefaultColor());
             manager.setGameState("game over");
             app.setProfileReactionTime(manager.getFastestReaction());
+            app.updateProfileMoves(totalClicks);
             updateScoreView(app.getProfile().getNickname() + "'s score is: " + manager.getScore());
         }
     }

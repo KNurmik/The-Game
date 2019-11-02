@@ -63,5 +63,7 @@ public class AppManager extends Application {
     }
 
     public void setProfileReactionTime(double time){profile.setFastestRxnStat(time);}
+
+    public void updateProfileMoves(int moves){profile.updateTotalMovesStat(moves);}
 }
 

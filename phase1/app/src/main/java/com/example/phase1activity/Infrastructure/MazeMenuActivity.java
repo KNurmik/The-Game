@@ -8,9 +8,10 @@ import android.view.View;
 
 import com.example.phase1activity.R;
 
+/**
+ * The activity that is displayed after completing the matching game, before starting the maze itself
+ */
 public class MazeMenuActivity extends AppCompatActivity {
-
-    public static final String EXTRA_MESSAGE = "com.example.phase1activity.Levels.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

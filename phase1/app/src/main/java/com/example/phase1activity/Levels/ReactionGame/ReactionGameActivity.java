@@ -1,5 +1,6 @@
 package com.example.phase1activity.Levels.ReactionGame;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -49,10 +50,12 @@ public class ReactionGameActivity extends AbstractActivities implements View.OnC
         updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
         updateScoreView(app.getProfile().getNickname() + "'s score is: 0");
 
+        final Activity activity = this;
+
         // Button to skip the game.
         nextbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                app.getProfile().setGameLevel(1);
+                app.getProfile().setGameLevel(activity,1);
                 startActivity(new Intent(ReactionGameActivity.this, MatchingGameActivity.class));
             }
         });

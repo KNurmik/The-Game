@@ -1,7 +1,5 @@
 package com.example.phase1activity.presentation.Register;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -41,7 +39,7 @@ public class RegisterActivity extends AbstractActivities {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = registerManager.registerAction(thisActivity, getUsername(), getPassword(), app);
+                String result = registerManager.signupAction(thisActivity, getUsername(), getPassword(), app);
                 handleRegisterResult(result);
             }
         });

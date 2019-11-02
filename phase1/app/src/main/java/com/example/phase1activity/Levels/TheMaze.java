@@ -8,17 +8,13 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1activity.AbstractActivities;
 
 public class TheMaze extends AbstractActivities {
     DrawView drawView;
     MazeManager newMazeManager;
-    private int score;
-    Button mainMenu;
+    public int score;
     public String playerNickname;
 
     @Override
@@ -78,8 +74,8 @@ public class TheMaze extends AbstractActivities {
                 float x = event.getX();
                 float y = event.getY();
 
-                float playerX = newMazeManager.mazeObject.player.currentBlock.getX() * 100 + 300;
-                float playerY = newMazeManager.mazeObject.player.currentBlock.getY() * 100 + 210;
+                float playerX = newMazeManager.mazeObject.player.coordinateX();
+                float playerY = newMazeManager.mazeObject.player.coordinateY();
                 float diffX = x - playerX;
                 float diffY = y - playerY;
 
@@ -130,5 +126,5 @@ public class TheMaze extends AbstractActivities {
      *
      * @return The updated score of the player after they move
      */
-    public int calculateScore(){ return Math.max(100000 - (newMazeManager.mazeObject.player.moves)*1000, 0); }
+    public int calculateScore(){ return Math.max(10000 - (newMazeManager.mazeObject.player.moves)*100, 0); }
 }

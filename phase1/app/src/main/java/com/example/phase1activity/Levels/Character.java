@@ -91,12 +91,19 @@ public class Character {
                 break;
         }
     }
+    public int coordinateX(){
+        return currentBlock.getX() * 100 + 300;
+    }
+
+    public int coordinateY(){
+        return currentBlock.getY() * 100 + 210;
+    }
 
     /**
      * Draws the character
      * @param canvas the canvas that the phone is using
      */
     public void draw(Canvas canvas) {
-        canvas.drawCircle(currentBlock.getX() * 100 + 300, currentBlock.getY()*100 + 210, 40, paintText);
+        canvas.drawCircle(coordinateX(), coordinateY(), 40, paintText);
     }
 }

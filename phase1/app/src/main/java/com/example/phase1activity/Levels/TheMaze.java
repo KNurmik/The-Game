@@ -84,6 +84,8 @@ public class TheMaze extends AbstractActivities {
             // Draws the string displaying if the user has escaped the maze and the current score of the user
             canvas.drawText(playerNickname + " current score: " + score, 250, 1000, paint);
             if (checkWin()) {
+                app.updateProfileScore(score); // updates the score for the user's profile
+                app.updateProfileMoves(newMazeManager.mazeObject.player.moves); //updates the number of moves for the user's profile
                 canvas.drawText( playerNickname + " escaped the maze!", 250, 800, paint);
             } else {
                 canvas.drawText("Can you escape the maze?", 250, 800, paint);
@@ -133,8 +135,6 @@ public class TheMaze extends AbstractActivities {
                     startActivity(intent);
                 }
                 score = calculateScore(); // calculates the new score after the user moves the character
-                app.updateProfileScore(score); // updates the score for the user's profile
-                app.updateProfileMoves(newMazeManager.mazeObject.player.moves); //updates the number of moves for the user's profile
                 drawView.invalidate(); // updates the location of the character on the phone screen and the user's score
                 return true;
             }

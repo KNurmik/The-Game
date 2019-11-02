@@ -71,8 +71,5 @@ public class AppManager extends Application {
     public void resetProfileScore(){profile.resetTotalScoreStat();}
     public void resetProfileMoves(){profile.resetTotalMovesStat();}
     public void resetProfileRxnStat(){profile.resetFastestRxnStat();}
-    public String getProfileNickname(){
-        return profile.getNickname();
-    }
 }
 

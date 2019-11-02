@@ -27,7 +27,7 @@ public class MazeFinish extends AbstractActivities implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        app.getProfile().setGameLevel(0);
+        app.getProfile().setGameLevel(this,0);
         startActivity(new Intent(MazeFinish.this, StartActivity.class));
     }
 }

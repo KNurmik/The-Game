@@ -1,3 +1,5 @@
+/* Code influenced by Week 6 Module WriteToFile.java. */
+
 package com.example.phase1activity.Infrastructure;
 
 import android.content.Context;
@@ -11,7 +13,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-// TODO: class should not be public.
+/**
+ * A game saving mechanism specific to AndroidStudio.
+ */
 public class AndroidSaver implements ISaver {
 
     /**
@@ -29,6 +33,11 @@ public class AndroidSaver implements ISaver {
      */
     private final Context context;
 
+    /**
+     * Initialize this AndroidSaver.
+     *
+     * @param context the context of this AndroidSaver.
+     */
     public AndroidSaver(Context context) {
         this.context = context;
         this.saveData("");
@@ -73,11 +82,20 @@ public class AndroidSaver implements ISaver {
         return data.toString();
     }
 
-    // TODO: should not be public
+    /**
+     * Return the usernames that have been previously saved to this device.
+     *
+     * @return the usernames that have been previously saved to this device.
+     */
     public Set<String> getExistingUsernames() {
         return getExistingUserData().keySet();
     }
 
+    /**
+     * Return a map of usernames to a map of username attribute names to their objects.
+     *
+     * @return a map of usernames to a map of username attribute names to their objects.
+     */
     public HashMap<String, HashMap<String, String>> getExistingUserData() {
         HashMap<String, HashMap<String, String>> usernamesToData = new HashMap<>();
 
@@ -112,6 +130,11 @@ public class AndroidSaver implements ISaver {
         return usernamesToData;
     }
 
+    /**
+     * Return a string array of user data, split by individual entries to the saving system.
+     *
+     * @return a string array of user data, split by individual entries to the saving system.
+     */
     private String[] splitDataByEntry() {
         String data = loadData();
         return data.split("\n");

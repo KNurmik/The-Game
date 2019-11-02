@@ -22,6 +22,9 @@ public class MazeBlock extends MazeItem {
      */
     private MazeItem left;
 
+    /**
+     * Initialize this MazeBlock at position (a, b)
+     */
     MazeBlock(int a, int b) {
         super(a, b);
         up = null;

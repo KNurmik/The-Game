@@ -195,5 +195,17 @@ public class Profile {
      */
     void resetFastestRxnStat(){fastestRxnStat = 5;}
 
+    public double getFastestRxnStat(){
+        return this.fastestRxnStat;
+    }
+
+    public int getTotalScoreStat(){
+        return this.totalScoreStat;
+    }
+
+    public int getTotalMovesStat(){
+        return this.totalMovesStat;
+    }
+
 
 }

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.phase1activity.R;
 
-public class MazeActivity extends AppCompatActivity {
+public class MazeMenuActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.phase1activity.Levels.MESSAGE";
 
@@ -22,7 +22,7 @@ public class MazeActivity extends AppCompatActivity {
      * Called when the user taps the Send button
      */
     public void startMazeGame(View view) {
-        Intent intent = new Intent(this, TheMaze.class);
+        Intent intent = new Intent(this, MazeGameActivity.class);
         // EditText editText = (EditText) findViewById(R.id.editText);
         // String message = editText.getText().toString();
         // intent.putExtra(EXTRA_MESSAGE, message);

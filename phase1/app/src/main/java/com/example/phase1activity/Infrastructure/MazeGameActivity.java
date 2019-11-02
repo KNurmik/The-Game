@@ -16,7 +16,7 @@ import com.example.phase1activity.Domain.MazeManager;
  * class for the activity_the_maze.xml
  *
  */
-public class TheMaze extends AbstractActivities {
+public class MazeGameActivity extends AbstractActivities {
     /**
      * The drawView attribute that allows the app to draw the maze and character
      */
@@ -131,7 +131,7 @@ public class TheMaze extends AbstractActivities {
                     }
                 }
                 if (checkWin()) { //checks if the player is on the winning block after the user moves the character
-                    Intent intent = new Intent(TheMaze.this, MazeFinish.class);
+                    Intent intent = new Intent(MazeGameActivity.this, MazeFinishActivity.class);
                     intent.putExtra(EXTRA_MESSAGE, score);
                     startActivity(intent);
                 }

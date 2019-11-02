@@ -48,7 +48,7 @@ public class StartActivity extends AbstractActivities {
                     finish();
                 }
                 else if(level == 2){
-                    startActivity(new Intent(StartActivity.this, MazeActivity.class));
+                    startActivity(new Intent(StartActivity.this, MazeMenuActivity.class));
                     finish();
                 }
             }

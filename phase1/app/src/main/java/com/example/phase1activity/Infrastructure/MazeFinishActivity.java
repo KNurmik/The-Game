@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.phase1activity.R;
 
-public class MazeFinish extends AbstractActivities implements View.OnClickListener{
+public class MazeFinishActivity extends AbstractActivities implements View.OnClickListener{
 
     public Button menuButton;
     public TextView nickName;
@@ -27,6 +27,6 @@ public class MazeFinish extends AbstractActivities implements View.OnClickListen
     @Override
     public void onClick(View view) {
         app.getProfile().setGameLevel(this,0);
-        startActivity(new Intent(MazeFinish.this, StartActivity.class));
+        startActivity(new Intent(MazeFinishActivity.this, StartActivity.class));
     }
 }

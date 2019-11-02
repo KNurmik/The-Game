@@ -178,7 +178,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         //The user presses one of the 'next' buttons
         else if (button.getText().equals(NEXT_LEVEL) || button.getText().equals(NEXT)) {
             app.getProfile().setGameLevel(this, 2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeActivity.class));
+            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
         }
     }
 }

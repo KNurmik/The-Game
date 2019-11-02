@@ -65,8 +65,12 @@ public class MatchingGameManager {
         }
     }
 
-    // Flip the cards back over if they do not match. Hide them otherwise. If there
-    // are no more matches to be made, end the game, and display the user's score.
+    /**
+     * Flip the cards back over if they do not match. Hide them otherwise. If there
+     * are no more matches to be made, end the game, and display the user's score.
+     * @param cards the cards in the game
+     * @param cardValues the values of the cards
+     */
     private void takeTurn(Button[] cards, Map<Button, String> cardValues) {
         this.turnsTaken++;
 
@@ -94,6 +98,7 @@ public class MatchingGameManager {
     }
 
     /**
+     * Get's number of turns taken
      * @return the number of turns taken.
      */
     public int getTurnsTaken() {
@@ -101,8 +106,7 @@ public class MatchingGameManager {
     }
 
     /***
-     *
-     *
+     *Get's number of turns that have been made
      * @return the number of matches left to be made.
      */
     public int getMatchesToBeMade() {
@@ -110,7 +114,7 @@ public class MatchingGameManager {
     }
 
     /***
-     *
+     * Gets the score after the game has finished
      *
      * @return the score.
      */

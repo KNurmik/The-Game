@@ -8,8 +8,18 @@ import com.example.phase1activity.Infrastructure.ISaver;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * A class to manage logins
+ */
 public class LogInManager extends SignupManager {
-
+    /**
+     *
+     * @param context The current context
+     * @param username username of the profile
+     * @param password password of the profile
+     * @param app the instance of AppManager
+     * @return the string "valid login"
+     */
      public String signupAction(Context context, String username, String password, AppManager app) {
 
         if (!isValidPassword(password)) {
@@ -35,6 +45,13 @@ public class LogInManager extends SignupManager {
         }
     }
 
+    /**
+     *
+     * @param context The context of the function
+     * @param username username of the user
+     * @param password password of the user
+     * @return turns a boolean whether the login was valid or not
+     */
     private boolean isValidLogin(Context context, String username, String password) {
         ISaver iSaver = new AndroidSaver(context);
 

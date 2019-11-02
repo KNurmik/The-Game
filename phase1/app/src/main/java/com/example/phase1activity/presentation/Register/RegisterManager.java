@@ -27,9 +27,9 @@ class RegisterManager extends SignupManager {
         } else if (!isValidUsername(username)) {
             return "username error";
         } else {
-            final String DEFAULT_VALUES = ",red,0,0";
+            final String DEFAULT_VALUES = ",red,0,0,0,5,0";
             iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
-            app.setProfile(new Profile(username, password, username, "red", 0, 0));
+            app.setProfile(new Profile(username, password, username, "red", 0, 0, 0, 5, 0));
             return "valid combination";
         }
     }

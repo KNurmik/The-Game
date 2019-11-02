@@ -81,18 +81,24 @@ public class AndroidSaver implements ISaver {
         final int COLOUR_INDEX = 3;
         final int SONG_INDEX = 4;
         final int GAME_LEVEL_INDEX = 5;
+        final int TOTAL_SCORE_INDEX = 6;
+        final int FASTEST_RXN_INDEX = 7;
+        final int TOTAL_MOVES_INDEX = 8;
 
         String[] splitByEntry = splitDataByEntry();
         for (String entry : splitByEntry) {
             final String[] splitByInfo = entry.split(",");
 
-            if (splitByInfo.length == 6) {
+            if (splitByInfo.length == 9) {
                 HashMap<String, String> userData = new HashMap<String, String>() {{
                     put("password", splitByInfo[PASSWORD_INDEX]);
                     put("nickname", splitByInfo[NICKNAME_INDEX]);
                     put("colour", splitByInfo[COLOUR_INDEX]);
                     put("song", splitByInfo[SONG_INDEX]);
                     put("game level", splitByInfo[GAME_LEVEL_INDEX]);
+                    put("total score", splitByInfo[TOTAL_SCORE_INDEX]);
+                    put("fastest reaction time", splitByInfo[FASTEST_RXN_INDEX]);
+                    put("total moves", splitByInfo[TOTAL_MOVES_INDEX]);
                 }};
                 usernamesToData.put(splitByInfo[USERNAME_INDEX], userData);
             }

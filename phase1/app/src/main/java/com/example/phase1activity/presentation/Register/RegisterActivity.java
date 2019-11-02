@@ -16,11 +16,25 @@ import com.example.phase1activity.presentation.MainMenu.StartActivity;
 
 // TODO: duplicate code in RegisterActivity and LoginActivity
 public class RegisterActivity extends AbstractActivities {
-
+    /**
+     * The text field for the username
+     */
     EditText usernameText;
+
+    /**
+     * The text field for the password
+     */
     EditText passwordText;
-    Button btn;
+
+    /**
+     * Instructions displayed to the user
+     */
     TextView instructionText;
+
+    /**
+     * The button used to attempt to login
+     */
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,32 +59,51 @@ public class RegisterActivity extends AbstractActivities {
         });
     }
 
+    /**
+     * Given a result, the method decides what happens after a registration attempt.
+     *
+     * @param result A string representation of the registration attempt result.
+     */
     private void handleRegisterResult(String result) {
+        //Username already in database
         if (result.equals("taken username")) {
             updateInstructionText("Username is taken!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("password error")) {
+        }
+        //Password is not in valid format
+        else if (result.equals("password error")) {
             updateInstructionText("Password length must be <16, and >0! No commas!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else if (result.equals("username error")) {
+        }
+        //Password is not in valid format
+        else if (result.equals("username error")) {
             updateInstructionText("Username length must be <16, and >0! No commas!", Color.RED);
             usernameText.setText("");
             passwordText.setText("");
-        } else {
+        }
+        //Registration successful
+        else {
             startActivity(new Intent(RegisterActivity.this, StartActivity.class));
         }
     }
 
-    private String getUsername(){
+    //Gets the username and password typed into the text fields
+    private String getUsername() {
         return usernameText.getText().toString();
     }
 
-    private String getPassword(){
+    private String getPassword() {
         return passwordText.getText().toString();
     }
 
+    /**
+     * Updates the instructions given to the user.
+     *
+     * @param toThis The new message that will be displayed for the user
+     * @param color  The color of the message that will be displayed.
+     */
     public void updateInstructionText(String toThis, int color) {
         instructionText.setText(toThis);
         instructionText.setTextColor(color);

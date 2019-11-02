@@ -1,6 +1,10 @@
 package com.example.phase1activity.Profile;
 
+import android.app.Activity;
 import android.graphics.Color;
+
+import com.example.phase1activity.SaveAPI.AndroidSaver;
+import com.example.phase1activity.SaveAPI.ISaver;
 
 public class Profile {
     String username;
@@ -41,8 +45,10 @@ public class Profile {
     public int getGameLevel(){
         return this.gameLevel;
     }
-    public void setGameLevel(int n){
+    public void setGameLevel(Activity activity, int n){
+        ISaver iSaver = new AndroidSaver(activity);
         this.gameLevel = n;
+        iSaver.saveData(username + "," + password + "," + nickname + "," + colour + "," + song + "," + gameLevel);
     }
 
     public String getNickname() {

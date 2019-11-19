@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phase1activity.Domain.MatchingGameManager;
+import com.example.phase1activity.Domain.MatchingGame.MatchingGameManager;
 import com.example.phase1activity.R;
 
 import java.util.ArrayList;

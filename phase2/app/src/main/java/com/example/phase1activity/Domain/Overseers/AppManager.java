@@ -1,7 +1,6 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.Overseers;
 
 import android.app.Application;
-import android.content.res.Configuration;
 import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;

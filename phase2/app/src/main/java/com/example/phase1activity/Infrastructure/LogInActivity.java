@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.phase1activity.Domain.LogInManager;
-import com.example.phase1activity.Domain.SignupManager;
+import com.example.phase1activity.Domain.UserAccess.LogInManager;
+import com.example.phase1activity.Domain.UserAccess.SignupManager;
 import com.example.phase1activity.R;
 
 public class LogInActivity extends AbstractActivities {

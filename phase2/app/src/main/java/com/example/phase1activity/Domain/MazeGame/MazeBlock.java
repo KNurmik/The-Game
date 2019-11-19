@@ -1,4 +1,4 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.MazeGame;
 
 public class MazeBlock extends MazeItem {
 

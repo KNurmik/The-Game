@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.phase1activity.Domain.AppManager;
+import com.example.phase1activity.Domain.Overseers.AppManager;
 
 /**
  * Base activity, every Activity in the application inherits this class

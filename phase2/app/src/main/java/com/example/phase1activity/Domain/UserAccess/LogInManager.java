@@ -1,7 +1,9 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.UserAccess;
 
 import android.content.Context;
 
+import com.example.phase1activity.Domain.Overseers.AppManager;
+import com.example.phase1activity.Domain.Overseers.Profile;
 import com.example.phase1activity.Infrastructure.AndroidSaver;
 import com.example.phase1activity.Infrastructure.ISaver;
 

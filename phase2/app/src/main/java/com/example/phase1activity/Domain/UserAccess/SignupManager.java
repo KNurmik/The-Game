@@ -1,6 +1,8 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.UserAccess;
 
 import android.content.Context;
+
+import com.example.phase1activity.Domain.Overseers.AppManager;
 
 
 public abstract class SignupManager {

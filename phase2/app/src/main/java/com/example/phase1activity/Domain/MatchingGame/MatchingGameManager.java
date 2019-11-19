@@ -1,4 +1,4 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.MatchingGame;
 
 import android.graphics.Color;
 import android.widget.Button;
@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import android.view.View;
 
+import com.example.phase1activity.Domain.Overseers.AppManager;
 import com.example.phase1activity.Infrastructure.MatchingGameActivity;
 
 // TODO: make game extendable (add levels without replacing code, i.e open closed principle), clean code, srp

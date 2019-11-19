@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phase1activity.Domain.ReactionGameManager;
+import com.example.phase1activity.Domain.ReactionGame.ReactionGameManager;
 import com.example.phase1activity.R;
 
 /**

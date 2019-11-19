@@ -1,4 +1,4 @@
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.MazeGame;
 
 
 import java.util.ArrayList;

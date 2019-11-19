@@ -9,8 +9,8 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.phase1activity.Domain.Character;
-import com.example.phase1activity.Domain.MazeManager;
+import com.example.phase1activity.Domain.MazeGame.Character;
+import com.example.phase1activity.Domain.MazeGame.MazeManager;
 
 /**
  * class for the activity_the_maze.xml

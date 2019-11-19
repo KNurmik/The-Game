@@ -16,7 +16,7 @@
 
 // This license is necessary for the imported org.springframework.util.StopWatch package.
 
-package com.example.phase1activity.Domain;
+package com.example.phase1activity.Domain.ReactionGame;
 
 import org.springframework.util.StopWatch;
 

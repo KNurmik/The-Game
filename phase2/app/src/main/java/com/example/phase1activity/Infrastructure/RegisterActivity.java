@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.phase1activity.Domain.AppManager;
+import com.example.phase1activity.Domain.Overseers.AppManager;
 import com.example.phase1activity.R;
-import com.example.phase1activity.Domain.RegisterManager;
+import com.example.phase1activity.Domain.UserAccess.RegisterManager;
 
 public class RegisterActivity extends AbstractActivities {
     /**

@@ -53,7 +53,7 @@ public class Profile {
     private int totalMovesStat;
 
 
-    Profile(String username, String password, String nickname, String colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
+    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;

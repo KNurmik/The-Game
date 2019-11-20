@@ -35,4 +35,6 @@ public interface ISaver {
      * @return a map of usernames to a map of username attribute names to their objects.
      */
     Set<String> getExistingUsernames();
+
+    void saveAttribute(String username, String newAttribute, String attributeType);
 }

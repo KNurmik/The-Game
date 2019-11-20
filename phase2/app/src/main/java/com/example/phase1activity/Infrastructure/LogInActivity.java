@@ -17,7 +17,7 @@ public class LogInActivity extends AbstractActivities {
     /**
      * The manager used for logging in.
      */
-    SignupManager logInInterface;
+    SignupManager loginManager;
 
     /**
      * The text field for the username
@@ -43,7 +43,7 @@ public class LogInActivity extends AbstractActivities {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        logInInterface = new LogInManager();
+        loginManager = new LogInManager();
 
         //Initializes all buttons and Text boxes
         usernameText = findViewById(R.id.UsernameText);
@@ -51,12 +51,12 @@ public class LogInActivity extends AbstractActivities {
         instructionText = findViewById(R.id.logInInstructionText);
         btn = findViewById(R.id.logInButton);
 
-        final Activity thisAcitivity = this;
+        final Activity thisActivity = this;
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = logInInterface.signupAction(thisAcitivity, getUsername(), getPassword(), app);
+                String result = loginManager.signupAction(thisActivity, getUsername(), getPassword(), app);
                 handleLogInResult(result);
             }
         });

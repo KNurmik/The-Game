@@ -9,7 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -59,6 +61,29 @@ public class AndroidSaver implements ISaver {
         }
         out.println(contents);
         out.close();
+    }
+
+    public void saveAttribute(String username, String newAttribute, String attributeType) {
+        if (getExistingUsernames().contains(username)) {
+            HashMap<String, String> userData = getExistingUserData().get(username);
+            StringBuilder lineToSave = new StringBuilder();
+            lineToSave.append(username + ",");
+
+            String[] attributeTypes = {"password", "nickname", "colour", "song", "game level",
+                                       "total score", "fastest reaction time", "total moves"};
+
+            // TODO: introduce enums for attribute type
+            for (String userAttr : attributeTypes) {
+                if (userAttr.equals(attributeType)) {
+                    lineToSave.append(newAttribute);
+                } else {
+                    lineToSave.append(userData.get(userAttr));
+                }
+                lineToSave.append(",");
+            }
+            // Remove the extra comma at the end of lineToSave, and save the line.
+            saveData(String.valueOf(lineToSave).substring(0, lineToSave.length() - 1));
+        }
     }
 
     /**

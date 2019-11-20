@@ -80,7 +80,7 @@ public class MatchingGameManager {
         } catch (InterruptedException e) {
         } // TODO: replace empty catch block with what?!
 
-        if (cardValues.get(cards[0]) == cardValues.get(cards[1])) {
+        if (cardValues.get(cards[0]).equals(cardValues.get(cards[1]))) {
             // Make cards disappear, store this info in this class somehow
             cards[0].setVisibility(View.INVISIBLE);
             cards[1].setVisibility(View.INVISIBLE);

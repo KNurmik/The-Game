@@ -14,6 +14,7 @@ public class ReactionInstructionsActivity extends AbstractActivities {
 
     /**
      * Populate the screen with objects. Allow user to continue to the game using the button.
+     *
      * @param savedInstanceState the saved instance state.
      */
     @Override
@@ -26,7 +27,7 @@ public class ReactionInstructionsActivity extends AbstractActivities {
             /** Allow user to continue to the game using the button. */
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReactionInstructionsActivity.this, ReactionGameActivity.class));
+                startActivity(new Intent(ReactionInstructionsActivity.this, ReactionGameView.class));
             }
         });
     }

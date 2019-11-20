@@ -2,6 +2,7 @@ package com.example.phase1activity.Domain.MazeGame;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Maze {
@@ -23,7 +24,7 @@ public class Maze {
     /**
      * A list containing all of the walls in the maze
      */
-    ArrayList<Wall> mazeWalls;
+    List<Wall> mazeWalls;
 
     /**
      * A 2D array storing all the MazeBlocks in the maze
@@ -42,7 +43,7 @@ public class Maze {
      * @param width  The width of the maze
      * @param height The height of the maze
      */
-    Maze(int width, int height, ArrayList<Wall> innerWalls) {
+    Maze(int width, int height, List<Wall> innerWalls) {
         mazeHeight = height;
         mazeWidth = width;
 
@@ -132,7 +133,7 @@ public class Maze {
      *
      * @param innerWalls list of inner walls that will added ot the mazeWalls array list
      */
-    private void makeInnerWalls(ArrayList<Wall> innerWalls) {
+    private void makeInnerWalls(List<Wall> innerWalls) {
         for (int i = 0; i < innerWalls.size(); i++) {
             addWall(innerWalls.get(i));
         }

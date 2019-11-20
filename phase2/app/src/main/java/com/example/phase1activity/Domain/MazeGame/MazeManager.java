@@ -1,6 +1,8 @@
 package com.example.phase1activity.Domain.MazeGame;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Canvas;
 
 public class MazeManager {
@@ -14,7 +16,7 @@ public class MazeManager {
      * Constructs the MazeManager
      */
     public MazeManager(){
-        ArrayList<Wall> walls = makeWalls();
+        List<Wall> walls = makeWalls();
         mazeObject = new Maze(5, 5, walls);
         mazeObject.createPlayer();
     }
@@ -23,8 +25,8 @@ public class MazeManager {
      * Manual wall creation
                 * @return A list of all the walls that will be added to the maze skeleton.
                 */
-        private ArrayList<Wall> makeWalls(){
-            ArrayList<Wall> walls = new ArrayList<>();
+        private List<Wall> makeWalls(){
+            List<Wall> walls = new ArrayList<>();
 
             walls.add(new Wall(0,1, true));
             walls.add(new Wall(0,4, true));

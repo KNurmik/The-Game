@@ -19,7 +19,7 @@ public class ProfileBuilder {
     /**
      * The user's colour.
      */
-    private String colour;
+    private int colour;
 
     /**
      * The song playing.
@@ -70,7 +70,7 @@ public class ProfileBuilder {
         return this;
     }
 
-    public ProfileBuilder setColour(String colour) {
+    public ProfileBuilder setColour(int colour) {
         this.colour = colour;
         return this;
     }

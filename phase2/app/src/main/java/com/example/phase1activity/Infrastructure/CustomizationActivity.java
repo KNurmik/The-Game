@@ -70,24 +70,21 @@ public class CustomizationActivity extends AbstractActivities {
 
         red.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Sets the colour to red
-                profile.setColour("red");
+                profile.setColour(Color.RED);
                 saveProfileData(profile);
             }
         });
 
         blue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Sets the colour to blue
-                profile.setColour("blue");
+                profile.setColour(Color.BLUE);
                 saveProfileData(profile);
             }
         });
 
         green.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Sets the colour to green
-                profile.setColour("green");
+                profile.setColour(Color.GREEN);
                 saveProfileData(profile);
             }
         });

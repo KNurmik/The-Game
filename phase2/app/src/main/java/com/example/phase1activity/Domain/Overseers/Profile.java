@@ -25,7 +25,7 @@ public class Profile {
     /**
      * A customization option for the color of various objects in the levels
      */
-    private String colour;
+    private int colour;
 
     /**
      * The song that will be playing while the user has the app open
@@ -53,7 +53,7 @@ public class Profile {
     private int totalMovesStat;
 
 
-    public Profile(String username, String password, String nickname, String colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
+    public Profile(String username, String password, String nickname, int colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
@@ -79,7 +79,7 @@ public class Profile {
      *
      * @param colour The new color that will be used in the games.
      */
-    public void setColour(String colour) {
+    public void setColour(int colour) {
         this.colour = colour;
     }
 
@@ -89,9 +89,9 @@ public class Profile {
      * @return The color of the user.
      */
     public int getColour() {
-        if (colour.equals("red")) {
+        if (colour == Color.RED) {
             return Color.RED;
-        } else if (colour.equals("blue")) {
+        } else if (colour == Color.BLUE) {
             return Color.BLUE;
         } else {
             return Color.GREEN;

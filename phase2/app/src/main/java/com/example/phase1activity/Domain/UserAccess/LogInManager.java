@@ -36,7 +36,7 @@ public class LogInManager extends SignupManager {
             ISaver iSaver = new AndroidSaver(context.getApplicationContext());
             HashMap<String, HashMap<String, String>> userData = iSaver.getExistingUserData();
             String nickname = userData.get(username).get("nickname");
-            String colour = userData.get(username).get("colour");
+            int colour = Integer.parseInt(userData.get(username).get("colour"));
             int gameLevel = Integer.parseInt(userData.get(username).get("game level"));
             int song = Integer.parseInt(userData.get(username).get("song"));
             int totalScoreStat = Integer.valueOf(userData.get(username).get("total score"));

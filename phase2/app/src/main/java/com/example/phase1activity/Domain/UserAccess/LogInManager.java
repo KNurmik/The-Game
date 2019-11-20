@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.phase1activity.Domain.Overseers.AppManager;
 import com.example.phase1activity.Domain.Overseers.Profile;
+import com.example.phase1activity.Domain.Overseers.ProfileBuilder;
 import com.example.phase1activity.Infrastructure.AndroidSaver;
 import com.example.phase1activity.Infrastructure.ISaver;
 
@@ -23,7 +24,6 @@ public class LogInManager extends SignupManager {
      * @return the string "valid login"
      */
      public String signupAction(Context context, String username, String password, AppManager app) {
-
         if (!isValidPassword(password)) {
             return "empty password";
         } else if (!isValidUsername(username)) {
@@ -42,7 +42,16 @@ public class LogInManager extends SignupManager {
             int totalScoreStat = Integer.valueOf(userData.get(username).get("total score"));
             double fastestRxnStat = Double.valueOf(userData.get(username).get("fastest reaction time"));
             int totalMovesStat = Integer.valueOf(userData.get(username).get("total moves"));
-            app.setProfile(new Profile(username, password, nickname, colour, gameLevel, song, totalScoreStat, fastestRxnStat, totalMovesStat));
+            app.setProfile(new ProfileBuilder().setUsername(username).
+                                                setPassword(password).
+                                                setNickname(nickname).
+                                                setColour(colour).
+                                                setSong(song).
+                                                setGameLevel(gameLevel).
+                                                setFastestRxnStat(fastestRxnStat).
+                                                setTotalMovesStat(totalMovesStat).
+                                                setTotalScoreStat(totalScoreStat).
+                                                getProfile());
             return "valid login";
         }
     }

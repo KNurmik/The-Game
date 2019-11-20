@@ -125,7 +125,7 @@ public class Profile {
     public void setGameLevel(Activity activity, int n) {
         ISaver iSaver = new AndroidSaver(activity);
         this.gameLevel = n;
-        iSaver.saveData(username + "," + password + "," + nickname + "," + colour + "," + song + "," + gameLevel);
+        iSaver.saveData(username + "," + password + "," + nickname + "," + colour + "," + song + "," + gameLevel + "," + totalScoreStat + "," + fastestRxnStat + "," + totalMovesStat);
     }
 
     /**

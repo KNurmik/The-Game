@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.phase1activity.Domain.Overseers.AppManager;
 import com.example.phase1activity.Domain.Overseers.Profile;
+import com.example.phase1activity.Domain.Overseers.ProfileBuilder;
 import com.example.phase1activity.Infrastructure.AndroidSaver;
 import com.example.phase1activity.Infrastructure.ISaver;
 
@@ -32,7 +33,7 @@ public class RegisterManager extends SignupManager {
         } else {
             final String DEFAULT_VALUES = ",red,0,0,0,5,0";
             iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
-            app.setProfile(new Profile(username, password, username, "red", 0, 0, 0, 5, 0));
+            app.setProfile(new ProfileBuilder().setUsername(username).setPassword(password).setColour("red").setNickname(username).setGameLevel(0).setSong(0).setTotalScoreStat(0).setTotalMovesStat(0).setFastestRxnStat(0).getProfile());
             return "valid combination";
         }
     }

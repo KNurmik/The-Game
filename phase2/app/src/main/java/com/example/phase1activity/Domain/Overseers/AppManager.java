@@ -23,7 +23,7 @@ public class AppManager extends Application {
      * An array that stores all songs
      */
     private final int[] Tracks = new int[]{song1, song2};
-    MediaPlayer player;
+    public MediaPlayer player;
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
 
@@ -35,25 +35,26 @@ public class AppManager extends Application {
     /**
      * The default song selected is the silly chicken song
      */
-    private int songNumber = 0;
+    private int songNumber;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        //Plays the music
+        /**
+         * Plays the music
+         */
         player = MediaPlayer.create(this, Tracks[songNumber]);
         player.setLooping(true);
         player.setVolume(100, 100);
-        player.start();
     }
 
     /**
      * Changes the music to the song that the user chooses in their profile
      */
-    public void changeMusic() {
+    public void changeMusic(int n) {
         player.release();
-        player = MediaPlayer.create(this, Tracks[songNumber]);
+        player = MediaPlayer.create(this, Tracks[n]);
         player.setLooping(true);
         player.setVolume(100, 100);
         player.start();

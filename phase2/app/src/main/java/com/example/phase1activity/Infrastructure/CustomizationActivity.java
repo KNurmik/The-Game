@@ -96,8 +96,7 @@ public class CustomizationActivity extends AbstractActivities {
             public void onClick(View v) {
                 //Sets the song to song0
                 profile.setSong(0);
-                app.setSongNumber(0);
-                app.changeMusic();
+                app.changeMusic(0);
                 saveProfileData(profile);
             }
         });
@@ -106,8 +105,7 @@ public class CustomizationActivity extends AbstractActivities {
             public void onClick(View v) {
                 //Sets the song to song1
                 profile.setSong(1);
-                app.setSongNumber(1);
-                app.changeMusic();
+                app.changeMusic(1);
                 saveProfileData(profile);
             }
         });

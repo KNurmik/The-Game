@@ -12,10 +12,14 @@ import com.example.phase1activity.Domain.Overseers.AppManager;
 public abstract class AbstractActivities extends AppCompatActivity {
     public AppManager app;
 
-    
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (AppManager) getApplication();
+    }
+
+    public AppManager getAppManager() {
+        return app;
     }
 
 

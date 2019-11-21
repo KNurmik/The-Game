@@ -1,7 +1,6 @@
 package com.example.phase1activity.Infrastructure;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,7 @@ public class StartActivity extends AbstractActivities {
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
-        Button startButton = findViewById(R.id.Start);
+        Button startButton = findViewById(R.id.start);
 
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {

@@ -17,6 +17,9 @@ using pre-existing Java and Android Studio packages.
 
 Thank you for understanding!
 
+
+TODO: May need guide for Dagger dependency.
+
 ####################################################################################################
 
 Licensed under the Apache License, Version 2.0 (the "License");

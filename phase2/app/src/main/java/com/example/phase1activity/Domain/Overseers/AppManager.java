@@ -9,6 +9,12 @@ import com.example.phase1activity.R;
  * The App Manager
  */
 public class AppManager extends Application {
+
+    /**
+     * Reference to the application graph that is used across the whole app.
+     */
+    public ApplicationComponent appComponent = DaggerApplicationComponent.create();
+
     /**
      * The first song option
      */
@@ -68,6 +74,7 @@ public class AppManager extends Application {
 
     /**
      * Getter for the profile that the application is currently using
+     *
      * @return profile
      */
     public Profile getProfile() {
@@ -76,6 +83,7 @@ public class AppManager extends Application {
 
     /**
      * Changes the profile that the app is currently using
+     *
      * @param profile the new profile
      */
     public void setProfile(Profile profile) {
@@ -84,6 +92,7 @@ public class AppManager extends Application {
 
     /**
      * Getter for profile's selected colour
+     *
      * @return profile.colour
      */
     public int getProfileColour() {
@@ -92,6 +101,7 @@ public class AppManager extends Application {
 
     /**
      * Changes the song that is being played
+     *
      * @param n The index of the song that will be used
      */
     public void setSongNumber(int n) {
@@ -100,6 +110,7 @@ public class AppManager extends Application {
 
     /**
      * Setter for the the profile's fastest reaction time
+     *
      * @param time The new time.
      */
     public void setProfileReactionTime(double time) {
@@ -108,6 +119,7 @@ public class AppManager extends Application {
 
     /**
      * Increments the profile's total moves
+     *
      * @param moves The amount of moves to increment profile.totalMovesStat
      */
     public void updateProfileMoves(int moves) {
@@ -116,6 +128,7 @@ public class AppManager extends Application {
 
     /**
      * Increments the profile's total score
+     *
      * @param score The amount to increment profile.totalScoreStat
      */
     public void updateProfileScore(int score) {
@@ -145,6 +158,7 @@ public class AppManager extends Application {
 
     /**
      * Getter for the profile's nickname
+     *
      * @return profile.nickname
      */
     public String getProfileNickname() {

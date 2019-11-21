@@ -1,6 +1,7 @@
 package com.example.phase1activity.Infrastructure;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +22,29 @@ public class StartActivity extends AbstractActivities {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         level = app.getProfile().getGameLevel();
+        int colour = app.getProfile().getColour();
 
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
         Button startButton = findViewById(R.id.start);
 
+
+        if (colour == Color.RED){
+            startButton.setBackgroundResource(R.drawable.start_red);
+            leaderbtn.setBackgroundResource(R.drawable.stat_red);
+            settingsbtn.setBackgroundResource(R.drawable.settings_red);
+        }
+        else if (colour == Color.BLUE){
+            startButton.setBackgroundResource(R.drawable.start_blue);
+            leaderbtn.setBackgroundResource(R.drawable.stat_blue);
+            settingsbtn.setBackgroundResource(R.drawable.settings_blue);
+        }
+        else{
+            startButton.setBackgroundResource(R.drawable.start_green);
+            leaderbtn.setBackgroundResource(R.drawable.stat_green);
+            settingsbtn.setBackgroundResource(R.drawable.settings_green);
+        }
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

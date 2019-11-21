@@ -12,14 +12,14 @@ import com.example.phase1activity.Domain.ReactionGame.ReactionGameManager;
  * Class responsible for "presenter" role in MVP architecture. Serves as a middleman between
  * ReactionGameManager and ReactionGameView.
  */
-public class ReactionGamePresenter {
+public class ReactionGamePresenter implements ReactionGamePresenterInterface{
 
     private ReactionGameManager manager = new ReactionGameManager("easy");
-    private ReactionGameView view;
+    private ReactionGameViewInterface view;
     private int totalClicks;
     private ColorStateList defaultColour;
 
-    public ReactionGamePresenter(ReactionGameView v, ColorStateList def) {
+    public ReactionGamePresenter(ReactionGameViewInterface v, ColorStateList def) {
         defaultColour = def;
         view = v;
     }
@@ -44,7 +44,7 @@ public class ReactionGamePresenter {
         else if (manager.getGameState().equals("react")) {
             manager.press();
             view.updateGameStateView("Well done!", Color.BLUE);
-            view.updateScoreView(view.getAppManager().getProfile().getNickname() + "'s score is: " + manager.getScore());
+            view.updateScoreView(manager.getScore());
             manager.setGameState("beginning");
             totalClicks += 1;
         }
@@ -53,16 +53,6 @@ public class ReactionGamePresenter {
         else if (manager.getGameState().equals("game over")) {
             view.endActivity();
         }
-    }
-
-    /**
-     * The game has been started from the beginning, reset all profile stats.
-     */
-    public void resetProfileStats() {
-        AppManager app = view.getAppManager();
-        app.resetProfileMoves();
-        app.resetProfileRxnStat();
-        app.resetProfileScore();
     }
 
     private void beginGame() {
@@ -93,11 +83,8 @@ public class ReactionGamePresenter {
         else {
             view.updateGameStateView("GAME OVER", defaultColour.getDefaultColor());
             manager.setGameState("game over");
-            AppManager app = view.getAppManager();
-            app.setProfileReactionTime(manager.getFastestReaction());
-            app.updateProfileMoves(totalClicks);
-            app.updateProfileScore(manager.getScore());
-            view.updateScoreView(app.getProfileNickname() + "'s score is: " + manager.getScore());
+            view.updateProfileStatistics(manager.getFastestReaction(),totalClicks,manager.getScore());
+            view.updateScoreView(manager.getScore());
         }
     }
 

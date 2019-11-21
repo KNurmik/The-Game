@@ -16,8 +16,8 @@ import com.example.phase1activity.R;
 /**
  * Activity for displaying ReactionGame.
  */
-public class ReactionGameView extends AbstractActivities implements View.OnClickListener {
-    ReactionGamePresenter presenter;
+public class ReactionGameView extends AbstractActivities implements View.OnClickListener, ReactionGameViewInterface {
+    ReactionGamePresenterInterface presenter;
     Button btn;
     ColorStateList defaultColor;
     Button nextbtn;
@@ -47,10 +47,12 @@ public class ReactionGameView extends AbstractActivities implements View.OnClick
         // TODO: inject presenter.
         presenter = new ReactionGamePresenter(this, defaultColor);
         // Game is started from the beginning, reset all profile stats to default values.
-        presenter.resetProfileStats();
+        app.resetProfileMoves();
+        app.resetProfileRxnStat();
+        app.resetProfileScore();
 
         updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
-        updateScoreView(app.getProfile().getNickname() + "'s score is: 0");
+        updateScoreView(0);
 
         final Activity activity = this;
 
@@ -94,17 +96,25 @@ public class ReactionGameView extends AbstractActivities implements View.OnClick
     /**
      * Updates the text showing current score.
      *
-     * @param toThis text to set ScoreView to.
+     * @param toThisScore score to set ScoreView to show.
      */
-    public void updateScoreView(String toThis) {
+    public void updateScoreView(int toThisScore) {
+        String toThis = app.getProfileNickname() + "'s score is: " + toThisScore;
         TextView textView = (TextView) findViewById(R.id.scoreView);
         textView.setText(toThis);
+    }
+
+    @Override
+    public void updateProfileStatistics(double reactionTime, int moves, int score) {
+        app.setProfileReactionTime(reactionTime);
+        app.updateProfileMoves(moves);
+        app.updateProfileScore(score);
     }
 
     /**
      * End this activity and launch MatchingGame.
      */
-    void endActivity() {
+    public void endActivity() {
         startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
     }
 

@@ -10,113 +10,118 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.phase1activity.Domain.Overseers.DaggerApplicationComponent;
 import com.example.phase1activity.Domain.ReactionGame.ReactionGameManager;
 import com.example.phase1activity.R;
 
-/**
- * Activity for displaying ReactionGame.
- */
-public class ReactionGameView extends AbstractActivities implements View.OnClickListener, ReactionGameViewInterface {
-    ReactionGamePresenterInterface presenter;
-    Button btn;
-    ColorStateList defaultColor;
-    Button nextbtn;
-    Button menu;
+import javax.inject.Inject;
 
+/** Activity for displaying ReactionGame. */
+public class ReactionGameView extends AbstractActivities
+    implements View.OnClickListener, ReactionGameViewInterface {
+  @Inject ReactionGamePresenterInterface presenter;
+  Button btn;
+  ColorStateList defaultColor;
+  Button nextbtn;
+  Button menu;
 
-    /**
-     * Populates the screen with objects, and sets their functionality.
-     *
-     * @param savedInstanceState is the saved instance state.
-     */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reaction_game);
+  /**
+   * Populates the screen with objects, and sets their functionality.
+   *
+   * @param savedInstanceState is the saved instance state.
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_reaction_game);
 
-        nextbtn = findViewById(R.id.Next);
-        btn = findViewById(R.id.reactButton);
-        menu = findViewById(R.id.button7);
+    nextbtn = findViewById(R.id.Next);
+    btn = findViewById(R.id.reactButton);
+    menu = findViewById(R.id.button7);
 
-        btn.setOnClickListener(this);
-        btn.setBackgroundColor(app.getProfileColour());
+    btn.setOnClickListener(this);
+    btn.setBackgroundColor(app.getProfileColour());
 
-        TextView textView = findViewById(R.id.gameStateView);
-        defaultColor = textView.getTextColors();
+    TextView textView = findViewById(R.id.gameStateView);
+    defaultColor = textView.getTextColors();
 
-        // TODO: inject presenter.
-        presenter = new ReactionGamePresenter(this, defaultColor);
-        // Game is started from the beginning, reset all profile stats to default values.
-        app.resetProfileMoves();
-        app.resetProfileRxnStat();
-        app.resetProfileScore();
+    // Dependency injection using Dagger.
+    presenter =
+        DaggerApplicationComponent.builder()
+            .reactionGameModule(new ReactionGameModule(this))
+            .build()
+            .injectPresenter();
 
-        updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
-        updateScoreView(0);
+    // Game is started from the beginning, reset all profile stats to default values.
+    app.resetProfileMoves();
+    app.resetProfileRxnStat();
+    app.resetProfileScore();
 
-        final Activity activity = this;
+    updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
+    updateScoreView(0);
 
-        // Button to skip the game.
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                app.getProfile().setGameLevel(activity, 1);
-                startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
-            }
+    final Activity activity = this;
+
+    // Button to skip the game.
+    nextbtn.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            app.getProfile().setGameLevel(activity, 1);
+            startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
+          }
         });
 
-        menu.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ReactionGameView.this, StartActivity.class));
-            }
+    menu.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            startActivity(new Intent(ReactionGameView.this, StartActivity.class));
+          }
         });
+  }
 
+  /** Deal with clicks on the button in the middle of the screen. */
+  @Override
+  public void onClick(View v) {
+    presenter.handleClick();
+  }
 
-    }
+  @Override
+  public ColorStateList getColorStateList() {
+    return defaultColor;
+  }
 
-    /**
-     * Deal with clicks on the button in the middle of the screen.
-     */
-    @Override
-    public void onClick(View v) {
-        presenter.handleClick();
-    }
+  /**
+   * Updates the text guiding the user.
+   *
+   * @param toThis text to set GameStateView to.
+   * @param color colour to set GameStateView to.
+   */
+  public void updateGameStateView(String toThis, int color) {
+    TextView textView = (TextView) findViewById(R.id.gameStateView);
+    textView.setText(toThis);
+    textView.setTextColor(color);
+  }
 
-    /**
-     * Updates the text guiding the user.
-     *
-     * @param toThis text to set GameStateView to.
-     * @param color  colour to set GameStateView to.
-     */
-    public void updateGameStateView(String toThis, int color) {
-        TextView textView = (TextView) findViewById(R.id.gameStateView);
-        textView.setText(toThis);
-        textView.setTextColor(color);
-    }
+  /**
+   * Updates the text showing current score.
+   *
+   * @param toThisScore score to set ScoreView to show.
+   */
+  public void updateScoreView(int toThisScore) {
+    String toThis = app.getProfileNickname() + "'s score is: " + toThisScore;
+    TextView textView = (TextView) findViewById(R.id.scoreView);
+    textView.setText(toThis);
+  }
 
-    /**
-     * Updates the text showing current score.
-     *
-     * @param toThisScore score to set ScoreView to show.
-     */
-    public void updateScoreView(int toThisScore) {
-        String toThis = app.getProfileNickname() + "'s score is: " + toThisScore;
-        TextView textView = (TextView) findViewById(R.id.scoreView);
-        textView.setText(toThis);
-    }
+  @Override
+  public void updateProfileStatistics(double reactionTime, int moves, int score) {
+    app.setProfileReactionTime(reactionTime);
+    app.updateProfileMoves(moves);
+    app.updateProfileScore(score);
+  }
 
-    @Override
-    public void updateProfileStatistics(double reactionTime, int moves, int score) {
-        app.setProfileReactionTime(reactionTime);
-        app.updateProfileMoves(moves);
-        app.updateProfileScore(score);
-    }
-
-    /**
-     * End this activity and launch MatchingGame.
-     */
-    public void endActivity() {
-        startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
-    }
-
-
+  /** End this activity and launch MatchingGame. */
+  public void endActivity() {
+    startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
+  }
 }

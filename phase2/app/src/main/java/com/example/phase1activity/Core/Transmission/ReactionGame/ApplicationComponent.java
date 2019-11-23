@@ -1,7 +1,9 @@
-package com.example.phase1activity.Core.Transmission.Overseers;
+package com.example.phase1activity.Core.Transmission.ReactionGame;
 
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGameModule;
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGamePresenterInterface;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 
 import dagger.Component;
 
@@ -16,5 +18,6 @@ public interface ApplicationComponent {
      * @return Presenter object as a PresenterInterface.
      */
     ReactionGamePresenterInterface injectReactionGamePresenter();
+
 }
 

@@ -11,11 +11,16 @@ import android.widget.TextView;
 
 import com.example.phase1activity.Core.Logic.UserAccess.LogInManager;
 import com.example.phase1activity.Core.Logic.UserAccess.UserAccessManager;
+import com.example.phase1activity.Core.Transmission.UserAccess.DaggerUserAccessComponent;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
-public class LogInActivity extends AbstractActivities {
+import javax.inject.Inject;
+
+public class LogInActivity extends AbstractActivities implements UserAccessView{
     /**
      * The manager used for logging in.
      */
@@ -41,10 +46,22 @@ public class LogInActivity extends AbstractActivities {
      */
     Button btn;
 
+    @Inject
+    UserAccessPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+        // Dependency injection using Dagger.
+        presenter =
+                DaggerUserAccessComponent.builder()
+                        .userAccessModule(new UserAccessModule(this))
+                        .build()
+                        .injectUserAccessPresenter();
+
+
         loginManager = new LogInManager();
 
         //Initializes all buttons and Text boxes
@@ -113,4 +130,6 @@ public class LogInActivity extends AbstractActivities {
         instructionText.setText(toThis);
         instructionText.setTextColor(color);
     }
+
+    public String getAction(){return "login";}
 }

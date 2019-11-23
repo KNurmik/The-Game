@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phase1activity.Core.Transmission.Overseers.DaggerApplicationComponent;
+import com.example.phase1activity.Core.Transmission.ReactionGame.DaggerApplicationComponent;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;

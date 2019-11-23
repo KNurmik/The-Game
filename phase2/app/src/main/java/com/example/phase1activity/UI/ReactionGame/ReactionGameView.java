@@ -54,7 +54,7 @@ public class ReactionGameView extends AbstractActivities
         DaggerApplicationComponent.builder()
             .reactionGameModule(new ReactionGameModule(this))
             .build()
-            .injectPresenter();
+            .injectReactionGamePresenter();
 
     // Game is started from the beginning, reset all profile stats to default values.
     app.resetProfileMoves();

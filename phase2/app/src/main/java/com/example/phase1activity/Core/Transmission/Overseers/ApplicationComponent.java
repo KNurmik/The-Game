@@ -15,6 +15,6 @@ public interface ApplicationComponent {
      * Inject object of type ReactionGamePresenterInterface.
      * @return Presenter object as a PresenterInterface.
      */
-    ReactionGamePresenterInterface injectPresenter();
+    ReactionGamePresenterInterface injectReactionGamePresenter();
 }
 

@@ -10,12 +10,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
+import com.example.phase1activity.Core.Transmission.UserAccess.DaggerUserAccessComponent;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
+import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 import com.example.phase1activity.R;
 import com.example.phase1activity.Core.Logic.UserAccess.RegisterManager;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
-public class RegisterActivity extends AbstractActivities {
+import javax.inject.Inject;
+
+public class RegisterActivity extends AbstractActivities implements UserAccessView {
     /**
      * The text field for the username
      */
@@ -36,12 +41,22 @@ public class RegisterActivity extends AbstractActivities {
      */
     Button btn;
 
+    @Inject
+    UserAccessPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         final RegisterManager registerManager = new RegisterManager();
         final AppManager app = (AppManager) getApplication();
+
+        // Dependency injection using Dagger.
+        presenter =
+                DaggerUserAccessComponent.builder()
+                        .userAccessModule(new UserAccessModule(this))
+                        .build()
+                        .injectUserAccessPresenter();
 
         usernameText = findViewById(R.id.NewUsernameText);
         passwordText = findViewById(R.id.NewPasswordText);
@@ -108,4 +123,6 @@ public class RegisterActivity extends AbstractActivities {
         instructionText.setText(toThis);
         instructionText.setTextColor(color);
     }
+
+    public String getAction(){return "register";}
 }

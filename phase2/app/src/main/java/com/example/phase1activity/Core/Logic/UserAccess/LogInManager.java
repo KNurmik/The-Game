@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * A class to manage logins
  */
-public class LogInManager extends SignupManager {
+public class LogInManager extends UserAccessManager {
     /**
      *
      * @param context The current context

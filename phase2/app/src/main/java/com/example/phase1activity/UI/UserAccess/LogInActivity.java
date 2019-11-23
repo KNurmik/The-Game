@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Logic.UserAccess.LogInManager;
-import com.example.phase1activity.Core.Logic.UserAccess.SignupManager;
+import com.example.phase1activity.Core.Logic.UserAccess.UserAccessManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
@@ -19,7 +19,7 @@ public class LogInActivity extends AbstractActivities {
     /**
      * The manager used for logging in.
      */
-    SignupManager loginManager;
+    UserAccessManager loginManager;
 
     /**
      * The text field for the username

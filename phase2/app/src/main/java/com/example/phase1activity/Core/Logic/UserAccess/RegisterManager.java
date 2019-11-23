@@ -11,7 +11,7 @@ import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 /**
  * Class that manages registration of new users
  */
-public class RegisterManager extends SignupManager {
+public class RegisterManager extends UserAccessManager {
 
     /**
      * Function to sign up

@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 
 
-public abstract class SignupManager {
+public abstract class UserAccessManager {
 
     /**
      * The minimum and maximum lengths for text input

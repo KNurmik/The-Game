@@ -1,5 +1,6 @@
 package com.example.phase1activity.UI.MatchingGame;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -112,6 +113,10 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         menu = findViewById(R.id.menu1);
         colour = getAppManager().getProfileColour();
 
+        colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
+        colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+        colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+
         //assigns the buttons to the card values
         cardsToValues = new HashMap<Button, String>() {{
             put(button1, cardValues.get(0));
@@ -130,31 +135,41 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         for (Button card : cardsToValues.keySet()) {
             card.setOnClickListener(this);
             card.setText(BACKOFCARD);
-            card.setBackgroundColor(Color.LTGRAY);
-            if (colour == Color.RED){
-                card.setBackgroundResource(R.drawable.square_red);
-            }
-            else if (colour == Color.BLUE){
-                card.setBackgroundResource(R.drawable.square_blue);
-            }
-            else{
-                card.setBackgroundResource(R.drawable.square_green);
-            }
+            colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
         }
 
         finishMatches.setOnClickListener(this);
-        nextLevel.setOnClickListener(this);
 
         manager = new MatchingGameManager(this.cardsToValues.size());
         nickname = findViewById(R.id.hello);
-        String hello = "Hi " + app.getProfile().getNickname() + "!!!";
+        String hello = "Hi " + app.getProfile().getNickname() + "!";
         nickname.setText(hello);
+
+        final Activity activity = this;
 
         menu.setOnClickListener(new View.OnClickListener() {
             /** Allow user to continue to the game using the button. */
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
+            }
+        });
+
+        nextLevel.setOnClickListener(new View.OnClickListener() {
+            /** Allow user to continue to the game using the button. */
+            @Override
+            public void onClick(View v) {
+                app.getProfile().setGameLevel(activity, 2);
+                startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
+            }
+        });
+
+        finishMatches.setOnClickListener(new View.OnClickListener() {
+            /** Allow user to continue to the game using the button. */
+            @Override
+            public void onClick(View v) {
+                app.getProfile().setGameLevel(activity, 2);
+                startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
             }
         });
     }
@@ -192,11 +207,6 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
                 String statDisplayText = TURNSTAKEN + turnsTaken;
                 this.statDisplay.setText(statDisplayText);
             }
-        }
-        //The user presses one of the 'next' buttons
-        else if (button.getText().equals(NEXT_LEVEL) || button.getText().equals(NEXT)) {
-            app.getProfile().setGameLevel(this, 2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
         }
     }
 }

@@ -1,9 +1,14 @@
 package com.example.phase1activity.UI.Abstract;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
+import com.example.phase1activity.R;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 
 /**
@@ -20,6 +25,20 @@ public abstract class AbstractActivities extends AppCompatActivity {
 
     public AppManager getAppManager() {
         return app;
+    }
+
+    public void colourButton(Button btn, @DrawableRes int red, @DrawableRes int blue, @DrawableRes int green){
+        int colour = app.getProfileColour();
+
+        if (colour == Color.RED){
+            btn.setBackgroundResource(red);
+        }
+        else if (colour == Color.BLUE){
+            btn.setBackgroundResource(blue);
+        }
+        else{
+            btn.setBackgroundResource(green);
+        }
     }
 
 

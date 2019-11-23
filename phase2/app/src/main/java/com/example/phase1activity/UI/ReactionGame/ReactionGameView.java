@@ -42,7 +42,9 @@ public class ReactionGameView extends AbstractActivities
     menu = findViewById(R.id.button7);
 
     btn.setOnClickListener(this);
-    btn.setBackgroundColor(app.getProfileColour());
+    colourButton(btn, R.drawable.reaction_red, R.drawable.reaction_blue, R.drawable.reaction_green);
+    colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
+    colourButton(nextbtn, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
 
     TextView textView = findViewById(R.id.gameStateView);
     defaultColor = textView.getTextColors();
@@ -99,7 +101,7 @@ public class ReactionGameView extends AbstractActivities
    * @param color colour to set GameStateView to.
    */
   public void updateGameStateView(String toThis, int color) {
-    TextView textView = (TextView) findViewById(R.id.gameStateView);
+    TextView textView = findViewById(R.id.gameStateView);
     textView.setText(toThis);
     textView.setTextColor(color);
   }
@@ -111,7 +113,7 @@ public class ReactionGameView extends AbstractActivities
    */
   public void updateScoreView(int toThisScore) {
     String toThis = app.getProfileNickname() + "'s score is: " + toThisScore;
-    TextView textView = (TextView) findViewById(R.id.scoreView);
+    TextView textView = findViewById(R.id.scoreView);
     textView.setText(toThis);
   }
 

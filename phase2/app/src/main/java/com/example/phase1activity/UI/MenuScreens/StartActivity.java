@@ -26,29 +26,14 @@ public class StartActivity extends AbstractActivities {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         level = app.getProfile().getGameLevel();
-        int colour = app.getProfile().getColour();
-
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
         Button startButton = findViewById(R.id.start);
 
-
-        if (colour == Color.RED){
-            startButton.setBackgroundResource(R.drawable.start_red);
-            leaderbtn.setBackgroundResource(R.drawable.stat_red);
-            settingsbtn.setBackgroundResource(R.drawable.settings_red);
-        }
-        else if (colour == Color.BLUE){
-            startButton.setBackgroundResource(R.drawable.start_blue);
-            leaderbtn.setBackgroundResource(R.drawable.stat_blue);
-            settingsbtn.setBackgroundResource(R.drawable.settings_blue);
-        }
-        else{
-            startButton.setBackgroundResource(R.drawable.start_green);
-            leaderbtn.setBackgroundResource(R.drawable.stat_green);
-            settingsbtn.setBackgroundResource(R.drawable.settings_green);
-        }
+        colourButton(startButton, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
+        colourButton(leaderbtn, R.drawable.stat_red, R.drawable.stat_blue, R.drawable.stat_green);
+        colourButton(settingsbtn, R.drawable.settings_red, R.drawable.settings_blue, R.drawable.settings_green);
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

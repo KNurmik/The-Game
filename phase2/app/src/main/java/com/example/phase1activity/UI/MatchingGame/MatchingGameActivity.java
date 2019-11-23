@@ -20,193 +20,181 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
-/**
- * A MatchingGameActivity.
- */
+/** A MatchingGameActivity. */
 public class MatchingGameActivity extends AbstractActivities implements View.OnClickListener {
 
-    /**
-     * This MatchingGameActivity's MatchingGameManager
-     */
-    private MatchingGameManager manager;
+  /** This MatchingGameActivity's MatchingGameManager */
+  private MatchingGameManager manager;
 
-    /**
-     * The string to be displayed on the back of each card.
-     */
-    public final static String BACKOFCARD = "CLICK ME!";
+  /** The string to be displayed on the back of each card. */
+  public static final String BACKOFCARD = "CLICK ME!";
 
-    /**
-     * The string to be displayed next to the number of turns taken.
-     */
-    final static String TURNSTAKEN = "Turns Taken: ";
+  /** The string to be displayed next to the number of turns taken. */
+  static final String TURNSTAKEN = "Turns Taken: ";
 
-    /**
-     * The string to be displayed next to the final score.
-     */
-    final static String SCORE = "Final Score: ";
+  /** The string to be displayed next to the final score. */
+  static final String SCORE = "Final Score: ";
 
-    /**
-     * The string to be displayed on the Next Level button.
-     */
-    final static String NEXT_LEVEL = "Next Level";
+  /** The string to be displayed on the Next Level button. */
+  static final String NEXT_LEVEL = "Next Level";
 
-    /**
-     * The string to be displayed on the Next button.
-     */
-    final static String NEXT = "Next";
+  /** The string to be displayed on the Next button. */
+  static final String NEXT = "Next";
 
-    /**
-     * A map of this MatchingGameActivity's cards to their respective values.
-     */
-    Map<Button, String> cardsToValues;
+  /** A map of this MatchingGameActivity's cards to their respective values. */
+  Map<Button, String> cardsToValues;
 
-    /**
-     * The View that displays the user's stats.
-     */
-    TextView statDisplay;
+  /** The View that displays the user's stats. */
+  TextView statDisplay;
 
-    /**
-     * The buttons that allow the user to advance to the last level.
-     */
-    Button finishMatches;
-    Button nextLevel;
-    TextView nickname;
-    Button menu;
+  /** The buttons that allow the user to advance to the last level. */
+  Button finishMatches;
 
-    /**
-     * The user's selected colour in their profile
-     */
-    int colour;
+  Button nextLevel;
+  TextView nickname;
+  Button menu;
 
-    /**
-     * Set content view to this activity. Randomly assign values to this activity's cards, and
-     * store the resulting assignments in cardsToValues. Set the initial appearances of this
-     * activity's View objects.
-     *
-     * @param savedInstanceState the saved instance state of the activity, if any.
-     */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_matching_game);
+  /** The user's selected colour in their profile */
+  int colour;
 
-        // Randomly assign values to cards.
-        final List<String> cardValues = new ArrayList<String>() {{
+  /**
+   * Set content view to this activity. Randomly assign values to this activity's cards, and store
+   * the resulting assignments in cardsToValues. Set the initial appearances of this activity's View
+   * objects.
+   *
+   * @param savedInstanceState the saved instance state of the activity, if any.
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_matching_game);
+
+    // Randomly assign values to cards.
+    final List<String> cardValues =
+        new ArrayList<String>() {
+          {
             add("A");
             add("A");
             add("B");
             add("B");
             add("C");
             add("C");
-        }};
-        Collections.shuffle(cardValues);
+          }
+        };
+    Collections.shuffle(cardValues);
 
-        //Initializes all buttons
-        final Button button1 = findViewById(R.id.button1);
-        final Button button2 = findViewById(R.id.button2);
-        final Button button3 = findViewById(R.id.button3);
-        final Button button4 = findViewById(R.id.button4);
-        final Button button5 = findViewById(R.id.button5);
-        final Button button6 = findViewById(R.id.button6);
-        finishMatches = findViewById(R.id.finishMatches);
-        nextLevel = findViewById(R.id.nextLevel);
-        menu = findViewById(R.id.menu1);
-        colour = getAppManager().getProfileColour();
+    // Initializes all buttons
+    final Button button1 = findViewById(R.id.button1);
+    final Button button2 = findViewById(R.id.button2);
+    final Button button3 = findViewById(R.id.button3);
+    final Button button4 = findViewById(R.id.button4);
+    final Button button5 = findViewById(R.id.button5);
+    final Button button6 = findViewById(R.id.button6);
+    finishMatches = findViewById(R.id.finishMatches);
+    nextLevel = findViewById(R.id.nextLevel);
+    menu = findViewById(R.id.menu1);
+    colour = getAppManager().getProfileColour();
 
-        colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
-        colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
-        colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
+    colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
 
-        //assigns the buttons to the card values
-        cardsToValues = new HashMap<Button, String>() {{
+    // assigns the buttons to the card values
+    cardsToValues =
+        new HashMap<Button, String>() {
+          {
             put(button1, cardValues.get(0));
             put(button2, cardValues.get(1));
             put(button3, cardValues.get(2));
             put(button4, cardValues.get(3));
             put(button5, cardValues.get(4));
             put(button6, cardValues.get(5));
-        }};
+          }
+        };
 
-        // Set initial appearances of this activity's View objects.
-        statDisplay = findViewById(R.id.statDisplay);
-        String statDisplayText = TURNSTAKEN + 0;
-        statDisplay.setText(statDisplayText);
+    // Set initial appearances of this activity's View objects.
+    statDisplay = findViewById(R.id.statDisplay);
+    String statDisplayText = TURNSTAKEN + 0;
+    statDisplay.setText(statDisplayText);
 
-        for (Button card : cardsToValues.keySet()) {
-            card.setOnClickListener(this);
-            card.setText(BACKOFCARD);
-            colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
-        }
-
-        finishMatches.setOnClickListener(this);
-
-        manager = new MatchingGameManager(this.cardsToValues.size());
-        nickname = findViewById(R.id.hello);
-        String hello = "Hi " + app.getProfile().getNickname() + "!";
-        nickname.setText(hello);
-
-        final Activity activity = this;
-
-        menu.setOnClickListener(new View.OnClickListener() {
-            /** Allow user to continue to the game using the button. */
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
-            }
-        });
-
-        nextLevel.setOnClickListener(new View.OnClickListener() {
-            /** Allow user to continue to the game using the button. */
-            @Override
-            public void onClick(View v) {
-                app.getProfile().setGameLevel(activity, 2);
-                startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
-            }
-        });
-
-        finishMatches.setOnClickListener(new View.OnClickListener() {
-            /** Allow user to continue to the game using the button. */
-            @Override
-            public void onClick(View v) {
-                app.getProfile().setGameLevel(activity, 2);
-                startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
-            }
-        });
+    for (Button card : cardsToValues.keySet()) {
+      card.setOnClickListener(this);
+      card.setText(BACKOFCARD);
+      colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
     }
 
-    /**
-     * Record that a card was clicked in  manager. Check whether there are matches left to be made,
-     * and set statDisplay text accordingly.
-     *
-     * @param view the card that was clicked.
-     */
-    @Override
-    public void onClick(View view) {
+    finishMatches.setOnClickListener(this);
 
-        Button button = (Button) view;
+    manager = new MatchingGameManager(this.cardsToValues.size());
+    nickname = findViewById(R.id.hello);
+    String hello = "Hi " + app.getProfile().getNickname() + "!";
+    nickname.setText(hello);
 
-        //If the button is not flipped
-        if (button.getText().equals(BACKOFCARD)) {
-            manager.recordClick(button, cardsToValues, app);
+    final Activity activity = this;
 
-            int matchesToBeMade = manager.getMatchesToBeMade();
+    menu.setOnClickListener(
+        new View.OnClickListener() {
+          /** Allow user to continue to the game using the button. */
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
+          }
+        });
 
-            //The user successfully matches all cards
-            if (matchesToBeMade == 0) {
-                double score = manager.getScore();
-                String statDisplayText = SCORE + score;
-                this.statDisplay.setText(statDisplayText);
-                finishMatches.setVisibility(View.VISIBLE);
+    nextLevel.setOnClickListener(
+        new View.OnClickListener() {
+          /** Allow user to continue to the game using the button. */
+          @Override
+          public void onClick(View v) {
+            app.getProfile().setGameLevel(activity, 2);
+            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
+          }
+        });
 
-                app.updateProfileScore(manager.getScore());
-                app.updateProfileMoves(manager.getTurnsTaken());
-            }
-            //The user still has matches to make
-            else {
-                int turnsTaken = manager.getTurnsTaken();
-                String statDisplayText = TURNSTAKEN + turnsTaken;
-                this.statDisplay.setText(statDisplayText);
-            }
-        }
+    finishMatches.setOnClickListener(
+        new View.OnClickListener() {
+          /** Allow user to continue to the game using the button. */
+          @Override
+          public void onClick(View v) {
+            app.getProfile().setGameLevel(activity, 2);
+            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
+          }
+        });
+  }
+
+  /**
+   * Record that a card was clicked in manager. Check whether there are matches left to be made, and
+   * set statDisplay text accordingly.
+   *
+   * @param view the card that was clicked.
+   */
+  @Override
+  public void onClick(View view) {
+
+    Button button = (Button) view;
+
+    // If the button is not flipped
+    if (button.getText().equals(BACKOFCARD)) {
+      manager.recordClick(button, cardsToValues, app);
+
+      int matchesToBeMade = manager.getMatchesToBeMade();
+
+      // The user successfully matches all cards
+      if (matchesToBeMade == 0) {
+        double score = manager.getScore();
+        String statDisplayText = SCORE + score;
+        this.statDisplay.setText(statDisplayText);
+        finishMatches.setVisibility(View.VISIBLE);
+
+        app.updateProfileScore(manager.getScore());
+        app.updateProfileMoves(manager.getTurnsTaken());
+      }
+      // The user still has matches to make
+      else {
+        int turnsTaken = manager.getTurnsTaken();
+        String statDisplayText = TURNSTAKEN + turnsTaken;
+        this.statDisplay.setText(statDisplayText);
+      }
     }
+  }
 }

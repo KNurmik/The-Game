@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 
-import com.example.phase1activity.Core.Transmission.Overseers.DaggerApplicationComponent;
+import com.example.phase1activity.Core.Transmission.ReactionGame.DaggerApplicationComponent;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;

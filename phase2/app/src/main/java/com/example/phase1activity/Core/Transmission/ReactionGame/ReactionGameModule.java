@@ -1,5 +1,6 @@
 package com.example.phase1activity.Core.Transmission.ReactionGame;
 
+import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManager;
 import com.example.phase1activity.UI.ReactionGame.ReactionGameViewInterface;
 
 import dagger.Module;
@@ -31,6 +32,13 @@ public class ReactionGameModule {
    */
   @Provides
   public ReactionGamePresenterInterface providePresenter() {
-    return new ReactionGamePresenter(view, view.getColorStateList());
+   ReactionGamePresenter presenter = new ReactionGamePresenter(view, view.getColorStateList());
+   presenter.setManager(provideManager());
+   return presenter;
+  }
+
+  @Provides
+  public ReactionGameManager provideManager(){
+    return new ReactionGameManager("easy");
   }
 }

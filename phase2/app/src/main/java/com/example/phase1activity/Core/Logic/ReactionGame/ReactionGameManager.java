@@ -20,6 +20,8 @@ package com.example.phase1activity.Core.Logic.ReactionGame;
 
 import org.springframework.util.StopWatch;
 
+import javax.inject.Inject;
+
 import static java.lang.Math.min;
 
 
@@ -50,6 +52,7 @@ public class ReactionGameManager {
      * @param difficulty represents the difficulty desired. Potential Phase 2 extension adds more
      *                   difficulty settings.
      */
+    @Inject
     public ReactionGameManager(String difficulty) {
         if (difficulty.equals("easy")) {
             timeLimit = 5;

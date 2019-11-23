@@ -15,7 +15,8 @@ import javax.inject.Inject;
  */
 public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
-  private ReactionGameManager manager = new ReactionGameManager("easy");
+  @Inject
+  public ReactionGameManager manager;
   private ReactionGameViewInterface view;
   private int totalClicks;
   private ColorStateList defaultColour;
@@ -94,4 +95,9 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateScoreView(manager.getScore());
     }
   }
+
+  public void setManager(ReactionGameManager manager) {
+    this.manager = manager;
+  }
+
 }

@@ -42,6 +42,8 @@ public class ReactionGameManager {
      */
     private double timeLimit;
 
+    private int penaltyTime;
+
     /**
      * Initialize ReactionGameManager.
      *
@@ -90,14 +92,14 @@ public class ReactionGameManager {
     public void press() {
         // User pressed button too early, reduce timeLimit.
         if (gameState.equals("do not react")) {
-            timeLimit -= 1;
+            penaltyTime += 1;
         }
 
         // User reacted correctly.
         else if (gameState.equals("react")) {
             timer.stop();
             double startTime = timeLimit;
-            timeLimit = 5 - timer.getTotalTimeSeconds();
+            timeLimit = 5 - penaltyTime - timer.getTotalTimeSeconds();
 
             // Score is calculated 100 times 1 / time it took to react.
             score += 100 * (1 / (startTime - timeLimit));

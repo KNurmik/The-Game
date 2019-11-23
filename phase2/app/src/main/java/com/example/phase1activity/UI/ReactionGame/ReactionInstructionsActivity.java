@@ -24,6 +24,7 @@ public class ReactionInstructionsActivity extends AbstractActivities {
         setContentView(R.layout.activity_reaction_instructions);
 
         Button btn = findViewById(R.id.startGame);
+        colourButton(btn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
         btn.setOnClickListener(new View.OnClickListener() {
             /** Allow user to continue to the game using the button. */
             @Override

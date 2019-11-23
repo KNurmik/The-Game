@@ -25,8 +25,10 @@ public class MazeFinishActivity extends AbstractActivities implements View.OnCli
         nickName = findViewById(R.id.textView4); // get the nickname from the profile customization
         String statement = app.getProfile().getNickname() + " finished the game."; // adds the nick name to the output statement
         nickName.setText(statement); // sets the text to statement
+
         menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(this);
+        colourButton(menuButton, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
     }
 
     /**

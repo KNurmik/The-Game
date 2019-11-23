@@ -70,6 +70,11 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
     Button menu;
 
     /**
+     * The user's selected colour in their profile
+     */
+    int colour;
+
+    /**
      * Set content view to this activity. Randomly assign values to this activity's cards, and
      * store the resulting assignments in cardsToValues. Set the initial appearances of this
      * activity's View objects.
@@ -102,6 +107,7 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         finishMatches = findViewById(R.id.finishMatches);
         nextLevel = findViewById(R.id.nextLevel);
         menu = findViewById(R.id.menu1);
+        colour = getAppManager().getProfileColour();
 
         //assigns the buttons to the card values
         cardsToValues = new HashMap<Button, String>() {{
@@ -122,6 +128,15 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
             card.setOnClickListener(this);
             card.setText(BACKOFCARD);
             card.setBackgroundColor(Color.LTGRAY);
+            if (colour == Color.RED){
+                card.setBackgroundResource(R.drawable.square_red);
+            }
+            else if (colour == Color.BLUE){
+                card.setBackgroundResource(R.drawable.square_blue);
+            }
+            else{
+                card.setBackgroundResource(R.drawable.square_green);
+            }
         }
 
         finishMatches.setOnClickListener(this);

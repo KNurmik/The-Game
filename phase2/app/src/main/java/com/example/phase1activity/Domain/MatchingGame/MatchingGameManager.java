@@ -56,7 +56,6 @@ public class MatchingGameManager {
      */
     public void recordClick(Button card, Map<Button, String> cardValues, AppManager app) {
         card.setText(cardValues.get(card));
-        card.setBackgroundColor(app.getProfileColour());
 
         if (this.cardsClicked[0] == null) {
             this.cardsClicked[0] = card;
@@ -90,8 +89,6 @@ public class MatchingGameManager {
             // Flip cards back over, wait for another turn to be taken (does this work already?)
             cards[0].setText(MatchingGameActivity.BACKOFCARD);
             cards[1].setText(MatchingGameActivity.BACKOFCARD);
-            cards[0].setBackgroundColor(Color.LTGRAY);
-            cards[1].setBackgroundColor(Color.LTGRAY);
         }
 
         this.cardsClicked[0] = null;

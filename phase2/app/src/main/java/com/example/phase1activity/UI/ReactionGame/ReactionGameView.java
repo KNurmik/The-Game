@@ -3,10 +3,14 @@ package com.example.phase1activity.UI.ReactionGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
 
 import com.example.phase1activity.Core.Transmission.Overseers.DaggerApplicationComponent;
 import com.example.phase1activity.R;
@@ -26,6 +30,7 @@ public class ReactionGameView extends AbstractActivities
   ColorStateList defaultColor;
   Button nextbtn;
   Button menu;
+  ImageView instructions;
 
   /**
    * Populates the screen with objects, and sets their functionality.
@@ -46,9 +51,6 @@ public class ReactionGameView extends AbstractActivities
     colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
     colourButton(nextbtn, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
 
-    TextView textView = findViewById(R.id.gameStateView);
-    defaultColor = textView.getTextColors();
-
     // Dependency injection using Dagger.
     presenter =
         DaggerApplicationComponent.builder()
@@ -61,7 +63,9 @@ public class ReactionGameView extends AbstractActivities
     app.resetProfileRxnStat();
     app.resetProfileScore();
 
-    updateGameStateView("Press the button to start the game.", defaultColor.getDefaultColor());
+    instructions = findViewById(R.id.instruction);
+    instructions.setBackgroundResource(R.drawable.react_push);
+    updateGameStateView(R.drawable.react_push);
     updateScoreView(0);
 
     final Activity activity = this;
@@ -95,15 +99,12 @@ public class ReactionGameView extends AbstractActivities
   }
 
   /**
-   * Updates the text guiding the user.
+   * Update text displayed in the middle of the screen to guide user.
    *
-   * @param toThis text to set GameStateView to.
-   * @param color colour to set GameStateView to.
+   * @param newState The image resource displayed for the instructions
    */
-  public void updateGameStateView(String toThis, int color) {
-    TextView textView = findViewById(R.id.gameStateView);
-    textView.setText(toThis);
-    textView.setTextColor(color);
+  public void updateGameStateView(@DrawableRes int newState) {
+    instructions.setBackgroundResource(newState);
   }
 
   /**

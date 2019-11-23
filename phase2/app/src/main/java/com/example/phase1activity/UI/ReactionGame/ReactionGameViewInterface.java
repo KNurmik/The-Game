@@ -2,16 +2,17 @@ package com.example.phase1activity.UI.ReactionGame;
 
 import android.content.res.ColorStateList;
 
+import androidx.annotation.DrawableRes;
+
 /** Interface for ReactionGameView. */
 public interface ReactionGameViewInterface {
 
   /**
    * Update text displayed in the middle of the screen to guide user.
    *
-   * @param toThis text to display.
-   * @param color colour to display toThis in.
+   * @param newState The image resource displayed for the instructions
    */
-  void updateGameStateView(String toThis, int color);
+  void updateGameStateView(@DrawableRes int newState);
 
   /**
    * Update user's current score on the screen.

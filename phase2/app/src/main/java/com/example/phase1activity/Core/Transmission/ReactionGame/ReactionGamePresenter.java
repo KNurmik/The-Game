@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.CountDownTimer;
 
 import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManager;
+import com.example.phase1activity.R;
 import com.example.phase1activity.UI.ReactionGame.ReactionGameViewInterface;
 
 import javax.inject.Inject;
@@ -46,13 +47,13 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     // Game has begun, user pressed button too early.
     else if (manager.getGameState().equals("do not react")) {
       manager.press();
-      view.updateGameStateView("Too soon! Don't press the button!!", Color.RED);
+      view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
     }
     // User reacted correctly.
     else if (manager.getGameState().equals("react")) {
       manager.press();
-      view.updateGameStateView("Well done!", Color.BLUE);
+      view.updateGameStateView(R.drawable.react_well);
       view.updateScoreView(manager.getScore());
       manager.setGameState("beginning");
       totalClicks += 1;
@@ -70,7 +71,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     if (manager.isTimeLeft()) {
 
       manager.setGameState("do not react");
-      view.updateGameStateView("Don't press the button.", Color.MAGENTA);
+      view.updateGameStateView(R.drawable.react_dont);
 
       // Randomize time to wait until prompting user to
       double random = 0.5 + Math.random() * 4500;
@@ -81,7 +82,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
         public void onFinish() {
           manager.play();
           // Update on-screen text.
-          view.updateGameStateView("PRESS THE BUTTON!", Color.GREEN);
+          view.updateGameStateView(R.drawable.react_push);
         }
       }.start();
 
@@ -89,7 +90,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
     // User does not have time left in the bank.
     else {
-      view.updateGameStateView("GAME OVER", defaultColour.getDefaultColor());
+      view.updateGameStateView(R.drawable.react_end);
       manager.setGameState("game over");
       view.updateProfileStatistics(manager.getFastestReaction(), totalClicks, manager.getScore());
       view.updateScoreView(manager.getScore());

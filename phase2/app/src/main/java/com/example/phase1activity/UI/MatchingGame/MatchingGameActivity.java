@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGameModule;
@@ -39,14 +40,17 @@ public class MatchingGameActivity extends AbstractActivities
   /** The View that displays the user's stats. */
   TextView statDisplay;
 
-  /** A button that allows the user to advance to next level, during the level. */
-  Button endLevel;
+  /** A button that allows the user to advance to next level, after all matches are made. */
+  Button advanceToNextLevel;
 
-  /** A button that allows the user to advance to next level, at the end of the level. */
-  Button nextLevel;
+  /** A button that allows the user to advance to next level, anytime. */
+  Button skipLevel;
 
   /** A button that allow the user to advance to next last level. */
   TextView nickname;
+
+  /** A pop-up that notifies the user of a failed match. */
+  ImageView popUp;
 
   Button menu;
 
@@ -67,6 +71,7 @@ public class MatchingGameActivity extends AbstractActivities
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_matching_game);
 
+    initializeViews();
     populateButtonList();
 
     // Inject presenter.
@@ -76,12 +81,6 @@ public class MatchingGameActivity extends AbstractActivities
             .build()
             .injectMatchingGamePresenter();
 
-    // Create references to other buttons.
-    endLevel = findViewById(R.id.finishMatches);
-    nextLevel = findViewById(R.id.nextLevel);
-    menu = findViewById(R.id.menu1);
-    nickname = findViewById(R.id.hello);
-
     setInitialButtonAppearances();
 
     String userNickname = app.getProfile().getNickname();
@@ -89,7 +88,7 @@ public class MatchingGameActivity extends AbstractActivities
 
     final Activity activity = this;
 
-    endLevel.setOnClickListener(this);
+    advanceToNextLevel.setOnClickListener(this);
 
     menu.setOnClickListener(
         new View.OnClickListener() {
@@ -100,7 +99,7 @@ public class MatchingGameActivity extends AbstractActivities
           }
         });
 
-    nextLevel.setOnClickListener(
+    skipLevel.setOnClickListener(
         new View.OnClickListener() {
           /** Allow user to continue to the game using the button. */
           @Override
@@ -110,7 +109,7 @@ public class MatchingGameActivity extends AbstractActivities
           }
         });
 
-    endLevel.setOnClickListener(
+    advanceToNextLevel.setOnClickListener(
         new View.OnClickListener() {
           /** Allow user to continue to the game using the button. */
           @Override
@@ -135,12 +134,14 @@ public class MatchingGameActivity extends AbstractActivities
   private void setInitialButtonAppearances() {
     colour = getAppManager().getProfileColour();
     colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
-    colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
-    colourButton(endLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(skipLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(
+        advanceToNextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
 
-    statDisplay = findViewById(R.id.statDisplay);
     String statDisplayText = TURNSTAKEN + 0;
     statDisplay.setText(statDisplayText);
+
+    hideNoMatchPopup();
 
     for (Button card : buttonList) {
       card.setOnClickListener(this);
@@ -168,6 +169,15 @@ public class MatchingGameActivity extends AbstractActivities
     buttonList.add(button6);
   }
 
+  private void initializeViews() {
+    popUp = findViewById(R.id.noMatch);
+    skipLevel = findViewById(R.id.nextLevel);
+    nickname = findViewById(R.id.hello);
+    advanceToNextLevel = findViewById(R.id.advanceButton);
+    statDisplay = findViewById(R.id.statDisplay);
+    menu = findViewById(R.id.menu1);
+  }
+
   /**
    * Set the statistic to be displayed to statDisplayText.
    *
@@ -177,9 +187,10 @@ public class MatchingGameActivity extends AbstractActivities
     statDisplay.setText(statDisplayText);
   }
 
-  /** Hide the button that takes the user to the next level. */
-  public void hideNextLevelButton() {
-    endLevel.setVisibility(View.INVISIBLE);
+  /** Move the next level button to the centre of the screen. */
+  public void updateNextLevelButton() {
+    advanceToNextLevel.setVisibility(View.VISIBLE);
+    skipLevel.setVisibility(View.INVISIBLE);
   }
 
   /**
@@ -189,7 +200,18 @@ public class MatchingGameActivity extends AbstractActivities
    */
   @Override
   public void onClick(View view) {
+    popUp.setVisibility(View.INVISIBLE);
     Button button = (Button) view;
     presenter.handleClick(button, app);
+  }
+
+  /** NEEDS DESC.  */
+  public void showNoMatchPopup() {
+    popUp.setVisibility(View.VISIBLE);
+  }
+
+  /** NEEDS DESC.  */
+  public void hideNoMatchPopup() {
+      popUp.setVisibility(View.INVISIBLE);
   }
 }

@@ -14,9 +14,6 @@ import javax.inject.Inject;
 
 import dagger.Provides;
 
-// TODO: make game extendable (add levels without replacing code, i.e open closed principle), clean
-// code, srp
-
 /**
  * A MatchingGameManager that keeps track of information for some respective MatchingGameActivity.
  */
@@ -50,21 +47,23 @@ public class MatchingGameManager {
   /**
    * * Record that card was clicked. That is, if cardsClicked is empty, add card to cardsClicked. If
    * there is one card in cardsClicked, add card to cardsClicked, and call takeTurn with
-   * cardsClicked.
+   * cardsClicked. Return true if takeTurn was called, and false otherwise.
    *
    * <p> Tell MatchingGameModule how to create this object.
    *
    * @param card the card clicked.
    * @param cardValues a map of cards to their respective values.
    */
-  public void recordClick(Button card, Map<Button, String> cardValues) {
+  public boolean recordClick(Button card, Map<Button, String> cardValues) {
     card.setText(cardValues.get(card));
 
     if (this.cardsClicked[0] == null) {
       this.cardsClicked[0] = card;
+      return false;
     } else {
       this.cardsClicked[1] = card;
       this.takeTurn(cardsClicked, cardValues);
+      return true;
     }
   }
 
@@ -90,7 +89,6 @@ public class MatchingGameManager {
       this.matchesToBeMade--;
 
     } else {
-      // Flip cards back over, wait for another turn to be taken (does this work already?)
       cards[0].setText(MatchingGameActivity.BACKOFCARD);
       cards[1].setText(MatchingGameActivity.BACKOFCARD);
     }

@@ -1,11 +1,9 @@
 package com.example.phase1activity.Core.Transmission.MatchingGame;
 
-import android.view.View;
 import android.widget.Button;
 
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
-import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivityInterface;
 
 import java.util.ArrayList;
@@ -74,16 +72,21 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
    */
   public void handleClick(Button button, AppManager app) {
     if (button.getText().equals(BACKOFCARD)) {
-      manager.recordClick(button, cardsToValues);
+      int matchesToBeMadeBefore = manager.getMatchesToBeMade();
+      boolean turnTaken = manager.recordClick(button, cardsToValues);
+      int matchesToBeMadeAfter = manager.getMatchesToBeMade();
 
-      int matchesToBeMade = manager.getMatchesToBeMade();
+      // The user failed to match a pair.
+      if (matchesToBeMadeAfter == matchesToBeMadeBefore && turnTaken) {
+        view.showNoMatchPopup();
+      }
 
       // The user has matched all cards.
-      if (matchesToBeMade == 0) {
+      if (matchesToBeMadeAfter == 0) {
         double score = manager.getScore();
         String statDisplayText = SCORE + score;
         view.setDisplayStat(statDisplayText);
-        view.hideNextLevelButton();
+        view.updateNextLevelButton();
 
         app.updateProfileScore(manager.getScore());
         app.updateProfileMoves(manager.getTurnsTaken());

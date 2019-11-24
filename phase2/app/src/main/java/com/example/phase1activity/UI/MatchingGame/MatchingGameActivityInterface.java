@@ -9,5 +9,15 @@ public interface MatchingGameActivityInterface {
   void setDisplayStat(String statDisplayText);
 
   /** Hide the button that takes the user to the next level. */
-  void hideNextLevelButton();
+  void updateNextLevelButton();
+
+  /** Hide
+   *
+   */
+  void showNoMatchPopup();
+
+  /** Hide
+   *
+   */
+  void hideNoMatchPopup();
 }

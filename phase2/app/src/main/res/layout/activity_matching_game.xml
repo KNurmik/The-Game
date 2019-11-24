@@ -45,16 +45,16 @@ tools:context=".UI.MatchingGame.MatchingGameActivity">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hello" />
 
-<Button
-    android:id="@+id/button4"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="56dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/button1" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 
-<Button
+    <Button
     android:id="@+id/button5"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -86,18 +86,20 @@ tools:context=".UI.MatchingGame.MatchingGameActivity">
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-    android:id="@+id/statDisplay"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Turns Taken: 0"
-    android:textSize="40sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/button5" />
+        android:id="@+id/statDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turns Taken: 0"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.718" />
 
     <Button
-        android:id="@+id/finishMatches"
+        android:id="@+id/advanceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
@@ -116,20 +118,15 @@ tools:context=".UI.MatchingGame.MatchingGameActivity">
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="114dp" />
-
-    <ImageView
         android:id="@+id/noMatch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="108dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hello"
+        app:layout_constraintVertical_bias="0.46"
         app:srcCompat="@drawable/match_none" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

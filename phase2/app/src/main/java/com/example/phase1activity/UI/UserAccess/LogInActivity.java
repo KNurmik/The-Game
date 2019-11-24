@@ -20,116 +20,94 @@ import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
 
-public class LogInActivity extends AbstractActivities implements UserAccessView{
-    /**
-     * The manager used for logging in.
-     */
-    UserAccessManager loginManager;
+/** Activity where user can enter their credentials and log in with an existing account. */
+public class LogInActivity extends AbstractActivities implements UserAccessView {
+  /** The manager used for logging in. */
+  UserAccessManager loginManager;
 
-    /**
-     * The text field for the username
-     */
-    EditText usernameText;
+  /** The text field for the username */
+  EditText usernameText;
 
-    /**
-     * The text field for the password
-     */
-    EditText passwordText;
+  /** The text field for the password */
+  EditText passwordText;
 
-    /**
-     * Instructions displayed to the user
-     */
-    TextView instructionText;
+  /** Instructions displayed to the user */
+  TextView instructionText;
 
-    /**
-     * The button used to attempt to login
-     */
-    Button btn;
+  /** The button used to attempt to login */
+  Button btn;
 
-    @Inject
-    UserAccessPresenter presenter;
+  /** UserAccessPresenter object responsible for handling user input. */
+  @Inject UserAccessPresenter presenter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+  /**
+   * Populate the Activity with objects. Inject presenter.
+   *
+   * @param savedInstanceState the saved instance state.
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_log_in);
 
-        // Dependency injection using Dagger.
-        presenter =
-                DaggerUserAccessComponent.builder()
-                        .userAccessModule(new UserAccessModule(this))
-                        .build()
-                        .injectUserAccessPresenter();
+    // Dependency injection using Dagger.
+    presenter =
+        DaggerUserAccessComponent.builder()
+            .userAccessModule(new UserAccessModule(this))
+            .build()
+            .injectUserAccessPresenter();
 
+    // Initializes all buttons and Text boxes
+    usernameText = findViewById(R.id.UsernameText);
+    passwordText = findViewById(R.id.PasswordText);
+    instructionText = findViewById(R.id.logInInstructionText);
+    btn = findViewById(R.id.logInButton);
 
-        loginManager = new LogInManager();
+    final Activity thisActivity = this;
 
-        //Initializes all buttons and Text boxes
-        usernameText = findViewById(R.id.UsernameText);
-        passwordText = findViewById(R.id.PasswordText);
-        instructionText = findViewById(R.id.logInInstructionText);
-        btn = findViewById(R.id.logInButton);
-
-        final Activity thisActivity = this;
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String result = loginManager.signupAction(thisActivity, getUsername(), getPassword(), app);
-                handleLogInResult(result);
-            }
+    btn.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
+          }
         });
-    }
+  }
 
-    //Gets the username and password typed into the text fields
-    private String getUsername() {
-        return usernameText.getText().toString();
-    }
+  /** @return what the user has entered in usernameText. */
+  private String getUsername() {
+    return usernameText.getText().toString();
+  }
 
-    private String getPassword() {
-        return passwordText.getText().toString();
-    }
+  /** @return what the user has entered in passwordText. */
+  private String getPassword() {
+    return passwordText.getText().toString();
+  }
 
-    /**
-     * Given a result, the method decides what happens after a login attempt.
-     *
-     * @param result A string representation of the login attempt result.
-     */
-    private void handleLogInResult(String result) {
-        //If the username field is left blank
-        if (result.equals("empty username")) {
-            updateInstructionText("Username cannot be empty!", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //If the password field is left blank
-        else if (result.equals("empty password")) {
-            updateInstructionText("Password cannot be empty!", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //If there is no match with the username or password.
-        else if (result.equals("incorrect username/password")) {
-            updateInstructionText("Incorrect username/password.", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //Successful login
-        else {
-            startActivity(new Intent(LogInActivity.this, StartActivity.class));
-        }
-    }
+  /**
+   * Updates the instructions given to the user.
+   *
+   * @param toThis The new message that will be displayed for the user
+   * @param color The color of the message that will be displayed.
+   */
+  public void updateInstructionText(String toThis, int color) {
+    instructionText.setText(toThis);
+    instructionText.setTextColor(color);
+  }
 
-    /**
-     * Updates the instructions given to the user.
-     *
-     * @param toThis The new message that will be displayed for the user
-     * @param color  The color of the message that will be displayed.
-     */
-    public void updateInstructionText(String toThis, int color) {
-        instructionText.setText(toThis);
-        instructionText.setTextColor(color);
-    }
+  /** @return that this Activity is for logging in. */
+  public String getAction() {
+    return "login";
+  }
 
-    public String getAction(){return "login";}
+  /** Clear usernameText and passwordText. */
+  public void clearTextFields() {
+    usernameText.setText("");
+    passwordText.setText("");
+  }
+
+  /** End this Activity and proceed to the main menu. */
+  public void endActivity() {
+    startActivity(new Intent(LogInActivity.this, StartActivity.class));
+  }
 }

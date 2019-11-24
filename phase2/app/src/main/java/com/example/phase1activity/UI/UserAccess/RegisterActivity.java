@@ -20,109 +20,94 @@ import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
 
+/** Activity for the user to register a new account */
 public class RegisterActivity extends AbstractActivities implements UserAccessView {
-    /**
-     * The text field for the username
-     */
-    EditText usernameText;
+  /** The text field for the username */
+  EditText usernameText;
 
-    /**
-     * The text field for the password
-     */
-    EditText passwordText;
+  /** The text field for the password */
+  EditText passwordText;
 
-    /**
-     * Instructions displayed to the user
-     */
-    TextView instructionText;
+  /** Instructions displayed to the user */
+  TextView instructionText;
 
-    /**
-     * The button used to attempt to login
-     */
-    Button btn;
+  /** The button used to attempt to login */
+  Button btn;
 
-    @Inject
-    UserAccessPresenter presenter;
+  /**
+   * The UserAccessPresenter responsible for handling user input. Injected using Dagger dependency
+   * injection.
+   */
+  @Inject UserAccessPresenter presenter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        final RegisterManager registerManager = new RegisterManager();
-        final AppManager app = (AppManager) getApplication();
+  /**
+   * Populate the Activity with objects. Inject presenter.
+   *
+   * @param savedInstanceState the saved instance state.
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_register);
+    final AppManager app = (AppManager) getApplication();
 
-        // Dependency injection using Dagger.
-        presenter =
-                DaggerUserAccessComponent.builder()
-                        .userAccessModule(new UserAccessModule(this))
-                        .build()
-                        .injectUserAccessPresenter();
+    // Dependency injection using Dagger.
+    presenter =
+        DaggerUserAccessComponent.builder()
+            .userAccessModule(new UserAccessModule(this))
+            .build()
+            .injectUserAccessPresenter();
 
-        usernameText = findViewById(R.id.NewUsernameText);
-        passwordText = findViewById(R.id.NewPasswordText);
-        instructionText = findViewById(R.id.logInInstructionText);
-        btn = findViewById(R.id.RegisterButton);
+    usernameText = findViewById(R.id.NewUsernameText);
+    passwordText = findViewById(R.id.NewPasswordText);
+    instructionText = findViewById(R.id.logInInstructionText);
+    btn = findViewById(R.id.RegisterButton);
 
-        final Activity thisActivity = this;
+    final Activity thisActivity = this;
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String result = registerManager.signupAction(thisActivity, getUsername(), getPassword(), app);
-                handleRegisterResult(result);
-            }
+    btn.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
+          }
         });
-    }
+  }
 
-    /**
-     * Given a result, the method decides what happens after a registration attempt.
-     *
-     * @param result A string representation of the registration attempt result.
-     */
-    private void handleRegisterResult(String result) {
-        //Username already in database
-        if (result.equals("taken username")) {
-            updateInstructionText("Username is taken!", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //Password is not in valid format
-        else if (result.equals("password error")) {
-            updateInstructionText("Password length must be <16, and >0! No commas!", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //Password is not in valid format
-        else if (result.equals("username error")) {
-            updateInstructionText("Username length must be <16, and >0! No commas!", Color.RED);
-            usernameText.setText("");
-            passwordText.setText("");
-        }
-        //Registration successful
-        else {
-            startActivity(new Intent(RegisterActivity.this, StartActivity.class));
-        }
-    }
+  /** @return what the user has entered in usernameText. */
+  private String getUsername() {
+    return usernameText.getText().toString();
+  }
 
-    //Gets the username and password typed into the text fields
-    private String getUsername() {
-        return usernameText.getText().toString();
-    }
+  /** @return what the user has entered in passwordText. */
+  private String getPassword() {
+    return passwordText.getText().toString();
+  }
 
-    private String getPassword() {
-        return passwordText.getText().toString();
-    }
+  /**
+   * Updates the instructions given to the user.
+   *
+   * @param toThis The new message that will be displayed for the user
+   * @param color The color of the message that will be displayed.
+   */
+  public void updateInstructionText(String toThis, int color) {
+    instructionText.setText(toThis);
+    instructionText.setTextColor(color);
+  }
 
-    /**
-     * Updates the instructions given to the user.
-     *
-     * @param toThis The new message that will be displayed for the user
-     * @param color  The color of the message that will be displayed.
-     */
-    public void updateInstructionText(String toThis, int color) {
-        instructionText.setText(toThis);
-        instructionText.setTextColor(color);
-    }
+  /** @return that this Activity is trying to register a new account. */
+  public String getAction() {
+    return "register";
+  }
 
-    public String getAction(){return "register";}
+  /** Clear usernameText and passwordText. */
+  public void clearTextFields() {
+    usernameText.setText("");
+    passwordText.setText("");
+  }
+
+  /** End this Activity and open up the main menu. */
+  public void endActivity() {
+    startActivity(new Intent(RegisterActivity.this, StartActivity.class));
+  }
 }

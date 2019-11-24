@@ -22,7 +22,7 @@ public class RegisterManager extends UserAccessManager {
    */
   public String UserAccessAction(
       Context context, String username, String password, AppManager app) {
-    System.out.println("FILE DIRECTORY IN REGISTER MANAGER" + context.getFilesDir());
+    // Deal with invalid username-password combinations.
     ISaver iSaver = new AndroidSaver(context);
     if (iSaver.getExistingUsernames().contains(username)) {
       return "taken username";
@@ -31,6 +31,7 @@ public class RegisterManager extends UserAccessManager {
     } else if (!isValidUsername(username)) {
       return "username error";
     } else {
+      // Save the new user's information with default values.
       final String DEFAULT_VALUES = "," + Color.RED + ",0,0,0,5,0";
       iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
       app.setProfile(

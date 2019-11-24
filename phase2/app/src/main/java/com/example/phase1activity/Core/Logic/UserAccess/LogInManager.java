@@ -21,15 +21,16 @@ public class LogInManager extends UserAccessManager {
    */
   public String UserAccessAction(
       Context context, String username, String password, AppManager app) {
+    // Deal with incorrect username-password combinations.
     if (!isValidPassword(password)) {
       return "empty password";
     } else if (!isValidUsername(username)) {
       return "empty username";
     }
-    // Deal with incorrect username-password combinations.
     else if (!isValidLogin(context, username, password)) {
       return "incorrect username/password";
     } else {
+      // Retrieve user's saved info.
       ISaver iSaver = new AndroidSaver(context.getApplicationContext());
       HashMap<String, HashMap<String, String>> userData = iSaver.getExistingUserData();
       String nickname = userData.get(username).get("nickname");
@@ -39,6 +40,8 @@ public class LogInManager extends UserAccessManager {
       int totalScoreStat = Integer.valueOf(userData.get(username).get("total score"));
       double fastestRxnStat = Double.valueOf(userData.get(username).get("fastest reaction time"));
       int totalMovesStat = Integer.valueOf(userData.get(username).get("total moves"));
+      // Create a new profile containing the existing user's info, and set it as the AppManager's
+      // current profile.
       app.setProfile(
           new ProfileBuilder()
               .setUsername(username)
@@ -56,6 +59,9 @@ public class LogInManager extends UserAccessManager {
   }
 
   /**
+   * Return true if there exists a user with the username and password entered. Return false
+   * otherwise.
+   *
    * @param context The context of the function
    * @param username username of the user
    * @param password password of the user
@@ -63,7 +69,6 @@ public class LogInManager extends UserAccessManager {
    */
   private boolean isValidLogin(Context context, String username, String password) {
     ISaver iSaver = new AndroidSaver(context);
-
     Set<String> existingUsernames = iSaver.getExistingUsernames();
 
     if (existingUsernames.contains(username)) {

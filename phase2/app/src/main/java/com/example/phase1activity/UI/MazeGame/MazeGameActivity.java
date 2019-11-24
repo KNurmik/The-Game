@@ -112,11 +112,6 @@ public class MazeGameActivity extends AbstractActivities {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-      if (event.getAction() == MotionEvent.ACTION_DOWN) {
-        score = calculateScore();
-        return true;
-      }
-      if (event.getAction() == MotionEvent.ACTION_MOVE && !checkWin()) {
         float x = event.getX();
         float y = event.getY();
 
@@ -127,17 +122,23 @@ public class MazeGameActivity extends AbstractActivities {
 
         float absDiffX = Math.abs(x - playerX);
         float absDifY = Math.abs(y - playerY);
+      if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        score = calculateScore();
+        return true;
+      }
+      if (event.getAction() == MotionEvent.ACTION_MOVE && !checkWin()) {
+
 
         if (absDiffX > absDifY) { // if the user moves more in the x direction than y direction
-          if (diffX > 0) { // if the user drags the character to the right
+          if (diffX > 50) { // if the user drags the character to the right
             newMazeManager.mazeObject.player.move(Character.Direction.RIGHT);
-          } else { // if the user drags the character to the left
+          } else if(diffX < -50) { // if the user drags the character to the left
             newMazeManager.mazeObject.player.move(Character.Direction.LEFT);
           }
         } else { // if the user moves more in the y direction than x direction
-          if (diffY > 0) { // if the user drags the character upwards
+          if (diffY > 50) { // if the user drags the character upwards
             newMazeManager.mazeObject.player.move(Character.Direction.DOWN);
-          } else { // if the user drags the character downwards
+          } else if(diffY < -50){ // if the user drags the character downwards
             newMazeManager.mazeObject.player.move(Character.Direction.UP);
           }
         }

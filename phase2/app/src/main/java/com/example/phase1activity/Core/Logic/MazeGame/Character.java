@@ -82,7 +82,7 @@ public class Character {
    * @return the x coordinate of the character in Android coordinates.
    */
   public int coordinateX() {
-    return currentBlock.getX() * 100 + 170;
+    return currentBlock.getX() * 100 + 173;
   }
 
   /**

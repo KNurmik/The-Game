@@ -13,12 +13,16 @@ import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 
+import static android.graphics.Color.rgb;
+
 /** class for the activity_the_maze.xml */
 public class MazeGameActivity extends AbstractActivities {
   /** The score of the user */
   public int score;
   /** The nickname for the user */
   public String playerNickname;
+  /** The color of the user */
+  public int playerColor;
   /** The drawView attribute that allows the app to draw the maze and character */
   DrawView drawView;
   /** A new maze manager when the game starts */
@@ -35,11 +39,12 @@ public class MazeGameActivity extends AbstractActivities {
 
     super.onCreate(savedInstanceState);
     drawView = new DrawView(this);
-    drawView.setBackgroundColor(Color.WHITE);
+    drawView.setBackgroundColor(rgb(240, 237, 214));
     setContentView(drawView);
     newMazeManager = new MazeManager();
     score = 0;
     playerNickname = app.getProfile().getNickname();
+    playerColor = app.getProfileColour();
     newMazeManager.mazeObject.player.setPaintText(app.getProfile().getColour());
   }
 
@@ -82,7 +87,8 @@ public class MazeGameActivity extends AbstractActivities {
     public void onDraw(Canvas canvas) {
       super.onDraw(canvas);
       newMazeManager.draw(canvas); // draws the maze and character
-
+      paint.setColor(playerColor);
+      canvas.drawRect(825, 160, 920, 255, paint);
       // Draws the string displaying if the user has escaped the maze and the current score
       canvas.drawText(playerNickname + " current score: " + score, 75, 1500, paint);
       if (checkWin()) {

@@ -5,7 +5,8 @@ import java.util.Random;
 
 public class MazeBlock extends MazeItem {
 
-  public boolean visited;
+  /** Boolean variable whether the mazeBlock as a path to another maze block */
+  boolean visited;
   /** The MazeBlock or Wall above this MazeBlock */
   private MazeItem up;
   /** The MazeBlock or Wall below this MazeBlock */
@@ -14,6 +15,7 @@ public class MazeBlock extends MazeItem {
   private MazeItem right;
   /** The MazeBlock or Wall to the left of this MazeBlock */
   private MazeItem left;
+  /** An array list of it's surrounding maze blocks */
   private ArrayList<MazeBlock> neighbours;
   /** Initialize this MazeBlock at position (a, b) */
   MazeBlock(int a, int b) {
@@ -26,10 +28,12 @@ public class MazeBlock extends MazeItem {
     neighbours = new ArrayList<>();
   }
 
+  /** @param mazeBlock is a neighbour of this */
   public void addNeighbour(MazeBlock mazeBlock) {
     neighbours.add(mazeBlock);
   }
 
+  /** @return a random neighbour of this or nothing if all it's neighbours have been visited */
   MazeBlock randomNeighbour() {
     ArrayList<MazeBlock> visitedNeighbours = new ArrayList<>();
     Random random = new Random();

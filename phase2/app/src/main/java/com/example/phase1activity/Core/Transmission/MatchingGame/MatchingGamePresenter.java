@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   /** The string to be displayed on the back of each card. */
   private static final String BACKOFCARD = "CLICK ME!";
@@ -32,6 +34,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
 
   private MatchingGameActivityInterface view;
 
+  @Inject
   public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view) {
     assignCardValues(buttonList);
     manager = new MatchingGameManager(this.cardsToValues.size());
@@ -80,5 +83,10 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
         view.setDisplayStat(statDisplayText);
       }
     }
+  }
+
+  /** @param manager the MatchingGameManager to set manager to. */
+  public void setManager(MatchingGameManager manager) {
+    this.manager = manager;
   }
 }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
+import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGameModule;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenter;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenterInterface;
 import com.example.phase1activity.R;
@@ -15,17 +16,24 @@ import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
+import com.example.phase1activity.Core.Transmission.MatchingGame.DaggerMatchingGameComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 /** A MatchingGameActivity. */
 public class MatchingGameActivity extends AbstractActivities
     implements View.OnClickListener, MatchingGameActivityInterface {
-  // TODO: new stuff
-  private MatchingGamePresenterInterface presenter;
+
+  /**
+   * Presenter responsible for handling user actions. Injected using Dagger dependency injection.
+   */
+  @Inject MatchingGamePresenterInterface presenter;
 
   /** The string to be displayed on the back of each card. */
   public static final String BACKOFCARD = "CLICK ME!";
@@ -67,7 +75,13 @@ public class MatchingGameActivity extends AbstractActivities
     setContentView(R.layout.activity_matching_game);
 
     createButtonReferences();
-    presenter = new MatchingGamePresenter(buttonList, this);
+
+    // Inject presenter.
+    presenter =
+        DaggerMatchingGameComponent.builder()
+            .matchingGameModule(new MatchingGameModule(this, buttonList))
+            .build()
+            .injectMatchingGamePresenter();
 
     // Create references to other buttons.
     finishMatches = findViewById(R.id.finishMatches);

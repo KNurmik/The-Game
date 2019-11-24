@@ -2,13 +2,14 @@ package com.example.phase1activity.UI.MatchingGame;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
+import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenter;
+import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenterInterface;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
@@ -21,10 +22,10 @@ import java.util.HashMap;
 import java.util.Collections;
 
 /** A MatchingGameActivity. */
-public class MatchingGameActivity extends AbstractActivities implements View.OnClickListener {
-
-  /** This MatchingGameActivity's MatchingGameManager */
-  private MatchingGameManager manager;
+public class MatchingGameActivity extends AbstractActivities
+    implements View.OnClickListener, MatchingGameActivityInterface {
+  // TODO: new stuff
+  private MatchingGamePresenterInterface presenter;
 
   /** The string to be displayed on the back of each card. */
   public static final String BACKOFCARD = "CLICK ME!";
@@ -32,27 +33,23 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
   /** The string to be displayed next to the number of turns taken. */
   static final String TURNSTAKEN = "Turns Taken: ";
 
-  /** The string to be displayed next to the final score. */
-  static final String SCORE = "Final Score: ";
-
   /** The string to be displayed on the Next Level button. */
   static final String NEXT_LEVEL = "Next Level";
 
   /** The string to be displayed on the Next button. */
   static final String NEXT = "Next";
 
-  /** A map of this MatchingGameActivity's cards to their respective values. */
-  Map<Button, String> cardsToValues;
-
   /** The View that displays the user's stats. */
   TextView statDisplay;
 
-  /** The buttons that allow the user to advance to the last level. */
+  /** Buttons that allow the user to advance to the last level. */
   Button finishMatches;
 
   Button nextLevel;
   TextView nickname;
   Button menu;
+
+  List<Button> buttonList;
 
   /** The user's selected colour in their profile */
   int colour;
@@ -69,68 +66,23 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_matching_game);
 
-    // Randomly assign values to cards.
-    final List<String> cardValues =
-        new ArrayList<String>() {
-          {
-            add("A");
-            add("A");
-            add("B");
-            add("B");
-            add("C");
-            add("C");
-          }
-        };
-    Collections.shuffle(cardValues);
+    createButtonReferences();
+    presenter = new MatchingGamePresenter(buttonList, this);
 
-    // Initializes all buttons
-    final Button button1 = findViewById(R.id.button1);
-    final Button button2 = findViewById(R.id.button2);
-    final Button button3 = findViewById(R.id.button3);
-    final Button button4 = findViewById(R.id.button4);
-    final Button button5 = findViewById(R.id.button5);
-    final Button button6 = findViewById(R.id.button6);
+    // Create references to other buttons.
     finishMatches = findViewById(R.id.finishMatches);
     nextLevel = findViewById(R.id.nextLevel);
     menu = findViewById(R.id.menu1);
-    colour = getAppManager().getProfileColour();
-
-    colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
-    colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
-    colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
-
-    // assigns the buttons to the card values
-    cardsToValues =
-        new HashMap<Button, String>() {
-          {
-            put(button1, cardValues.get(0));
-            put(button2, cardValues.get(1));
-            put(button3, cardValues.get(2));
-            put(button4, cardValues.get(3));
-            put(button5, cardValues.get(4));
-            put(button6, cardValues.get(5));
-          }
-        };
-
-    // Set initial appearances of this activity's View objects.
-    statDisplay = findViewById(R.id.statDisplay);
-    String statDisplayText = TURNSTAKEN + 0;
-    statDisplay.setText(statDisplayText);
-
-    for (Button card : cardsToValues.keySet()) {
-      card.setOnClickListener(this);
-      card.setText(BACKOFCARD);
-      colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
-    }
-
-    finishMatches.setOnClickListener(this);
-
-    manager = new MatchingGameManager(this.cardsToValues.size());
     nickname = findViewById(R.id.hello);
-    String hello = "Hi " + app.getProfile().getNickname() + "!";
-    nickname.setText(hello);
+
+    setInitialButtonDisplays();
+
+    String userNickname = app.getProfile().getNickname();
+    setDisplayNickname(userNickname);
 
     final Activity activity = this;
+
+    finishMatches.setOnClickListener(this);
 
     menu.setOnClickListener(
         new View.OnClickListener() {
@@ -162,39 +114,62 @@ public class MatchingGameActivity extends AbstractActivities implements View.OnC
         });
   }
 
+  void setDisplayNickname(String newNickname) {
+    String displayText = "Hi " + newNickname + "!";
+    nickname.setText(displayText);
+  }
+
+  private void setInitialButtonDisplays() {
+    colour = getAppManager().getProfileColour();
+    colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
+    colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+
+    statDisplay = findViewById(R.id.statDisplay);
+    String statDisplayText = TURNSTAKEN + 0;
+    statDisplay.setText(statDisplayText);
+
+    for (Button card : buttonList) {
+      card.setOnClickListener(this);
+      card.setText(BACKOFCARD);
+      colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
+    }
+  }
+
+  private void createButtonReferences() {
+    buttonList = new ArrayList<>();
+
+    // Initialize card buttons.
+    final Button button1 = findViewById(R.id.button1);
+    buttonList.add(button1);
+    final Button button2 = findViewById(R.id.button2);
+    buttonList.add(button2);
+    final Button button3 = findViewById(R.id.button3);
+    buttonList.add(button3);
+    final Button button4 = findViewById(R.id.button4);
+    buttonList.add(button4);
+    final Button button5 = findViewById(R.id.button5);
+    buttonList.add(button5);
+    final Button button6 = findViewById(R.id.button6);
+    buttonList.add(button6);
+  }
+
+  public void setDisplayStat(String statDisplayText) {
+    statDisplay.setText(statDisplayText);
+  }
+
+  public void setFinishMatchesVisibility() {
+    finishMatches.setVisibility(View.INVISIBLE);
+  }
+
   /**
-   * Record that a card was clicked in manager. Check whether there are matches left to be made, and
-   * set statDisplay text accordingly.
+   * Record that a card was clicked in manager.
    *
    * @param view the card that was clicked.
    */
   @Override
   public void onClick(View view) {
-
     Button button = (Button) view;
-
-    // If the button is not flipped
-    if (button.getText().equals(BACKOFCARD)) {
-      manager.recordClick(button, cardsToValues, app);
-
-      int matchesToBeMade = manager.getMatchesToBeMade();
-
-      // The user successfully matches all cards
-      if (matchesToBeMade == 0) {
-        double score = manager.getScore();
-        String statDisplayText = SCORE + score;
-        this.statDisplay.setText(statDisplayText);
-        finishMatches.setVisibility(View.VISIBLE);
-
-        app.updateProfileScore(manager.getScore());
-        app.updateProfileMoves(manager.getTurnsTaken());
-      }
-      // The user still has matches to make
-      else {
-        int turnsTaken = manager.getTurnsTaken();
-        String statDisplayText = TURNSTAKEN + turnsTaken;
-        this.statDisplay.setText(statDisplayText);
-      }
-    }
+    presenter.handleClick(button, app);
   }
 }

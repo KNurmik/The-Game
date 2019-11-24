@@ -10,7 +10,8 @@ class Wall extends MazeItem {
   /** Whether this wall is horizontal or vertical */
   private final boolean horizontal;
   /** Represents what the Wall looks like on the screen */
-  String appearance;
+  private String appearance;
+
   private Paint paintText = new Paint();
 
   /**
@@ -52,16 +53,16 @@ class Wall extends MazeItem {
   void draw(Canvas canvas) {
     if (isHorz()) {
       canvas.drawLine(
-          (float) (getX() * 100 + 250),
+          (float) (getX() * 100 + 125),
           (float) (getY() * 100 + 160),
-          (float) (getX() * 100 + 350),
+          (float) (getX() * 100 + 225),
           (float) (getY() * 100 + 160),
           paintText);
     } else {
       canvas.drawLine(
-          (float) (getX() * 100 + 250),
+          (float) (getX() * 100 + 125),
           (float) (getY() * 100 + 160),
-          (float) (getX() * 100 + 250),
+          (float) (getX() * 100 + 125),
           (float) (getY() * 100 + 260),
           paintText);
     }

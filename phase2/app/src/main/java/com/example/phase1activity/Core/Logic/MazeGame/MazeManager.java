@@ -9,10 +9,9 @@ public class MazeManager {
 
   /** Constructs the MazeManager */
   public MazeManager() {
-    mazeObject = new Maze(6, 6);
+    mazeObject = new Maze(8, 11);
     mazeObject.createPlayer();
   }
-
 
   /**
    * Draws every Wall in the maze, as well as the player

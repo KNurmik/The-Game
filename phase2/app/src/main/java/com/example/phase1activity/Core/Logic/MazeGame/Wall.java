@@ -31,7 +31,7 @@ class Wall extends MazeItem {
       appearance = "|";
     }
 
-    paintText.setTextSize(36);
+    paintText.setStrokeWidth(10);
     paintText.setColor(Color.BLACK);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
   }

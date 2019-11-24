@@ -83,8 +83,7 @@ public class MazeGameActivity extends AbstractActivities {
       super.onDraw(canvas);
       newMazeManager.draw(canvas); // draws the maze and character
 
-      // Draws the string displaying if the user has escaped the maze and the current score of the
-      // user
+      // Draws the string displaying if the user has escaped the maze and the current score
       canvas.drawText(playerNickname + " current score: " + score, 75, 1500, paint);
       if (checkWin()) {
         app.updateProfileScore(score); // updates the score for the user's profile

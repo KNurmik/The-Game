@@ -10,6 +10,10 @@ import android.view.View;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
 
+import javax.inject.Inject;
+
+import dagger.Provides;
+
 // TODO: make game extendable (add levels without replacing code, i.e open closed principle), clean
 // code, srp
 
@@ -38,6 +42,7 @@ public class MatchingGameManager {
    * @param numCards the number of cards in this MatchingGameManager's respective
    *     MatchingGameActivity.
    */
+  @Inject
   public MatchingGameManager(int numCards) {
     this.matchesToBeMade = numCards / 2;
   }
@@ -46,6 +51,8 @@ public class MatchingGameManager {
    * * Record that card was clicked. That is, if cardsClicked is empty, add card to cardsClicked. If
    * there is one card in cardsClicked, add card to cardsClicked, and call takeTurn with
    * cardsClicked.
+   *
+   * <p>Tell MatchingGameModule how to create this object.
    *
    * @param card the card clicked.
    * @param cardValues a map of cards to their respective values.

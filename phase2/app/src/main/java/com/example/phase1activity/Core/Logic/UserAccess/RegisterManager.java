@@ -8,7 +8,7 @@ import com.example.phase1activity.Core.Transmission.Overseers.ProfileBuilder;
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
-/** Class that manages registration of new users */
+/** A class that manages registration of new users. */
 public class RegisterManager extends UserAccessManager {
 
   /**

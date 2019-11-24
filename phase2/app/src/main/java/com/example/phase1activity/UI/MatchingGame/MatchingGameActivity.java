@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGameModule;
-import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenter;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenterInterface;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
@@ -20,9 +18,6 @@ import com.example.phase1activity.Core.Transmission.MatchingGame.DaggerMatchingG
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -41,20 +36,18 @@ public class MatchingGameActivity extends AbstractActivities
   /** The string to be displayed next to the number of turns taken. */
   static final String TURNSTAKEN = "Turns Taken: ";
 
-  /** The string to be displayed on the Next Level button. */
-  static final String NEXT_LEVEL = "Next Level";
-
-  /** The string to be displayed on the Next button. */
-  static final String NEXT = "Next";
-
   /** The View that displays the user's stats. */
   TextView statDisplay;
 
-  /** Buttons that allow the user to advance to the last level. */
-  Button finishMatches;
+  /** A button that allows the user to advance to next level, during the level. */
+  Button endLevel;
 
+  /** A button that allows the user to advance to next level, at the end of the level. */
   Button nextLevel;
+
+  /** A button that allow the user to advance to next last level. */
   TextView nickname;
+
   Button menu;
 
   List<Button> buttonList;
@@ -74,7 +67,7 @@ public class MatchingGameActivity extends AbstractActivities
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_matching_game);
 
-    createButtonReferences();
+    populateButtonList();
 
     // Inject presenter.
     presenter =
@@ -84,19 +77,19 @@ public class MatchingGameActivity extends AbstractActivities
             .injectMatchingGamePresenter();
 
     // Create references to other buttons.
-    finishMatches = findViewById(R.id.finishMatches);
+    endLevel = findViewById(R.id.finishMatches);
     nextLevel = findViewById(R.id.nextLevel);
     menu = findViewById(R.id.menu1);
     nickname = findViewById(R.id.hello);
 
-    setInitialButtonDisplays();
+    setInitialButtonAppearances();
 
     String userNickname = app.getProfile().getNickname();
     setDisplayNickname(userNickname);
 
     final Activity activity = this;
 
-    finishMatches.setOnClickListener(this);
+    endLevel.setOnClickListener(this);
 
     menu.setOnClickListener(
         new View.OnClickListener() {
@@ -117,7 +110,7 @@ public class MatchingGameActivity extends AbstractActivities
           }
         });
 
-    finishMatches.setOnClickListener(
+    endLevel.setOnClickListener(
         new View.OnClickListener() {
           /** Allow user to continue to the game using the button. */
           @Override
@@ -128,16 +121,22 @@ public class MatchingGameActivity extends AbstractActivities
         });
   }
 
+  /**
+   * Set the displayed nickname to be displayed to newNickname.
+   *
+   * @param newNickname the new nickname to be displayed.
+   */
   void setDisplayNickname(String newNickname) {
     String displayText = "Hi " + newNickname + "!";
     nickname.setText(displayText);
   }
 
-  private void setInitialButtonDisplays() {
+  /** Set initial appearances of the level's buttons. */
+  private void setInitialButtonAppearances() {
     colour = getAppManager().getProfileColour();
     colourButton(menu, R.drawable.main_red, R.drawable.main_blue, R.drawable.main_green);
     colourButton(nextLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
-    colourButton(finishMatches, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
+    colourButton(endLevel, R.drawable.next_red, R.drawable.next_blue, R.drawable.next_green);
 
     statDisplay = findViewById(R.id.statDisplay);
     String statDisplayText = TURNSTAKEN + 0;
@@ -150,7 +149,8 @@ public class MatchingGameActivity extends AbstractActivities
     }
   }
 
-  private void createButtonReferences() {
+  /** Populate buttonList with the buttons representing cards. */
+  private void populateButtonList() {
     buttonList = new ArrayList<>();
 
     // Initialize card buttons.
@@ -168,12 +168,18 @@ public class MatchingGameActivity extends AbstractActivities
     buttonList.add(button6);
   }
 
+  /**
+   * Set the statistic to be displayed to statDisplayText.
+   *
+   * @param statDisplayText a statistic.
+   */
   public void setDisplayStat(String statDisplayText) {
     statDisplay.setText(statDisplayText);
   }
 
-  public void setFinishMatchesVisibility() {
-    finishMatches.setVisibility(View.INVISIBLE);
+  /** Hide the button that takes the user to the next level. */
+  public void hideNextLevelButton() {
+    endLevel.setVisibility(View.INVISIBLE);
   }
 
   /**

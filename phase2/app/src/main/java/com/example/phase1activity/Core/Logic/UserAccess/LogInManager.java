@@ -10,7 +10,7 @@ import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 import java.util.HashMap;
 import java.util.Set;
 
-/** A class to manage logins */
+/** A class to manage logging in. */
 public class LogInManager extends UserAccessManager {
   /**
    * @param context The current context
@@ -62,13 +62,13 @@ public class LogInManager extends UserAccessManager {
    * Return true if there exists a user with the username and password entered. Return false
    * otherwise.
    *
-   * @param context The context of the function
-   * @param username username of the user
-   * @param password password of the user
-   * @return turns a boolean whether the login was valid or not
+   * @param context the context.
+   * @param username username of the user.
+   * @param password password of the user.
+   * @return turns a boolean whether the login was valid or not.
    */
   private boolean isValidLogin(Context context, String username, String password) {
-    ISaver iSaver = new AndroidSaver(context);
+    ISaver iSaver = new AndroidSaver(context.getApplicationContext());
     Set<String> existingUsernames = iSaver.getExistingUsernames();
 
     if (existingUsernames.contains(username)) {

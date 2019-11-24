@@ -52,7 +52,7 @@ public class MatchingGameManager {
    * there is one card in cardsClicked, add card to cardsClicked, and call takeTurn with
    * cardsClicked.
    *
-   * <p>Tell MatchingGameModule how to create this object.
+   * <p> Tell MatchingGameModule how to create this object.
    *
    * @param card the card clicked.
    * @param cardValues a map of cards to their respective values.
@@ -81,7 +81,7 @@ public class MatchingGameManager {
     try {
       TimeUnit.SECONDS.sleep(1);
     } catch (InterruptedException e) {
-    } // TODO: replace empty catch block with what?!
+    } // TODO: replace empty catch block with a log
 
     if (cardValues.get(cards[0]).equals(cardValues.get(cards[1]))) {
       // Make cards disappear, store this info in this class somehow
@@ -100,7 +100,7 @@ public class MatchingGameManager {
   }
 
   /**
-   * Get's number of turns taken
+   * Returns number of turns taken.
    *
    * @return the number of turns taken.
    */
@@ -109,7 +109,7 @@ public class MatchingGameManager {
   }
 
   /**
-   * * Get's number of turns that have been made
+   * Returns number of turns that have been made.
    *
    * @return the number of matches left to be made.
    */
@@ -118,7 +118,7 @@ public class MatchingGameManager {
   }
 
   /**
-   * * Gets the score after the game has finished
+   * Returns the score.
    *
    * @return the score.
    */

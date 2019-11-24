@@ -18,10 +18,10 @@ import javax.inject.Inject;
 
 public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   /** The string to be displayed on the back of each card. */
-  private static final String BACKOFCARD = "CLICK ME!";
+  private final String BACKOFCARD = "CLICK ME!";
 
   /** The string to be displayed next to the final score. */
-  static final String SCORE = "Final Score: ";
+  private final String SCORE = "Final Score: ";
 
   /** A map of cards to their respective values. */
   private Map<Button, String> cardsToValues = new HashMap<>();
@@ -30,7 +30,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   private MatchingGameManager manager;
 
   /** The string to be displayed next to the number of turns taken. */
-  static final String TURNSTAKEN = "Turns Taken: ";
+  private final String TURNSTAKEN = "Turns Taken: ";
 
   private MatchingGameActivityInterface view;
 
@@ -41,6 +41,11 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
     this.view = view;
   }
 
+  /**
+   * Populate cardsToValues with randomized values ("A", "B", or "C") for each button in buttonList.
+   *
+   * @param buttonList a list of the buttons that represent cards.
+   */
   private void assignCardValues(List<Button> buttonList) {
     final List<String> cardValues =
         new ArrayList<String>() {
@@ -60,23 +65,30 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
     }
   }
 
+  /**
+   * If button is a card, record the click. Subsequently, if there are no matches left to be made,
+   * display the final score, and update the user's statistics.
+   *
+   * @param button the button that was clicked.
+   * @param app the AppManager.
+   */
   public void handleClick(Button button, AppManager app) {
     if (button.getText().equals(BACKOFCARD)) {
       manager.recordClick(button, cardsToValues);
 
       int matchesToBeMade = manager.getMatchesToBeMade();
 
-      // The user successfully matches all cards
+      // The user has matched all cards.
       if (matchesToBeMade == 0) {
         double score = manager.getScore();
         String statDisplayText = SCORE + score;
         view.setDisplayStat(statDisplayText);
-        view.setFinishMatchesVisibility();
+        view.hideNextLevelButton();
 
         app.updateProfileScore(manager.getScore());
         app.updateProfileMoves(manager.getTurnsTaken());
       }
-      // The user still has matches to make
+      // The user still has matches to make.
       else {
         int turnsTaken = manager.getTurnsTaken();
         String statDisplayText = TURNSTAKEN + turnsTaken;

@@ -12,7 +12,7 @@ public abstract class UserAccessManager {
 
   private final int MIN_ENTRY_LENGTH = 0;
 
-  /** Signing up, abstract method. */
+  /** User is attempting to login/register using entered username and password, handle this attempt.*/
   public abstract String UserAccessAction(
       Context context, String username, String password, AppManager app);
 

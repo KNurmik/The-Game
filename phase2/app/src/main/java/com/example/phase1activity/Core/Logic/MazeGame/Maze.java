@@ -25,7 +25,7 @@ public class Maze {
    * @param width The width of the maze
    * @param height The height of the maze
    */
-  Maze(int width, int height) {
+  public Maze(int width, int height) {
     mazeHeight = height;
     mazeWidth = width;
 

@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
+import com.example.phase1activity.Core.Logic.MazeGame.Maze;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
@@ -41,7 +42,8 @@ public class MazeGameActivity extends AbstractActivity {
     drawView = new DrawView(this);
     drawView.setBackgroundColor(rgb(240, 237, 214));
     setContentView(drawView);
-    newMazeManager = new MazeManager();
+    Maze maze = new Maze(8, 11);
+    newMazeManager = new MazeManager(maze);
     score = 0;
     playerNickname = app.getProfileNickname();
     playerColor = app.getProfileColour();
@@ -63,7 +65,7 @@ public class MazeGameActivity extends AbstractActivity {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
-    return Math.max(80000 - (newMazeManager.mazeObject.player.moves) * 500, 0);
+    return (int)(5000 - (newMazeManager.mazeObject.player.moves) * 100);
   }
 
   /** DrawView class that allows the drawing of the everything on the screen for the maze game */

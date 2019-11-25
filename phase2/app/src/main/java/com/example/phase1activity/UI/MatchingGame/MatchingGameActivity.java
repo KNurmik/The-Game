@@ -46,7 +46,7 @@ public class MatchingGameActivity extends AbstractActivities
   /** A button that allows the user to advance to next level, anytime. */
   Button skipLevel;
 
-  /** A button that allow the user to advance to next last level. */
+  /** A view that display's the user's nickname. */
   TextView nickname;
 
   /** A pop-up that notifies the user of a failed match. */
@@ -140,6 +140,9 @@ public class MatchingGameActivity extends AbstractActivities
 
     String statDisplayText = TURNSTAKEN + 0;
     statDisplay.setText(statDisplayText);
+
+    // TODO: decide if nickname is necessary here
+    nickname.setVisibility(View.INVISIBLE);
 
     hideNoMatchPopup();
 

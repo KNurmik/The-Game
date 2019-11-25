@@ -119,14 +119,14 @@ tools:context=".UI.MatchingGame.MatchingGameActivity">
 
     <ImageView
         android:id="@+id/noMatch"
-        android:layout_width="108dp"
-        android:layout_height="50dp"
+        android:layout_width="177dp"
+        android:layout_height="104dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hello"
-        app:layout_constraintVertical_bias="0.46"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664"
         app:srcCompat="@drawable/match_none" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

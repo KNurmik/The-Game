@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
+import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.ReactionGame.ReactionInstructionsActivity;
 
@@ -25,7 +26,7 @@ public class StartActivity extends AbstractActivities {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        level = app.getProfile().getGameLevel();
+        level = app.getProfileGameLevel();
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
@@ -58,7 +59,7 @@ public class StartActivity extends AbstractActivities {
                 }
                 //Goes to the matching game
                 else if(level == 1){
-                    startActivity(new Intent(StartActivity.this, MatchingGameActivity.class));
+                    startActivity(new Intent(StartActivity.this, MatchingInstructionsActivity.class));
                     finish();
                 }
                 //Goes to the maze game
@@ -68,7 +69,7 @@ public class StartActivity extends AbstractActivities {
                 }
             }
         });
-        app.changeMusic(app.getProfile().getSong());
+        app.changeMusic(app.getProfileSong());
 
 
     }

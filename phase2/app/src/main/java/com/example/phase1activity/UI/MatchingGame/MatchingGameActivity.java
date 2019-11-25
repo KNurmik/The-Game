@@ -83,7 +83,7 @@ public class MatchingGameActivity extends AbstractActivities
 
     setInitialButtonAppearances();
 
-    String userNickname = app.getProfile().getNickname();
+    String userNickname = app.getProfileNickname();
     setDisplayNickname(userNickname);
 
     final Activity activity = this;
@@ -104,7 +104,7 @@ public class MatchingGameActivity extends AbstractActivities
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            app.getProfile().setGameLevel(activity, 2);
+            app.setProfileGameLevel(activity, 2);
             startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
           }
         });
@@ -114,7 +114,7 @@ public class MatchingGameActivity extends AbstractActivities
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            app.getProfile().setGameLevel(activity, 2);
+            app.setProfileGameLevel(activity, 2);
             startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
           }
         });

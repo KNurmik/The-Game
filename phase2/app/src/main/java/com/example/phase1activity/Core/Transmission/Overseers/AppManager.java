@@ -1,5 +1,6 @@
 package com.example.phase1activity.Core.Transmission.Overseers;
 
+import android.app.Activity;
 import android.app.Application;
 import android.media.MediaPlayer;
 
@@ -76,7 +77,25 @@ public class AppManager extends Application {
    * @return profile.colour
    */
   public int getProfileColour() {
-    return getProfile().getColour();
+    return this.profile.getColour();
+  }
+
+  /**
+   * Setter for profile's selected colour
+   *
+   * @param color the color of the profile
+   */
+  public void setProfileColour(int color) {
+    this.profile.setColour(color);
+  }
+
+  /**
+   * Getter for the profile's username
+   *
+   * @return profile.username
+   */
+  public String getProfileUsername() {
+    return this.profile.getUsername();
   }
 
   /**
@@ -84,8 +103,20 @@ public class AppManager extends Application {
    *
    * @param n The index of the song that will be used
    */
-  public void setSongNumber(int n) {
-    this.songNumber = n;
+  public void setProfileSong(int n) {
+    this.profile.setSong(n);
+  }
+
+  public int getProfileSong(){
+    return this.profile.getSong();
+  }
+
+  public int getProfileGameLevel(){
+    return this.profile.getGameLevel();
+  }
+
+  public void setProfileGameLevel(Activity activity, int n){
+    this.profile.setGameLevel(activity, n);
   }
 
   /**
@@ -138,4 +169,38 @@ public class AppManager extends Application {
   public String getProfileNickname() {
     return profile.getNickname();
   }
+
+  /**
+   * Setter for the profile's nickname
+   *
+   * @param name the nickname
+   */
+  public void setProfileNickname(String name) {
+    this.profile.setNickname(name);
+  }
+
+  public String getProfilePassword(){
+    return this.profile.getPassword();
+  }
+  /**
+   * @return fastestRxnStat.
+   */
+  public double getProfileFastestRxnStat(){
+    return profile.getFastestRxnStat();
+  }
+
+  /**
+   * @return totalScoreStat.
+   */
+  public int getProfileTotalScoreStat(){
+    return profile.getTotalScoreStat();
+  }
+
+  /**
+   * @return totalMovesStat.
+   */
+  public int getProfileTotalMovesStat(){
+    return profile.getTotalMovesStat();
+  }
+
 }

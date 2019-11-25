@@ -18,6 +18,7 @@ import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGameModule;
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGamePresenterInterface;
+import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
@@ -74,8 +75,8 @@ public class ReactionGameView extends AbstractActivities
     nextbtn.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.getProfile().setGameLevel(activity, 1);
-            startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
+            app.setProfileGameLevel(activity, 1);
+            startActivity(new Intent(ReactionGameView.this, MatchingInstructionsActivity.class));
           }
         });
 
@@ -127,6 +128,6 @@ public class ReactionGameView extends AbstractActivities
 
   /** End this activity and launch MatchingGame. */
   public void endActivity() {
-    startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
+    startActivity(new Intent(ReactionGameView.this, MatchingInstructionsActivity.class));
   }
 }

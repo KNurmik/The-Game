@@ -2,26 +2,24 @@ package com.example.phase1activity.UI.UserAccess;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.phase1activity.Core.Logic.UserAccess.LogInManager;
 import com.example.phase1activity.Core.Logic.UserAccess.UserAccessManager;
 import com.example.phase1activity.Core.Transmission.UserAccess.DaggerUserAccessComponent;
 import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
 import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
 
 /** Activity where user can enter their credentials and log in with an existing account. */
-public class LogInActivity extends AbstractActivities implements UserAccessView {
+public class LogInActivity extends AbstractActivity implements UserAccessView {
   /** The manager used for logging in. */
   UserAccessManager loginManager;
 

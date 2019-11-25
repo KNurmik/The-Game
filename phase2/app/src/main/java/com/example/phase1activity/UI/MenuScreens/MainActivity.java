@@ -6,14 +6,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.UserAccess.LogInActivity;
 import com.example.phase1activity.UI.UserAccess.RegisterActivity;
 
 /**
  * MainActivity
  */
-public class MainActivity extends AbstractActivities {
+public class MainActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

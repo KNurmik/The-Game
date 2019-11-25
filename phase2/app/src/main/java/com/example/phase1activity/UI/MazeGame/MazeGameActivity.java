@@ -11,12 +11,12 @@ import android.view.View;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 import static android.graphics.Color.rgb;
 
 /** class for the activity_the_maze.xml */
-public class MazeGameActivity extends AbstractActivities {
+public class MazeGameActivity extends AbstractActivity {
   /** The score of the user */
   public int score;
   /** The nickname for the user */

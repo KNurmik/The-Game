@@ -2,7 +2,6 @@ package com.example.phase1activity.UI.UserAccess;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +13,13 @@ import com.example.phase1activity.Core.Transmission.UserAccess.DaggerUserAccessC
 import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
 import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 import com.example.phase1activity.R;
-import com.example.phase1activity.Core.Logic.UserAccess.RegisterManager;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
 
 /** Activity for the user to register a new account */
-public class RegisterActivity extends AbstractActivities implements UserAccessView {
+public class RegisterActivity extends AbstractActivity implements UserAccessView {
   /** The text field for the username */
   EditText usernameText;
 

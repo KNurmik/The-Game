@@ -1,19 +1,17 @@
 package com.example.phase1activity.UI.MazeGame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 /**
  * The activity that is displayed after completing the matching game, before starting the maze itself
  */
-public class MazeMenuActivity extends AbstractActivities {
+public class MazeMenuActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

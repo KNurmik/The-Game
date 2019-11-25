@@ -15,7 +15,7 @@ import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 /**
  * Base activity, every Activity in the application inherits this class
  */
-public abstract class AbstractActivities extends AppCompatActivity {
+public abstract class AbstractActivity extends AppCompatActivity {
     public AppManager app;
 
 

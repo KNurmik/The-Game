@@ -3,7 +3,6 @@ package com.example.phase1activity.UI.ReactionGame;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +13,7 @@ import androidx.annotation.DrawableRes;
 
 import com.example.phase1activity.Core.Transmission.ReactionGame.DaggerApplicationComponent;
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
-import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGameModule;
 import com.example.phase1activity.Core.Transmission.ReactionGame.ReactionGamePresenterInterface;
 import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
@@ -24,7 +22,7 @@ import com.example.phase1activity.UI.MenuScreens.StartActivity;
 import javax.inject.Inject;
 
 /** Activity for displaying ReactionGame. */
-public class ReactionGameView extends AbstractActivities
+public class ReactionGameView extends AbstractActivity
     implements View.OnClickListener, ReactionGameViewInterface {
   @Inject public ReactionGamePresenterInterface presenter;
   Button btn;

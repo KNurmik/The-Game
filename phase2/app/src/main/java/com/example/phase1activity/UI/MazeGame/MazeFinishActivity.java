@@ -7,13 +7,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 /**
  * Interface that shows the congratulations screen after user wins the maze
  */
-public class MazeFinishActivity extends AbstractActivities implements View.OnClickListener{
+public class MazeFinishActivity extends AbstractActivity implements View.OnClickListener{
 
     public Button menuButton;
     public TextView nickName;

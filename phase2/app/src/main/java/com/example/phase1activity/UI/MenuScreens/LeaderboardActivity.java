@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 /**
  * Interface that shows the user's statistics
  */
-public class LeaderboardActivity extends AbstractActivities {
+public class LeaderboardActivity extends AbstractActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

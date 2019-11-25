@@ -11,14 +11,14 @@ import android.widget.RadioGroup;
 
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
 /**
  * Customization Activity
  */
-public class CustomizationActivity extends AbstractActivities {
+public class CustomizationActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

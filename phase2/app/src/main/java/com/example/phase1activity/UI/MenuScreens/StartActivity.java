@@ -1,14 +1,12 @@
 package com.example.phase1activity.UI.MenuScreens;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
-import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.ReactionGame.ReactionInstructionsActivity;
@@ -19,7 +17,7 @@ import com.example.phase1activity.UI.ReactionGame.ReactionInstructionsActivity;
  * Start lets the user start the game
  * Settings allows the user to customize their profile
  */
-public class StartActivity extends AbstractActivities {
+public class StartActivity extends AbstractActivity {
     int level;
 
     @Override

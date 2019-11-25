@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 /** Activity for displaying instructions to ReactionGame. */
-public class ReactionInstructionsActivity extends AbstractActivities {
+public class ReactionInstructionsActivity extends AbstractActivity {
 
   /**
    * Populate the screen with objects. Allow user to continue to the game using the button.

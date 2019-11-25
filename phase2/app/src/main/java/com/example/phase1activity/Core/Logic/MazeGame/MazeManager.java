@@ -8,8 +8,8 @@ public class MazeManager {
   public Maze mazeObject;
 
   /** Constructs the MazeManager */
-  public MazeManager() {
-    mazeObject = new Maze(8, 11);
+  public MazeManager(Maze maze) {
+    this.mazeObject = maze;
     mazeObject.createPlayer();
   }
 

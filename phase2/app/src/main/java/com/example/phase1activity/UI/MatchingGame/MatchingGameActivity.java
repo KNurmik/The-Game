@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGameModule;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenterInterface;
 import com.example.phase1activity.R;
-import com.example.phase1activity.UI.Abstract.AbstractActivities;
+import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
@@ -23,7 +23,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 /** A MatchingGameActivity. */
-public class MatchingGameActivity extends AbstractActivities
+public class MatchingGameActivity extends AbstractActivity
     implements View.OnClickListener, MatchingGameActivityInterface {
 
   /**

@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivity;
+import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.ReactionGame.ReactionInstructionsActivity;
 
@@ -58,7 +59,7 @@ public class StartActivity extends AbstractActivities {
                 }
                 //Goes to the matching game
                 else if(level == 1){
-                    startActivity(new Intent(StartActivity.this, MatchingGameActivity.class));
+                    startActivity(new Intent(StartActivity.this, MatchingInstructionsActivity.class));
                     finish();
                 }
                 //Goes to the maze game

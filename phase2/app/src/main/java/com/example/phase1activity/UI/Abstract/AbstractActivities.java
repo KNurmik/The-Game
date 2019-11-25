@@ -2,6 +2,7 @@ package com.example.phase1activity.UI.Abstract;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.DrawableRes;
@@ -27,7 +28,7 @@ public abstract class AbstractActivities extends AppCompatActivity {
         return app;
     }
 
-    public void colourButton(Button btn, @DrawableRes int red, @DrawableRes int blue, @DrawableRes int green){
+    public void colourButton(View btn, @DrawableRes int red, @DrawableRes int blue, @DrawableRes int green){
         int colour = app.getProfileColour();
 
         if (colour == Color.RED){

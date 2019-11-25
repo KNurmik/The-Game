@@ -7,6 +7,16 @@
     android:background="@drawable/background_beige"
     tools:context=".UI.MatchingGame.MatchingInstructionsActivity">
 
+    <ImageView
+        android:id="@+id/matchInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/startMatching"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchingtitle"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/matchingtitle"
         android:layout_width="wrap_content"
@@ -18,21 +28,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/matchinginstructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="This is a guide on how to play the game."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matchingtitle" />
-
     <Button
         android:id="@+id/startMatching"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

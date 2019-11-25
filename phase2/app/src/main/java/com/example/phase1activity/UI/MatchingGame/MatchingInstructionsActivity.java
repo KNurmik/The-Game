@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivities;
@@ -19,8 +20,10 @@ public class MatchingInstructionsActivity extends AbstractActivities {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matching_instructions);
 
+        ImageView instructions = findViewById(R.id.matchInstructions);
         Button btn = findViewById(R.id.startMatching);
         colourButton(btn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
+        colourButton(instructions, R.drawable.match_instructions_red, R.drawable.match_instructions_blue, R.drawable.match_instructions_green);
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     /** Allow user to continue to the game using the button. */

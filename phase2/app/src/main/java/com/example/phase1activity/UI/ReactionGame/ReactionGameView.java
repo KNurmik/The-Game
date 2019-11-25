@@ -74,7 +74,7 @@ public class ReactionGameView extends AbstractActivities
     nextbtn.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.getProfile().setGameLevel(activity, 1);
+            app.setProfileGameLevel(activity, 1);
             startActivity(new Intent(ReactionGameView.this, MatchingGameActivity.class));
           }
         });

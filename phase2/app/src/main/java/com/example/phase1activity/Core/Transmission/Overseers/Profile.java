@@ -6,7 +6,7 @@ import android.graphics.Color;
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
-public class Profile {
+ class Profile {
     /**
      * A string representing the id of the user
      */
@@ -53,7 +53,7 @@ public class Profile {
     private int totalMovesStat;
 
 
-    public Profile(String username, String password, String nickname, int colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
+     Profile(String username, String password, String nickname, int colour, int gameLevel, int song, int totalScore, double fastestReactionTime, int totalMoves) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
@@ -70,7 +70,7 @@ public class Profile {
      *
      * @return
      */
-    public String getUsername() {
+     String getUsername() {
         return this.username;
     }
 
@@ -79,7 +79,7 @@ public class Profile {
      *
      * @param colour The new color that will be used in the games.
      */
-    public void setColour(int colour) {
+     void setColour(int colour) {
         this.colour = colour;
     }
 
@@ -88,7 +88,7 @@ public class Profile {
      *
      * @return The color of the user.
      */
-    public int getColour() {
+     int getColour() {
         if (colour == Color.RED) {
             return Color.RED;
         } else if (colour == Color.BLUE) {
@@ -103,7 +103,7 @@ public class Profile {
      *
      * @param nickname The profile's new nickname
      */
-    public void setNickname(String nickname) {
+     void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
@@ -112,7 +112,7 @@ public class Profile {
      *
      * @return an integer representation of the current level
      */
-    public int getGameLevel() {
+     int getGameLevel() {
         return this.gameLevel;
     }
 
@@ -122,7 +122,7 @@ public class Profile {
      * @param activity The activity used to save the data
      * @param n        The new level
      */
-    public void setGameLevel(Activity activity, int n) {
+     void setGameLevel(Activity activity, int n) {
         ISaver iSaver = new AndroidSaver(activity);
         this.gameLevel = n;
 //        iSaver.saveData(username + "," + password + "," + nickname + "," + colour + "," + song + "," + gameLevel + "," + totalScoreStat + "," + fastestRxnStat + "," + totalMovesStat);
@@ -134,14 +134,14 @@ public class Profile {
      *
      * @return String representation of the user's nickname
      */
-    public String getNickname() {
+     String getNickname() {
         return this.nickname;
     }
 
     /**
      * Changes the song the app plays while open
      */
-    public void setSong(int n) {
+     void setSong(int n) {
         this.song = n;
     }
 
@@ -150,7 +150,7 @@ public class Profile {
      *
      * @return the numerical id of the song being played
      */
-    public int getSong() {
+     int getSong() {
         return this.song;
     }
 
@@ -159,7 +159,7 @@ public class Profile {
      *
      * @param time the fastest time a user reacts in the Reaction Game.
      */
-    public void setFastestRxnStat(double time) {
+     void setFastestRxnStat(double time) {
         this.fastestRxnStat = time;
     }
 
@@ -168,7 +168,7 @@ public class Profile {
      *
      * @param moves totalMovesStat is incremented by moves
      */
-    public void updateTotalMovesStat(int moves) {
+     void updateTotalMovesStat(int moves) {
         this.totalMovesStat += moves;
     }
 
@@ -199,28 +199,28 @@ public class Profile {
     /**
      * @return fastestRxnStat.
      */
-    public double getFastestRxnStat(){
+     double getFastestRxnStat(){
         return this.fastestRxnStat;
     }
 
     /**
      * @return totalScoreStat.
      */
-    public int getTotalScoreStat(){
+     int getTotalScoreStat(){
         return this.totalScoreStat;
     }
 
     /**
      * @return totalMovesStat.
      */
-    public int getTotalMovesStat(){
+     int getTotalMovesStat(){
         return this.totalMovesStat;
     }
 
     /**
      * @return password.
      */
-    public String getPassword(){
+     String getPassword(){
         return this.password;
     }
 

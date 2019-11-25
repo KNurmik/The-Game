@@ -43,9 +43,9 @@ public class MazeGameActivity extends AbstractActivities {
     setContentView(drawView);
     newMazeManager = new MazeManager();
     score = 0;
-    playerNickname = app.getProfile().getNickname();
+    playerNickname = app.getProfileNickname();
     playerColor = app.getProfileColour();
-    newMazeManager.mazeObject.player.setPaintText(app.getProfile().getColour());
+    newMazeManager.mazeObject.player.setPaintText(app.getProfileColour());
   }
 
   /**

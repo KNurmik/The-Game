@@ -25,7 +25,7 @@ public class StartActivity extends AbstractActivities {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        level = app.getProfile().getGameLevel();
+        level = app.getProfileGameLevel();
 
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
@@ -68,7 +68,7 @@ public class StartActivity extends AbstractActivities {
                 }
             }
         });
-        app.changeMusic(app.getProfile().getSong());
+        app.changeMusic(app.getProfileSong());
 
 
     }

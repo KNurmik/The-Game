@@ -38,7 +38,7 @@ public class ReactionGameManager {
     /**
      * String object for keeping track of the state the game is in.
      */
-    private String gameState = "beginning";
+    private State gameState = State.BEGINNING;
     /**
      * How much time user has in the "bank".
      */
@@ -69,14 +69,14 @@ public class ReactionGameManager {
     /**
      * @return the state the game is in.
      */
-    public String getGameState() {
+    public State getGameState() {
         return gameState;
     }
 
     /**
      * @param state the state to set gameState to.
      */
-    public void setGameState(String state) {
+    public void setGameState(State state) {
         gameState = state;
     }
 
@@ -94,12 +94,12 @@ public class ReactionGameManager {
      */
     public void press() {
         // User pressed button too early, reduce timeLimit.
-        if (gameState.equals("do not react")) {
+        if (gameState.equals(State.DONTREACT)) {
             penaltyTime += 1;
         }
 
         // User reacted correctly.
-        else if (gameState.equals("react")) {
+        else if (gameState.equals(State.REACT)) {
             timer.stop();
             double startTime = timeLimit;
             timeLimit = 5 - penaltyTime - timer.getTotalTimeSeconds();
@@ -137,11 +137,16 @@ public class ReactionGameManager {
      * Update gameState and start the timer.
      */
     public void play() {
-        setGameState("react");
+        setGameState(State.REACT);
         startTimer();
 
     }
 
-
+    public enum State {
+        BEGINNING,
+        REACT,
+        DONTREACT,
+        GAMEOVER
+    }
 }
 

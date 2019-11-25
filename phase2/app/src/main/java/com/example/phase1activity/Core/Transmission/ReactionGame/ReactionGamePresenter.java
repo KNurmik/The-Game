@@ -41,26 +41,26 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
   public void handleClick() {
 
     // Turn hasn't stated, begin the game.
-    if (manager.getGameState().equals("beginning")) {
+    if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
       beginGame();
     }
     // Game has begun, user pressed button too early.
-    else if (manager.getGameState().equals("do not react")) {
+    else if (manager.getGameState().equals(ReactionGameManager.State.DONTREACT)) {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
     }
     // User reacted correctly.
-    else if (manager.getGameState().equals("react")) {
+    else if (manager.getGameState().equals(ReactionGameManager.State.REACT)) {
       manager.press();
       view.updateGameStateView(R.drawable.react_well);
       view.updateScoreView(manager.getScore());
-      manager.setGameState("beginning");
+      manager.setGameState(ReactionGameManager.State.BEGINNING);
       totalClicks += 1;
     }
 
     // Game is over.
-    else if (manager.getGameState().equals("game over")) {
+    else if (manager.getGameState().equals(ReactionGameManager.State.GAMEOVER)) {
       view.endActivity();
     }
   }
@@ -70,7 +70,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     // If user has time left in the bank.
     if (manager.isTimeLeft()) {
 
-      manager.setGameState("do not react");
+      manager.setGameState(ReactionGameManager.State.DONTREACT);
       view.updateGameStateView(R.drawable.react_dont);
 
       // Randomize time to wait until prompting user to
@@ -91,7 +91,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     // User does not have time left in the bank.
     else {
       view.updateGameStateView(R.drawable.react_end);
-      manager.setGameState("game over");
+      manager.setGameState(ReactionGameManager.State.GAMEOVER);
       view.updateProfileStatistics(manager.getFastestReaction(), totalClicks, manager.getScore());
       view.updateScoreView(manager.getScore());
     }

@@ -74,7 +74,7 @@ public class AndroidSaver implements ISaver {
 
     public void saveAttribute(String username, String newAttribute, String attributeType) {
         if (getExistingUsernames().contains(username)) {
-            HashMap<String, String> userData = getExistingUserData().get(username);
+            Map<String, String> userData = getExistingUserData().get(username);
             StringBuilder lineToSave = new StringBuilder();
             lineToSave.append(username + ",");
 
@@ -169,15 +169,15 @@ public class AndroidSaver implements ISaver {
      *
      * @return a map of usernames to a map of username attribute names to their objects.
      */
-    public Map<String, HashMap<String, String>> getExistingUserData() {
-        Map<String, HashMap<String, String>> usernamesToData = new HashMap<>();
+    public Map<String, Map<String, String>> getExistingUserData() {
+        Map<String, Map<String, String>> usernamesToData = new HashMap<>();
 
         String[] splitByEntry = splitDataByEntry();
         for (String entry : splitByEntry) {
             final String[] splitByInfo = entry.split(",");
 
             if (splitByInfo.length == 9) {
-                HashMap<String, String> userData = new HashMap<String, String>() {{
+                Map<String, String> userData = new HashMap<String, String>() {{
                     put("password", splitByInfo[PASSWORD_INDEX]);
                     put("nickname", splitByInfo[NICKNAME_INDEX]);
                     put("colour", splitByInfo[COLOUR_INDEX]);

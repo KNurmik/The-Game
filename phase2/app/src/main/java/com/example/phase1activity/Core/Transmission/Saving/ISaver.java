@@ -28,7 +28,7 @@ public interface ISaver {
      *
      * @return a string array of user data, split by individual entries to the saving system.
      */
-    Map<String, HashMap<String, String>> getExistingUserData();
+    Map<String, Map<String, String>> getExistingUserData();
 
     /**
      * Return a map of usernames to a map of username attribute names to their objects.

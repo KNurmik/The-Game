@@ -133,13 +133,13 @@ public class AndroidSaver implements ISaver {
             Double reaction = Double.valueOf(splitByInfo[FASTEST_RXN_INDEX]);
             Double moves = Double.valueOf(splitByInfo[TOTAL_MOVES_INDEX]);
 
-            if (usernamesToHighScores.containsKey(splitByInfo[USERNAME_INDEX])) {
+            if (usernamesToHighScores.containsKey(username)) {
                 Map<String, Double> bestStats = usernamesToHighScores.get(username);
                 if (bestStats.get("total score") < score) {
                     bestStats.put("total score", score);
                 }
                 if (bestStats.get("fastest reaction") > reaction) {
-                    bestStats.put("fastest reaction", score);
+                    bestStats.put("fastest reaction", reaction);
                 }
                 if (bestStats.get("total moves") > moves) {
                     bestStats.put("total moves", moves);

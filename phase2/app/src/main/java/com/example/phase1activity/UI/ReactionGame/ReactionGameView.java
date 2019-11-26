@@ -24,6 +24,7 @@ import javax.inject.Inject;
 /** Activity for displaying ReactionGame. */
 public class ReactionGameView extends AbstractActivity
     implements View.OnClickListener, ReactionGameViewInterface {
+
   @Inject public ReactionGamePresenterInterface presenter;
   Button btn;
   ColorStateList defaultColor;
@@ -104,6 +105,18 @@ public class ReactionGameView extends AbstractActivity
    */
   public void updateGameStateView(@DrawableRes int newState) {
     instructions.setBackgroundResource(newState);
+  }
+
+  //TODO: READ THE COMMENT BELOW!!!!!!!!!!!!!!!!!!
+  //TODO: THIS IS A TESTING METHOD, DELETE ME ONCE FINISHED!!!!!!!!!!!!!!!!!!!!!!!!!!
+  public void updateTestGameStateView(String toThis, int colour){
+    TextView text = findViewById(R.id.testInstruction);
+    text.setText(toThis);
+    text.setTextColor(colour);
+  }
+  public void updateTimeLeft(String toThis){
+    TextView text = findViewById(R.id.timeLeft);
+    text.setText(toThis);
   }
 
   /**

@@ -20,6 +20,8 @@ package com.example.phase1activity.Core.Logic.ReactionGame;
 
 import org.springframework.util.StopWatch;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 
 import static java.lang.Math.min;
@@ -31,6 +33,8 @@ import static java.lang.Math.min;
 public class ReactionGameManager {
     private double score = 0;
     private double fastestReaction = 5;
+    private int timesToClickLeft;
+    private int timesToClickTotal;
     /**
      * StopWatch object for timing user reaction time.
      */
@@ -55,7 +59,7 @@ public class ReactionGameManager {
     @Inject
     public ReactionGameManager(String difficulty) {
         if (difficulty.equals("easy")) {
-            timeLimit = 5;
+            timeLimit = 8000;
         }
     }
 
@@ -95,20 +99,42 @@ public class ReactionGameManager {
     public void press() {
         // User pressed button too early, reduce timeLimit.
         if (gameState.equals(State.DONTREACT)) {
-            penaltyTime += 1;
+            //penaltyTime += 1;
+            timeLimit -= 1000;
         }
 
         // User reacted correctly.
         else if (gameState.equals(State.REACT)) {
             timer.stop();
             double startTime = timeLimit;
-            timeLimit = 5 - penaltyTime - timer.getTotalTimeSeconds();
+            //timeLimit = 5 - penaltyTime - timer.getTotalTimeSeconds();
+            timeLimit -= timer.getLastTaskTimeMillis();
 
             // Score is calculated 100 times 1 / time it took to react.
-            score += 100 * (1 / (startTime - timeLimit));
+            score += 100 * (1 / ((startTime - timeLimit)/1000));
 
             if(startTime - timeLimit > 0) {
                 fastestReaction = min(fastestReaction, startTime - timeLimit);
+            }
+
+        }
+        // User has to spam button.
+        else if(gameState.equals(State.SPAMBUTTON)){
+            if(timesToClickLeft > 0){
+                timesToClickLeft -= 1;
+                score += 50;
+            }
+            else{
+                timer.stop();
+                double timeSpent = timer.getLastTaskTimeMillis();
+                //timeLimit += timeSpent;
+                // If avg. time per click is less than 0.2s, reward player.
+                if(timeSpent/timesToClickTotal < 0.3){
+                    timeLimit += 1000;
+                    score += 1000;
+                }
+                setGameState(State.BEGINNING);
+
             }
 
         }
@@ -136,17 +162,29 @@ public class ReactionGameManager {
     /**
      * Update gameState and start the timer.
      */
-    public void play() {
+    public void playSimpleReaction() {
         setGameState(State.REACT);
         startTimer();
-
     }
+
+    public void playSpamButton(){
+        setGameState(State.SPAMBUTTON);
+        Random r = new Random();
+        timesToClickLeft = r.nextInt((50 - 15) + 1) + 15;
+        timesToClickTotal = timesToClickLeft;
+        startTimer();
+    }
+
+    public int getTimesToClickLeft(){return timesToClickLeft;}
+
+    public double getTimeLeft(){return timeLimit;}
 
     public enum State {
         BEGINNING,
         REACT,
         DONTREACT,
-        GAMEOVER
+        GAMEOVER,
+        SPAMBUTTON
     }
 }
 

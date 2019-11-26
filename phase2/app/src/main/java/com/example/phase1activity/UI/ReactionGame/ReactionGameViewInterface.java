@@ -14,6 +14,10 @@ public interface ReactionGameViewInterface {
    */
   void updateGameStateView(@DrawableRes int newState);
 
+  //TODO: REMOVE THIS TEST METHOD!!!!!!!!!!!!
+  void updateTestGameStateView(String toThis, int colour);
+  void updateTimeLeft(String toThis);
+
   /**
    * Update user's current score on the screen.
    *

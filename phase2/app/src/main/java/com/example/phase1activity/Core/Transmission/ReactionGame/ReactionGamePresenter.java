@@ -39,6 +39,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
    * appropriate methods based on the state of the game.
    */
   public void handleClick() {
+    view.updateTimeLeft("Time left: " + manager.getTimeLeft());
 
     // Turn hasn't stated, begin the game.
     if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
@@ -49,6 +50,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
+      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
     }
     // User reacted correctly.
     else if (manager.getGameState().equals(ReactionGameManager.State.REACT)) {
@@ -57,6 +59,18 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateScoreView(manager.getScore());
       manager.setGameState(ReactionGameManager.State.BEGINNING);
       totalClicks += 1;
+      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
+    }
+
+    else if(manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)){
+      manager.press();
+      view.updateTestGameStateView("CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
+      view.updateScoreView(manager.getScore());
+      totalClicks += 1;
+      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
+      if(manager.getGameState().equals(ReactionGameManager.State.BEGINNING)){
+        view.updateGameStateView(R.drawable.react_well);
+      }
     }
 
     // Game is over.
@@ -80,9 +94,17 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
         public void onTick(long millisUntilFinished) {}
 
         public void onFinish() {
-          manager.play();
-          // Update on-screen text.
-          view.updateGameStateView(R.drawable.react_push);
+          double r = Math.random();
+          if (r < 0.15) {
+            manager.playSpamButton();
+            view.updateTestGameStateView(
+                "CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
+            view.updateGameStateView(R.drawable.react_push);
+          } else {
+            manager.playSimpleReaction();
+            // Update on-screen text.
+            view.updateGameStateView(R.drawable.react_push);
+          }
         }
       }.start();
 

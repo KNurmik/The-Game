@@ -8,6 +8,7 @@ import com.example.phase1activity.R;
 
 /** The App Manager */
 public class AppManager extends Application {
+  private MediaPlayer player;
 
   /** The first song option */
   private final int song1 = R.raw.sillychicken;
@@ -15,25 +16,21 @@ public class AppManager extends Application {
   /** The second song option */
   private final int song2 = R.raw.jazzy;
 
+
   /** An array that stores all songs */
   private final int[] Tracks = new int[] {song1, song2};
 
-  public MediaPlayer player;
-  // Called when the application is starting, before any other application objects have been
-  // created.
-  // Overriding this method is totally optional!
+
+  /** The default song selected is the silly chicken song */
+  private int songNumber = 1;
 
   /** The profile the app is using */
   private Profile profile;
 
-  /** The default song selected is the silly chicken song */
-  private int songNumber;
 
   @Override
   public void onCreate() {
     super.onCreate();
-
-    /** Plays the music */
     player = MediaPlayer.create(this, Tracks[songNumber]);
     player.setLooping(true);
     player.setVolume(100, 100);
@@ -46,11 +43,6 @@ public class AppManager extends Application {
     player.setLooping(true);
     player.setVolume(100, 100);
     player.start();
-  }
-
-  @Override
-  public void onLowMemory() {
-    super.onLowMemory();
   }
 
   /**

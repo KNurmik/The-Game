@@ -16,7 +16,7 @@
         <activity android:name=".UI.ReactionGame.ReactionInstructionsActivity" />
         <activity android:name=".UI.MazeGame.MazeMenuActivity" />
         <activity android:name=".UI.MazeGame.MazeGameActivity" />
-        <activity android:name=".UI.MenuScreens.LeaderboardActivity" />
+        <activity android:name=".UI.MenuScreens.CurrentStatsActivity" />
         <activity android:name=".UI.MenuScreens.StartActivity" />
         <activity android:name=".UI.MenuScreens.CustomizationActivity" />
         <activity android:name=".UI.MatchingGame.MatchingGameActivity" />

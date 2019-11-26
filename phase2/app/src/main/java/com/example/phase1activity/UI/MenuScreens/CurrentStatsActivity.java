@@ -9,7 +9,7 @@ package com.example.phase1activity.UI.MenuScreens;
 /**
  * Interface that shows the user's statistics
  */
-public class LeaderboardActivity extends AbstractActivity {
+public class CurrentStatsActivity extends AbstractActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

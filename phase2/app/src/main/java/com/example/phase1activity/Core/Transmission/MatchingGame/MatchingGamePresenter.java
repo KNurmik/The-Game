@@ -2,6 +2,8 @@ package com.example.phase1activity.Core.Transmission.MatchingGame;
 
 import android.widget.Button;
 
+import androidx.annotation.DrawableRes;
+
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivityInterface;
@@ -32,11 +34,18 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
 
   private MatchingGameActivityInterface view;
 
+  private int numCards;
+
+  private int initTurnsTaken;
+
   @Inject
-  public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view) {
-    assignCardValues(buttonList);
+  public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view, int numCards, int initTurnsTaken) {
+
+    assignCardValues(buttonList, numCards);
     manager = new MatchingGameManager(this.cardsToValues.size());
+    this.numCards = numCards;
     this.view = view;
+    this.initTurnsTaken = initTurnsTaken;
   }
 
   /**
@@ -44,7 +53,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
    *
    * @param buttonList a list of the buttons that represent cards.
    */
-  private void assignCardValues(List<Button> buttonList) {
+  private void assignCardValues(List<Button> buttonList, int numCards) {
     final List<String> cardValues =
         new ArrayList<String>() {
           {
@@ -54,12 +63,21 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
             add("B");
             add("C");
             add("C");
+            add("D");
+            add("D");
+            add("E");
+            add("E");
+            add("F");
+            add("F");
           }
         };
-    Collections.shuffle(cardValues);
 
-    for (int i = 0; i <= 5; i++) {
-      cardsToValues.put(buttonList.get(i), cardValues.get(i));
+
+    List<String> valuesNeeded = cardValues.subList(0, numCards);
+    Collections.shuffle(valuesNeeded);
+
+    for (int i = 0; i < numCards; i++) {
+      cardsToValues.put(buttonList.get(i), valuesNeeded.get(i));
     }
   }
 
@@ -83,13 +101,18 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
 
       // The user has matched all cards.
       if (matchesToBeMadeAfter == 0) {
-        double score = manager.getScore();
-        String statDisplayText = SCORE + score;
-        view.setDisplayStat(statDisplayText);
-        view.updateNextLevelButton();
-
+        if (numCards == 12) {
+          double score = manager.getScore();
+          String statDisplayText = SCORE + score;
+          view.setDisplayStat(statDisplayText);
+          view.updateNextLevelButton();
+        } else {
+          view.setUpNextLevel();
+          view.setTurnsTaken(view.getTurnsTaken() + manager.getTurnsTaken());
+        }
         app.updateProfileScore(manager.getScore());
         app.updateProfileMoves(manager.getTurnsTaken());
+
       }
       // The user still has matches to make.
       else {

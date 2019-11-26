@@ -43,7 +43,7 @@ public class ReactionGameView extends AbstractActivity
 
     nextbtn = findViewById(R.id.Next);
     btn = findViewById(R.id.reactButton);
-    menu = findViewById(R.id.button7);
+    menu = findViewById(R.id.button12);
 
     btn.setOnClickListener(this);
     colourButton(btn, R.drawable.reaction_red, R.drawable.reaction_blue, R.drawable.reaction_green);

@@ -20,4 +20,10 @@ public interface MatchingGameActivityInterface {
    *
    */
   void hideNoMatchPopup();
+
+  void setUpNextLevel();
+
+  int getTurnsTaken();
+
+  void setTurnsTaken(int turnsTaken);
 }

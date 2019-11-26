@@ -19,21 +19,27 @@ public class MatchingGameModule {
 
   private List<Button> buttonList;
 
+  private int numCards;
+
+  private int initTurnsTaken;
+
   /**
    * Assign view and buttonList.
    *
    * @param view the Activity to be injected.
    * @param buttonList a list of buttons within view.
    */
-  public MatchingGameModule(MatchingGameActivityInterface view, List<Button> buttonList) {
+  public MatchingGameModule(MatchingGameActivityInterface view, List<Button> buttonList, int numCards, int initTurnsTaken) {
     this.view = view;
     this.buttonList = buttonList;
+    this.numCards = numCards;
+    this.initTurnsTaken = initTurnsTaken;
   }
 
   /** @return the interface object to be injected as a MatchingGamePresenter object. */
   @Provides
   public MatchingGamePresenterInterface providePresenter() {
-    MatchingGamePresenter presenter = new MatchingGamePresenter(buttonList, view);
+    MatchingGamePresenter presenter = new MatchingGamePresenter(buttonList, view, numCards, initTurnsTaken);
     presenter.setManager(provideManager());
     return presenter;
   }

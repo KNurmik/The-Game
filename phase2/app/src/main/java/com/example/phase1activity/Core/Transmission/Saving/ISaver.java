@@ -1,6 +1,7 @@
 package com.example.phase1activity.Core.Transmission.Saving;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,7 +28,7 @@ public interface ISaver {
      *
      * @return a string array of user data, split by individual entries to the saving system.
      */
-    HashMap<String, HashMap<String, String>> getExistingUserData();
+    Map<String, HashMap<String, String>> getExistingUserData();
 
     /**
      * Return a map of usernames to a map of username attribute names to their objects.
@@ -37,4 +38,11 @@ public interface ISaver {
     Set<String> getExistingUsernames();
 
     void saveAttribute(String username, String newAttribute, String attributeType);
+
+    /**
+     * Return a map of usernames to a map of highest score types to their respective values.
+     *
+     * @return a map of usernames to a map of highest score types to their respective values.
+     */
+    Map<String, Map<String, Double>> getHighScores();
 }

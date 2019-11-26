@@ -56,8 +56,14 @@ public class MatchingGameActivity extends AbstractActivity
 
   List<Button> buttonList;
 
+  int numCards = 6;
+
   /** The user's selected colour in their profile */
   int colour;
+
+  private int BUTTON_INCREMENT = 2;
+
+  private int turnsTaken;
 
   /**
    * Set content view to this activity. Randomly assign values to this activity's cards, and store
@@ -73,15 +79,7 @@ public class MatchingGameActivity extends AbstractActivity
 
     initializeViews();
     populateButtonList();
-
-    // Inject presenter.
-    presenter =
-        DaggerMatchingGameComponent.builder()
-            .matchingGameModule(new MatchingGameModule(this, buttonList))
-            .build()
-            .injectMatchingGamePresenter();
-
-    setInitialButtonAppearances();
+    setUpLevel();
 
     String userNickname = app.getProfileNickname();
     setDisplayNickname(userNickname);
@@ -120,6 +118,17 @@ public class MatchingGameActivity extends AbstractActivity
         });
   }
 
+  void setUpLevel() {
+
+    // Inject presenter.
+    presenter =
+            DaggerMatchingGameComponent.builder()
+                    .matchingGameModule(new MatchingGameModule(this, buttonList.subList(0, numCards), numCards, turnsTaken))
+                    .build()
+                    .injectMatchingGamePresenter();
+
+    setInitialButtonAppearances();
+  }
   /**
    * Set the displayed nickname to be displayed to newNickname.
    *
@@ -147,16 +156,20 @@ public class MatchingGameActivity extends AbstractActivity
     hideNoMatchPopup();
 
     for (Button card : buttonList) {
+      card.setVisibility(View.VISIBLE);
       card.setOnClickListener(this);
       card.setText(BACKOFCARD);
       colourButton(card, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
+    }
+
+    for (int i = numCards; i < 12; i++) {
+      buttonList.get(i).setVisibility(View.INVISIBLE);
     }
   }
 
   /** Populate buttonList with the buttons representing cards. */
   private void populateButtonList() {
     buttonList = new ArrayList<>();
-
     // Initialize card buttons.
     final Button button1 = findViewById(R.id.button1);
     buttonList.add(button1);
@@ -170,6 +183,18 @@ public class MatchingGameActivity extends AbstractActivity
     buttonList.add(button5);
     final Button button6 = findViewById(R.id.button6);
     buttonList.add(button6);
+    final Button button7 = findViewById(R.id.button7);
+    buttonList.add(button7);
+    final Button button8 = findViewById(R.id.button8);
+    buttonList.add(button8);
+    final Button button9 = findViewById(R.id.button9);
+    buttonList.add(button9);
+    final Button button10 = findViewById(R.id.button10);
+    buttonList.add(button10);
+    final Button button11 = findViewById(R.id.button11);
+    buttonList.add(button11);
+    final Button button12 = findViewById(R.id.button12);
+    buttonList.add(button12);
   }
 
   private void initializeViews() {
@@ -216,5 +241,18 @@ public class MatchingGameActivity extends AbstractActivity
   /** NEEDS DESC.  */
   public void hideNoMatchPopup() {
       popUp.setVisibility(View.INVISIBLE);
+  }
+
+  public void setUpNextLevel() {
+    numCards += BUTTON_INCREMENT;
+    setUpLevel();
+  }
+
+  public int getTurnsTaken() {
+    return turnsTaken;
+  }
+
+  public void setTurnsTaken(int turnsTaken) {
+    this.turnsTaken = turnsTaken;
   }
 }

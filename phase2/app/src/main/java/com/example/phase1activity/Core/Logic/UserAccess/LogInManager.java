@@ -19,16 +19,16 @@ public class LogInManager extends UserAccessManager {
    * @param app the instance of AppManager
    * @return the string "valid login"
    */
-  public String UserAccessAction(
+  public Result UserAccessAction(
       Context context, String username, String password, AppManager app) {
     // Deal with incorrect username-password combinations.
     if (!isValidPassword(password)) {
-      return "empty password";
+      return Result.ERROR_PASSWORD;
     } else if (!isValidUsername(username)) {
-      return "empty username";
+      return Result.ERROR_USERNAME;
     }
     else if (!isValidLogin(context, username, password)) {
-      return "incorrect username/password";
+      return Result.INCORRECT;
     } else {
       // Retrieve user's saved info.
       ISaver iSaver = new AndroidSaver(context.getApplicationContext());
@@ -54,7 +54,7 @@ public class LogInManager extends UserAccessManager {
               .setTotalMovesStat(totalMovesStat)
               .setTotalScoreStat(totalScoreStat)
               .getProfile());
-      return "valid login";
+      return Result.VALID;
     }
   }
 

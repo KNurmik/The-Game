@@ -20,16 +20,16 @@ public class RegisterManager extends UserAccessManager {
    * @param app instance of the AppManager that is running
    * @return a string "valid combination" if the registration is successful
    */
-  public String UserAccessAction(
+  public Result UserAccessAction(
       Context context, String username, String password, AppManager app) {
     // Deal with invalid username-password combinations.
     ISaver iSaver = new AndroidSaver(context);
     if (iSaver.getExistingUsernames().contains(username)) {
-      return "taken username";
+      return Result.TAKEN;
     } else if (!isValidPassword(password)) {
-      return "password error";
+      return Result.ERROR_PASSWORD;
     } else if (!isValidUsername(username)) {
-      return "username error";
+      return Result.ERROR_USERNAME;
     } else {
       // Save the new user's information with default values.
       final String DEFAULT_VALUES = "," + Color.RED + ",0,0,0,5,0";
@@ -46,7 +46,7 @@ public class RegisterManager extends UserAccessManager {
               .setTotalMovesStat(0)
               .setFastestRxnStat(0)
               .getProfile());
-      return "valid combination";
+      return Result.VALID;
     }
   }
 }

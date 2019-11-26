@@ -51,7 +51,7 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
    */
   public void handleUserAccessAttempt(
       Context context, String username, String password, AppManager app) {
-    String result = manager.UserAccessAction(context, username, password, app);
+    UserAccessManager.Result result = manager.UserAccessAction(context, username, password, app);
     handleUserAccessResult(result);
   }
 
@@ -61,33 +61,22 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
    *
    * @param result the result of the computations done by manager.
    */
-  public void handleUserAccessResult(String result) {
-
-    // If the username field is left blank.
-    if (result.equals("empty username")) {
-      view.updateInstructionText("Username cannot be empty!", Color.RED);
-      view.clearTextFields();
-    }
-    // If the password field is left blank.
-    else if (result.equals("empty password")) {
-      view.updateInstructionText("Password cannot be empty!", Color.RED);
-      view.clearTextFields();
-    }
+  public void handleUserAccessResult(UserAccessManager.Result result) {
     // If there is no match with the username or password.
-    else if (result.equals("incorrect username/password")) {
+    if (result == UserAccessManager.Result.INCORRECT) {
       view.updateInstructionText("Incorrect username/password.", Color.RED);
       view.clearTextFields();
-    } else if (result.equals("taken username")) {
+    } else if (result == UserAccessManager.Result.TAKEN) {
       view.updateInstructionText("Username is taken!", Color.RED);
       view.clearTextFields();
     }
     // Password is not in valid format.
-    else if (result.equals("password error")) {
+    else if (result == UserAccessManager.Result.ERROR_PASSWORD) {
       view.updateInstructionText("Password length must be <16, and >0! No commas!", Color.RED);
       view.clearTextFields();
     }
     // Password is not in valid format.
-    else if (result.equals("username error")) {
+    else if (result == UserAccessManager.Result.ERROR_USERNAME) {
       view.updateInstructionText("Username length must be <16, and >0! No commas!", Color.RED);
       view.clearTextFields();
     }

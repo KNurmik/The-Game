@@ -13,7 +13,7 @@ public abstract class UserAccessManager {
   private final int MIN_ENTRY_LENGTH = 0;
 
   /** User is attempting to login/register using entered username and password, handle this attempt.*/
-  public abstract String UserAccessAction(
+  public abstract Result UserAccessAction(
       Context context, String username, String password, AppManager app);
 
   /**
@@ -38,5 +38,13 @@ public abstract class UserAccessManager {
     return password.length() > MIN_ENTRY_LENGTH
         && password.length() < MAX_ENTRY_LENGTH
         && !password.contains(",");
+  }
+
+  public enum Result {
+    INCORRECT,
+    TAKEN,
+    ERROR_USERNAME,
+    ERROR_PASSWORD,
+    VALID
   }
 }

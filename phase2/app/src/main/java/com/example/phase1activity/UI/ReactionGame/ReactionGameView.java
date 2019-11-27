@@ -25,11 +25,17 @@ import javax.inject.Inject;
 public class ReactionGameView extends AbstractActivity
     implements View.OnClickListener, ReactionGameViewInterface {
 
+  /** Presenter object responsible for handling user input. Injected using Dagger. */
   @Inject public ReactionGamePresenterInterface presenter;
+  /** The main button in the middle of the screen. Used for playing the game. */
   Button btn;
+  /** The default colour of the view. */
   ColorStateList defaultColor;
+  /** Button for skipping the game. */
   Button nextbtn;
+  /** Button for returning to the main menu. */
   Button menu;
+  /** Pictures instructing the user. */
   ImageView instructions;
 
   /**
@@ -79,6 +85,7 @@ public class ReactionGameView extends AbstractActivity
           }
         });
 
+    // Button to return to the main menu.
     menu.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -93,6 +100,7 @@ public class ReactionGameView extends AbstractActivity
     presenter.handleClick();
   }
 
+  /** @return defaultColor. */
   @Override
   public ColorStateList getColorStateList() {
     return defaultColor;
@@ -107,14 +115,15 @@ public class ReactionGameView extends AbstractActivity
     instructions.setBackgroundResource(newState);
   }
 
-  //TODO: READ THE COMMENT BELOW!!!!!!!!!!!!!!!!!!
-  //TODO: THIS IS A TESTING METHOD, DELETE ME ONCE FINISHED!!!!!!!!!!!!!!!!!!!!!!!!!!
-  public void updateTestGameStateView(String toThis, int colour){
+  // TODO: READ THE COMMENT BELOW!!!!!!!!!!!!!!!!!!
+  // TODO: THIS IS A TESTING METHOD, DELETE ME ONCE FINISHED!!!!!!!!!!!!!!!!!!!!!!!!!!
+  public void updateTestGameStateView(String toThis, int colour) {
     TextView text = findViewById(R.id.testInstruction);
     text.setText(toThis);
     text.setTextColor(colour);
   }
-  public void updateTimeLeft(String toThis){
+
+  public void updateTimeLeft(String toThis) {
     TextView text = findViewById(R.id.timeLeft);
     text.setText(toThis);
   }
@@ -130,6 +139,14 @@ public class ReactionGameView extends AbstractActivity
     textView.setText(toThis);
   }
 
+  /**
+   * Access AppManager and let it know of the user's statistics.
+   *
+   * @param reactionTime fastest reaction time of user.
+   * @param moves number of moves user took (i.e. the number of times user pressed the button to
+   *     react).
+   * @param score user's score.
+   */
   @Override
   public void updateProfileStatistics(double reactionTime, int moves, int score) {
     app.setProfileReactionTime(reactionTime);

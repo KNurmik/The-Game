@@ -12,14 +12,18 @@ import javax.inject.Inject;
 
 /**
  * Class responsible for "presenter" role in MVP architecture. Serves as a middleman between
- * ReactionGameManager and ReactionGameView.
+ * ReactionGameManager and ReactionGameView. Tells view what to display based on computations done
+ * by the manager.
  */
 public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
-  @Inject
-  public ReactionGameManager manager;
+  /** The manager responsible for the game's backend processes. */
+  @Inject public ReactionGameManager manager;
+  /** The view responsible for taking in user input and displaying things on the screen. */
   private ReactionGameViewInterface view;
+  /** The number of times user has pressed the button (during a live turn). */
   private int totalClicks;
+  /** The default colour of view. */
   private ColorStateList defaultColour;
 
   /**
@@ -35,8 +39,9 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
   }
 
   /**
-   * Called by ReactionGameView when user presses the button (in the middle of the screen). Calls
-   * appropriate methods based on the state of the game.
+   * Called by ReactionGameView when user presses the button (in the middle of the screen). Asks
+   * manager to deal with the button press, and displays on-screen info based on the state of the
+   * game.
    */
   public void handleClick() {
     view.updateTimeLeft("Time left: " + manager.getTimeLeft());
@@ -62,13 +67,15 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateTimeLeft("Time left: " + manager.getTimeLeft());
     }
 
-    else if(manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)){
+    // User has to spam button.
+    else if (manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)) {
       manager.press();
-      view.updateTestGameStateView("CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
+      view.updateTestGameStateView(
+          "CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
       view.updateTimeLeft("Time left: " + manager.getTimeLeft());
-      if(manager.getGameState().equals(ReactionGameManager.State.BEGINNING)){
+      if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
         view.updateGameStateView(R.drawable.react_well);
       }
     }
@@ -79,6 +86,13 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     }
   }
 
+  /**
+   * Begin a turn of the game, if user has time left in the bank. Wait a random amount of time
+   * between [0.5, 5] seconds, then prompt user to do something.
+   *
+   * <p>If there is no time left, display that the game is over, and save the stats the user
+   * achieved.
+   */
   private void beginGame() {
 
     // If user has time left in the bank.
@@ -87,7 +101,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       manager.setGameState(ReactionGameManager.State.DONTREACT);
       view.updateGameStateView(R.drawable.react_dont);
 
-      // Randomize time to wait until prompting user to
+      // Randomize time to wait until prompting user to do something.
       double random = 0.5 + Math.random() * 4500;
       new CountDownTimer((long) random, 1000) {
 
@@ -119,8 +133,8 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     }
   }
 
+  /** @param manager ReactionGameManager to set this.manager to. */
   public void setManager(ReactionGameManager manager) {
     this.manager = manager;
   }
-
 }

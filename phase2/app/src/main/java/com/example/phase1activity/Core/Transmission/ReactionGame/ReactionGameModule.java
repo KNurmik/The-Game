@@ -32,13 +32,18 @@ public class ReactionGameModule {
    */
   @Provides
   public ReactionGamePresenterInterface providePresenter() {
-   ReactionGamePresenter presenter = new ReactionGamePresenter(view, view.getColorStateList());
-   presenter.setManager(provideManager());
-   return presenter;
+    ReactionGamePresenter presenter = new ReactionGamePresenter(view, view.getColorStateList());
+    presenter.setManager(provideManager());
+    return presenter;
   }
 
+  /**
+   * Provide a ReactionGameManager object.
+   *
+   * @return the manager.
+   */
   @Provides
-  public ReactionGameManager provideManager(){
+  public ReactionGameManager provideManager() {
     return new ReactionGameManager("easy");
   }
 }

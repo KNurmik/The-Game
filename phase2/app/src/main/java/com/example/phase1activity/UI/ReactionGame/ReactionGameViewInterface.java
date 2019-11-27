@@ -14,8 +14,9 @@ public interface ReactionGameViewInterface {
    */
   void updateGameStateView(@DrawableRes int newState);
 
-  //TODO: REMOVE THIS TEST METHOD!!!!!!!!!!!!
+  // TODO: REMOVE THIS TEST METHOD!!!!!!!!!!!!
   void updateTestGameStateView(String toThis, int colour);
+
   void updateTimeLeft(String toThis);
 
   /**
@@ -38,9 +39,10 @@ public interface ReactionGameViewInterface {
    */
   void updateProfileStatistics(double reactionTime, int moves, int score);
 
-    /**
-     * Getter for defaultColour.
-     * @return defaultColour of type ColorStateList.
-     */
+  /**
+   * Getter for defaultColour.
+   *
+   * @return defaultColour of type ColorStateList.
+   */
   ColorStateList getColorStateList();
 }

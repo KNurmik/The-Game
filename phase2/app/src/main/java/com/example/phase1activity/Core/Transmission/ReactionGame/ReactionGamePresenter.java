@@ -65,6 +65,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     else if(manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)){
       manager.press();
       view.updateTestGameStateView("CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
+      view.updateGameStateView(R.drawable.react_spam);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
       view.updateTimeLeft("Time left: " + manager.getTimeLeft());
@@ -91,7 +92,17 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       double random = 0.5 + Math.random() * 4500;
       new CountDownTimer((long) random, 1000) {
 
-        public void onTick(long millisUntilFinished) {}
+        public void onTick(long millisUntilFinished) {
+            if(manager.getGameState().equals(ReactionGameManager.State.DONTREACT)){
+                double confuseRandom = Math.random();
+                if (confuseRandom < 0.3){
+                    view.updateGameStateView(R.drawable.react_dont_trick);
+                }
+                else if (confuseRandom < 0.6){
+                    view.updateGameStateView(R.drawable.react_dont);
+                }
+            }
+        }
 
         public void onFinish() {
           double r = Math.random();

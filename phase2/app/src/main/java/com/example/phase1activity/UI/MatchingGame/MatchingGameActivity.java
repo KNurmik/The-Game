@@ -254,8 +254,8 @@ public class MatchingGameActivity extends AbstractActivity
       case "circle":
         colourButton(button, R.drawable.match_circle_red, R.drawable.match_circle_blue, R.drawable.match_circle_green);
         break;
-      case "upside":
-        colourButton(button, R.drawable.match_upside_red, R.drawable.match_upside_blue, R.drawable.match_upside_green);
+      case "equal":
+        colourButton(button, R.drawable.match_equal_red, R.drawable.match_equal_blue, R.drawable.match_equal_green);
         break;
     }
   }

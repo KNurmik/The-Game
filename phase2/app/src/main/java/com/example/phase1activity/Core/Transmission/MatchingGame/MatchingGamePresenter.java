@@ -62,8 +62,8 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
             add("wave");
             add("circle");
             add("circle");
-            add("upside");
-            add("upside");
+            add("equal");
+            add("equal");
           }
         };
 

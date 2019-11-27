@@ -27,6 +27,8 @@ public class AppManager extends Application {
   /** The profile the app is using */
   private Profile profile;
 
+  private int matchingGameLevel;
+
 
   @Override
   public void onCreate() {
@@ -194,5 +196,9 @@ public class AppManager extends Application {
   public int getProfileTotalMovesStat(){
     return profile.getTotalMovesStat();
   }
+
+  public int getMatchingGameLevel() { return matchingGameLevel; }
+
+  public void setMatchingGameLevel(int level) { matchingGameLevel = level; }
 
 }

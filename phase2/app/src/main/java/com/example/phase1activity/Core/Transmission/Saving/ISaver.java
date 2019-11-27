@@ -28,7 +28,7 @@ public interface ISaver {
      *
      * @return a string array of user data, split by individual entries to the saving system.
      */
-    Map<String, Map<String, String>> getExistingUserData();
+    Map<String, Map<AndroidSaver.AttributeType, String>> getExistingUserData();
 
     /**
      * Return a map of usernames to a map of username attribute names to their objects.
@@ -37,12 +37,12 @@ public interface ISaver {
      */
     Set<String> getExistingUsernames();
 
-    void saveAttribute(String username, String newAttribute, String attributeType);
+    void saveAttribute(String username, String newAttribute, AndroidSaver.AttributeType attributeType);
 
     /**
      * Return a map of usernames to a map of highest score types to their respective values.
      *
      * @return a map of usernames to a map of highest score types to their respective values.
      */
-    Map<String, Map<String, Double>> getHighScores();
+    Map<String, Map<AndroidSaver.AttributeType, Double>> getHighScores();
 }

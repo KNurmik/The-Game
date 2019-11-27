@@ -5,11 +5,15 @@ package com.example.phase1activity.Core.Transmission.Saving;
 import android.content.Context;
 import android.util.Log;
 
+import org.w3c.dom.Attr;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -72,17 +76,23 @@ public class AndroidSaver implements ISaver {
         out.close();
     }
 
-    public void saveAttribute(String username, String newAttribute, String attributeType) {
+    public void saveAttribute(String username, String newAttribute, AttributeType attributeType) {
         if (getExistingUsernames().contains(username)) {
-            Map<String, String> userData = getExistingUserData().get(username);
+            Map<AttributeType, String> userData = getExistingUserData().get(username);
             StringBuilder lineToSave = new StringBuilder();
             lineToSave.append(username + ",");
 
-            String[] attributeTypes = {"password", "nickname", "colour", "song", "game level",
-                                       "total score", "fastest reaction time", "total moves"};
-
+            List<AttributeType> attributeTypes = new ArrayList<AttributeType>();
+            attributeTypes.add(AttributeType.PASSWORD);
+            attributeTypes.add(AttributeType.NICKNAME);
+            attributeTypes.add(AttributeType.COLOUR);
+            attributeTypes.add(AttributeType.SONG);
+            attributeTypes.add(AttributeType.GAME_LEVEL);
+            attributeTypes.add(AttributeType.TOTAL_SCORE);
+            attributeTypes.add(AttributeType.FASTEST_RXN_TIME);
+            attributeTypes.add(AttributeType.TOTAL_MOVES);
             // TODO: introduce enums for attribute type
-            for (String userAttr : attributeTypes) {
+            for (AttributeType userAttr : attributeTypes) {
                 if (userAttr.equals(attributeType)) {
                     lineToSave.append(newAttribute);
                 } else {
@@ -121,8 +131,8 @@ public class AndroidSaver implements ISaver {
      *
      * @return a map of usernames to a map of highest score types to their respective values.
      */
-    public Map<String, Map<String, Double>> getHighScores() {
-        Map<String, Map<String, Double>> usernamesToHighScores = new HashMap<>();
+    public Map<String, Map<AttributeType, Double>> getHighScores() {
+        Map<String, Map<AttributeType, Double>> usernamesToHighScores = new HashMap<>();
         String[] splitByEntry = splitDataByEntry();
 
         for (String entry : splitByEntry) {
@@ -134,21 +144,21 @@ public class AndroidSaver implements ISaver {
             Double moves = Double.valueOf(splitByInfo[TOTAL_MOVES_INDEX]);
 
             if (usernamesToHighScores.containsKey(username)) {
-                Map<String, Double> bestStats = usernamesToHighScores.get(username);
-                if (bestStats.get("total score") < score) {
-                    bestStats.put("total score", score);
+                Map<AttributeType, Double> bestStats = usernamesToHighScores.get(username);
+                if (bestStats.get(AttributeType.TOTAL_SCORE) < score) {
+                    bestStats.put(AttributeType.TOTAL_SCORE, score);
                 }
-                if (bestStats.get("fastest reaction") > reaction) {
-                    bestStats.put("fastest reaction", reaction);
+                if (bestStats.get(AttributeType.FASTEST_RXN_TIME) > reaction) {
+                    bestStats.put(AttributeType.FASTEST_RXN_TIME, reaction);
                 }
-                if (bestStats.get("total moves") > moves) {
-                    bestStats.put("total moves", moves);
+                if (bestStats.get(AttributeType.TOTAL_MOVES) > moves) {
+                    bestStats.put(AttributeType.TOTAL_MOVES, moves);
                 }
             } else {
-                Map<String, Double> usersFirstScoreEntry = new HashMap<>();
-                usersFirstScoreEntry.put("total score", score);
-                usersFirstScoreEntry.put("fastest reaction", reaction);
-                usersFirstScoreEntry.put("total moves", moves);
+                Map<AttributeType, Double> usersFirstScoreEntry = new HashMap<>();
+                usersFirstScoreEntry.put(AttributeType.TOTAL_SCORE, score);
+                usersFirstScoreEntry.put(AttributeType.FASTEST_RXN_TIME, reaction);
+                usersFirstScoreEntry.put(AttributeType.TOTAL_MOVES, moves);
                 usernamesToHighScores.put(username, usersFirstScoreEntry);
             }
         }
@@ -169,23 +179,23 @@ public class AndroidSaver implements ISaver {
      *
      * @return a map of usernames to a map of username attribute names to their objects.
      */
-    public Map<String, Map<String, String>> getExistingUserData() {
-        Map<String, Map<String, String>> usernamesToData = new HashMap<>();
+    public Map<String, Map<AttributeType, String>> getExistingUserData() {
+        Map<String, Map<AttributeType, String>> usernamesToData = new HashMap<>();
 
         String[] splitByEntry = splitDataByEntry();
         for (String entry : splitByEntry) {
             final String[] splitByInfo = entry.split(",");
 
             if (splitByInfo.length == 9) {
-                Map<String, String> userData = new HashMap<String, String>() {{
-                    put("password", splitByInfo[PASSWORD_INDEX]);
-                    put("nickname", splitByInfo[NICKNAME_INDEX]);
-                    put("colour", splitByInfo[COLOUR_INDEX]);
-                    put("song", splitByInfo[SONG_INDEX]);
-                    put("game level", splitByInfo[GAME_LEVEL_INDEX]);
-                    put("total score", splitByInfo[TOTAL_SCORE_INDEX]);
-                    put("fastest reaction time", splitByInfo[FASTEST_RXN_INDEX]);
-                    put("total moves", splitByInfo[TOTAL_MOVES_INDEX]);
+                Map<AttributeType, String> userData = new HashMap<AttributeType, String>() {{
+                    put(AttributeType.PASSWORD, splitByInfo[PASSWORD_INDEX]);
+                    put(AttributeType.NICKNAME, splitByInfo[NICKNAME_INDEX]);
+                    put(AttributeType.COLOUR, splitByInfo[COLOUR_INDEX]);
+                    put(AttributeType.SONG, splitByInfo[SONG_INDEX]);
+                    put(AttributeType.GAME_LEVEL, splitByInfo[GAME_LEVEL_INDEX]);
+                    put(AttributeType.TOTAL_SCORE, splitByInfo[TOTAL_SCORE_INDEX]);
+                    put(AttributeType.FASTEST_RXN_TIME, splitByInfo[FASTEST_RXN_INDEX]);
+                    put(AttributeType.TOTAL_MOVES, splitByInfo[TOTAL_MOVES_INDEX]);
                 }};
                 usernamesToData.put(splitByInfo[USERNAME_INDEX], userData);
             }
@@ -201,5 +211,16 @@ public class AndroidSaver implements ISaver {
     private String[] splitDataByEntry() {
         String data = loadData();
         return data.split("\n");
+    }
+
+    public enum AttributeType {
+        PASSWORD,
+        NICKNAME,
+        COLOUR,
+        SONG,
+        GAME_LEVEL,
+        FASTEST_RXN_TIME,
+        TOTAL_SCORE,
+        TOTAL_MOVES
     }
 }

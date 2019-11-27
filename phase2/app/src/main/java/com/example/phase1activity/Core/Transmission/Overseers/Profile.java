@@ -126,7 +126,7 @@ import com.example.phase1activity.Core.Transmission.Saving.ISaver;
         ISaver iSaver = new AndroidSaver(activity);
         this.gameLevel = n;
 //        iSaver.saveData(username + "," + password + "," + nickname + "," + colour + "," + song + "," + gameLevel + "," + totalScoreStat + "," + fastestRxnStat + "," + totalMovesStat);
-        iSaver.saveAttribute(username, String.valueOf(gameLevel), "game level");
+        iSaver.saveAttribute(username, String.valueOf(gameLevel), AndroidSaver.AttributeType.GAME_LEVEL);
     }
 
     /**

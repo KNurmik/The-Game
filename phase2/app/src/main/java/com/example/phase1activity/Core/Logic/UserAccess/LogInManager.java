@@ -33,14 +33,14 @@ public class LogInManager extends UserAccessManager {
     } else {
       // Retrieve user's saved info.
       ISaver iSaver = new AndroidSaver(context.getApplicationContext());
-      Map<String, Map<String, String>> userData = iSaver.getExistingUserData();
-      String nickname = userData.get(username).get("nickname");
-      int colour = Integer.parseInt(userData.get(username).get("colour"));
-      int gameLevel = Integer.parseInt(userData.get(username).get("game level"));
-      int song = Integer.parseInt(userData.get(username).get("song"));
-      int totalScoreStat = Integer.valueOf(userData.get(username).get("total score"));
-      double fastestRxnStat = Double.valueOf(userData.get(username).get("fastest reaction time"));
-      int totalMovesStat = Integer.valueOf(userData.get(username).get("total moves"));
+      Map<String, Map<AndroidSaver.AttributeType, String>> userData = iSaver.getExistingUserData();
+      String nickname = userData.get(username).get(AndroidSaver.AttributeType.NICKNAME);
+      int colour = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.COLOUR));
+      int gameLevel = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.GAME_LEVEL));
+      int song = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.SONG));
+      int totalScoreStat = Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE));
+      double fastestRxnStat = Double.valueOf(userData.get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME));
+      int totalMovesStat = Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES));
       // Create a new profile containing the existing user's info, and set it as the AppManager's
       // current profile.
       app.setProfile(
@@ -73,8 +73,8 @@ public class LogInManager extends UserAccessManager {
     Set<String> existingUsernames = iSaver.getExistingUsernames();
 
     if (existingUsernames.contains(username)) {
-      Map<String, Map<String, String>> data = iSaver.getExistingUserData();
-      String registeredPassword = data.get(username).get("password");
+      Map<String, Map<AndroidSaver.AttributeType, String>> data = iSaver.getExistingUserData();
+      String registeredPassword = data.get(username).get(AndroidSaver.AttributeType.PASSWORD);
       return password.equals(registeredPassword);
     } else {
       return false;

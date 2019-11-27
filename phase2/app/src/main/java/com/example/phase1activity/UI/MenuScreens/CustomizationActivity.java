@@ -76,21 +76,21 @@ public class CustomizationActivity extends AbstractActivity {
         red.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 profile.setProfileColour(Color.RED);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), "colour");
+                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
             }
         });
 
         blue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 profile.setProfileColour(Color.BLUE);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), "colour");
+                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
             }
         });
 
         green.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 profile.setProfileColour(Color.GREEN);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), "colour");
+                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
             }
         });
 
@@ -99,7 +99,7 @@ public class CustomizationActivity extends AbstractActivity {
                 //Sets the song to song0
                 profile.setProfileSong(0);
                 app.changeMusic(0);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), "song");
+                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), AndroidSaver.AttributeType.SONG);
             }
         });
 
@@ -108,14 +108,14 @@ public class CustomizationActivity extends AbstractActivity {
                 //Sets the song to song1
                 profile.setProfileSong(1);
                 app.changeMusic(1);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), "song");
+                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), AndroidSaver.AttributeType.SONG);
             }
         });
 
         set.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 profile.setProfileNickname(name.getText().toString());
-                iSaver.saveAttribute(profile.getProfileUsername(), profile.getProfileNickname(), "nickname");
+                iSaver.saveAttribute(profile.getProfileUsername(), profile.getProfileNickname(), AndroidSaver.AttributeType.NICKNAME);
 
             }
         });

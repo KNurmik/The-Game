@@ -2,10 +2,9 @@ package com.example.phase1activity.Core.Transmission.MatchingGame;
 
 import android.widget.Button;
 
-import androidx.annotation.DrawableRes;
-
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
+import com.example.phase1activity.R;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivityInterface;
 
 import java.util.ArrayList;
@@ -34,18 +33,14 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
 
   private MatchingGameActivityInterface view;
 
-  private int numCards;
-
-  private int initTurnsTaken;
+  private List<Button> cardsClicked = new ArrayList<>();
 
   @Inject
-  public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view, int numCards, int initTurnsTaken) {
+  public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view, int numCards) {
 
     assignCardValues(buttonList, numCards);
     manager = new MatchingGameManager(this.cardsToValues.size());
-    this.numCards = numCards;
     this.view = view;
-    this.initTurnsTaken = initTurnsTaken;
   }
 
   /**
@@ -57,21 +52,20 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
     final List<String> cardValues =
         new ArrayList<String>() {
           {
-            add("A");
-            add("A");
-            add("B");
-            add("B");
-            add("C");
-            add("C");
-            add("D");
-            add("D");
-            add("E");
-            add("E");
-            add("F");
-            add("F");
+            add("triangle");
+            add("triangle");
+            add("square");
+            add("square");
+            add("line");
+            add("line");
+            add("wave");
+            add("wave");
+            add("circle");
+            add("circle");
+            add("upside");
+            add("upside");
           }
         };
-
 
     List<String> valuesNeeded = cardValues.subList(0, numCards);
     Collections.shuffle(valuesNeeded);
@@ -90,32 +84,34 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
    */
   public void handleClick(Button button, AppManager app) {
     if (button.getText().equals(BACKOFCARD)) {
+      button.setText("");
+      view.setButtonImage(button, cardsToValues);
+      cardsClicked.add(button);
+
       int matchesToBeMadeBefore = manager.getMatchesToBeMade();
       boolean turnTaken = manager.recordClick(button, cardsToValues);
       int matchesToBeMadeAfter = manager.getMatchesToBeMade();
+      int matchesMadeThisTurn = matchesToBeMadeBefore - matchesToBeMadeAfter;
 
-      // The user failed to match a pair.
-      if (matchesToBeMadeAfter == matchesToBeMadeBefore && turnTaken) {
-        view.showNoMatchPopup();
+      // A turn was taken.
+      if (turnTaken) {
+        if (matchesMadeThisTurn == 0) {
+          view.showNoMatchPopup();
+          view.flipFaceUpButtons();
+        } else {
+          view.hideFaceUpButtons(cardsClicked);
+        }
+        cardsClicked.clear();
       }
 
-      // The user has matched all cards.
       if (matchesToBeMadeAfter == 0) {
-        if (numCards == 12) {
           double score = manager.getScore();
           String statDisplayText = SCORE + score;
           view.setDisplayStat(statDisplayText);
           view.updateNextLevelButton();
-        } else {
-          view.setUpNextLevel();
-          view.setTurnsTaken(view.getTurnsTaken() + manager.getTurnsTaken());
-        }
-        app.updateProfileScore(manager.getScore());
-        app.updateProfileMoves(manager.getTurnsTaken());
-
-      }
-      // The user still has matches to make.
-      else {
+          app.updateProfileScore(manager.getScore());
+          app.updateProfileMoves(manager.getTurnsTaken());
+      } else {
         int turnsTaken = manager.getTurnsTaken();
         String statDisplayText = TURNSTAKEN + turnsTaken;
         view.setDisplayStat(statDisplayText);

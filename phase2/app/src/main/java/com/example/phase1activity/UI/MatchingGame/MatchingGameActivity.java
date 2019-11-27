@@ -19,6 +19,7 @@ import com.example.phase1activity.Core.Transmission.MatchingGame.DaggerMatchingG
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -56,14 +57,10 @@ public class MatchingGameActivity extends AbstractActivity
 
   List<Button> buttonList;
 
-  int numCards = 6;
+  int numCards;
 
   /** The user's selected colour in their profile */
   int colour;
-
-  private int BUTTON_INCREMENT = 2;
-
-  private int turnsTaken;
 
   /**
    * Set content view to this activity. Randomly assign values to this activity's cards, and store
@@ -76,13 +73,21 @@ public class MatchingGameActivity extends AbstractActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_matching_game);
+    numCards = this.app.getMatchingGameLevel();
 
     initializeViews();
     populateButtonList();
-    setUpLevel();
+    setInitialButtonAppearances();
 
-    String userNickname = app.getProfileNickname();
-    setDisplayNickname(userNickname);
+    // Inject presenter.
+    presenter =
+            DaggerMatchingGameComponent.builder()
+                    .matchingGameModule(new MatchingGameModule(this, buttonList.subList(0, numCards), numCards))
+                    .build()
+                    .injectMatchingGamePresenter();
+
+//    String userNickname = app.getProfileNickname();
+//    setDisplayNickname(userNickname);
 
     final Activity activity = this;
 
@@ -118,27 +123,6 @@ public class MatchingGameActivity extends AbstractActivity
         });
   }
 
-  void setUpLevel() {
-
-    // Inject presenter.
-    presenter =
-            DaggerMatchingGameComponent.builder()
-                    .matchingGameModule(new MatchingGameModule(this, buttonList.subList(0, numCards), numCards, turnsTaken))
-                    .build()
-                    .injectMatchingGamePresenter();
-
-    setInitialButtonAppearances();
-  }
-  /**
-   * Set the displayed nickname to be displayed to newNickname.
-   *
-   * @param newNickname the new nickname to be displayed.
-   */
-  void setDisplayNickname(String newNickname) {
-    String displayText = "Hi " + newNickname + "!";
-    nickname.setText(displayText);
-  }
-
   /** Set initial appearances of the level's buttons. */
   private void setInitialButtonAppearances() {
     colour = getAppManager().getProfileColour();
@@ -149,9 +133,6 @@ public class MatchingGameActivity extends AbstractActivity
 
     String statDisplayText = TURNSTAKEN + 0;
     statDisplay.setText(statDisplayText);
-
-    // TODO: decide if nickname is necessary here
-    nickname.setVisibility(View.INVISIBLE);
 
     hideNoMatchPopup();
 
@@ -243,16 +224,39 @@ public class MatchingGameActivity extends AbstractActivity
       popUp.setVisibility(View.INVISIBLE);
   }
 
-  public void setUpNextLevel() {
-    numCards += BUTTON_INCREMENT;
-    setUpLevel();
+  public void hideFaceUpButtons(List<Button> buttons) {
+    for (Button card : buttons) {
+      card.setVisibility(View.INVISIBLE);
+    }
   }
 
-  public int getTurnsTaken() {
-    return turnsTaken;
+  public void flipFaceUpButtons() {
+    for (Button button : buttonList) {
+      colourButton(button, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
+      button.setText(BACKOFCARD);
+    }
   }
 
-  public void setTurnsTaken(int turnsTaken) {
-    this.turnsTaken = turnsTaken;
+  public void setButtonImage(Button button, Map<Button, String> cardsToValues) {
+    switch (cardsToValues.get(button)) {
+      case "line":
+        colourButton(button, R.drawable.match_line_red, R.drawable.match_line_blue, R.drawable.match_line_green);
+        break;
+      case "square":
+        colourButton(button, R.drawable.match_square_red, R.drawable.match_square_blue, R.drawable.match_square_green);
+        break;
+      case "triangle":
+        colourButton(button, R.drawable.match_triangle_red, R.drawable.match_triangle_blue, R.drawable.match_triangle_green);
+        break;
+      case "wave":
+        colourButton(button, R.drawable.match_wave_red, R.drawable.match_wave_blue, R.drawable.match_wave_green);
+        break;
+      case "circle":
+        colourButton(button, R.drawable.match_circle_red, R.drawable.match_circle_blue, R.drawable.match_circle_green);
+        break;
+      case "upside":
+        colourButton(button, R.drawable.match_upside_red, R.drawable.match_upside_blue, R.drawable.match_upside_green);
+        break;
+    }
   }
 }

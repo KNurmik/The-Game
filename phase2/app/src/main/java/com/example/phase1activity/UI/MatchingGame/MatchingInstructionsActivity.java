@@ -25,7 +25,7 @@ public class MatchingInstructionsActivity extends AbstractActivity {
                     /** Allow user to continue to the game using the button. */
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MatchingInstructionsActivity.this, MatchingGameActivity.class));
+                        startActivity(new Intent(MatchingInstructionsActivity.this, ChooseLevelActivity.class));
                     }
                 });
     }

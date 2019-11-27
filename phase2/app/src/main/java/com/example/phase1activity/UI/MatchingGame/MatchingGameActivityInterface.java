@@ -1,5 +1,10 @@
 package com.example.phase1activity.UI.MatchingGame;
 
+import android.widget.Button;
+
+import java.util.List;
+import java.util.Map;
+
 public interface MatchingGameActivityInterface {
   /**
    * Set the statistic to be displayed to statDisplayText.
@@ -21,9 +26,9 @@ public interface MatchingGameActivityInterface {
    */
   void hideNoMatchPopup();
 
-  void setUpNextLevel();
+  void hideFaceUpButtons(List<Button> buttons);
 
-  int getTurnsTaken();
+  void flipFaceUpButtons();
 
-  void setTurnsTaken(int turnsTaken);
+  void setButtonImage(Button button, Map<Button, String> cardsToValues);
 }

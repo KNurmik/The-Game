@@ -25,6 +25,9 @@ public class MatchingGameManager {
   /** The number of matches needed to be made until the matching game's level is complete. */
   private int matchesToBeMade;
 
+  /** The number of cards that the level begins with.*/
+  private int numCards;
+
   /**
    * Cards clicked in this MatchingGameManager's respective MatchingGameActivity that have yet to be
    * checked for a potential match.
@@ -42,6 +45,7 @@ public class MatchingGameManager {
   @Inject
   public MatchingGameManager(int numCards) {
     this.matchesToBeMade = numCards / 2;
+    this.numCards = numCards;
   }
 
   /**
@@ -55,8 +59,6 @@ public class MatchingGameManager {
    * @param cardValues a map of cards to their respective values.
    */
   public boolean recordClick(Button card, Map<Button, String> cardValues) {
-    card.setText(cardValues.get(card));
-
     if (this.cardsClicked[0] == null) {
       this.cardsClicked[0] = card;
       return false;
@@ -68,7 +70,7 @@ public class MatchingGameManager {
   }
 
   /**
-   * Flip the cards back over if they do not match. Hide them otherwise. If there are no more
+   * Return 0 if cards do not match. Return 1 otherwise. If there are no more
    * matches to be made, end the game, and display the user's score.
    *
    * @param cards the cards in the game
@@ -83,16 +85,8 @@ public class MatchingGameManager {
     } // TODO: replace empty catch block with a log
 
     if (cardValues.get(cards[0]).equals(cardValues.get(cards[1]))) {
-      // Make cards disappear, store this info in this class somehow
-      cards[0].setVisibility(View.INVISIBLE);
-      cards[1].setVisibility(View.INVISIBLE);
       this.matchesToBeMade--;
-
-    } else {
-      cards[0].setText(MatchingGameActivity.BACKOFCARD);
-      cards[1].setText(MatchingGameActivity.BACKOFCARD);
     }
-
     this.cardsClicked[0] = null;
     this.cardsClicked[1] = null;
   }
@@ -121,6 +115,6 @@ public class MatchingGameManager {
    * @return the score.
    */
   public int getScore() {
-    return Math.max(5000 - 500 * turnsTaken, 0);
+    return Math.max(1000 * numCards - 500 * turnsTaken, 0);
   }
 }

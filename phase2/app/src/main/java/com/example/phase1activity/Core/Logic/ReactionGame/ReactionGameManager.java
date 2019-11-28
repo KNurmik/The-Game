@@ -158,7 +158,7 @@ public class ReactionGameManager {
   public void playSpamButton() {
     setGameState(State.SPAMBUTTON);
     Random r = new Random();
-    timesToClickLeft = r.nextInt((50 - 15) + 1) + 15;
+    timesToClickLeft = r.nextInt((10 - 5) + 1) + 5;
     timesToClickTotal = timesToClickLeft;
     startTimer();
   }

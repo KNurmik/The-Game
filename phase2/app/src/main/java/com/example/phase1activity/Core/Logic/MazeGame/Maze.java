@@ -2,6 +2,7 @@ package com.example.phase1activity.Core.Logic.MazeGame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 
 /** A maze. */
@@ -9,18 +10,20 @@ public class Maze {
 
   /** The character that this maze is using. */
   public Character player;
+  /** The coin in the maze. */
+  public Coin coin;
   /** The block that the player needs to get to in order to win. */
   public MazeBlock winningBlock;
   /** A list containing all of the walls in the maze. */
   List<Wall> mazeWalls;
+  /** A list containing all the outer walls of the maze */
+  List<Wall> outerWalls;
   /** The height of the maze. */
   private int mazeHeight;
   /** The Width of the maze. */
   private int mazeWidth;
   /** A 2D array storing all the MazeBlocks in the maze. */
   private MazeBlock[][] mazeBlocks;
-  /** A list containing all the outer walls of the maze */
-  List<Wall> outerWalls;
 
   /**
    * A constructor for the Maze. Create the entire maze with all Walls and MazeBlocks.
@@ -35,7 +38,6 @@ public class Maze {
     mazeWalls = new ArrayList<>();
     outerWalls = new ArrayList<>();
     mazeBlocks = new MazeBlock[mazeWidth][mazeHeight];
-
     createMaze();
   }
 
@@ -44,6 +46,16 @@ public class Maze {
     this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
   }
 
+  void createCoin() {
+    Random random = new Random();
+    int col = random.nextInt(8);
+    int row = random.nextInt(11);
+    this.coin = new Coin(mazeBlocks[col][row]);
+  }
+
+  public void removeCoin() {
+    this.coin.setVisited(true);
+  }
   /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
   private void createMaze() {
 

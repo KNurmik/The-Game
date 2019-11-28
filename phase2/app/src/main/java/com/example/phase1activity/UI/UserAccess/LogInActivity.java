@@ -68,7 +68,6 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
           @Override
           public void onClick(View v) {
             presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
-            app.changeMusic(app.getProfileSong());
           }
         });
   }
@@ -108,5 +107,7 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
   /** End this Activity and proceed to the main menu. */
   public void endActivity() {
     startActivity(new Intent(LogInActivity.this, StartActivity.class));
+    app.changeMusic(app.getProfileSong());
   }
+
 }

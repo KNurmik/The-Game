@@ -6,8 +6,12 @@ import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
 
+import java.util.Map;
+
 /** The App Manager */
 public class AppManager extends Application {
+  private GlobalStats globalStats;
+
   private MediaPlayer player;
 
   /** The first song option */
@@ -32,6 +36,7 @@ public class AppManager extends Application {
 
   @Override
   public void onCreate() {
+    globalStats = new GlobalStats(this, "None", "None", "None", 0.0, 5.0, 100.0);
     super.onCreate();
     player = MediaPlayer.create(this, Tracks[songNumber]);
     player.setLooping(true);
@@ -45,6 +50,26 @@ public class AppManager extends Application {
     player.setLooping(true);
     player.setVolume(100, 100);
     player.start();
+  }
+
+  public GlobalStats getGlobalStats(){
+    return this.globalStats;
+  }
+
+  public void updateGlobalStats(){
+    this.globalStats.updateGlobalStats();
+  }
+
+  public Map<String, Double> getBestTotal(){
+    return this.globalStats.getBestTotal();
+  }
+
+  public Map<String, Double> getBestReaction(){
+    return this.globalStats.getBestReaction();
+  }
+
+  public Map<String, Double> getBestMoves(){
+    return this.globalStats.getBestMoves();
   }
 
   /**

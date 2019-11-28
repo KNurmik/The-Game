@@ -4,53 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_beige"
-    tools:context=".UI.MenuScreens.StartActivity">
+    tools:context=".UI.MenuScreens.GlobalStatsActivity">
 
-    <Button
-        android:id="@+id/settings"
+    <TextView
+        android:id="@+id/globalstats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:text="Best Of All Time"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/stat"
+    <TextView
+        android:id="@+id/globaltotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/stat"
+        android:layout_marginTop="132dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/global"
+    <TextView
+        android:id="@+id/globalmoves"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/stat"
+        android:layout_marginTop="76dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stat" />
+        app:layout_constraintTop_toBottomOf="@+id/globaltotal" />
+
+    <TextView
+        android:id="@+id/globalreaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/globalmoves" />
 </androidx.constraintlayout.widget.ConstraintLayout>

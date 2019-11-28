@@ -1,6 +1,7 @@
 package com.example.phase1activity.Core.Transmission.Overseers;
 
 import android.app.Application;
+import android.content.Context;
 import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
@@ -22,9 +23,11 @@ public class Music extends Application{
     /** The default song selected is the silly chicken song */
     private int songNumber = 1;
 
+    public Music(){}
 
-    public void startMusic(){
-        this.player = MediaPlayer.create(this, Tracks[songNumber]);
+
+    public void startMusic(Context context){
+        this.player = MediaPlayer.create(context, Tracks[songNumber]);
         player.setLooping(true);
         player.setVolume(100, 100);
     }

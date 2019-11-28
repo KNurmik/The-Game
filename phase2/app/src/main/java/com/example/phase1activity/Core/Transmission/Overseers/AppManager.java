@@ -3,15 +3,14 @@ package com.example.phase1activity.Core.Transmission.Overseers;
 import android.app.Activity;
 import android.app.Application;
 
-
 import java.util.Map;
 
+import javax.inject.Inject;
+
 /** The App Manager. */
- public class AppManager extends Application {
-  private GlobalStats globalStats;
-
-  private Music player;
-
+public class AppManager extends Application {
+  @Inject GlobalStats globalStats;
+  @Inject Music player;
 
   /** The profile the app is using. */
   private Profile profile;
@@ -21,28 +20,44 @@ import java.util.Map;
 
   @Override
   public void onCreate() {
-      player = new Music(this, 1);
-    globalStats = new GlobalStats(this, "None", "None", "None", 0.0, 5.0, 100.0);
+
+    // Dagger module for injecting.
+    AppManagerModule module =
+        new AppManagerModule(this, 1, "None", "None", "None", 0.0, 5.0, 100.0);
+
+    // Inject player.
+    player =
+        DaggerAppManagerComponent.builder()
+            .appManagerModule(module)
+            .build()
+            .injectAppManagerPlayer();
+
+    // Inject globalStats.
+    globalStats =
+        DaggerAppManagerComponent.builder()
+            .appManagerModule(module)
+            .build()
+            .injectAppManagerGlobalStats();
     super.onCreate();
   }
 
-  public void changeMusic(int n){
-      player.changeMusic(this, n);
+  public void changeMusic(int n) {
+    player.changeMusic(this, n);
   }
 
-  public void updateGlobalStats(){
+  public void updateGlobalStats() {
     this.globalStats.updateGlobalStats();
   }
 
-  public Map<String, Double> getBestTotal(){
+  public Map<String, Double> getBestTotal() {
     return this.globalStats.getBestTotal();
   }
 
-  public Map<String, Double> getBestReaction(){
+  public Map<String, Double> getBestReaction() {
     return this.globalStats.getBestReaction();
   }
 
-  public Map<String, Double> getBestMoves(){
+  public Map<String, Double> getBestMoves() {
     return this.globalStats.getBestMoves();
   }
 
@@ -105,7 +120,7 @@ import java.util.Map;
    *
    * @return the song that is being played.
    */
-  public int getProfileSong(){
+  public int getProfileSong() {
     return this.profile.getSong();
   }
 
@@ -114,11 +129,11 @@ import java.util.Map;
    *
    * @return the song that is being played.
    */
-  public int getProfileGameLevel(){
+  public int getProfileGameLevel() {
     return this.profile.getGameLevel();
   }
 
-  public void setProfileGameLevel(Activity activity, int n){
+  public void setProfileGameLevel(Activity activity, int n) {
     this.profile.setGameLevel(activity, n);
   }
 
@@ -182,32 +197,29 @@ import java.util.Map;
     this.profile.setNickname(name);
   }
 
-  public String getProfilePassword(){
+  public String getProfilePassword() {
     return this.profile.getPassword();
   }
-  /**
-   * @return fastestRxnStat.
-   */
-  public double getProfileFastestRxnStat(){
+  /** @return fastestRxnStat. */
+  public double getProfileFastestRxnStat() {
     return profile.getFastestRxnStat();
   }
 
-  /**
-   * @return totalScoreStat.
-   */
-  public int getProfileTotalScoreStat(){
+  /** @return totalScoreStat. */
+  public int getProfileTotalScoreStat() {
     return profile.getTotalScoreStat();
   }
 
-  /**
-   * @return totalMovesStat.
-   */
-  public int getProfileTotalMovesStat(){
+  /** @return totalMovesStat. */
+  public int getProfileTotalMovesStat() {
     return profile.getTotalMovesStat();
   }
 
-  public int getMatchingGameLevel() { return matchingGameLevel; }
+  public int getMatchingGameLevel() {
+    return matchingGameLevel;
+  }
 
-  public void setMatchingGameLevel(int level) { matchingGameLevel = level; }
-
+  public void setMatchingGameLevel(int level) {
+    matchingGameLevel = level;
+  }
 }

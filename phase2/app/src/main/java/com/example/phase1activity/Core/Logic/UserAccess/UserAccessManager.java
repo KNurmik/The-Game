@@ -12,14 +12,16 @@ public abstract class UserAccessManager {
 
   private final int MIN_ENTRY_LENGTH = 0;
 
-  /** User is attempting to login/register using entered username and password, handle this attempt.*/
+  /**
+   * User is attempting to login/register using entered username and password, handle this attempt.
+   */
   public abstract Result UserAccessAction(
       Context context, String username, String password, AppManager app);
 
   /**
    * Checks if the given string is valid for a username
    *
-   * @param username The username that the user wants
+   * @param username the username that the user wants
    * @return true iff username is valid
    */
   boolean isValidUsername(String username) {
@@ -29,10 +31,10 @@ public abstract class UserAccessManager {
   }
 
   /**
-   * Checks if the given string is valid for a password
+   * Check whether the given string is valid for a password.
    *
-   * @param password The password that the user wants
-   * @return true iff password is valid
+   * @param password the password that the user wants.
+   * @return true iff password is valid.
    */
   boolean isValidPassword(String password) {
     return password.length() > MIN_ENTRY_LENGTH

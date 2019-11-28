@@ -27,8 +27,7 @@ public class LogInManager extends UserAccessManager {
       return Result.ERROR_PASSWORD;
     } else if (!isValidUsername(username)) {
       return Result.ERROR_USERNAME;
-    }
-    else if (!isValidLogin(context, username, password)) {
+    } else if (!isValidLogin(context, username, password)) {
       return Result.INCORRECT;
     } else {
       // Retrieve user's saved info.
@@ -36,11 +35,15 @@ public class LogInManager extends UserAccessManager {
       Map<String, Map<AndroidSaver.AttributeType, String>> userData = iSaver.getExistingUserData();
       String nickname = userData.get(username).get(AndroidSaver.AttributeType.NICKNAME);
       int colour = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.COLOUR));
-      int gameLevel = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.GAME_LEVEL));
+      int gameLevel =
+          Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.GAME_LEVEL));
       int song = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.SONG));
-      int totalScoreStat = Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE));
-      double fastestRxnStat = Double.valueOf(userData.get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME));
-      int totalMovesStat = Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES));
+      int totalScoreStat =
+          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE));
+      double fastestRxnStat =
+          Double.valueOf(userData.get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME));
+      int totalMovesStat =
+          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES));
       // Create a new profile containing the existing user's info, and set it as the AppManager's
       // current profile.
       app.setProfile(

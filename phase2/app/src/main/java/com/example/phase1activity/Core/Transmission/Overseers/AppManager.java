@@ -5,34 +5,38 @@ import android.app.Application;
 import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
+<<<<<<< HEAD
 
 import java.util.Map;
 
 /** The App Manager */
+=======
+// TODO: write method descriptions.
+/** The App Manager. */
+>>>>>>> 5213b0b5e1887f0226ca9adb06e6319a64dfc087
 public class AppManager extends Application {
   private GlobalStats globalStats;
 
   private MediaPlayer player;
 
-  /** The first song option */
+  /** The first song option. */
   private final int song1 = R.raw.sillychicken;
 
-  /** The second song option */
+  /** The second song option. */
   private final int song2 = R.raw.jazzy;
 
-
-  /** An array that stores all songs */
+  /** An array that stores all songs. */
   private final int[] Tracks = new int[] {song1, song2};
 
 
-  /** The default song selected is the silly chicken song */
+  /** The default song selected is the silly chicken song. */
   private int songNumber = 1;
 
-  /** The profile the app is using */
+  /** The profile the app is using. */
   private Profile profile;
 
+  /** The level of difficulty the matching game is to played on. */
   private int matchingGameLevel;
-
 
   @Override
   public void onCreate() {
@@ -43,7 +47,7 @@ public class AppManager extends Application {
     player.setVolume(100, 100);
   }
 
-  /** Changes the music to the song that the user chooses in their profile */
+  /** Change the music to the song that the user chooses in their profile */
   public void changeMusic(int n) {
     player.release();
     player = MediaPlayer.create(this, Tracks[n]);
@@ -73,18 +77,18 @@ public class AppManager extends Application {
   }
 
   /**
-   * Getter for the profile that the application is currently using
+   * Getter for the profile that the application is using.
    *
-   * @return profile
+   * @return the profile that the application is using.
    */
   public Profile getProfile() {
     return this.profile;
   }
 
   /**
-   * Changes the profile that the app is currently using
+   * Change the profile that the application is using.
    *
-   * @param profile the new profile
+   * @param profile a profile.
    */
   public void setProfile(Profile profile) {
     this.profile = profile;
@@ -100,36 +104,46 @@ public class AppManager extends Application {
   }
 
   /**
-   * Setter for profile's selected colour
+   * Setter for profile's selected colour.
    *
-   * @param color the color of the profile
+   * @param color the color of the profile.
    */
   public void setProfileColour(int color) {
     this.profile.setColour(color);
   }
 
   /**
-   * Getter for the profile's username
+   * Getter for the profile's username.
    *
-   * @return profile.username
+   * @return this profile's username.
    */
   public String getProfileUsername() {
     return this.profile.getUsername();
   }
 
   /**
-   * Changes the song that is being played
+   * Change the song that is being played to song n.
    *
-   * @param n The index of the song that will be used
+   * @param n the index of the song to play.
    */
   public void setProfileSong(int n) {
     this.profile.setSong(n);
   }
 
+  /**
+   * Return the song that is being played.
+   *
+   * @return the song that is being played.
+   */
   public int getProfileSong(){
     return this.profile.getSong();
   }
 
+  /**
+   * Return the game
+   *
+   * @return the song that is being played.
+   */
   public int getProfileGameLevel(){
     return this.profile.getGameLevel();
   }

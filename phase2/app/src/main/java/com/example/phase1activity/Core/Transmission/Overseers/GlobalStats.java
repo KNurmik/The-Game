@@ -1,6 +1,5 @@
 package com.example.phase1activity.Core.Transmission.Overseers;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
@@ -8,7 +7,6 @@ import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class GlobalStats {
 

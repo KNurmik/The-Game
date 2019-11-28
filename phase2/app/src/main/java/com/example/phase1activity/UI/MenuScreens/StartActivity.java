@@ -77,6 +77,5 @@ public class StartActivity extends AbstractActivity {
                 }
             }
         });
-        app.changeMusic(app.getProfileSong());
     }
 }

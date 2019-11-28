@@ -1,13 +1,12 @@
 package com.example.phase1activity.Core.Transmission.Overseers;
 
-import android.app.Application;
 import android.content.Context;
 import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
 
 /** A controller for the music player. */
-public class Music extends Application{
+public class Music{
     private MediaPlayer player;
 
     /** The first song option */
@@ -20,30 +19,19 @@ public class Music extends Application{
     /** An array that stores all songs */
     private final int[] Tracks = new int[] {song1, song2};
 
-
-    /** The default song selected is the silly chicken song */
-    private int songNumber = 1;
-
-    public Music(){}
-
-
-    public void startMusic(Context context){
-        this.player = MediaPlayer.create(context, Tracks[songNumber]);
+  public Music(Context context, int n) {
+        this.player = MediaPlayer.create(context, Tracks[n]);
         player.setLooping(true);
         player.setVolume(100, 100);
     }
 
+
     /** Changes the music to the song that the user chooses in their profile */
-    public void changeMusic(int n) {
+    public void changeMusic(Context context, int n) {
         player.release();
-        player = MediaPlayer.create(this, Tracks[n]);
+        player = MediaPlayer.create(context, Tracks[n]);
         player.setLooping(true);
         player.setVolume(100, 100);
         player.start();
     }
-
-    MediaPlayer getPlayer(){
-        return this.player;
-    }
-
 }

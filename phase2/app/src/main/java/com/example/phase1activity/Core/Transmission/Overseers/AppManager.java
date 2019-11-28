@@ -2,9 +2,7 @@ package com.example.phase1activity.Core.Transmission.Overseers;
 
 import android.app.Activity;
 import android.app.Application;
-import android.media.MediaPlayer;
 
-import com.example.phase1activity.R;
 
 import java.util.Map;
 
@@ -12,20 +10,8 @@ import java.util.Map;
  public class AppManager extends Application {
   private GlobalStats globalStats;
 
-  private MediaPlayer player;
+  private Music player;
 
-  /** The first song option. */
-  private final int song1 = R.raw.sillychicken;
-
-  /** The second song option. */
-  private final int song2 = R.raw.jazzy;
-
-  /** An array that stores all songs. */
-  private final int[] Tracks = new int[] {song1, song2};
-
-
-  /** The default song selected is the silly chicken song. */
-  private int songNumber = 1;
 
   /** The profile the app is using. */
   private Profile profile;
@@ -35,24 +21,13 @@ import java.util.Map;
 
   @Override
   public void onCreate() {
+      player = new Music(this, 1);
     globalStats = new GlobalStats(this, "None", "None", "None", 0.0, 5.0, 100.0);
     super.onCreate();
-    player = MediaPlayer.create(this, Tracks[songNumber]);
-    player.setLooping(true);
-    player.setVolume(100, 100);
   }
 
-  /** Change the music to the song that the user chooses in their profile */
-  public void changeMusic(int n) {
-    player.release();
-    player = MediaPlayer.create(this, Tracks[n]);
-    player.setLooping(true);
-    player.setVolume(100, 100);
-    player.start();
-  }
-
-  public GlobalStats getGlobalStats(){
-    return this.globalStats;
+  public void changeMusic(int n){
+      player.changeMusic(this, n);
   }
 
   public void updateGlobalStats(){

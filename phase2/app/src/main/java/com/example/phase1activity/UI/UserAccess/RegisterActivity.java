@@ -68,6 +68,7 @@ public class RegisterActivity extends AbstractActivity implements UserAccessView
           @Override
           public void onClick(View v) {
             presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
+            app.changeMusic(app.getProfileSong());
           }
         });
   }

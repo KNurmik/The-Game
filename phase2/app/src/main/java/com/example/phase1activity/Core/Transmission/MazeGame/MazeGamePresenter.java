@@ -56,7 +56,6 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
   public void gotCoin() {
     if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.coin.mazeBlock
         && !(mazeManager.mazeObject.coin.isVisited())) {
-      score = score + 5000;
       mazeManager.mazeObject.removeCoin();
     }
   }
@@ -66,6 +65,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
+    if (mazeManager.mazeObject.coin.isVisited()) {
+      return (int) (20000 / Math.pow((1.1), mazeManager.mazeObject.player.moves) + 6000);
+    }
     return (int) (20000 / Math.pow((1.1), mazeManager.mazeObject.player.moves) + 1000);
   }
 
@@ -110,8 +112,8 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
       if (checkWin()) { // checks if the player is on the winning block
         view.finishMaze();
       }
-      gotCoin();
       score = calculateScore(); // calculates the new score after the user moves the character
+      gotCoin();
       drawView.invalidate(); // updates the location of the character on the phone screen and the
       // user's score
       return true;

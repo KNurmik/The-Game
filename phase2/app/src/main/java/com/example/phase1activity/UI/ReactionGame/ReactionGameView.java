@@ -85,7 +85,7 @@ public class ReactionGameView extends AbstractActivity
           }
         });
 
-    // Button to return to the main menu.
+    // Button to return to the main  menu.
     menu.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {

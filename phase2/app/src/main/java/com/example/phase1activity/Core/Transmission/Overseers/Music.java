@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
 
+/** A controller for the music player. */
 public class Music extends Application{
     private MediaPlayer player;
 

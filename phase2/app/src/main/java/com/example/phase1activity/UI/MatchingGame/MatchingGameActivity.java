@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGameModule;
 import com.example.phase1activity.Core.Transmission.MatchingGame.MatchingGamePresenterInterface;
+import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
+import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
@@ -258,5 +260,10 @@ public class MatchingGameActivity extends AbstractActivity
         colourButton(button, R.drawable.match_equal_red, R.drawable.match_equal_blue, R.drawable.match_equal_green);
         break;
     }
+  }
+
+  public void updateProfileStats(int score, int moves) {
+    this.app.updateProfileScore(this, score);
+    this.app.updateProfileMoves(this, moves);
   }
 }

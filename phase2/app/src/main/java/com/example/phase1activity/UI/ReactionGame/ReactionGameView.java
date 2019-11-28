@@ -65,9 +65,9 @@ public class ReactionGameView extends AbstractActivity
             .injectReactionGamePresenter();
 
     // Game is started from the beginning, reset all profile stats to default values.
-    app.resetProfileMoves();
-    app.resetProfileRxnStat();
-    app.resetProfileScore();
+//    app.resetProfileMoves();
+//    app.resetProfileRxnStat();
+//    app.resetProfileScore();
 
     instructions = findViewById(R.id.instruction);
     instructions.setBackgroundResource(R.drawable.react_push);
@@ -149,9 +149,9 @@ public class ReactionGameView extends AbstractActivity
    */
   @Override
   public void updateProfileStatistics(double reactionTime, int moves, int score) {
-    app.setProfileReactionTime(reactionTime);
-    app.updateProfileMoves(moves);
-    app.updateProfileScore(score);
+    app.setProfileReactionTime(this, reactionTime / 1000);
+    app.updateProfileMoves(this, moves);
+    app.updateProfileScore(this, score);
   }
 
   /** End this activity and launch MatchingGame. */

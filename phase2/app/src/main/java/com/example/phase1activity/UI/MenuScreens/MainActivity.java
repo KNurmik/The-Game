@@ -41,5 +41,15 @@ public class MainActivity extends AbstractActivity {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
+
+        Button creditsButton = findViewById(R.id.creditsButton);
+        creditsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Opens CreditsActivity.
+                startActivity(new Intent(MainActivity.this, CreditsActivity.class));
+            }
+        });
+
     }
 }

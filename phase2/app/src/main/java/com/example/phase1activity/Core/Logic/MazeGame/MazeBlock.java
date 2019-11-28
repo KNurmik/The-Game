@@ -1,23 +1,32 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MazeBlock extends MazeItem {
 
-  /** Boolean variable whether the mazeBlock as a path to another maze block */
+  /** Boolean variable whether the mazeBlock as a path to another maze block. */
   boolean visited;
-  /** The MazeBlock or Wall above this MazeBlock */
+  /** The MazeBlock or Wall above this MazeBlock. */
   private MazeItem up;
-  /** The MazeBlock or Wall below this MazeBlock */
+  /** The MazeBlock or Wall below this MazeBlock. */
   private MazeItem down;
-  /** The MazeBlock or Wall to the right of this MazeBlock */
+  /** The MazeBlock or Wall to the right of this MazeBlock. */
   private MazeItem right;
-  /** The MazeBlock or Wall to the left of this MazeBlock */
+  /** The MazeBlock or Wall to the left of this MazeBlock. */
   private MazeItem left;
-  /** An array list of it's surrounding maze blocks */
+  /** An array list of surrounding maze blocks. */
   private ArrayList<MazeBlock> neighbours;
-  /** Initialize this MazeBlock at position (a, b) */
+  /** A list of surrounding walls of surrounding maze blocks. */
+  private List<MazeItem> neighboursWalls;
+
+  /**
+   * Initialize this MazeBlock at position (a, b).
+   *
+   * @param a x-coordinate.
+   * @param b y-coordinate.
+   */
   MazeBlock(int a, int b) {
     super(a, b);
     up = null;
@@ -26,11 +35,55 @@ public class MazeBlock extends MazeItem {
     left = null;
     visited = false;
     neighbours = new ArrayList<>();
+    neighboursWalls = new ArrayList<>();
   }
 
-  /** @param mazeBlock is a neighbour of this */
-  public void addNeighbour(MazeBlock mazeBlock) {
+  /**
+   * Add mazeBlock to this block's neighbours.
+   *
+   * @param mazeBlock is a neighbour of this.
+   */
+  void addNeighbour(MazeBlock mazeBlock) {
     neighbours.add(mazeBlock);
+    addNeighbourWalls(mazeBlock);
+  }
+
+  /**
+   * Adds the walls of the MazeBlock if it is a neighbour of this MazeBlock.
+   *
+   * @param mazeBlock neighbouring MazeBlock.
+   */
+  private void addNeighbourWalls(MazeBlock mazeBlock) {
+    if (mazeBlock.getUp() instanceof Wall) {
+      neighboursWalls.add(mazeBlock.getUp());
+    }
+    if (mazeBlock.getDown() instanceof Wall) {
+      neighboursWalls.add(mazeBlock.getDown());
+    }
+    if (mazeBlock.getRight() instanceof Wall) {
+      neighboursWalls.add(mazeBlock.getRight());
+    }
+    if (mazeBlock.getLeft() instanceof Wall) {
+      neighboursWalls.add(mazeBlock.getLeft());
+    }
+  }
+
+  /**
+   * Getter for MazeBlock.neighbourWalls
+   *
+   * @return The neightbourWalls list
+   */
+  List<MazeItem> getNeighbourWalls() {
+    return neighboursWalls;
+  }
+
+  /**
+   * Getter for MazeBlock.neighbours
+   *
+   * @return The list of MazeBlock neighbours of this MazeBlock
+   */
+  List<MazeBlock> getNeighbours() {
+    return neighbours;
   }
 
   /** @return a random neighbour of this or nothing if all it's neighbours have been visited */
@@ -49,6 +102,7 @@ public class MazeBlock extends MazeItem {
     }
     return null;
   }
+
   /**
    * Getter for MazeBlock.up
    *
@@ -122,7 +176,7 @@ public class MazeBlock extends MazeItem {
   }
 
   /**
-   * Creates a 'link' between two MazeBlocks that are above and below each other
+   * Create a 'link' between two MazeBlocks that are above and below each other
    *
    * @param other The MazeBlock that will be linked to this MazeBlock
    */
@@ -132,7 +186,7 @@ public class MazeBlock extends MazeItem {
   }
 
   /**
-   * Creates a 'link' between two MazeBlocks that are to the left and right of each other
+   * Create a 'link' between two MazeBlocks that are to the left and right of each other
    *
    * @param other The MazeBlock that will be linked to this MazeBlock
    */

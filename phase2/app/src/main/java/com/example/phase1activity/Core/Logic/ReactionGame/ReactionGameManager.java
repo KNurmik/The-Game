@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2019 the original author or authors.
+ * Copyright 2019. Mark Vartolaş, Karl Hendrik Nurmeots, Olivia Li, Ramzi Dajani, Henry Leung.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,7 +158,7 @@ public class ReactionGameManager {
   public void playSpamButton() {
     setGameState(State.SPAMBUTTON);
     Random r = new Random();
-    timesToClickLeft = r.nextInt((50 - 15) + 1) + 15;
+    timesToClickLeft = r.nextInt((10 - 5) + 1) + 5;
     timesToClickTotal = timesToClickLeft;
     startTimer();
   }

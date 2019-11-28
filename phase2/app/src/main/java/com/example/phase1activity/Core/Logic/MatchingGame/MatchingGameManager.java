@@ -22,10 +22,10 @@ public class MatchingGameManager {
   /** The number of turns taken. */
   private int turnsTaken = 0;
 
-  /** The number of matches needed to be made until the matching game's level is complete. */
+  /** The number of matches needed to be made to complete the level. */
   private int matchesToBeMade;
 
-  /** The number of cards that the level begins with.*/
+  /** The number of cards that the level begins with. */
   private int numCards;
 
   /**
@@ -36,8 +36,6 @@ public class MatchingGameManager {
 
   /**
    * * Initialize a new MatchingGameManager with numCards amount of cards.
-   *
-   * <p>Precondition: numCards is divisible by 2.
    *
    * @param numCards the number of cards in this MatchingGameManager's respective
    *     MatchingGameActivity.
@@ -50,10 +48,10 @@ public class MatchingGameManager {
 
   /**
    * * Record that card was clicked. That is, if cardsClicked is empty, add card to cardsClicked. If
-   * there is one card in cardsClicked, add card to cardsClicked, and call takeTurn with
+   * there is one card in cardsClicked, add card to cardsClicked, call takeTurn, and clear
    * cardsClicked. Return true if takeTurn was called, and false otherwise.
    *
-   * <p> Tell MatchingGameModule how to create this object.
+   * <p>Tell MatchingGameModule how to create this object.
    *
    * @param card the card clicked.
    * @param cardValues a map of cards to their respective values.
@@ -70,8 +68,7 @@ public class MatchingGameManager {
   }
 
   /**
-   * Return 0 if cards do not match. Return 1 otherwise. If there are no more
-   * matches to be made, end the game, and display the user's score.
+   * If the values of the cards in cards match, decrement matches to be made. Clear cardsClicked.
    *
    * @param cards the cards in the game
    * @param cardValues the values of the cards
@@ -80,7 +77,7 @@ public class MatchingGameManager {
     this.turnsTaken++;
 
     try {
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.SECONDS.sleep(1 / 2);
     } catch (InterruptedException e) {
     } // TODO: replace empty catch block with a log
 

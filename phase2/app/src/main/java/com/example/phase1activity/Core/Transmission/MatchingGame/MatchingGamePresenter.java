@@ -31,10 +31,13 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   /** The string to be displayed next to the number of turns taken. */
   private final String TURNSTAKEN = "Turns Taken: ";
 
+  /** This presenter's view. */
   private MatchingGameActivityInterface view;
 
+  /** The card's clicked by the user to be given to the manager. */
   private List<Button> cardsClicked = new ArrayList<>();
 
+  /** Initialize this MatchingGamePresenter */
   @Inject
   public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view, int numCards) {
 
@@ -44,7 +47,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   }
 
   /**
-   * Populate cardsToValues with randomized values ("A", "B", or "C") for each button in buttonList.
+   * Populate cardsToValues with randomized values for each button in buttonList.
    *
    * @param buttonList a list of the buttons that represent cards.
    */
@@ -70,13 +73,14 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
     List<String> valuesNeeded = cardValues.subList(0, numCards);
     Collections.shuffle(valuesNeeded);
 
+    // Assign all cards a value.
     for (int i = 0; i < numCards; i++) {
       cardsToValues.put(buttonList.get(i), valuesNeeded.get(i));
     }
   }
 
   /**
-   * If button is a card, record the click. Subsequently, if there are no matches left to be made,
+   * If button is a card, record the click. If there are no matches left to be made,
    * display the final score, and update the user's statistics.
    *
    * @param button the button that was clicked.
@@ -105,12 +109,11 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
       }
 
       if (matchesToBeMadeAfter == 0) {
-          double score = manager.getScore();
-          String statDisplayText = SCORE + score;
-          view.setDisplayStat(statDisplayText);
-          view.updateNextLevelButton();
-          app.updateProfileScore(manager.getScore());
-          app.updateProfileMoves(manager.getTurnsTaken());
+        double score = manager.getScore();
+        String statDisplayText = SCORE + score;
+        view.setDisplayStat(statDisplayText);
+        view.updateNextLevelButton();
+        view.updateProfileStats(manager.getScore(), manager.getTurnsTaken());
       } else {
         int turnsTaken = manager.getTurnsTaken();
         String statDisplayText = TURNSTAKEN + turnsTaken;

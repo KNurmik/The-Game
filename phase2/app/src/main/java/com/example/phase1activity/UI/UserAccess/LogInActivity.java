@@ -107,5 +107,7 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
   /** End this Activity and proceed to the main menu. */
   public void endActivity() {
     startActivity(new Intent(LogInActivity.this, StartActivity.class));
+    app.changeMusic(app.getProfileSong());
   }
+
 }

@@ -4,23 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/** A maze. */
 public class Maze {
 
-  /** An instance of the character that this maze is using. */
+  /** The character that this maze is using. */
   public Character player;
   /** The block that the player needs to get to in order to win. */
   public MazeBlock winningBlock;
-  /** A list containing all of the walls in the maze */
+  /** A list containing all of the walls in the maze. */
   List<Wall> mazeWalls;
-  /** The height of the maze */
+  /** The height of the maze. */
   private int mazeHeight;
-  /** The Width of the maze */
+  /** The Width of the maze. */
   private int mazeWidth;
-  /** A 2D array storing all the MazeBlocks in the maze */
+  /** A 2D array storing all the MazeBlocks in the maze. */
   private MazeBlock[][] mazeBlocks;
+  /** A list containing all the outer walls of the maze */
+  List<Wall> outerWalls;
 
   /**
-   * A constructor for the Maze. Creates the whole maze with all the Walls and MazeBlocks
+   * A constructor for the Maze. Create the entire maze with all Walls and MazeBlocks.
    *
    * @param width The width of the maze
    * @param height The height of the maze
@@ -30,19 +33,18 @@ public class Maze {
     mazeWidth = width;
 
     mazeWalls = new ArrayList<>();
+    outerWalls = new ArrayList<>();
     mazeBlocks = new MazeBlock[mazeWidth][mazeHeight];
 
     createMaze();
   }
 
-  /** Creates a player at the bottom left block */
+  /** Create a player at the bottom left block of the maze. */
   void createPlayer() {
     this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
   }
 
-  /**
-   * Creates the Maze itself, adds all the Walls and MazeBlocks it's respective arrays and lists.
-   */
+  /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
   private void createMaze() {
 
     // Draws all the possible walls first and make the walls the left, right, up, down of the
@@ -55,6 +57,7 @@ public class Maze {
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         } else { // The left walls for the mazeBlock
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
@@ -63,21 +66,23 @@ public class Maze {
           mazeBlocks[i - 1][j].addNeighbour(mazeBlocks[i][j]);
           mazeWalls.add(newWall);
         }
-        // The right walls for the  mazeBlock
+        // The right walls for the mazeBlock.
         if (i == mazeWidth - 1) {
           Wall newWall = new Wall(i + 1, j, false);
           mazeBlocks[i][j].setRight(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         }
 
-        // The topmost walls are added
+        // Add the top-most walls.
         if (j == 0) {
           if (i != mazeWidth - 1) {
             Wall newWall = new Wall(i, j, true);
             mazeBlocks[i][j].setUp(newWall);
             mazeWalls.add(newWall);
+            outerWalls.add(newWall);
           }
-        } else { // The top walls for the mazeBlock
+        } else {
           Wall newWall = new Wall(i, j, true);
           mazeBlocks[i][j].setUp(newWall);
           mazeBlocks[i][j - 1].setDown(newWall);
@@ -85,16 +90,15 @@ public class Maze {
           mazeBlocks[i][j - 1].addNeighbour(mazeBlocks[i][j]);
           mazeWalls.add(newWall);
         }
-        // The bottommost walls are added
+        // Add the bottom-most walls.
         if (j == mazeHeight - 1) {
           Wall newWall = new Wall(i, j + 1, true);
           mazeBlocks[i][j].setDown(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         }
       }
     }
-
-    createRandomMaze(); // Randomly generate a maze
     // The winning block is always in the top right corner of the maze.
     winningBlock = mazeBlocks[mazeWidth - 1][0];
   }
@@ -103,7 +107,7 @@ public class Maze {
    * Randomly remove walls between maze blocks until there is at least one path connecting evey maze
    * block
    */
-  private void createRandomMaze() {
+  public void createRandomMaze() {
     Stack<MazeBlock> stack = new Stack<>();
     MazeBlock currentBlock;
     currentBlock = mazeBlocks[0][0]; // Set the currentBlock to the bottom left block
@@ -119,16 +123,15 @@ public class Maze {
 
       } else {
         currentBlock =
-            stack
-                .pop(); // If the currentBlock has neighbours that have all been visited, remove it
-                        // from the stack
+            stack.pop(); // If the currentBlock has neighbours that have all been visited, remove it
+        // from the stack.
       }
     } while (!stack
         .empty()); // Repeat this process until all maze blocks have at least one path to one
-                   // another
+    // another.
   }
   /**
-   * Removes the wall between the current and next maze block
+   * Remove the wall between the current and next maze block.
    *
    * @param currentBlock one of the maze blocks
    * @param nextBlock the other maze block
@@ -138,7 +141,7 @@ public class Maze {
       deleteWall(currentBlock.getRight()); // Delete the wall between the maze blocks
       nextBlock.createHorzLink(
           currentBlock); // Creates a 'link' between two MazeBlocks that are to the left and right
-                         // of each other
+      // of each other
     }
     if (currentBlock.getLeft() == nextBlock.getRight()) {
       deleteWall(currentBlock.getLeft());
@@ -148,7 +151,7 @@ public class Maze {
       deleteWall(currentBlock.getDown());
       nextBlock.createVertLink(
           currentBlock); // Creates a 'link' between two MazeBlocks that are to the above and below
-                         // of each other
+      // of each other
     }
     if (currentBlock.getUp() == nextBlock.getDown()) {
       deleteWall(currentBlock.getUp());
@@ -156,7 +159,11 @@ public class Maze {
     }
   }
 
-  /** @param wall that needs to be deleted from the mazeWalls list. */
+  /**
+   * Delete wall from mazeWalls.
+   *
+   * @param wall that needs to be deleted from the mazeWalls list.
+   */
   private void deleteWall(MazeItem wall) {
 
     for (int i = 0; i < mazeWalls.size(); i++) {

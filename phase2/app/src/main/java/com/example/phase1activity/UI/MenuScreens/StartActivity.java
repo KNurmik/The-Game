@@ -2,6 +2,7 @@ package com.example.phase1activity.UI.MenuScreens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,6 +30,7 @@ public class StartActivity extends AbstractActivity {
         Button settingsbtn = findViewById(R.id.settings);
         Button leaderbtn = findViewById(R.id.stat);
         Button startButton = findViewById(R.id.start);
+        Button globalbtn = findViewById(R.id.global);
 
         colourButton(startButton, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
         colourButton(leaderbtn, R.drawable.stat_red, R.drawable.stat_blue, R.drawable.stat_green);
@@ -44,6 +46,14 @@ public class StartActivity extends AbstractActivity {
         leaderbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, CurrentStatsActivity.class));
+                finish();
+            }
+        });
+
+        globalbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                app.updateGlobalStats();
+                startActivity(new Intent(StartActivity.this, GlobalStatsActivity.class));
                 finish();
             }
         });
@@ -67,6 +77,5 @@ public class StartActivity extends AbstractActivity {
                 }
             }
         });
-        app.changeMusic(app.getProfileSong());
     }
 }

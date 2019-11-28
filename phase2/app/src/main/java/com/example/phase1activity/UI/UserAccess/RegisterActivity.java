@@ -68,7 +68,6 @@ public class RegisterActivity extends AbstractActivity implements UserAccessView
           @Override
           public void onClick(View v) {
             presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
-            app.changeMusic(app.getProfileSong());
           }
         });
   }
@@ -108,5 +107,6 @@ public class RegisterActivity extends AbstractActivity implements UserAccessView
   /** End this Activity and open up the main menu. */
   public void endActivity() {
     startActivity(new Intent(RegisterActivity.this, StartActivity.class));
+    app.changeMusic(app.getProfileSong());
   }
 }

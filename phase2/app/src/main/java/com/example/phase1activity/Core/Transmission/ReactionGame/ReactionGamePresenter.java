@@ -105,13 +105,13 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
         public void onTick(long millisUntilFinished) {
           if (manager.getGameState().equals(ReactionGameManager.State.DONTREACT)) {
-            double confuseRandom = Math.random();
-            if (confuseRandom < 0.3) {
-              view.updateGameStateView(R.drawable.react_dont_trick);
-            } else if (confuseRandom < 0.6) {
-              view.updateGameStateView(R.drawable.react_dont);
+                double confuseRandom = Math.random();
+                if (confuseRandom < 0.3) {
+                    view.updateGameStateView(R.drawable.react_dont_trick);
+                } else if (confuseRandom < 0.6) {
+                    view.updateGameStateView(R.drawable.react_dont);
+                }
             }
-          }
         }
 
         public void onFinish() {

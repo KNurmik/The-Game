@@ -59,7 +59,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
-    return 10000 - ((mazeManager.mazeObject.player.moves) * 100);
+    return (int)(20000/Math.pow((1.1), mazeManager.mazeObject.player.moves) + 1000);
   }
 
   /**

@@ -44,7 +44,7 @@ public class RegisterManager extends UserAccessManager {
               .setSong(0)
               .setTotalScoreStat(0)
               .setTotalMovesStat(0)
-              .setFastestRxnStat(0)
+              .setFastestRxnStat(5)
               .getProfile());
       return Result.VALID;
     }

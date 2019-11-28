@@ -113,8 +113,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
         String statDisplayText = SCORE + score;
         view.setDisplayStat(statDisplayText);
         view.updateNextLevelButton();
-        app.updateProfileScore(manager.getScore());
-        app.updateProfileMoves(manager.getTurnsTaken());
+        view.updateProfileStats(manager.getScore(), manager.getTurnsTaken());
       } else {
         int turnsTaken = manager.getTurnsTaken();
         String statDisplayText = TURNSTAKEN + turnsTaken;

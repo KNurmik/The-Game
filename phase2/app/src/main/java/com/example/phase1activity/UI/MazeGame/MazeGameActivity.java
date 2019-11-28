@@ -74,8 +74,8 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
    * Updates the player's score and moves.
    */
   public void updateProfileStatistics() {
-    app.updateProfileMoves(presenter.mazeManager.mazeObject.player.moves);
-    app.updateProfileScore(presenter.score);
+    app.updateProfileMoves(this, presenter.mazeManager.mazeObject.player.moves);
+    app.updateProfileScore(this, presenter.score);
   }
 
   /** DrawView class that allows the drawing of the everything on the screen for the maze game */

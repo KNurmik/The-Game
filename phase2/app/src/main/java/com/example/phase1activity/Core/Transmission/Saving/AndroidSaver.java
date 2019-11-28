@@ -152,15 +152,17 @@ public class AndroidSaver implements ISaver {
 
       if (usernamesToHighScores.containsKey(username)) {
         Map<AttributeType, Double> bestStats = usernamesToHighScores.get(username);
-        if (bestStats.get(AttributeType.TOTAL_SCORE) < score) {
+        if (score > bestStats.get(AttributeType.TOTAL_SCORE)) {
           bestStats.put(AttributeType.TOTAL_SCORE, score);
         }
-        if (bestStats.get(AttributeType.FASTEST_RXN_TIME) > reaction) {
-          bestStats.put(AttributeType.FASTEST_RXN_TIME, reaction);
-        }
-        if (bestStats.get(AttributeType.TOTAL_MOVES) > moves) {
+        if (moves > bestStats.get(AttributeType.TOTAL_MOVES)) {
           bestStats.put(AttributeType.TOTAL_MOVES, moves);
         }
+        if (reaction < bestStats.get(AttributeType.FASTEST_RXN_TIME)) {
+          bestStats.put(AttributeType.FASTEST_RXN_TIME, reaction);
+        }
+
+
       } else {
         Map<AttributeType, Double> usersFirstScoreEntry = new HashMap<>();
         usersFirstScoreEntry.put(AttributeType.TOTAL_SCORE, score);

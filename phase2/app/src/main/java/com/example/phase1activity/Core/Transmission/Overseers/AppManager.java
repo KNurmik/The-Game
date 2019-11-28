@@ -93,8 +93,8 @@ public class AppManager extends Application {
    *
    * @param color the color of the profile.
    */
-  public void setProfileColour(int color) {
-    this.profile.setColour(color);
+  public void setProfileColour(Activity activity, int color) {
+    this.profile.setColour(activity, color);
   }
 
   /**
@@ -111,8 +111,8 @@ public class AppManager extends Application {
    *
    * @param n the index of the song to play.
    */
-  public void setProfileSong(int n) {
-    this.profile.setSong(n);
+  public void setProfileSong(Activity activity, int n) {
+    this.profile.setSong(activity, n);
   }
 
   /**
@@ -142,8 +142,8 @@ public class AppManager extends Application {
    *
    * @param time The new time.
    */
-  public void setProfileReactionTime(double time) {
-    profile.setFastestRxnStat(time);
+  public void setProfileReactionTime(Activity activity, double time) {
+    profile.setFastestRxnStat(activity, time);
   }
 
   /**
@@ -151,8 +151,8 @@ public class AppManager extends Application {
    *
    * @param moves The amount of moves to increment profile.totalMovesStat
    */
-  public void updateProfileMoves(int moves) {
-    profile.updateTotalMovesStat(moves);
+  public void updateProfileMoves(Activity activity, int moves) {
+    profile.incrementTotalMovesStat(activity, moves);
   }
 
   /**
@@ -160,24 +160,24 @@ public class AppManager extends Application {
    *
    * @param score The amount to increment profile.totalScoreStat
    */
-  public void updateProfileScore(int score) {
-    profile.updateTotalScoreStat(score);
+  public void updateProfileScore(Activity activity, int score) {
+    profile.incrementTotalScoreStat(activity, score);
   }
 
-  /** Resets the profile's total score statistic */
-  public void resetProfileScore() {
-    profile.resetTotalScoreStat();
-  }
-
-  /** Resets the profile's total moves statistic */
-  public void resetProfileMoves() {
-    profile.resetTotalMovesStat();
-  }
-
-  /** Resets the profile's fastest reaction time statistic */
-  public void resetProfileRxnStat() {
-    profile.resetFastestRxnStat();
-  }
+//  /** Resets the profile's total score statistic */
+//  public void resetProfileScore() {
+//    profile.resetTotalScoreStat();
+//  }
+//
+//  /** Resets the profile's total moves statistic */
+//  public void resetProfileMoves() {
+//    profile.resetTotalMovesStat();
+//  }
+//
+//  /** Resets the profile's fastest reaction time statistic */
+//  public void resetProfileRxnStat() {
+//    profile.resetFastestRxnStat();
+//  }
 
   /**
    * Getter for the profile's nickname
@@ -193,8 +193,8 @@ public class AppManager extends Application {
    *
    * @param name the nickname
    */
-  public void setProfileNickname(String name) {
-    this.profile.setNickname(name);
+  public void setProfileNickname(Activity activity, String name) {
+    this.profile.setNickname(activity, name);
   }
 
   public String getProfilePassword() {

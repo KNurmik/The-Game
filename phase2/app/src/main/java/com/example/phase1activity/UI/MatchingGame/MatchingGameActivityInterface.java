@@ -31,4 +31,6 @@ public interface MatchingGameActivityInterface {
   void flipFaceUpButtons();
 
   void setButtonImage(Button button, Map<Button, String> cardsToValues);
+
+  void updateProfileStats(int score, int moves);
 }

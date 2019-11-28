@@ -149,9 +149,9 @@ public class ReactionGameView extends AbstractActivity
    */
   @Override
   public void updateProfileStatistics(double reactionTime, int moves, int score) {
-    app.setProfileReactionTime(reactionTime);
-    app.updateProfileMoves(moves);
-    app.updateProfileScore(score);
+    app.setProfileReactionTime(this, reactionTime / 1000);
+    app.updateProfileMoves(this, moves);
+    app.updateProfileScore(this, score);
   }
 
   /** End this activity and launch MatchingGame. */

@@ -69,8 +69,11 @@ class Profile {
    *
    * @param colour a colour.
    */
-  void setColour(int colour) {
+  void setColour(Activity activity, int colour) {
+    ISaver iSaver = new AndroidSaver(activity);
     this.colour = colour;
+    iSaver.saveAttribute(
+            username, String.valueOf(colour), AndroidSaver.AttributeType.COLOUR);
   }
 
   /**
@@ -89,15 +92,6 @@ class Profile {
   }
 
   /**
-   * Sets the user's nickname to nickname.
-   *
-   * @param nickname the profile's new nickname.
-   */
-  void setNickname(String nickname) {
-    this.nickname = nickname;
-  }
-
-  /**
    * Return the current level the user is playing.
    *
    * @return an integer representation of the current level.
@@ -107,7 +101,7 @@ class Profile {
   }
 
   /**
-   * Set for the current level the user is playing.
+   * Set the current level that user is playing.
    *
    * @param activity the activity the data is saved from.
    * @param n a level.
@@ -128,11 +122,6 @@ class Profile {
     return this.nickname;
   }
 
-  /** Changes the song the app plays while open */
-  void setSong(int n) {
-    this.song = n;
-  }
-
   /**
    * Gets the song that is currently playing
    *
@@ -143,46 +132,86 @@ class Profile {
   }
 
   /**
-   * Sets the Fastest reaction time statistic
+   * Set the user's nickname to nickname.
    *
-   * @param time the fastest time a user reacts in the Reaction Game.
+   * @param nickname a nickname.
    */
-  void setFastestRxnStat(double time) {
-    this.fastestRxnStat = time;
+  void setNickname(Activity activity, String nickname) {
+    ISaver iSaver = new AndroidSaver(activity);
+    this.nickname = nickname;
+    iSaver.saveAttribute(
+            username, nickname, AndroidSaver.AttributeType.NICKNAME);
   }
 
   /**
-   * Increments total moves statistic
+   * Set this profile's background music to the song at newSongIndex.
    *
-   * @param moves totalMovesStat is incremented by moves
+   * @param activity the activity the song is saved from.
+   * @param newSongIndex the index of a song.
    */
-  void updateTotalMovesStat(int moves) {
+  void setSong(Activity activity, int newSongIndex) {
+    ISaver iSaver = new AndroidSaver(activity);
+    this.song = newSongIndex;
+    iSaver.saveAttribute(
+            username, String.valueOf(newSongIndex), AndroidSaver.AttributeType.SONG);
+  }
+
+  /**
+   * Set this profile's fastest reaction time statistic to newStat, if newStat is less than the
+   * profile's current fastest reaction time.
+   *
+   * @param activity the activity the stat is saved from.
+   * @param newStat an amount of time.
+   */
+  void setFastestRxnStat(Activity activity, double newStat) {
+    if (this.fastestRxnStat > newStat) {
+      ISaver iSaver = new AndroidSaver(activity);
+      this.fastestRxnStat = newStat;
+      iSaver.saveAttribute(
+              username, String.valueOf(fastestRxnStat), AndroidSaver.AttributeType.FASTEST_RXN_TIME);
+    }
+  }
+
+  /**
+   * Increment this profile's total moves statistic by newStat.
+   *
+   * @param activity the activity the stat is saved from.
+   * @param moves a number of moves.
+   */
+  void incrementTotalMovesStat(Activity activity, int moves) {
+    ISaver iSaver = new AndroidSaver(activity);
     this.totalMovesStat += moves;
+    iSaver.saveAttribute(
+            username, String.valueOf(totalMovesStat), AndroidSaver.AttributeType.TOTAL_MOVES);
   }
 
   /**
-   * Increments total score statistic
+   * Increment this profile's total score statistic by newStat.
    *
-   * @param score totalScoreStat is incremented by score
+   * @param activity the activity the stat is saved from.
+   * @param score a score.
    */
-  void updateTotalScoreStat(int score) {
+  void incrementTotalScoreStat(Activity activity, int score) {
+    ISaver iSaver = new AndroidSaver(activity);
     this.totalScoreStat += score;
+    iSaver.saveAttribute(
+            username, String.valueOf(totalScoreStat), AndroidSaver.AttributeType.TOTAL_SCORE);
   }
 
-  /** Reset totalScoreStat to 0. */
-  void resetTotalScoreStat() {
-    totalScoreStat = 0;
-  }
-
-  /** Reset totalMovesStat to 0. */
-  void resetTotalMovesStat() {
-    totalMovesStat = 0;
-  }
-
-  /** Reset fastestRxnStat to 5. */
-  void resetFastestRxnStat() {
-    fastestRxnStat = 5;
-  }
+//  /** Reset totalScoreStat to 0. */
+//  void resetTotalScoreStat() {
+//    totalScoreStat = 0;
+//  }
+//
+//  /** Reset totalMovesStat to 0. */
+//  void resetTotalMovesStat() {
+//    totalMovesStat = 0;
+//  }
+//
+//  /** Reset fastestRxnStat to 5. */
+//  void resetFastestRxnStat() {
+//    fastestRxnStat = 5;
+//  }
 
   /** @return fastestRxnStat. */
   double getFastestRxnStat() {

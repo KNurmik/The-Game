@@ -1,5 +1,6 @@
 package com.example.phase1activity.UI.MenuScreens;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -71,58 +72,51 @@ public class CustomizationActivity extends AbstractActivity {
             }
         });
 
-        final ISaver iSaver = new AndroidSaver(this.getApplicationContext());
+        final Activity thisActivity = this;
 
         red.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setProfileColour(Color.RED);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
+                profile.setProfileColour(thisActivity, Color.RED);
             }
         });
 
         blue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setProfileColour(Color.BLUE);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
+                profile.setProfileColour(thisActivity, Color.BLUE);
             }
         });
 
         green.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setProfileColour(Color.GREEN);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileColour()), AndroidSaver.AttributeType.COLOUR);
+                profile.setProfileColour(thisActivity, Color.GREEN);
             }
         });
 
         song1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Sets the song to song0
-                profile.setProfileSong(0);
+                profile.setProfileSong(thisActivity, 0);
                 app.changeMusic(0);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), AndroidSaver.AttributeType.SONG);
             }
         });
 
         song2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Sets the song to song1
-                profile.setProfileSong(1);
+                profile.setProfileSong(thisActivity, 1);
                 app.changeMusic(1);
-                iSaver.saveAttribute(profile.getProfileUsername(), String.valueOf(profile.getProfileSong()), AndroidSaver.AttributeType.SONG);
             }
         });
 
         set.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                profile.setProfileNickname(name.getText().toString());
-                iSaver.saveAttribute(profile.getProfileUsername(), profile.getProfileNickname(), AndroidSaver.AttributeType.NICKNAME);
-
+                profile.setProfileNickname(thisActivity, name.getText().toString());
             }
         });
     }
 
-    void saveProfileData(AppManager profile) {
-        ISaver iSaver = new AndroidSaver(this.getApplicationContext());
-        iSaver.saveData(profile.getProfileUsername() + "," + profile.getProfilePassword() + "," + profile.getProfileNickname() + "," + profile.getProfileColour() + "," + profile.getProfileSong() + "," + profile.getProfileGameLevel() + "," + profile.getProfileTotalScoreStat() + "," + profile.getProfileFastestRxnStat() + "," + profile.getProfileTotalMovesStat());
-    }
+//    void saveProfileData(AppManager profile) {
+//        ISaver iSaver = new AndroidSaver(this.getApplicationContext());
+//        iSaver.saveData(profile.getProfileUsername() + "," + profile.getProfilePassword() + "," + profile.getProfileNickname() + "," + profile.getProfileColour() + "," + profile.getProfileSong() + "," + profile.getProfileGameLevel() + "," + profile.getProfileTotalScoreStat() + "," + profile.getProfileFastestRxnStat() + "," + profile.getProfileTotalMovesStat());
+//    }
 }

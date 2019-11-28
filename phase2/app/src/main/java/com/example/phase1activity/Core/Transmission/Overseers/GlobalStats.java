@@ -43,7 +43,7 @@ public class GlobalStats {
   public void updateGlobalStats() {
     this.totalName = String.join("", getBestTotal().keySet());
     this.reactionName = String.join("", getBestReaction().keySet());
-    this.movesName = String.join("", getBestReaction().keySet());
+    this.movesName = String.join("", getBestMoves().keySet());
 
     this.highestScore = getBestTotal().get(totalName);
     this.fastestReaction = getBestReaction().get(reactionName);
@@ -56,7 +56,7 @@ public class GlobalStats {
     Map<String, Double> temp = new HashMap<>();
     for (String username : iSaver.getHighScores().keySet()) {
       test = iSaver.getHighScores().get(username);
-      Double score = test.get(AndroidSaver.AttributeType.TOTAL_SCORE);
+      double score = test.get(AndroidSaver.AttributeType.TOTAL_SCORE);
       if (score > total) {
         total = score;
         name = username;
@@ -67,14 +67,15 @@ public class GlobalStats {
   }
 
   Map<String, Double> getBestMoves() {
-    Double total = 0.0;
+    double total = 0;
     String name = "None";
     Map<String, Double> temp = new HashMap<>();
-
+    Map<String, Map<AndroidSaver.AttributeType, String>> test1 = iSaver.getExistingUserData();
     for (String username : iSaver.getHighScores().keySet()) {
-      Double score =
-          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
-      if (score < total) {
+      test = iSaver.getHighScores().get(username);
+      double score =
+              test.get(AndroidSaver.AttributeType.TOTAL_MOVES);
+      if (score > total) {
         total = score;
         name = username;
       }
@@ -84,8 +85,8 @@ public class GlobalStats {
   }
 
   Map<String, Double> getBestReaction() {
-    Double total = 0.0;
-    String name = "None";
+    Double total = 1.0;
+    String name = "Admin";
     Map<String, Double> temp = new HashMap<>();
 
     for (String username : iSaver.getHighScores().keySet()) {

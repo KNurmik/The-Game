@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_beige"
     tools:context=".UI.MatchingGame.ChooseLevelActivity">
 
     <Button
         android:id="@+id/level6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 6"
+        android:background="@drawable/match_easy"
         app:layout_constraintBottom_toTopOf="@+id/level8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,32 +22,32 @@
         android:id="@+id/level8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="8 Cards"
+        android:background="@drawable/match_medium"
         app:layout_constraintBottom_toTopOf="@+id/level10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level6" />
 
     <Button
         android:id="@+id/level10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
-        android:text="10 Cards"
+        android:background="@drawable/match_hard"
         app:layout_constraintBottom_toTopOf="@+id/level12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level8" />
 
     <Button
         android:id="@+id/level12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
-        android:text="12 Cards"
+        android:background="@drawable/match_extreme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

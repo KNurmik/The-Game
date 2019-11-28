@@ -197,8 +197,8 @@
 
     <ImageView
         android:id="@+id/noMatch"
-        android:layout_width="124dp"
-        android:layout_height="65dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

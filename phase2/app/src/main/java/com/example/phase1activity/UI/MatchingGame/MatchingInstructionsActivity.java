@@ -16,10 +16,8 @@ public class MatchingInstructionsActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matching_instructions);
 
-        ImageView instructions = findViewById(R.id.matchInstructions);
         Button btn = findViewById(R.id.startMatching);
         colourButton(btn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
-        colourButton(instructions, R.drawable.match_instructions_red, R.drawable.match_instructions_blue, R.drawable.match_instructions_green);
         btn.setOnClickListener(
                 new View.OnClickListener() {
                     /** Allow user to continue to the game using the button. */

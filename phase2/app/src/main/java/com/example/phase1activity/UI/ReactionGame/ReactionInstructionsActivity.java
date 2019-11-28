@@ -22,14 +22,9 @@ public class ReactionInstructionsActivity extends AbstractActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_reaction_instructions);
 
-    ImageView instructions = findViewById(R.id.reactInstructions);
     Button btn = findViewById(R.id.startGame);
     colourButton(btn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
-    colourButton(
-        instructions,
-        R.drawable.react_instructions_red,
-        R.drawable.react_instructions_blue,
-        R.drawable.react_instructions_green);
+
     btn.setOnClickListener(
         new View.OnClickListener() {
           /** Allow user to continue to the game using the button. */

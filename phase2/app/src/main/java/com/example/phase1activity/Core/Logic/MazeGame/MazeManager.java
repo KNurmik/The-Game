@@ -1,6 +1,7 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
 import android.graphics.Canvas;
+import javax.inject.Inject;
 
 public class MazeManager {
 
@@ -8,6 +9,7 @@ public class MazeManager {
   public Maze mazeObject;
 
   /** Constructs the MazeManager */
+  @Inject
   public MazeManager(Maze maze) {
     this.mazeObject = maze;
     mazeObject.createPlayer();

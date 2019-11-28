@@ -48,7 +48,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     presenter.mazeManager.mazeObject.player.setPaintText(app.getProfileColour());
   }
 
-  public DrawView getView(){
+  public DrawView getView() {
     return drawView;
   }
   /**
@@ -57,23 +57,22 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
    * @return Whether the player is currently standing on the winning block or not.
    */
   public boolean checkWin() {
-    return presenter.mazeManager.mazeObject.player.currentBlock == presenter.mazeManager.mazeObject.winningBlock;
+    return presenter.mazeManager.mazeObject.player.currentBlock
+        == presenter.mazeManager.mazeObject.winningBlock;
   }
 
-  public void finishMaze(){
+  /**
+   * The maze is finished then move onto the next screen.
+   */
+  public void finishMaze() {
     Intent intent = new Intent(MazeGameActivity.this, MazeFinishActivity.class);
     intent.putExtra(EXTRA_MESSAGE, presenter.score);
     startActivity(intent);
   }
-//  /**
-//   * Calculates the score of the player and returns it
-//   *
-//   * @return The updated score of the player after they move
-//   */
-//  public int calculateScore() {
-//    return 5000 - (newMazeManager.mazeObject.player.moves) * 100;
-//  }
 
+  /**
+   * Updates the player's score and moves.
+   */
   public void updateProfileStatistics() {
     app.updateProfileMoves(presenter.mazeManager.mazeObject.player.moves);
     app.updateProfileScore(presenter.score);
@@ -81,7 +80,6 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
 
   /** DrawView class that allows the drawing of the everything on the screen for the maze game */
   public class DrawView extends View {
-
 
     Paint paint = new Paint();
 
@@ -111,61 +109,10 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
         canvas.drawText("Can you escape the maze?", 75, 1400, paint);
       }
     }
+
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
       return presenter.onTouchEvent(event);
     }
   }
-
-//  /**
-//   * Moves according to where the user touches the screen
-//   *
-//   * @param event the event that the user touches the screen
-//   * @return true always
-//   */
-//  @Override
-//  public boolean onTouchEvent(MotionEvent event) {
-//    float x = event.getX();
-//    float y = event.getY();
-//
-//    float playerX = newMazeManager.mazeObject.player.coordinateX();
-//    float playerY = newMazeManager.mazeObject.player.coordinateY();
-//    float diffX = x - playerX;
-//    float diffY = y - playerY;
-//
-//    float absDiffX = Math.abs(x - playerX);
-//    float absDifY = Math.abs(y - playerY);
-//    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//      score = calculateScore();
-//      return true;
-//    }
-//    if (event.getAction() == MotionEvent.ACTION_MOVE && !checkWin()) {
-//
-//      if (absDiffX > absDifY) { // if the user moves more in the x direction than y direction
-//        if (diffX > 50) { // if the user drags the character to the right
-//          newMazeManager.mazeObject.player.move(Character.Direction.RIGHT);
-//        } else if (diffX < -50) { // if the user drags the character to the left
-//          newMazeManager.mazeObject.player.move(Character.Direction.LEFT);
-//        }
-//      } else { // if the user moves more in the y direction than x direction
-//        if (diffY > 50) { // if the user drags the character upwards
-//          newMazeManager.mazeObject.player.move(Character.Direction.DOWN);
-//        } else if (diffY < -50) { // if the user drags the character downwards
-//          newMazeManager.mazeObject.player.move(Character.Direction.UP);
-//        }
-//      }
-//      if (checkWin()) { // checks if the player is on the winning block after the user moves the
-//        // character
-//        Intent intent = new Intent(MazeGameActivity.this, MazeFinishActivity.class);
-//        intent.putExtra(EXTRA_MESSAGE, score);
-//        startActivity(intent);
-//      }
-//      score = calculateScore(); // calculates the new score after the user moves the character
-//      drawView.invalidate(); // updates the location of the character on the phone screen and the
-//      // user's score
-//      return true;
-//    }
-//
-//    return super.onTouchEvent(event);
-//  }
-}
+  }

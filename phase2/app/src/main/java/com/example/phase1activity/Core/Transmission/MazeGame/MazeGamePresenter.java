@@ -12,14 +12,20 @@ import javax.inject.Inject;
 
 public class MazeGamePresenter implements MazeGamePresenterInterface {
 
+  /** The MazeManager for this presenter */
   public MazeManager mazeManager;
+  /** The MazeGameViewInterface for this presenter */
   public MazeGameViewInterface view;
   /** The score of the user */
   public int score;
-
+  /** The MazeGameActivity.DrawView for this presenter */
   private MazeGameActivity.DrawView drawView;
-  public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
+  /**
+   * Constructor for the presenter.
+   *
+   * @param view The MazeGameViewInterface.
+   */
   @Inject
   public MazeGamePresenter(MazeGameViewInterface view) {
     Maze maze = new Maze(8, 11);
@@ -29,6 +35,11 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     drawView = view.getView();
   }
 
+  /**
+   * Sets the mazeManager to manager
+   *
+   * @param manager The new MazeManager
+   */
   public void setManager(MazeManager manager) {
     this.mazeManager = manager;
   }
@@ -48,9 +59,16 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
-    return 8000 - ((mazeManager.mazeObject.player.moves) * 100);
+    return 10000 - ((mazeManager.mazeObject.player.moves) * 100);
   }
 
+  /**
+   * Every time the player touches the screen, record the movement and if it moves the player to a
+   * new MazeBlock move it and redraw the maze to show so.
+   *
+   * @param event the event of the player moving the maze character
+   * @return True always
+   */
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     float x = event.getX();
@@ -83,10 +101,10 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
         }
       }
       if (checkWin()) { // checks if the player is on the winning block
-          view.finishMaze();
+        view.finishMaze();
       }
       score = calculateScore(); // calculates the new score after the user moves the character
-        drawView.invalidate(); // updates the location of the character on the phone screen and the
+      drawView.invalidate(); // updates the location of the character on the phone screen and the
       // user's score
       return true;
     }

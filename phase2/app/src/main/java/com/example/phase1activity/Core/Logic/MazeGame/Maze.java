@@ -19,6 +19,8 @@ public class Maze {
   private int mazeWidth;
   /** A 2D array storing all the MazeBlocks in the maze. */
   private MazeBlock[][] mazeBlocks;
+  /** A list containing all the outer walls of the maze */
+  List<Wall> outerWalls;
 
   /**
    * A constructor for the Maze. Create the entire maze with all Walls and MazeBlocks.
@@ -31,6 +33,7 @@ public class Maze {
     mazeWidth = width;
 
     mazeWalls = new ArrayList<>();
+    outerWalls = new ArrayList<>();
     mazeBlocks = new MazeBlock[mazeWidth][mazeHeight];
 
     createMaze();
@@ -54,6 +57,7 @@ public class Maze {
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         } else { // The left walls for the mazeBlock
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
@@ -67,6 +71,7 @@ public class Maze {
           Wall newWall = new Wall(i + 1, j, false);
           mazeBlocks[i][j].setRight(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         }
 
         // Add the top-most walls.
@@ -75,6 +80,7 @@ public class Maze {
             Wall newWall = new Wall(i, j, true);
             mazeBlocks[i][j].setUp(newWall);
             mazeWalls.add(newWall);
+            outerWalls.add(newWall);
           }
         } else {
           Wall newWall = new Wall(i, j, true);
@@ -89,11 +95,10 @@ public class Maze {
           Wall newWall = new Wall(i, j + 1, true);
           mazeBlocks[i][j].setDown(newWall);
           mazeWalls.add(newWall);
+          outerWalls.add(newWall);
         }
       }
     }
-
-    createRandomMaze();
     // The winning block is always in the top right corner of the maze.
     winningBlock = mazeBlocks[mazeWidth - 1][0];
   }
@@ -102,7 +107,7 @@ public class Maze {
    * Randomly remove walls between maze blocks until there is at least one path connecting evey maze
    * block
    */
-  private void createRandomMaze() {
+  public void createRandomMaze() {
     Stack<MazeBlock> stack = new Stack<>();
     MazeBlock currentBlock;
     currentBlock = mazeBlocks[0][0]; // Set the currentBlock to the bottom left block

@@ -17,17 +17,20 @@ public class MatchingGameModule {
   /** Activity that is injected with the presenter. */
   private MatchingGameActivityInterface view;
 
+  /** A list of the cards in the game. */
   private List<Button> buttonList;
 
+  /** The number of cards in the game. */
   private int numCards;
 
   /**
-   * Assign view and buttonList.
+   * Initialize this MatchingGameModule.
    *
    * @param view the Activity to be injected.
    * @param buttonList a list of buttons within view.
    */
-  public MatchingGameModule(MatchingGameActivityInterface view, List<Button> buttonList, int numCards) {
+  public MatchingGameModule(
+      MatchingGameActivityInterface view, List<Button> buttonList, int numCards) {
     this.view = view;
     this.buttonList = buttonList;
     this.numCards = numCards;

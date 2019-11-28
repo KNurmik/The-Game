@@ -5,20 +5,20 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-/** A character class for the user's character. */
+/** A character class. */
 public class Character {
 
-  /** The current maze block that the character is in. */
+  /** The maze block that the character is in. */
   public MazeBlock currentBlock;
   /** The number of moves this character has taken in the maze. */
   public int moves;
-  /** Pain attribute for the character */
+  /** Paint attribute for the character */
   private Paint paintText = new Paint();
 
   /**
    * Initialize a MazeBlock, and set its initial appearance.
    *
-   * @param block the current MazeBlock instance that the character is on.
+   * @param block the MazeBlock instance that the character is on.
    */
   Character(MazeBlock block) {
     currentBlock = block;
@@ -29,7 +29,7 @@ public class Character {
   }
 
   /**
-   * Changes the block that the character is located in.
+   * Change the block that the character is located in.
    *
    * @param currentBlock the MazeBlock that the character will go to.
    */
@@ -42,9 +42,9 @@ public class Character {
   }
 
   /**
-   * Method that moves the character in <direction> if and only if there is no wall blocking it.
+   * Move the character in <direction> if and only if there is no wall blocking it.
    *
-   * @param direction the direction that the user wishes the character to move in
+   * @param direction the direction that the user wishes the character to move in.
    */
   public void move(Direction direction) {
     switch (direction) {

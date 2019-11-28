@@ -5,17 +5,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+/** A maze wall. */
 class Wall extends MazeItem {
 
-  /** Whether this wall is horizontal or vertical */
+  /** Whether this wall is horizontal or vertical. */
   private final boolean horizontal;
-  /** Represents what the Wall looks like on the screen */
+  /** A string representing this wall's appearance. */
   private String appearance;
 
   private Paint paintText = new Paint();
 
   /**
-   * The constructor for a wall
+   * Construct a Wall object at (a, b).
    *
    * @param a The initial x value of the MazeItem
    * @param b The initial y value of the MazeItem
@@ -37,18 +38,18 @@ class Wall extends MazeItem {
   }
 
   /**
-   * Checks whether or not this wall goes from left to right (true) or from up to down (false)
+   * Return true if this wall is horizontal, and false otherwise.
    *
-   * @return true iff the wall goes from left to right
+   * @return true iff the wall goes from left to right.
    */
   boolean isHorz() {
     return horizontal;
   }
 
   /**
-   * Draws the Wall on the phone screen
+   * Draw the Wall on the phone screen.
    *
-   * @param canvas The canvas that the Wall instance will be drawn on
+   * @param canvas the canvas to draw the Wall onto.
    */
   void draw(Canvas canvas) {
     if (isHorz()) {

@@ -1,18 +1,19 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
+/** A MazeItem in a Maze. */
 public class MazeItem {
 
-  /** The MazeItem's x coordinate */
+  /** The MazeItem's x coordinate. */
   private int x;
 
-  /** The MazeItem's y coordinate */
+  /** The MazeItem's y coordinate. */
   private int y;
 
   /**
-   * The MazeItem constructor
+   * Construct a MazeItem.
    *
-   * @param a The initial x value of the MazeItem
-   * @param b The initial y value of the MazeItem
+   * @param a The initial x value of the MazeItem.
+   * @param b The initial y value of the MazeItem.
    */
   MazeItem(int a, int b) {
     x = a;

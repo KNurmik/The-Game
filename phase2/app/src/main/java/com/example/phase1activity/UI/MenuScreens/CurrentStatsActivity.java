@@ -1,6 +1,9 @@
 package com.example.phase1activity.UI.MenuScreens;
 
+        import android.content.Intent;
         import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
         import android.widget.TextView;
 
         import com.example.phase1activity.R;
@@ -33,6 +36,14 @@ public class CurrentStatsActivity extends AbstractActivity {
         String temp3 = "Fastest reaction: " + app.getProfileFastestRxnStat() + " seconds";
         reaction.setText(temp3);
 
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(CurrentStatsActivity.this, StartActivity.class));
+                    }
+                });
 
     }
 }

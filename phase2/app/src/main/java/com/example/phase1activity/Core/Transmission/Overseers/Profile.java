@@ -7,7 +7,7 @@ import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
 class Profile {
-  /** Thhe user's username. */
+  /** The user's username. */
   private String username;
 
   /** The user's password. */

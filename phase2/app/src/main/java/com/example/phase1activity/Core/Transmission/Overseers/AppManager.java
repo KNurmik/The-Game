@@ -5,16 +5,11 @@ import android.app.Application;
 import android.media.MediaPlayer;
 
 import com.example.phase1activity.R;
-<<<<<<< HEAD
 
 import java.util.Map;
 
-/** The App Manager */
-=======
-// TODO: write method descriptions.
 /** The App Manager. */
->>>>>>> 5213b0b5e1887f0226ca9adb06e6319a64dfc087
-public class AppManager extends Application {
+ public class AppManager extends Application {
   private GlobalStats globalStats;
 
   private MediaPlayer player;

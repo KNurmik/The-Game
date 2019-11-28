@@ -18,6 +18,8 @@ public class MazeBlock extends MazeItem {
   private MazeItem left;
   /** An array list of surrounding maze blocks. */
   private ArrayList<MazeBlock> neighbours;
+  /** An array list of surrounding maze blocks in neighbours. */
+  private ArrayList<MazeBlock> neighboursNeighbours;
   /** A list of surrounding walls of surrounding maze blocks. */
   private List<MazeItem> neighboursWalls;
 
@@ -35,6 +37,7 @@ public class MazeBlock extends MazeItem {
     left = null;
     visited = false;
     neighbours = new ArrayList<>();
+    neighboursNeighbours = new ArrayList<>();
     neighboursWalls = new ArrayList<>();
   }
 
@@ -68,10 +71,16 @@ public class MazeBlock extends MazeItem {
     }
   }
 
+  List<MazeBlock> getNeighboursNeighbour() {
+    for (MazeBlock neighbour : neighbours) {
+      neighboursNeighbours.add(neighbour);
+    }
+    return neighboursNeighbours;
+  }
   /**
    * Getter for MazeBlock.neighbourWalls
    *
-   * @return The neightbourWalls list
+   * @return The neighbourWalls list
    */
   List<MazeItem> getNeighbourWalls() {
     return neighboursWalls;

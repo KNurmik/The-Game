@@ -43,7 +43,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     setContentView(drawView);
     playerNickname = app.getProfileNickname();
     playerColor = app.getProfileColour();
-    presenter = new MazeGamePresenter(this);
+    presenter = new MazeGamePresenter(this, app.getMazeGameDifficulty());
     presenter.setPaintText(app.getProfileColour());
   }
 

@@ -11,12 +11,13 @@ public class MazeManager {
   /** The maze that will be displayed on the phone */
   public Maze mazeObject;
 
+  private boolean difficulty;
   /** Constructs the MazeManager */
   @Inject
-  public MazeManager(Maze maze) {
+  public MazeManager(Maze maze, boolean difficulty) {
 
     this.mazeObject = maze;
-
+    this.difficulty = difficulty;
     // Randomly deletes maze walls such that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
@@ -52,14 +53,24 @@ public class MazeManager {
       wall.draw(canvas);
     }
     for (Wall wall : mazeObject.mazeWalls) {
-      for (MazeBlock currentNeighbour : mazeObject.player.currentBlock.getNeighboursNeighbour()) {
-        for (MazeItem neighbourWall : currentNeighbour.getNeighbourWalls()) {
-          if (wall == neighbourWall) { // If the wall is a wall of the currentNeighbour or
-            // currentNeighbour2 (which is a neighbour of currentNeighbour)
-            wall.draw(canvas);
+      if (!difficulty) {
+        for (MazeBlock currentNeighbour : mazeObject.player.currentBlock.getNeighboursNeighbour()) {
+          for (MazeItem neighbourWall : currentNeighbour.getNeighbourWalls()) {
+            if (wall == neighbourWall) { // If the wall is a wall of the currentNeighbour or
+              // currentNeighbour2 (which is a neighbour of currentNeighbour)
+              wall.draw(canvas);
+            }
           }
         }
+
+
+        }else{
+        for (Wall wall2: mazeObject.mazeWalls){
+          wall2.draw(canvas);
+        }
+
       }
+
     }
   }
 

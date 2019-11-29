@@ -20,13 +20,24 @@
         app:layout_constraintVertical_bias="0.046" />
 
     <Button
-        android:id="@+id/startBtn"
+        android:id="@+id/extremeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="205dp"
-        android:layout_marginBottom="474dp"
-        android:onClick="startMazeGame"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/match_extreme"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/easyBtn" />
+
+    <Button
+        android:id="@+id/easyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/match_easy"
+        app:layout_constraintBottom_toTopOf="@+id/extremeBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

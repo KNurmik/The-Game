@@ -17,9 +17,6 @@ public class CurrentStatsActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
-        TextView top = findViewById(R.id.yourstats);
-        String temp = app.getProfileNickname() + "'s Statistics";
-        top.setText(temp);
 
         //Displays Total Score
         TextView total = findViewById(R.id.total);

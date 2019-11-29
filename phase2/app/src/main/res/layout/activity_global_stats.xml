@@ -4,15 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_beige"
     tools:context=".UI.MenuScreens.GlobalStatsActivity">
+
+    <TextView
+        android:id="@+id/fourthPlaceStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/fifthPlaceStat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fourthPlace"
+        app:layout_constraintTop_toBottomOf="@+id/thirdPlaceStat" />
+
+    <TextView
+        android:id="@+id/firstPlaceStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/secondPlaceStat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/firstPlace"
+        app:layout_constraintTop_toBottomOf="@+id/sortByReaction" />
+
+    <TextView
+        android:id="@+id/secondPlaceStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/thirdPlaceStat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/secondPlace"
+        app:layout_constraintTop_toBottomOf="@+id/firstPlaceStat" />
+
+    <TextView
+        android:id="@+id/thirdPlaceStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/fourthPlaceStat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/thirdPlace"
+        app:layout_constraintTop_toBottomOf="@+id/secondPlaceStat" />
 
     <TextView
         android:id="@+id/firstPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/secondPlace"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/firstPlaceStat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iconFirst"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sortByMoves" />
 
@@ -20,9 +73,13 @@
         android:id="@+id/secondPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="secondPlace"
+        android:layout_marginStart="64dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/thirdPlace"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/secondPlaceStat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iconSecond"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstPlace" />
 
@@ -30,9 +87,13 @@
         android:id="@+id/thirdPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/fourthPlace"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/thirdPlaceStat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iconThird"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondPlace" />
 
@@ -40,9 +101,13 @@
         android:id="@+id/fourthPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/fifthPlace"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fourthPlaceStat"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toEndOf="@+id/iconFourth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thirdPlace" />
 
@@ -50,18 +115,33 @@
         android:id="@+id/fifthPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fifthPlaceStat"
+        app:layout_constraintStart_toEndOf="@+id/iconFifth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fourthPlace" />
 
-    <Button
-        android:id="@+id/sortByScore"
+    <TextView
+        android:id="@+id/fifthPlaceStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fifthPlace"
+        app:layout_constraintTop_toBottomOf="@+id/fourthPlaceStat" />
+
+    <Button
+        android:id="@+id/sortByScore"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:background="@drawable/leader_score"
         app:layout_constraintEnd_toStartOf="@+id/sortByMoves"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,10 +149,10 @@
 
     <Button
         android:id="@+id/sortByMoves"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:background="@drawable/leader_moves"
         app:layout_constraintEnd_toStartOf="@+id/sortByReaction"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sortByScore"
@@ -80,12 +160,66 @@
 
     <Button
         android:id="@+id/sortByReaction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:background="@drawable/leader_reaction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sortByMoves"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconFirst"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconSecond"
+        app:layout_constraintStart_toEndOf="@+id/iconSecond"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortByScore"
+        app:srcCompat="@drawable/leader_first" />
+
+    <ImageView
+        android:id="@+id/iconSecond"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconThird"
+        app:layout_constraintStart_toEndOf="@+id/iconThird"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconFirst"
+        app:srcCompat="@drawable/leader_second" />
+
+    <ImageView
+        android:id="@+id/iconThird"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconFourth"
+        app:layout_constraintStart_toEndOf="@+id/iconFifth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconSecond"
+        app:srcCompat="@drawable/leader_third" />
+
+    <ImageView
+        android:id="@+id/iconFourth"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconFifth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconThird"
+        app:srcCompat="@drawable/leader_fourth" />
+
+    <ImageView
+        android:id="@+id/iconFifth"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconFourth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconFourth"
+        app:srcCompat="@drawable/leader_fifth" />
 </androidx.constraintlayout.widget.ConstraintLayout>

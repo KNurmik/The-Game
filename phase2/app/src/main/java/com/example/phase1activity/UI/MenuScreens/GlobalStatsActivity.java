@@ -33,7 +33,20 @@ public class GlobalStatsActivity extends AbstractActivity {
   /** The textview that displays the user that has the fifth best high score. */
   TextView fifthPlace;
   /** A list of textviews that display the user scores. */
-  List<TextView> textViews;
+  List<TextView> userTextViews;
+
+  /** The textview that displays the best high score. */
+  TextView firstPlaceScore;
+  /** The textview that displays the second best high score. */
+  TextView secondPlaceScore;
+  /** The textview that displays the third best high score. */
+  TextView thirdPlaceScore;
+  /** The textview that displays the fourth best high score. */
+  TextView fourthPlaceScore;
+  /** The textview that displays the fifth best high score. */
+  TextView fifthPlaceScore;
+  /** A list of textviews that display the user scores. */
+  List<TextView> scoreTextViews;
 
   /**
    * Create references to all GlobalStatsActivity view objects. Set the text of each TextView to
@@ -53,18 +66,30 @@ public class GlobalStatsActivity extends AbstractActivity {
     fourthPlace = findViewById(R.id.fourthPlace);
     fifthPlace = findViewById(R.id.fifthPlace);
 
-    textViews = new ArrayList<>();
-    textViews.add(firstPlace);
-    textViews.add(secondPlace);
-    textViews.add(thirdPlace);
-    textViews.add(fourthPlace);
-    textViews.add(fifthPlace);
+    firstPlaceScore = findViewById(R.id.firstPlaceStat);
+    secondPlaceScore = findViewById(R.id.secondPlaceStat);
+    thirdPlaceScore = findViewById(R.id.thirdPlaceStat);
+    fourthPlaceScore = findViewById(R.id.fourthPlaceStat);
+    fifthPlaceScore = findViewById(R.id.fifthPlaceStat);
 
-    firstPlace.setText("-");
-    secondPlace.setText("-");
-    thirdPlace.setText("-");
-    fourthPlace.setText("-");
-    fifthPlace.setText("-");
+    userTextViews = new ArrayList<>();
+    userTextViews.add(firstPlace);
+    userTextViews.add(secondPlace);
+    userTextViews.add(thirdPlace);
+    userTextViews.add(fourthPlace);
+    userTextViews.add(fifthPlace);
+
+    scoreTextViews = new ArrayList<>();
+    scoreTextViews.add(firstPlaceScore);
+    scoreTextViews.add(secondPlaceScore);
+    scoreTextViews.add(thirdPlaceScore);
+    scoreTextViews.add(fourthPlaceScore);
+    scoreTextViews.add(fifthPlaceScore);
+
+    for (int i = 0; i < userTextViews.size(); i++){
+        userTextViews.get(i).setText("-");
+        scoreTextViews.get(i).setText("-");
+    }
 
     Button sortByScore = findViewById(R.id.sortByScore);
     Button sortByMoves = findViewById(R.id.sortByMoves);
@@ -128,11 +153,13 @@ public class GlobalStatsActivity extends AbstractActivity {
 
   /** Set the text of all TextView objects to the stats of their respective users in sortedUsers. */
   void setTextFields() {
-    for (int i = 0; i < textViews.size(); i++) {
+    for (int i = 0; i < userTextViews.size(); i++) {
       if (i < sortedUsers.size()) {
-        textViews.get(i).setText(sortedUsers.get(i).toString());
+        userTextViews.get(i).setText(sortedUsers.get(i).get(0).toString());
+        scoreTextViews.get(i).setText(sortedUsers.get(i).get(1).toString());
       } else {
-        textViews.get(i).setText("-");
+        userTextViews.get(i).setText("-");
+        scoreTextViews.get(i).setText("-");
       }
     }
   }

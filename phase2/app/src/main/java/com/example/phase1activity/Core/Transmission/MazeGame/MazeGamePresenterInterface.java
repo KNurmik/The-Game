@@ -1,6 +1,7 @@
 package com.example.phase1activity.Core.Transmission.MazeGame;
 
 import android.view.MotionEvent;
+import android.graphics.Canvas;
 
 /**
  * Interface for MazeGamePresenter.
@@ -15,4 +16,10 @@ public interface MazeGamePresenterInterface {
      * @param event the event of the player moving the maze character
      */
     boolean onTouchEvent(MotionEvent event);
+
+    void setPaintText(int profileColour);
+    int getScore();
+    boolean checkWin();
+    void drawTheView(Canvas canvas);
+    int getPlayerMoves();
 }

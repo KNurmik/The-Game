@@ -52,10 +52,6 @@ public class MazeBlock extends MazeItem {
     this.visited = visited;
   }
 
-  public boolean isTeleportBlock() {
-    return teleportBlock;
-  }
-
   public void setTeleportBlock(boolean teleportBlock) {
     this.teleportBlock = teleportBlock;
   }

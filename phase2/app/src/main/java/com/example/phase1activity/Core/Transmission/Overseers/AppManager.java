@@ -18,6 +18,8 @@ public class AppManager extends Application {
   /** The level of difficulty the matching game is to played on. */
   private int matchingGameLevel;
 
+  private boolean easyMazeGame;
+
   @Override
   public void onCreate() {
 
@@ -60,6 +62,10 @@ public class AppManager extends Application {
   public Map<String, Double> getBestMoves() {
     return this.globalStats.getUserMostMoves();
   }
+
+  public boolean getMazeGameDifficulty(){return easyMazeGame;}
+
+  public void setMazeGameDifficulty(boolean difficulty){easyMazeGame = difficulty;}
 
   /**
    * Getter for the profile that the application is using.

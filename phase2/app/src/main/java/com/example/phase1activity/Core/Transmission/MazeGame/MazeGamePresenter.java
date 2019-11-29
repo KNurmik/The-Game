@@ -28,9 +28,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    * @param view The MazeGameViewInterface.
    */
   @Inject
-  public MazeGamePresenter(MazeGameViewInterface view) {
+  public MazeGamePresenter(MazeGameViewInterface view, boolean difficulty) {
     Maze maze = new Maze(8, 11);
-    mazeManager = new MazeManager(maze);
+    mazeManager = new MazeManager(maze, difficulty);
     this.view = view;
     score = 0;
     drawView = view.getView();

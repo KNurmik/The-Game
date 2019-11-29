@@ -140,7 +140,7 @@
         android:id="@+id/sortByScore"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/leader_score"
         app:layout_constraintEnd_toStartOf="@+id/sortByMoves"
         app:layout_constraintHorizontal_bias="0.5"
@@ -151,7 +151,7 @@
         android:id="@+id/sortByMoves"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/leader_moves"
         app:layout_constraintEnd_toStartOf="@+id/sortByReaction"
         app:layout_constraintHorizontal_bias="0.5"
@@ -162,7 +162,7 @@
         android:id="@+id/sortByReaction"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/leader_reaction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -222,4 +222,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconFourth"
         app:srcCompat="@drawable/leader_fifth" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/leader_main"
+        app:layout_constraintBottom_toTopOf="@+id/sortByScore"
+        app:layout_constraintEnd_toStartOf="@+id/sortByMoves"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

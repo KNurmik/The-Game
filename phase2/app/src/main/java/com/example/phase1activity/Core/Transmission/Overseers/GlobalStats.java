@@ -33,8 +33,8 @@ public class GlobalStats {
   private List<List<Object>> getUsersToBestScores() {
     usersWithBestScores = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
-      double userBestScore =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE);
+      int userBestScore =
+              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE).intValue();
       List<Object> listEntry = new ArrayList<>();
       listEntry.add(0, username);
       listEntry.add(1, userBestScore);
@@ -42,7 +42,7 @@ public class GlobalStats {
       boolean userAddedToList = false;
 
       for (int i = 0; i < usersWithBestScores.size(); i++) {
-        if (userBestScore > (double) usersWithBestScores.get(i).get(1)) {
+        if (userBestScore > (int) usersWithBestScores.get(i).get(1)) {
           usersWithBestScores.add(i, listEntry);
           userAddedToList = true;
           break;
@@ -58,16 +58,16 @@ public class GlobalStats {
   private List<List<Object>> getUsersToMostMoves() {
     usersWithMostMoves = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
-      double userBestMoves =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
+      int userBestMoves =
+              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES).intValue();
       List<Object> listEntry = new ArrayList<>();
       listEntry.add(0, username);
-      listEntry.add(1, userBestMoves);
+      listEntry.add(1, (int) userBestMoves);
 
       boolean userAddedToList = false;
 
       for (int i = 0; i < usersWithMostMoves.size(); i++) {
-        if (userBestMoves > (double) usersWithMostMoves.get(i).get(1)) {
+        if (userBestMoves > (int) usersWithMostMoves.get(i).get(1)) {
           usersWithMostMoves.add(i, listEntry);
           userAddedToList = true;
           break;

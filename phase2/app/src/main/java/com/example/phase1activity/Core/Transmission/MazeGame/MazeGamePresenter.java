@@ -45,6 +45,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     this.mazeManager = manager;
   }
 
+  //TODO: THIS IS BACKEND STUFF, MOVE TO MANAGER
   /**
    * Returns true if and only if the character is on the winning block and the user has one the game
    *
@@ -54,12 +55,14 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     return mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.winningBlock;
   }
 
+  //TODO: BACKEND STUFF
   public void gotCoin() {
     if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.coin.mazeBlock
         && !(mazeManager.mazeObject.coin.isVisited())) {
       mazeManager.mazeObject.removeCoin();
     }
   }
+  //TODO: BACKEND STUFF
   public void teleport(){
 
     if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.teleportBlock1){
@@ -71,6 +74,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     }
 
 
+    //TODO: BACKEND STUFF
   /**
    * Calculates the score of the player and returns it
    *
@@ -95,6 +99,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     float x = event.getX();
     float y = event.getY();
 
+    //TODO: PRESENTER SHOULD ONLY KNOW MANAGER EXISTS
     float playerX = mazeManager.mazeObject.player.coordinateX();
     float playerY = mazeManager.mazeObject.player.coordinateY();
     float diffX = x - playerX;
@@ -110,6 +115,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
 
       if (absDiffX > absDifY) { // if the user moves more in the x direction than y direction
         if (diffX > 50) { // if the user drags the character to the right
+          //TODO: REEEEEEEEEEE
           mazeManager.mazeObject.player.move(Character.Direction.RIGHT);
         } else if (diffX < -50) { // if the user drags the character to the left
           mazeManager.mazeObject.player.move(Character.Direction.LEFT);

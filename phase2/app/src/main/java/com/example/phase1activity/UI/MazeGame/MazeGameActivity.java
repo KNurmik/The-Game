@@ -12,6 +12,8 @@ import android.view.View;
 import com.example.phase1activity.Core.Transmission.MazeGame.MazeGamePresenter;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
+import javax.inject.Inject;
+
 import static android.graphics.Color.rgb;
 
 /** class for the activity_the_maze.xml */
@@ -23,6 +25,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
   /** The drawView attribute that allows the app to draw the maze and character */
   private DrawView drawView;
 
+  //TODO: USE INTERFACE
   public MazeGamePresenter presenter;
 
   public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -44,12 +47,15 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     playerColor = app.getProfileColour();
     presenter = new MazeGamePresenter(this);
 
+    //TODO: DO NOT CALL INSTANCE ATTRIBUTES. VIEW SHOULD ONLY KNOW PRESENTER EXISTS!!!
     presenter.mazeManager.mazeObject.player.setPaintText(app.getProfileColour());
   }
 
   public DrawView getView() {
     return drawView;
   }
+
+  //TODO: THIS IS MANAGER STUFF
   /**
    * Returns true if and only if the character is on the winning block and the user has one the game
    *
@@ -98,6 +104,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       paint.setColor(playerColor);
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
       canvas.drawCircle(
+              //TODO: USE ONLY PRESENTER
           presenter.mazeManager.mazeObject.teleportBlock1.getX() * 100 + 173,
           presenter.mazeManager.mazeObject.teleportBlock1.getY() * 100 + 210,
           40,
@@ -109,6 +116,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
           paint2);
       // Draws the string displaying if the user has escaped the maze and the current score
       canvas.drawText(playerNickname + " current score: " + presenter.score, 75, 1500, paint);
+      //TODO: USE ONLY PRESENTEEEEEEEEEEERRRRRRRRRRR
       presenter.mazeManager.draw(canvas); // draws the maze and character
       if (checkWin()) {
         updateProfileStatistics(); // updates the number of score and moves for the user's profile
@@ -118,6 +126,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       }
     }
 
+    //TODO: Add JavaDoc
     @Override
     public boolean onTouchEvent(MotionEvent event) {
       return presenter.onTouchEvent(event);

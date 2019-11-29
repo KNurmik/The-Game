@@ -61,6 +61,11 @@ public class Maze {
   public void removeCoin() {
     this.coin.setVisited(true);
   }
+
+  public void removeTeleportBlocks() {
+    this.teleportBlock1 = null;
+    this.teleportBlock2 = null;
+  }
   /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
   private void createMaze() {
     Random random = new Random();

@@ -1,10 +1,10 @@
 package com.example.phase1activity.Core.Transmission.MazeGame;
 
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.Maze;
-import com.example.phase1activity.Core.Logic.MazeGame.MazeBlock;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
 import com.example.phase1activity.UI.MazeGame.MazeGameActivity;
 import com.example.phase1activity.UI.MazeGame.MazeGameViewInterface;
@@ -45,48 +45,25 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     this.mazeManager = manager;
   }
 
-  //TODO: THIS IS BACKEND STUFF, MOVE TO MANAGER
-  /**
-   * Returns true if and only if the character is on the winning block and the user has one the game
-   *
-   * @return Whether the player is currently standing on the winning block or not.
-   */
+  public int getScore() {
+    return score;
+  }
+
+  public void drawTheView(Canvas canvas) {
+    mazeManager.draw(canvas);
+  }
+
   public boolean checkWin() {
-    return mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.winningBlock;
+    return mazeManager.checkWin();
   }
 
-  //TODO: BACKEND STUFF
-  public void gotCoin() {
-    if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.coin.mazeBlock
-        && !(mazeManager.mazeObject.coin.isVisited())) {
-      mazeManager.mazeObject.removeCoin();
-    }
-  }
-  //TODO: BACKEND STUFF
-  public void teleport(){
-
-    if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.teleportBlock1){
-      mazeManager.mazeObject.player.currentBlock = mazeManager.mazeObject.teleportBlock2;
-    }
-    else if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.teleportBlock2){
-      mazeManager.mazeObject.player.currentBlock = mazeManager.mazeObject.teleportBlock1;
-    }
-    }
-
-
-    //TODO: BACKEND STUFF
-  /**
-   * Calculates the score of the player and returns it
-   *
-   * @return The updated score of the player after they move
-   */
-  public int calculateScore() {
-    if (mazeManager.mazeObject.coin.isVisited()) {
-      return (int) (20000 / Math.pow((1.1), mazeManager.mazeObject.player.moves) + 6000);
-    }
-    return (int) (20000 / Math.pow((1.1), mazeManager.mazeObject.player.moves) + 1000);
+  public void setPaintText(int color) {
+    mazeManager.mazeObject.player.setPaintText(color);
   }
 
+  public int getPlayerMoves() {
+    return mazeManager.mazeObject.player.moves;
+  }
   /**
    * Every time the player touches the screen, record the movement and if it moves the player to a
    * new MazeBlock move it and redraw the maze to show so.
@@ -99,40 +76,41 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     float x = event.getX();
     float y = event.getY();
 
-    //TODO: PRESENTER SHOULD ONLY KNOW MANAGER EXISTS
-    float playerX = mazeManager.mazeObject.player.coordinateX();
-    float playerY = mazeManager.mazeObject.player.coordinateY();
+    float playerX = mazeManager.getPlayerX();
+    float playerY = mazeManager.getPlayerY();
     float diffX = x - playerX;
     float diffY = y - playerY;
 
     float absDiffX = Math.abs(x - playerX);
     float absDifY = Math.abs(y - playerY);
     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-      score = calculateScore();
+      score = mazeManager.calculateScore();
       return true;
     }
-    if (event.getAction() == MotionEvent.ACTION_MOVE && !checkWin()) {
+
+    if (event.getAction() == MotionEvent.ACTION_MOVE && !mazeManager.checkWin()) {
 
       if (absDiffX > absDifY) { // if the user moves more in the x direction than y direction
         if (diffX > 50) { // if the user drags the character to the right
-          //TODO: REEEEEEEEEEE
-          mazeManager.mazeObject.player.move(Character.Direction.RIGHT);
+          mazeManager.movePlayer(Character.Direction.RIGHT);
         } else if (diffX < -50) { // if the user drags the character to the left
-          mazeManager.mazeObject.player.move(Character.Direction.LEFT);
+          mazeManager.movePlayer(Character.Direction.LEFT);
         }
       } else { // if the user moves more in the y direction than x direction
         if (diffY > 50) { // if the user drags the character upwards
-          mazeManager.mazeObject.player.move(Character.Direction.DOWN);
+          mazeManager.movePlayer(Character.Direction.DOWN);
         } else if (diffY < -50) { // if the user drags the character downwards
-          mazeManager.mazeObject.player.move(Character.Direction.UP);
+          mazeManager.movePlayer(Character.Direction.UP);
         }
       }
-      if (checkWin()) { // checks if the player is on the winning block
+      if (mazeManager.checkWin()) { // checks if the player is on the winning block
         view.finishMaze();
       }
-      teleport();
-      gotCoin();
-      score = calculateScore(); // calculates the new score after the user moves the character
+      mazeManager.teleport();
+      mazeManager.gotCoin();
+      score =
+          mazeManager
+              .calculateScore(); // calculates the new score after the user moves the character
       drawView.invalidate(); // updates the location of the character on the phone screen and the
       // user's score
       return true;

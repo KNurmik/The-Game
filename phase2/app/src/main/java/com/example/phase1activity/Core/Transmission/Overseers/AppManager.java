@@ -18,6 +18,8 @@ public class AppManager extends Application {
   /** The level of difficulty the matching game is to played on. */
   private int matchingGameLevel;
 
+  private boolean easyMazeGame;
+
   @Override
   public void onCreate() {
 
@@ -47,18 +49,6 @@ public class AppManager extends Application {
 
   public void updateGlobalStats() {
     this.globalStats.updateGlobalStats();
-  }
-
-  public Map<String, Double> getBestScore() {
-    return this.globalStats.getUserBestScore();
-  }
-
-  public Map<String, Double> getBestReaction() {
-    return this.globalStats.getUserFastestReaction();
-  }
-
-  public Map<String, Double> getBestMoves() {
-    return this.globalStats.getUserMostMoves();
   }
 
   /**
@@ -222,4 +212,8 @@ public class AppManager extends Application {
   public void setMatchingGameLevel(int level) {
     matchingGameLevel = level;
   }
+
+  public boolean getMazeGameDifficulty(){return easyMazeGame;}
+
+  public void setMazeGameDifficulty(boolean difficulty){easyMazeGame = difficulty;}
 }

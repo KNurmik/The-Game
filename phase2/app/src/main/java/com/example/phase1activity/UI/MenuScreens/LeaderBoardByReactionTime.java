@@ -27,8 +27,9 @@ public class LeaderBoardByReactionTime implements LeaderBoardSorting {
     for (String username : iSaver.getHighScores().keySet()) {
       double userFastestReaction =
           iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
+      String nickname = iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
       List<Object> listEntry = new ArrayList<>();
-      listEntry.add(0, username);
+      listEntry.add(0, nickname);
       listEntry.add(1, userFastestReaction);
 
       boolean userAddedToList = false;

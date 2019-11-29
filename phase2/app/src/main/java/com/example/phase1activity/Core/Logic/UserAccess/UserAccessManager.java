@@ -8,7 +8,7 @@ import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 public abstract class UserAccessManager {
 
   /** The minimum and maximum lengths for text input */
-  private final int MAX_ENTRY_LENGTH = 16;
+  private final int MAX_ENTRY_LENGTH = 9;
 
   private final int MIN_ENTRY_LENGTH = 0;
 

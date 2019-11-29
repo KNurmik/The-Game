@@ -27,8 +27,9 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
     for (String username : iSaver.getHighScores().keySet()) {
       double userBestMoves =
           iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
+      String nickname = iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
       List<Object> listEntry = new ArrayList<>();
-      listEntry.add(0, username);
+      listEntry.add(0, nickname);
       listEntry.add(1, userBestMoves);
 
       boolean userAddedToList = false;

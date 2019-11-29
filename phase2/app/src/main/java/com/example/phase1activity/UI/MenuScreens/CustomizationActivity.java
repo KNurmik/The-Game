@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 import com.example.phase1activity.R;
@@ -26,26 +27,26 @@ public class CustomizationActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customization);
 
-        //Initializes all the buttons and text fields
+        // Initialize buttons and text fields
         RadioButton red = findViewById(R.id.Red);
         RadioButton green = findViewById(R.id.Green);
         RadioButton blue = findViewById(R.id.Blue);
         RadioButton song1 = findViewById(R.id.Song1);
         RadioButton song2 = findViewById(R.id.Song2);
-        Button set = findViewById(R.id.set);
-        final EditText name = findViewById(R.id.nickname);
-        Button back = findViewById(R.id.menu);
+
+        Button setNicknameButton = findViewById(R.id.set);
+        Button backButton = findViewById(R.id.menu);
+
+        final EditText nicknameEntry = findViewById(R.id.nickname);
+        final TextView nicknameErrorMessage = findViewById(R.id.errorMessage);
+        nicknameErrorMessage.setText("");
 
         final AppManager profile = app;
 
-        /**
-         * The two radio groups used to select a colour and song
-         */
+        // The two radio groups used to select a colour and song.
         RadioGroup colours = findViewById(R.id.radioGroup1);
         RadioGroup songs = findViewById(R.id.radioGroup2);
 
-        //Whichever color the user selects for their profile should be the default option when
-        //opening the CustomizationActivity
         if (profile.getProfileColour() == Color.RED){
             colours.check(R.id.Red);
         }
@@ -56,8 +57,6 @@ public class CustomizationActivity extends AbstractActivity {
             colours.check(R.id.Green);
         }
 
-        //Whichever song the user selects for their profile should be the default option when
-        //opening the CustomizationActivity
         if (profile.getProfileSong() == 0){
             songs.check(R.id.Song1);
         }
@@ -65,7 +64,7 @@ public class CustomizationActivity extends AbstractActivity {
             songs.check(R.id.Song2);
         }
 
-        back.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(CustomizationActivity.this, StartActivity.class));
 
@@ -94,7 +93,6 @@ public class CustomizationActivity extends AbstractActivity {
 
         song1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Sets the song to song0
                 profile.setProfileSong(thisActivity, 0);
                 app.changeMusic(0);
             }
@@ -102,21 +100,24 @@ public class CustomizationActivity extends AbstractActivity {
 
         song2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Sets the song to song1
                 profile.setProfileSong(thisActivity, 1);
                 app.changeMusic(1);
             }
         });
 
-        set.setOnClickListener(new View.OnClickListener() {
+        setNicknameButton.setOnClickListener(new View.OnClickListener() {
+            String VALID_NICKNAME_MESSAGE =  "New nickname set succesfully.";
+            String INVALID_NICKNAME_MESSAGE = "Don't use commas. Keep it below 9 characters.";
             public void onClick(View v) {
-                profile.setProfileNickname(thisActivity, name.getText().toString());
+                if (0 < nicknameEntry.getText().toString().length() &&
+                        nicknameEntry.getText().toString().length() < 9 &&
+                        !(nicknameEntry.getText().toString().contains(","))) {
+                    profile.setProfileNickname(thisActivity, nicknameEntry.getText().toString());
+                    nicknameErrorMessage.setText(VALID_NICKNAME_MESSAGE);
+                } else {
+                    nicknameErrorMessage.setText(INVALID_NICKNAME_MESSAGE);
+                }
             }
         });
     }
-
-//    void saveProfileData(AppManager profile) {
-//        ISaver iSaver = new AndroidSaver(this.getApplicationContext());
-//        iSaver.saveData(profile.getProfileUsername() + "," + profile.getProfilePassword() + "," + profile.getProfileNickname() + "," + profile.getProfileColour() + "," + profile.getProfileSong() + "," + profile.getProfileGameLevel() + "," + profile.getProfileTotalScoreStat() + "," + profile.getProfileFastestRxnStat() + "," + profile.getProfileTotalMovesStat());
-//    }
 }

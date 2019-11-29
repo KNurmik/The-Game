@@ -64,7 +64,7 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
   public void handleUserAccessResult(UserAccessManager.Result result) {
     // If there is no match with the username or password.
     if (result == UserAccessManager.Result.INCORRECT) {
-      view.updateInstructionText("Incorrect username/password.", Color.RED);
+      view.updateInstructionText("Incorrect username-password combination.", Color.RED);
       view.clearTextFields();
     } else if (result == UserAccessManager.Result.TAKEN) {
       view.updateInstructionText("Username is taken!", Color.RED);
@@ -72,12 +72,12 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
     }
     // Password is not in valid format.
     else if (result == UserAccessManager.Result.ERROR_PASSWORD) {
-      view.updateInstructionText("Password length must be <16, and >0! No commas!", Color.RED);
+      view.updateInstructionText("Password must be non-empty, and 8 characters or less. No commas!", Color.RED);
       view.clearTextFields();
     }
-    // Password is not in valid format.
+    // Username is not in valid format.
     else if (result == UserAccessManager.Result.ERROR_USERNAME) {
-      view.updateInstructionText("Username length must be <16, and >0! No commas!", Color.RED);
+      view.updateInstructionText("Password must be non-empty, and 8 characters or less. No commas!", Color.RED);
       view.clearTextFields();
     }
     // Successful login/registration.

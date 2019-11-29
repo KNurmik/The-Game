@@ -62,7 +62,7 @@ public class Maze {
     this.coin.setVisited(true);
   }
 
-  public void removeTeleportBlocks(){
+  public void removeTeleportBlocks() {
     this.teleportBlock1 = null;
     this.teleportBlock2 = null;
   }

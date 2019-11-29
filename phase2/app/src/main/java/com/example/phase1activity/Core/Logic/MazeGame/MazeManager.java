@@ -35,17 +35,17 @@ public class MazeManager {
     paint.setTextSize(75);
     mazeObject.player.draw(canvas);
     mazeObject.coin.draw(canvas);
-    if (mazeObject.teleportBlock1 != null){
+    if (mazeObject.teleportBlock1 != null) {
       canvas.drawCircle(
-              mazeObject.teleportBlock1.getX() * 100 + 173,
-              mazeObject.teleportBlock1.getY() * 100 + 210,
-              40,
-              paint);
+          mazeObject.teleportBlock1.getX() * 100 + 173,
+          mazeObject.teleportBlock1.getY() * 100 + 210,
+          40,
+          paint);
       canvas.drawCircle(
-              mazeObject.teleportBlock2.getX() * 100 + 173,
-              mazeObject.teleportBlock2.getY() * 100 + 210,
-              40,
-              paint);
+          mazeObject.teleportBlock2.getX() * 100 + 173,
+          mazeObject.teleportBlock2.getY() * 100 + 210,
+          40,
+          paint);
     }
 
     for (Wall wall : mazeObject.outerWalls) {
@@ -88,7 +88,6 @@ public class MazeManager {
       mazeObject.player.currentBlock = mazeObject.teleportBlock1;
       mazeObject.removeTeleportBlocks();
     }
-
   }
 
   /**

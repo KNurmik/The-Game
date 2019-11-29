@@ -1,8 +1,7 @@
 package com.example.phase1activity.Core.Transmission.MazeGame;
 
-import android.view.MotionEvent;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.view.MotionEvent;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.Maze;
@@ -46,22 +45,23 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     this.mazeManager = manager;
   }
 
-  public int getScore(){
+  public int getScore() {
     return score;
   }
-  public void drawTheView(Canvas canvas){
+
+  public void drawTheView(Canvas canvas) {
     mazeManager.draw(canvas);
   }
 
-  public boolean checkWin(){
+  public boolean checkWin() {
     return mazeManager.checkWin();
   }
 
-  public void setPaintText(int color){
+  public void setPaintText(int color) {
     mazeManager.mazeObject.player.setPaintText(color);
   }
 
-  public int getPlayerMoves(){
+  public int getPlayerMoves() {
     return mazeManager.mazeObject.player.moves;
   }
   /**
@@ -108,7 +108,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
       }
       mazeManager.teleport();
       mazeManager.gotCoin();
-      score = mazeManager.calculateScore(); // calculates the new score after the user moves the character
+      score =
+          mazeManager
+              .calculateScore(); // calculates the new score after the user moves the character
       drawView.invalidate(); // updates the location of the character on the phone screen and the
       // user's score
       return true;

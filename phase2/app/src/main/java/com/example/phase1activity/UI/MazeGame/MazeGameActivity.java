@@ -19,17 +19,14 @@ import static android.graphics.Color.rgb;
 
 /** class for the activity_the_maze.xml */
 public class MazeGameActivity extends AbstractActivity implements MazeGameViewInterface {
+  public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
   /** The nickname for the user */
   public String playerNickname;
   /** The color of the user */
   public int playerColor;
+  @Inject MazeGamePresenterInterface presenter;
   /** The drawView attribute that allows the app to draw the maze and character */
   private DrawView drawView;
-
-  @Inject
-  MazeGamePresenterInterface presenter;
-
-  public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
   /**
    * Creates a new drawView, mazeManager, sets the score to 0 and sets the character color to the

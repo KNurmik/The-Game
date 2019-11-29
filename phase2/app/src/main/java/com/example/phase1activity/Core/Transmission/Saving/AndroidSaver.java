@@ -144,31 +144,31 @@ public class AndroidSaver implements ISaver {
 
     for (String entry : splitByEntry) {
       final String[] splitByInfo = entry.split(",");
+      if (splitByInfo.length == 9) {
+        String username = splitByInfo[USERNAME_INDEX];
+        Double score = Double.valueOf(splitByInfo[TOTAL_SCORE_INDEX]);
+        Double reaction = Double.valueOf(splitByInfo[FASTEST_RXN_INDEX]);
+        Double moves = Double.valueOf(splitByInfo[TOTAL_MOVES_INDEX]);
 
-      String username = splitByInfo[USERNAME_INDEX];
-      Double score = Double.valueOf(splitByInfo[TOTAL_SCORE_INDEX]);
-      Double reaction = Double.valueOf(splitByInfo[FASTEST_RXN_INDEX]);
-      Double moves = Double.valueOf(splitByInfo[TOTAL_MOVES_INDEX]);
+        if (usernamesToHighScores.containsKey(username)) {
+          Map<AttributeType, Double> bestStats = usernamesToHighScores.get(username);
+          if (score > bestStats.get(AttributeType.TOTAL_SCORE)) {
+            bestStats.put(AttributeType.TOTAL_SCORE, score);
+          }
+          if (moves > (bestStats.get(AttributeType.TOTAL_MOVES) / 1)) {
+            bestStats.put(AttributeType.TOTAL_MOVES, moves);
+          }
+          if (reaction < bestStats.get(AttributeType.FASTEST_RXN_TIME)) {
+            bestStats.put(AttributeType.FASTEST_RXN_TIME, reaction);
+          }
 
-      if (usernamesToHighScores.containsKey(username)) {
-        Map<AttributeType, Double> bestStats = usernamesToHighScores.get(username);
-        if (score > bestStats.get(AttributeType.TOTAL_SCORE)) {
-          bestStats.put(AttributeType.TOTAL_SCORE, score);
+        } else {
+          Map<AttributeType, Double> usersFirstScoreEntry = new HashMap<>();
+          usersFirstScoreEntry.put(AttributeType.TOTAL_SCORE, score);
+          usersFirstScoreEntry.put(AttributeType.FASTEST_RXN_TIME, reaction);
+          usersFirstScoreEntry.put(AttributeType.TOTAL_MOVES, moves);
+          usernamesToHighScores.put(username, usersFirstScoreEntry);
         }
-        if (moves > (bestStats.get(AttributeType.TOTAL_MOVES) / 1)) {
-          bestStats.put(AttributeType.TOTAL_MOVES, moves);
-        }
-        if (reaction < bestStats.get(AttributeType.FASTEST_RXN_TIME)) {
-          bestStats.put(AttributeType.FASTEST_RXN_TIME, reaction);
-        }
-
-
-      } else {
-        Map<AttributeType, Double> usersFirstScoreEntry = new HashMap<>();
-        usersFirstScoreEntry.put(AttributeType.TOTAL_SCORE, score);
-        usersFirstScoreEntry.put(AttributeType.FASTEST_RXN_TIME, reaction);
-        usersFirstScoreEntry.put(AttributeType.TOTAL_MOVES, moves);
-        usernamesToHighScores.put(username, usersFirstScoreEntry);
       }
     }
     return usernamesToHighScores;

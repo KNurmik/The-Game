@@ -121,8 +121,8 @@ public class ReactionGameManager {
         timer.stop();
         double timeSpent = timer.getLastTaskTimeMillis();
         // timeLimit += timeSpent;
-        // If avg. time per click is less than 0.2s, reward player.
-        if (timeSpent / timesToClickTotal < 0.3) {
+        // If avg. time per click is less than 0.5s, reward player.
+        if (timeSpent / timesToClickTotal < 0.5) {
           timeLimit += 1000;
           score += 1000;
         }

@@ -14,11 +14,6 @@ public interface ReactionGameViewInterface {
    */
   void updateGameStateView(@DrawableRes int newState);
 
-  // TODO: REMOVE THIS TEST METHOD!!!!!!!!!!!!
-  void updateTestGameStateView(String toThis, int colour);
-
-  void updateTimeLeft(String toThis);
-
   /**
    * Update user's current score on the screen.
    *
@@ -45,4 +40,10 @@ public interface ReactionGameViewInterface {
    * @return defaultColour of type ColorStateList.
    */
   ColorStateList getColorStateList();
+
+  /** Disable the main button. */
+  void disableButton();
+
+  /** Re-enable the main button. */
+  void enableButton();
 }

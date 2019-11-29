@@ -65,9 +65,9 @@ public class ReactionGameView extends AbstractActivity
             .injectReactionGamePresenter();
 
     // Game is started from the beginning, reset all profile stats to default values.
-//    app.resetProfileMoves();
-//    app.resetProfileRxnStat();
-//    app.resetProfileScore();
+    //    app.resetProfileMoves();
+    //    app.resetProfileRxnStat();
+    //    app.resetProfileScore();
 
     instructions = findViewById(R.id.instruction);
     instructions.setBackgroundResource(R.drawable.react_push);
@@ -115,19 +115,6 @@ public class ReactionGameView extends AbstractActivity
     instructions.setBackgroundResource(newState);
   }
 
-  // TODO: READ THE COMMENT BELOW!!!!!!!!!!!!!!!!!!
-  // TODO: THIS IS A TESTING METHOD, DELETE ME ONCE FINISHED!!!!!!!!!!!!!!!!!!!!!!!!!!
-  public void updateTestGameStateView(String toThis, int colour) {
-    TextView text = findViewById(R.id.testInstruction);
-    text.setText(toThis);
-    text.setTextColor(colour);
-  }
-
-  public void updateTimeLeft(String toThis) {
-    TextView text = findViewById(R.id.timeLeft);
-    text.setText(toThis);
-  }
-
   /**
    * Updates the text showing current score.
    *
@@ -152,6 +139,16 @@ public class ReactionGameView extends AbstractActivity
     app.setProfileReactionTime(this, reactionTime / 1000);
     app.updateProfileMoves(this, moves);
     app.updateProfileScore(this, score);
+  }
+
+  /** Disable btn. */
+  public void disableButton() {
+    btn.setEnabled(false);
+  }
+
+  /** Re-enable button. */
+  public void enableButton() {
+    btn.setEnabled(true);
   }
 
   /** End this activity and launch MatchingGame. */

@@ -44,7 +44,6 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
    * game.
    */
   public void handleClick() {
-    view.updateTimeLeft("Time left: " + manager.getTimeLeft());
 
     // Turn hasn't stated, begin the game.
     if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
@@ -55,7 +54,6 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
-      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
     }
     // User reacted correctly.
     else if (manager.getGameState().equals(ReactionGameManager.State.REACT)) {
@@ -64,17 +62,27 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateScoreView(manager.getScore());
       manager.setGameState(ReactionGameManager.State.BEGINNING);
       totalClicks += 1;
-      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
-    } else if (manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)) {
+    }
+    // User has to spam button.
+    else if (manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)) {
       manager.press();
-      view.updateTestGameStateView(
-          "CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
       view.updateGameStateView(R.drawable.react_spam);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
-      view.updateTimeLeft("Time left: " + manager.getTimeLeft());
+      // User has spammed enough.
       if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
+        // TODO: Add "STOP!" image instead of this one.
         view.updateGameStateView(R.drawable.react_well);
+        view.disableButton();
+        new CountDownTimer(1000, 1000) {
+
+          public void onTick(long millisUntilFinished) {}
+
+          public void onFinish() {
+            view.updateGameStateView(R.drawable.react_well);
+            view.enableButton();
+          }
+        }.start();
       }
     }
 
@@ -105,21 +113,19 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
         public void onTick(long millisUntilFinished) {
           if (manager.getGameState().equals(ReactionGameManager.State.DONTREACT)) {
-                double confuseRandom = Math.random();
-                if (confuseRandom < 0.3) {
-                    view.updateGameStateView(R.drawable.react_dont_trick);
-                } else if (confuseRandom < 0.6) {
-                    view.updateGameStateView(R.drawable.react_dont);
-                }
+            double confuseRandom = Math.random();
+            if (confuseRandom < 0.3) {
+              view.updateGameStateView(R.drawable.react_dont_trick);
+            } else if (confuseRandom < 0.6) {
+              view.updateGameStateView(R.drawable.react_dont);
             }
+          }
         }
 
         public void onFinish() {
           double r = Math.random();
           if (r < 0.15) {
             manager.playSpamButton();
-            view.updateTestGameStateView(
-                "CLICK THE BUTTON " + manager.getTimesToClickLeft() + " TIMES!!", Color.GREEN);
             view.updateGameStateView(R.drawable.react_push);
           } else {
             manager.playSimpleReaction();
@@ -144,5 +150,4 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
   public void setManager(ReactionGameManager manager) {
     this.manager = manager;
   }
-
 }

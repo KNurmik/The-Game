@@ -105,7 +105,7 @@ public class GlobalStats {
     return usersWithFastestReactions;
   }
 
-  Map<String, Double> getMostScore() {
+  Map<String, Double> getBestScore() {
     Double total = 0.0;
     String name = "";
     Map<String, Double> temp = new HashMap<>();
@@ -137,7 +137,7 @@ public class GlobalStats {
     return temp;
   }
 
-  Map<String, Double> getBestReaction() {
+  Map<String, Double> getFastestReaction() {
     Double total = 1.0;
     String name = "Admin";
     Map<String, Double> temp = new HashMap<>();

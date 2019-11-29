@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalStatsActivity extends AbstractActivity {
-
+    /** An instance of a GlobalStats that updates sortedUsers */
     GlobalStats globalStats;
 
+    /** A sorted list of users to their high scores, by best high scores. The stat that high scores
+     * are based on is dependent on the user's choice in the UI. */
     List<List<Object>> sortedUsers;
 
     TextView firstPlace;

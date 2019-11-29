@@ -8,6 +8,8 @@ public class MazeBlock extends MazeItem {
 
   /** Boolean variable whether the mazeBlock as a path to another maze block. */
   boolean visited;
+  /** A boolean that is true if and only if the block is a teleporting block */
+  private boolean teleportBlock;
   /** The MazeBlock or Wall above this MazeBlock. */
   private MazeItem up;
   /** The MazeBlock or Wall below this MazeBlock. */
@@ -36,9 +38,26 @@ public class MazeBlock extends MazeItem {
     right = null;
     left = null;
     visited = false;
+    teleportBlock = false;
     neighbours = new ArrayList<>();
     neighboursNeighbours = new ArrayList<>();
     neighboursWalls = new ArrayList<>();
+  }
+
+  public boolean isVisited() {
+    return visited;
+  }
+
+  public void setVisited(boolean visited) {
+    this.visited = visited;
+  }
+
+  public boolean isTeleportBlock() {
+    return teleportBlock;
+  }
+
+  public void setTeleportBlock(boolean teleportBlock) {
+    this.teleportBlock = teleportBlock;
   }
 
   /**

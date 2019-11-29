@@ -4,6 +4,7 @@ import android.view.MotionEvent;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.Maze;
+import com.example.phase1activity.Core.Logic.MazeGame.MazeBlock;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
 import com.example.phase1activity.UI.MazeGame.MazeGameActivity;
 import com.example.phase1activity.UI.MazeGame.MazeGameViewInterface;
@@ -59,6 +60,17 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
       mazeManager.mazeObject.removeCoin();
     }
   }
+  public void teleport(){
+
+    if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.teleportBlock1){
+      mazeManager.mazeObject.player.currentBlock = mazeManager.mazeObject.teleportBlock2;
+    }
+    else if (mazeManager.mazeObject.player.currentBlock == mazeManager.mazeObject.teleportBlock2){
+      mazeManager.mazeObject.player.currentBlock = mazeManager.mazeObject.teleportBlock1;
+    }
+    }
+
+
   /**
    * Calculates the score of the player and returns it
    *
@@ -112,8 +124,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
       if (checkWin()) { // checks if the player is on the winning block
         view.finishMaze();
       }
-      score = calculateScore(); // calculates the new score after the user moves the character
+      teleport();
       gotCoin();
+      score = calculateScore(); // calculates the new score after the user moves the character
       drawView.invalidate(); // updates the location of the character on the phone screen and the
       // user's score
       return true;

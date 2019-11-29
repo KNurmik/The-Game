@@ -11,6 +11,7 @@ public class Coin {
   public MazeBlock mazeBlock;
   /** Paint attribute for the character */
   private Paint paintText = new Paint();
+
   private boolean visited;
 
   Coin(MazeBlock block) {

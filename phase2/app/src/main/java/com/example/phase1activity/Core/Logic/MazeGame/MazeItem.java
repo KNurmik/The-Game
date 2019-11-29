@@ -25,7 +25,7 @@ public class MazeItem {
    *
    * @return x
    */
-  int getX() {
+  public int getX() {
     return x;
   }
 
@@ -43,7 +43,7 @@ public class MazeItem {
    *
    * @return y
    */
-  int getY() {
+  public int getY() {
     return y;
   }
 

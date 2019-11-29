@@ -1,14 +1,13 @@
 package com.example.phase1activity.UI.MazeGame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.View;
-import android.content.Intent;
 import android.view.MotionEvent;
-
+import android.view.View;
 
 import com.example.phase1activity.Core.Transmission.MazeGame.MazeGamePresenter;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
@@ -61,18 +60,14 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
         == presenter.mazeManager.mazeObject.winningBlock;
   }
 
-  /**
-   * The maze is finished then move onto the next screen.
-   */
+  /** The maze is finished then move onto the next screen. */
   public void finishMaze() {
     Intent intent = new Intent(MazeGameActivity.this, MazeFinishActivity.class);
     intent.putExtra(EXTRA_MESSAGE, presenter.score);
     startActivity(intent);
   }
 
-  /**
-   * Updates the player's score and moves.
-   */
+  /** Updates the player's score and moves. */
   public void updateProfileStatistics() {
     app.updateProfileMoves(this, presenter.mazeManager.mazeObject.player.moves);
     app.updateProfileScore(this, presenter.score);
@@ -82,6 +77,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
   public class DrawView extends View {
 
     Paint paint = new Paint();
+    Paint paint2 = new Paint();
 
     public DrawView(Context context) {
       super(context);
@@ -91,17 +87,29 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     private void init() {
       paint.setColor(Color.BLACK);
       paint.setTextSize(75);
+      paint2.setColor(Color.BLACK);
+      paint2.setTextSize(75);
     }
 
     /** Draws the maze, character and displays the current score of the player */
     @Override
     public void onDraw(Canvas canvas) {
       super.onDraw(canvas);
-      presenter.mazeManager.draw(canvas); // draws the maze and character
       paint.setColor(playerColor);
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
+      canvas.drawCircle(
+          presenter.mazeManager.mazeObject.teleportBlock1.getX() * 100 + 173,
+          presenter.mazeManager.mazeObject.teleportBlock1.getY() * 100 + 210,
+          40,
+          paint2);
+      canvas.drawCircle(
+          presenter.mazeManager.mazeObject.teleportBlock2.getX() * 100 + 173,
+          presenter.mazeManager.mazeObject.teleportBlock2.getY() * 100 + 210,
+          40,
+          paint2);
       // Draws the string displaying if the user has escaped the maze and the current score
       canvas.drawText(playerNickname + " current score: " + presenter.score, 75, 1500, paint);
+      presenter.mazeManager.draw(canvas); // draws the maze and character
       if (checkWin()) {
         updateProfileStatistics(); // updates the number of score and moves for the user's profile
         canvas.drawText(playerNickname + " escaped the maze!", 75, 1400, paint);
@@ -115,4 +123,4 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       return presenter.onTouchEvent(event);
     }
   }
-  }
+}

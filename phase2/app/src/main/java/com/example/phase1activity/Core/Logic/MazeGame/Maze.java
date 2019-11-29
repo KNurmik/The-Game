@@ -14,6 +14,10 @@ public class Maze {
   public Coin coin;
   /** The block that the player needs to get to in order to win. */
   public MazeBlock winningBlock;
+  /** The first teleporting block */
+  public MazeBlock teleportBlock1;
+  /** The second teleporting block */
+  public MazeBlock teleportBlock2;
   /** A list containing all of the walls in the maze. */
   List<Wall> mazeWalls;
   /** A list containing all the outer walls of the maze */
@@ -34,7 +38,8 @@ public class Maze {
   public Maze(int width, int height) {
     mazeHeight = height;
     mazeWidth = width;
-
+    teleportBlock1 = null;
+    teleportBlock2 = null;
     mazeWalls = new ArrayList<>();
     outerWalls = new ArrayList<>();
     mazeBlocks = new MazeBlock[mazeWidth][mazeHeight];
@@ -58,6 +63,11 @@ public class Maze {
   }
   /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
   private void createMaze() {
+    Random random = new Random();
+    int col1 = random.nextInt(8);
+    int row1 = random.nextInt(11);
+    int col2 = random.nextInt(8);
+    int row2 = random.nextInt(11);
 
     // Draws all the possible walls first and make the walls the left, right, up, down of the
     // surrounding maze blocks.
@@ -108,6 +118,14 @@ public class Maze {
           mazeBlocks[i][j].setDown(newWall);
           mazeWalls.add(newWall);
           outerWalls.add(newWall);
+        }
+        if (i == col1 && j == row1) {
+          mazeBlocks[i][j].setTeleportBlock(true);
+          teleportBlock1 = mazeBlocks[i][j];
+        }
+        if (i == col2 && j == row2) {
+          mazeBlocks[i][j].setTeleportBlock(true);
+          teleportBlock2 = mazeBlocks[i][j];
         }
       }
     }

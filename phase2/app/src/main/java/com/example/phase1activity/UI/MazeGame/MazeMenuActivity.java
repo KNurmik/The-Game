@@ -18,8 +18,8 @@ public class MazeMenuActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maze_menu);
 
-        Button startBtn = findViewById(R.id.startBtn);
-        colourButton(startBtn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
+        Button easyButton = findViewById(R.id.easyBtn);
+        Button hardButton = findViewById(R.id.extremeBtn);
     }
 
     /**

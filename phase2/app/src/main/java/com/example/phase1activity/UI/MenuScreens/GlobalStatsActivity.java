@@ -8,38 +8,116 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.phase1activity.Core.Transmission.Overseers.GlobalStats;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GlobalStatsActivity extends AbstractActivity {
+
+    GlobalStats globalStats;
+
+    List<List<Object>> sortedUsers;
+
+    TextView firstPlace;
+    TextView secondPlace;
+    TextView thirdPlace;
+    TextView fourthPlace;
+    TextView fifthPlace;
+
+    List<TextView> textViews;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global_stats);
+        globalStats = new GlobalStats(this);
 
-        //Displays Total Score
-        TextView total = findViewById(R.id.globaltotal);
-        String temp1 = "Total score: " + app.getBestTotal();
-        total.setText(temp1);
+        firstPlace = findViewById(R.id.firstPlace);
+        secondPlace = findViewById(R.id.secondPlace);
+        thirdPlace = findViewById(R.id.thirdPlace);
+        fourthPlace = findViewById(R.id.fourthPlace);
+        fifthPlace = findViewById(R.id.fifthPlace);
 
-        //Displays Total Moves
-        TextView moves = findViewById(R.id.globalmoves);
-        String temp2 = "Total moves: " + app.getBestMoves();
-        moves.setText(temp2);
+        textViews = new ArrayList<>();
+        textViews.add(firstPlace);
+        textViews.add(secondPlace);
+        textViews.add(thirdPlace);
+        textViews.add(fourthPlace);
+        textViews.add(fifthPlace);
 
-        //Displays Fastest Reaction Time
-        TextView reaction = findViewById(R.id.globalreaction);
-        String temp3 = "Fastest reaction: " + app.getBestReaction() + " seconds";
-        reaction.setText(temp3);
+        firstPlace.setText("-");
+        secondPlace.setText("-");
+        thirdPlace.setText("-");
+        fourthPlace.setText("-");
+        fifthPlace.setText("-");
 
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(
+        Button sortByScore = findViewById(R.id.sortByScore);
+        Button sortByMoves = findViewById(R.id.sortByMoves);
+        Button sortByReaction = findViewById(R.id.sortByReaction);
+
+        sortByScore.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(GlobalStatsActivity.this, StartActivity.class));
+                        sortByScore();
                     }
                 });
+
+        sortByMoves.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sortByMoves();
+                    }
+                });
+
+        sortByReaction.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sortByReaction();
+                    }
+                });
+
+//        Button backButton = findViewById(R.id.backButton);
+//        backButton.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        startActivity(new Intent(GlobalStatsActivity.this, StartActivity.class));
+//                    }
+//                });
+    }
+
+    void sortByScore() {
+        globalStats.updateGlobalStats();
+        this.sortedUsers = globalStats.usersWithBestScores;
+        setTextFields();
+    }
+
+    void sortByMoves() {
+        globalStats.updateGlobalStats();
+        this.sortedUsers = globalStats.usersWithMostMoves;
+        setTextFields();
+    }
+
+    void sortByReaction() {
+        globalStats.updateGlobalStats();
+        this.sortedUsers = globalStats.usersWithFastestReactions   ;
+        setTextFields();
+    }
+
+    void setTextFields() {
+        for (int i = 0; i < textViews.size(); i++) {
+            if (i < sortedUsers.size()) {
+                textViews.get(i).setText(sortedUsers.get(i).toString());
+            } else {
+                textViews.get(i).setText("-");
+            }
+        }
     }
 }

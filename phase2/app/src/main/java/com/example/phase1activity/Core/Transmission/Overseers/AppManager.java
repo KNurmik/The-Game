@@ -49,8 +49,8 @@ public class AppManager extends Application {
     this.globalStats.updateGlobalStats();
   }
 
-  public Map<String, Double> getBestTotal() {
-    return this.globalStats.getBestTotal();
+  public Map<String, Double> getBestScore() {
+    return this.globalStats.getMostScore();
   }
 
   public Map<String, Double> getBestReaction() {
@@ -58,7 +58,7 @@ public class AppManager extends Application {
   }
 
   public Map<String, Double> getBestMoves() {
-    return this.globalStats.getBestMoves();
+    return this.globalStats.getMostMoves();
   }
 
   /**

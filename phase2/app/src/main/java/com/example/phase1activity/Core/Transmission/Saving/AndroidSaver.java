@@ -155,7 +155,7 @@ public class AndroidSaver implements ISaver {
         if (score > bestStats.get(AttributeType.TOTAL_SCORE)) {
           bestStats.put(AttributeType.TOTAL_SCORE, score);
         }
-        if (moves > bestStats.get(AttributeType.TOTAL_MOVES)) {
+        if (moves > (bestStats.get(AttributeType.TOTAL_MOVES) / 1)) {
           bestStats.put(AttributeType.TOTAL_MOVES, moves);
         }
         if (reaction < bestStats.get(AttributeType.FASTEST_RXN_TIME)) {

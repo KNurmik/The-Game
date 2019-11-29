@@ -46,7 +46,6 @@ public class AppManagerModule {
   /** @return GlobalStats object to inject. */
   @Provides
   GlobalStats provideGlobalStats() {
-    return new GlobalStats(
-        context, nameOne, nameTwo, nameThree, totalScore, reactionTime, totalMoves);
+    return new GlobalStats(context);
   }
 }

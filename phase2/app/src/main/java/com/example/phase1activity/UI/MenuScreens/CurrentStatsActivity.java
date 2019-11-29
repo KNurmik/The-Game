@@ -10,7 +10,7 @@ package com.example.phase1activity.UI.MenuScreens;
         import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 /**
- * Interface that shows the user's statistics
+ * Interface that shows the user's statistics.
  */
 public class CurrentStatsActivity extends AbstractActivity {
     @Override

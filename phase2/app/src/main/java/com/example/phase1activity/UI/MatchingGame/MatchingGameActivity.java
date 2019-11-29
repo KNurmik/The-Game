@@ -120,7 +120,7 @@ public class MatchingGameActivity extends AbstractActivity
           @Override
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
+            startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
           }
         });
   }

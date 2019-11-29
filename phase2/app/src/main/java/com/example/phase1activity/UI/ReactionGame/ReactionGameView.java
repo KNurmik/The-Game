@@ -156,6 +156,6 @@ public class ReactionGameView extends AbstractActivity
 
   /** End this activity and launch MatchingGame. */
   public void endActivity() {
-    startActivity(new Intent(ReactionGameView.this, MatchingInstructionsActivity.class));
+    startActivity(new Intent(ReactionGameView.this, StartActivity.class));
   }
 }

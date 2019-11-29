@@ -50,15 +50,15 @@ public class AppManager extends Application {
   }
 
   public Map<String, Double> getBestScore() {
-    return this.globalStats.getBestScore();
+    return this.globalStats.getUserBestScore();
   }
 
   public Map<String, Double> getBestReaction() {
-    return this.globalStats.getFastestReaction();
+    return this.globalStats.getUserFastestReaction();
   }
 
   public Map<String, Double> getBestMoves() {
-    return this.globalStats.getMostMoves();
+    return this.globalStats.getUserMostMoves();
   }
 
   /**

@@ -25,12 +25,12 @@ public class GlobalStats {
   }
 
   public void updateGlobalStats() {
-    this.usersWithBestScores = getBestScores();
-    this.usersWithMostMoves = getBestMoves();
-    this.usersWithFastestReactions = getFastestReactions();
+    this.usersWithBestScores = getUsersToBestScores();
+    this.usersWithMostMoves = getUsersToMostMoves();
+    this.usersWithFastestReactions = getUsersToFastestReactions();
   }
 
-  private List<List<Object>> getBestScores() {
+  private List<List<Object>> getUsersToBestScores() {
     usersWithBestScores = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
       double userBestScore =
@@ -55,7 +55,7 @@ public class GlobalStats {
     return usersWithBestScores;
   }
 
-  private List<List<Object>> getBestMoves() {
+  private List<List<Object>> getUsersToMostMoves() {
     usersWithMostMoves = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
       double userBestMoves =
@@ -80,7 +80,7 @@ public class GlobalStats {
     return usersWithMostMoves;
   }
 
-  private List<List<Object>> getFastestReactions() {
+  private List<List<Object>> getUsersToFastestReactions() {
     usersWithFastestReactions = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
       double userFastestReaction =
@@ -105,7 +105,7 @@ public class GlobalStats {
     return usersWithFastestReactions;
   }
 
-  Map<String, Double> getBestScore() {
+  Map<String, Double> getUserBestScore() {
     Double total = 0.0;
     String name = "";
     Map<String, Double> temp = new HashMap<>();
@@ -120,7 +120,7 @@ public class GlobalStats {
     return temp;
   }
 
-  Map<String, Double> getMostMoves() {
+  Map<String, Double> getUserMostMoves() {
     double total = 0;
     String name = "None";
     Map<String, Double> temp = new HashMap<>();
@@ -137,7 +137,7 @@ public class GlobalStats {
     return temp;
   }
 
-  Map<String, Double> getFastestReaction() {
+  Map<String, Double> getUserFastestReaction() {
     Double total = 1.0;
     String name = "Admin";
     Map<String, Double> temp = new HashMap<>();

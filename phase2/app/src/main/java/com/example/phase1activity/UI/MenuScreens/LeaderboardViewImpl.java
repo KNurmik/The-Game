@@ -7,21 +7,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phase1activity.Core.Transmission.Overseers.GlobalStats;
+import com.example.phase1activity.Core.Transmission.Overseers.LeaderboardPresenter;
+import com.example.phase1activity.Core.Transmission.Overseers.LeaderboardPresenterImpl;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GlobalStatsActivity extends AbstractActivity {
+/** A leaderboard view. */
+public class LeaderboardViewImpl extends AbstractActivity implements LeaderboardView {
   /** An instance of a GlobalStats that updates sortedUsers */
   GlobalStats globalStats;
 
-  /**
-   * A sorted list of users to their high scores, by best high scores. The stat that high scores are
-   * based on is dependent on the user's choice in the UI.
-   */
-  List<List<Object>> sortedUsers;
+  /** This view's presenter. */
+  LeaderboardPresenter presenter;
 
   /** The textview that displays the user that has the best high score. */
   TextView firstPlace;
@@ -50,7 +50,7 @@ public class GlobalStatsActivity extends AbstractActivity {
   List<TextView> scoreTextViews;
 
   /**
-   * Create references to all GlobalStatsActivity view objects. Set the text of each TextView to
+   * Create references to all LeaderboardViewImpl view objects. Set the text of each TextView to
    * "-". Set button on-click listeners.
    *
    * @param savedInstanceState the saved instance state.
@@ -60,6 +60,7 @@ public class GlobalStatsActivity extends AbstractActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_global_stats);
     globalStats = new GlobalStats(this);
+    presenter = new LeaderboardPresenterImpl(this, new GlobalStats(this));
 
     firstPlace = findViewById(R.id.firstPlace);
     secondPlace = findViewById(R.id.secondPlace);
@@ -125,7 +126,7 @@ public class GlobalStatsActivity extends AbstractActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            startActivity(new Intent(GlobalStatsActivity.this, StartActivity.class));
+            startActivity(new Intent(LeaderboardViewImpl.this, StartActivity.class));
             finish();
           }
         });
@@ -133,27 +134,21 @@ public class GlobalStatsActivity extends AbstractActivity {
 
   /** Set sortedUsers to a list of users, sorted by total score. */
   void sortByScore() {
-    // globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.getUsersToBestScores();
-    setTextFields();
+    presenter.presentBestScores();
   }
 
   /** Set sortedUsers to a list of users, sorted by total moves. */
   void sortByMoves() {
-    // globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.getUsersToMostMoves();
-    setTextFields();
+    presenter.presentMostMoves();
   }
 
   /** Set sortedUsers to a list of users, sorted by fastest reaction. */
   void sortByReaction() {
-    // globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.getUsersToFastestReactions();
-    setTextFields();
+    presenter.presentFastestReactions();
   }
 
   /** Set the text of all TextView objects to the stats of their respective users in sortedUsers. */
-  void setTextFields() {
+  public void setTextFields(List<List<Object>> sortedUsers) {
     for (int i = 0; i < userTextViews.size(); i++) {
       if (i < sortedUsers.size()) {
         userTextViews.get(i).setText(sortedUsers.get(i).get(0).toString());

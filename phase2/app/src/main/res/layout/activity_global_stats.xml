@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_beige"
-    tools:context=".UI.MenuScreens.GlobalStatsActivity">
+    tools:context=".UI.MenuScreens.LeaderboardViewImpl">
 
     <TextView
         android:id="@+id/fourthPlaceStat"

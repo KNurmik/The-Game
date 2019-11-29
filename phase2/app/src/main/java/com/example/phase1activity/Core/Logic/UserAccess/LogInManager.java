@@ -33,17 +33,17 @@ public class LogInManager extends UserAccessManager {
       // Retrieve user's saved info.
       ISaver iSaver = new AndroidSaver(context.getApplicationContext());
       Map<String, Map<AndroidSaver.AttributeType, String>> userData = iSaver.getExistingUserData();
-      String nickname = userData.get(username).get(AndroidSaver.AttributeType.NICKNAME);
-      int colour = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.COLOUR));
+      String nickname = userData.get(username).get(ISaver.AttributeType.NICKNAME);
+      int colour = Integer.parseInt(userData.get(username).get(ISaver.AttributeType.COLOUR));
       int gameLevel =
-          Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.GAME_LEVEL));
-      int song = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.SONG));
+          Integer.parseInt(userData.get(username).get(ISaver.AttributeType.GAME_LEVEL));
+      int song = Integer.parseInt(userData.get(username).get(ISaver.AttributeType.SONG));
       int totalScoreStat =
-          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE));
+          Integer.valueOf(userData.get(username).get(ISaver.AttributeType.TOTAL_SCORE));
       double fastestRxnStat =
-          Double.valueOf(userData.get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME));
+          Double.valueOf(userData.get(username).get(ISaver.AttributeType.FASTEST_RXN_TIME));
       int totalMovesStat =
-          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES));
+          Integer.valueOf(userData.get(username).get(ISaver.AttributeType.TOTAL_MOVES));
       // Create a new profile containing the existing user's info, and set it as the AppManager's
       // current profile.
       app.setProfile(

@@ -49,18 +49,6 @@ public class AppManager extends Application {
     this.globalStats.updateGlobalStats();
   }
 
-  public Map<String, Double> getBestScore() {
-    return this.globalStats.getUserBestScore();
-  }
-
-  public Map<String, Double> getBestReaction() {
-    return this.globalStats.getUserFastestReaction();
-  }
-
-  public Map<String, Double> getBestMoves() {
-    return this.globalStats.getUserMostMoves();
-  }
-
   /**
    * Getter for the profile that the application is using.
    *
@@ -163,21 +151,6 @@ public class AppManager extends Application {
   public void updateProfileScore(Activity activity, int score) {
     profile.incrementTotalScoreStat(activity, score);
   }
-
-//  /** Resets the profile's total score statistic */
-//  public void resetProfileScore() {
-//    profile.resetTotalScoreStat();
-//  }
-//
-//  /** Resets the profile's total moves statistic */
-//  public void resetProfileMoves() {
-//    profile.resetTotalMovesStat();
-//  }
-//
-//  /** Resets the profile's fastest reaction time statistic */
-//  public void resetProfileRxnStat() {
-//    profile.resetFastestRxnStat();
-//  }
 
   /**
    * Getter for the profile's nickname

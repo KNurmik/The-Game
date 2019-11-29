@@ -45,4 +45,15 @@ public interface ISaver {
      * @return a map of usernames to a map of highest score types to their respective values.
      */
     Map<String, Map<AndroidSaver.AttributeType, Double>> getHighScores();
+
+    enum AttributeType {
+        PASSWORD,
+        NICKNAME,
+        COLOUR,
+        SONG,
+        GAME_LEVEL,
+        FASTEST_RXN_TIME,
+        TOTAL_SCORE,
+        TOTAL_MOVES
+    }
 }

@@ -224,15 +224,4 @@ public class AndroidSaver implements ISaver {
     String data = loadData();
     return data.split("\n");
   }
-
-  public enum AttributeType {
-    PASSWORD,
-    NICKNAME,
-    COLOUR,
-    SONG,
-    GAME_LEVEL,
-    FASTEST_RXN_TIME,
-    TOTAL_SCORE,
-    TOTAL_MOVES
-  }
 }

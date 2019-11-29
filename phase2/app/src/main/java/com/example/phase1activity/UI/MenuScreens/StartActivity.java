@@ -3,7 +3,6 @@ package com.example.phase1activity.UI.MenuScreens;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
@@ -59,7 +58,7 @@ public class StartActivity extends AbstractActivity {
     leaderButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            startActivity(new Intent(StartActivity.this, CurrentStatsActivity.class));
+            startActivity(new Intent(StartActivity.this, PersonalStatsActivity.class));
             finish();
           }
         });
@@ -68,7 +67,7 @@ public class StartActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             app.updateGlobalStats();
-            startActivity(new Intent(StartActivity.this, GlobalStatsActivity.class));
+            startActivity(new Intent(StartActivity.this, LeaderboardViewImpl.class));
             finish();
           }
         });

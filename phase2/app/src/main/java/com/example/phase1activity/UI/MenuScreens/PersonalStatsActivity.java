@@ -12,7 +12,7 @@ package com.example.phase1activity.UI.MenuScreens;
 /**
  * Interface that shows the user's statistics.
  */
-public class CurrentStatsActivity extends AbstractActivity {
+public class PersonalStatsActivity extends AbstractActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,7 @@ public class CurrentStatsActivity extends AbstractActivity {
 
         //Displays Fastest Reaction Time
         TextView reaction = findViewById(R.id.reaction);
-        String temp3 = "Fastest reaction: " + app.getProfileFastestRxnStat() + " seconds";
+        String temp3 = "Fastest reaction: " + app.getProfileFastestRxnStat() + " s";
         reaction.setText(temp3);
 
         Button backButton = findViewById(R.id.backButton);
@@ -38,7 +38,7 @@ public class CurrentStatsActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(CurrentStatsActivity.this, StartActivity.class));
+                        startActivity(new Intent(PersonalStatsActivity.this, StartActivity.class));
                     }
                 });
 

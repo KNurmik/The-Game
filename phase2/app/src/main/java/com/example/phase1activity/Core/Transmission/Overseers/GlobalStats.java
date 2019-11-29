@@ -5,16 +5,10 @@ import android.content.Context;
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 import com.example.phase1activity.UI.MenuScreens.DaggerLeaderboardComponent;
-import com.example.phase1activity.UI.MenuScreens.LeaderBoardByMoves;
-import com.example.phase1activity.UI.MenuScreens.LeaderBoardByReactionTime;
-import com.example.phase1activity.UI.MenuScreens.LeaderBoardByScore;
 import com.example.phase1activity.UI.MenuScreens.LeaderBoardSorting;
 import com.example.phase1activity.UI.MenuScreens.LeaderboardModule;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -81,55 +75,5 @@ public class GlobalStats {
   /** @return a list of players sorted by fastest reaction time, along with the statistic. */
   public List<List<Object>> getUsersToFastestReactions() {
     return getSortedPlayers(SortType.BY_FASTEST_REACTION);
-  }
-
-  Map<String, Double> getUserBestScore() {
-    Double total = 0.0;
-    String name = "";
-    Map<String, Double> temp = new HashMap<>();
-    for (String username : iSaver.getHighScores().keySet()) {
-      double score =
-          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE);
-      if (score > total) {
-        total = score;
-        name = username;
-      }
-    }
-    temp.put(name, total);
-    return temp;
-  }
-
-  Map<String, Double> getUserMostMoves() {
-    double total = 0;
-    String name = "None";
-    Map<String, Double> temp = new HashMap<>();
-    Map<String, Map<AndroidSaver.AttributeType, String>> test1 = iSaver.getExistingUserData();
-    for (String username : iSaver.getHighScores().keySet()) {
-      double score =
-          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
-      if (score > total) {
-        total = score;
-        name = username;
-      }
-    }
-    temp.put(name, total);
-    return temp;
-  }
-
-  Map<String, Double> getUserFastestReaction() {
-    Double total = 1.0;
-    String name = "Admin";
-    Map<String, Double> temp = new HashMap<>();
-
-    for (String username : iSaver.getHighScores().keySet()) {
-      Double score =
-          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
-      if (score < total) {
-        total = score;
-        name = username;
-      }
-    }
-    temp.put(name, total);
-    return temp;
   }
 }

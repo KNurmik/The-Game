@@ -87,9 +87,9 @@ public class GlobalStatsActivity extends AbstractActivity {
     scoreTextViews.add(fourthPlaceScore);
     scoreTextViews.add(fifthPlaceScore);
 
-    for (int i = 0; i < userTextViews.size(); i++){
-        userTextViews.get(i).setText("-");
-        scoreTextViews.get(i).setText("-");
+    for (int i = 0; i < userTextViews.size(); i++) {
+      userTextViews.get(i).setText("-");
+      scoreTextViews.get(i).setText("-");
     }
 
     Button sortByScore = findViewById(R.id.sortByScore);
@@ -120,36 +120,35 @@ public class GlobalStatsActivity extends AbstractActivity {
           }
         });
 
-
     Button backButton = findViewById(R.id.backButton);
     backButton.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                startActivity(new Intent(GlobalStatsActivity.this, StartActivity.class));
-                finish();
-              }
-            });
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(GlobalStatsActivity.this, StartActivity.class));
+            finish();
+          }
+        });
   }
 
   /** Set sortedUsers to a list of users, sorted by total score. */
   void sortByScore() {
-    globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.usersWithBestScores;
+    // globalStats.updateGlobalStats();
+    this.sortedUsers = globalStats.getUsersToBestScores();
     setTextFields();
   }
 
   /** Set sortedUsers to a list of users, sorted by total moves. */
   void sortByMoves() {
-    globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.usersWithMostMoves;
+    // globalStats.updateGlobalStats();
+    this.sortedUsers = globalStats.getUsersToMostMoves();
     setTextFields();
   }
 
   /** Set sortedUsers to a list of users, sorted by fastest reaction. */
   void sortByReaction() {
-    globalStats.updateGlobalStats();
-    this.sortedUsers = globalStats.usersWithFastestReactions;
+    // globalStats.updateGlobalStats();
+    this.sortedUsers = globalStats.getUsersToFastestReactions();
     setTextFields();
   }
 

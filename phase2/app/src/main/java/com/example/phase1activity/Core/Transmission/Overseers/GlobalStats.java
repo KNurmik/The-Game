@@ -4,6 +4,12 @@ import android.content.Context;
 
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
+import com.example.phase1activity.UI.MenuScreens.DaggerLeaderboardComponent;
+import com.example.phase1activity.UI.MenuScreens.LeaderBoardByMoves;
+import com.example.phase1activity.UI.MenuScreens.LeaderBoardByReactionTime;
+import com.example.phase1activity.UI.MenuScreens.LeaderBoardByScore;
+import com.example.phase1activity.UI.MenuScreens.LeaderBoardSorting;
+import com.example.phase1activity.UI.MenuScreens.LeaderboardModule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,90 +25,62 @@ public class GlobalStats {
   public List<List<Object>> usersWithFastestReactions;
   public List<List<Object>> usersWithMostMoves;
 
+  /** Sorting strategy for displaying the best users on the leaderboard. */
+  private LeaderBoardSorting sorter;
+
+  /**
+   * Tell Dagger how to create this object.
+   *
+   * @param context the Context creating this class.
+   */
   @Inject
   public GlobalStats(Context context) {
     iSaver = new AndroidSaver(context);
   }
 
   public void updateGlobalStats() {
-    this.usersWithBestScores = getUsersToBestScores();
-    this.usersWithMostMoves = getUsersToMostMoves();
-    this.usersWithFastestReactions = getUsersToFastestReactions();
+    this.usersWithBestScores = getSortedPlayers(SortType.BY_BEST_SCORE);
+    this.usersWithMostMoves = getSortedPlayers(SortType.BY_MOST_MOVES);
+    this.usersWithFastestReactions = getSortedPlayers(SortType.BY_FASTEST_REACTION);
   }
 
-  private List<List<Object>> getUsersToBestScores() {
-    usersWithBestScores = new ArrayList<>();
-    for (String username : iSaver.getHighScores().keySet()) {
-      int userBestScore =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE).intValue();
-      List<Object> listEntry = new ArrayList<>();
-      listEntry.add(0, username);
-      listEntry.add(1, userBestScore);
-
-      boolean userAddedToList = false;
-
-      for (int i = 0; i < usersWithBestScores.size(); i++) {
-        if (userBestScore > (int) usersWithBestScores.get(i).get(1)) {
-          usersWithBestScores.add(i, listEntry);
-          userAddedToList = true;
-          break;
-        }
-      }
-      if (!userAddedToList) {
-        usersWithBestScores.add(listEntry);
-      }
-    }
-    return usersWithBestScores;
+  /** Enum for choosing what sort of sorting strategy to use. */
+  public enum SortType {
+    BY_BEST_SCORE,
+    BY_MOST_MOVES,
+    BY_FASTEST_REACTION
   }
 
-  private List<List<Object>> getUsersToMostMoves() {
-    usersWithMostMoves = new ArrayList<>();
-    for (String username : iSaver.getHighScores().keySet()) {
-      int userBestMoves =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES).intValue();
-      List<Object> listEntry = new ArrayList<>();
-      listEntry.add(0, username);
-      listEntry.add(1, (int) userBestMoves);
+  /**
+   * Sort the players based on the desired statistic, and return the sorted list.
+   *
+   * @param type enum describing by which statistic to sort by.
+   * @return a sorted list of players, along with the statistic.
+   */
+  private List<List<Object>> getSortedPlayers(SortType type) {
+    // Inject sorter using dagger.
+    sorter =
+        DaggerLeaderboardComponent.builder()
+            .leaderboardModule(new LeaderboardModule(type))
+            .build()
+            .injectLeaderBoardSorting();
 
-      boolean userAddedToList = false;
-
-      for (int i = 0; i < usersWithMostMoves.size(); i++) {
-        if (userBestMoves > (int) usersWithMostMoves.get(i).get(1)) {
-          usersWithMostMoves.add(i, listEntry);
-          userAddedToList = true;
-          break;
-        }
-      }
-      if (!userAddedToList) {
-        usersWithMostMoves.add(listEntry);
-      }
-    }
-    return usersWithMostMoves;
+    return sorter.sortPlayers(iSaver);
   }
 
-  private List<List<Object>> getUsersToFastestReactions() {
-    usersWithFastestReactions = new ArrayList<>();
-    for (String username : iSaver.getHighScores().keySet()) {
-      double userFastestReaction =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
-      List<Object> listEntry = new ArrayList<>();
-      listEntry.add(0, username);
-      listEntry.add(1, userFastestReaction);
+  /** @return a list of players sorted by total score, along with the statistic. */
+  public List<List<Object>> getUsersToBestScores() {
+    return getSortedPlayers(SortType.BY_BEST_SCORE);
+  }
 
-      boolean userAddedToList = false;
+  /** @return a list of players sorted by most moves, along with the statistic. */
+  public List<List<Object>> getUsersToMostMoves() {
+    return getSortedPlayers(SortType.BY_MOST_MOVES);
+  }
 
-      for (int i = 0; i < usersWithFastestReactions.size(); i++) {
-        if (userFastestReaction < (double) usersWithFastestReactions.get(i).get(1)) {
-          usersWithFastestReactions.add(i, listEntry);
-          userAddedToList = true;
-          break;
-        }
-      }
-      if (!userAddedToList) {
-        usersWithFastestReactions.add(listEntry);
-      }
-    }
-    return usersWithFastestReactions;
+  /** @return a list of players sorted by fastest reaction time, along with the statistic. */
+  public List<List<Object>> getUsersToFastestReactions() {
+    return getSortedPlayers(SortType.BY_FASTEST_REACTION);
   }
 
   Map<String, Double> getUserBestScore() {
@@ -110,7 +88,8 @@ public class GlobalStats {
     String name = "";
     Map<String, Double> temp = new HashMap<>();
     for (String username : iSaver.getHighScores().keySet()) {
-      double score = iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE);
+      double score =
+          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE);
       if (score > total) {
         total = score;
         name = username;
@@ -127,7 +106,7 @@ public class GlobalStats {
     Map<String, Map<AndroidSaver.AttributeType, String>> test1 = iSaver.getExistingUserData();
     for (String username : iSaver.getHighScores().keySet()) {
       double score =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
+          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES);
       if (score > total) {
         total = score;
         name = username;
@@ -144,7 +123,7 @@ public class GlobalStats {
 
     for (String username : iSaver.getHighScores().keySet()) {
       Double score =
-              iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
+          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
       if (score < total) {
         total = score;
         name = username;

@@ -71,8 +71,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       totalClicks += 1;
       // User has spammed enough.
       if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
-        // TODO: Add "STOP!" image instead of this one.
-        view.updateGameStateView(R.drawable.react_well);
+        view.updateGameStateView(R.drawable.react_stop);
         view.disableButton();
         new CountDownTimer(1000, 1000) {
 

@@ -31,6 +31,7 @@ public class CustomizationActivity extends AbstractActivity {
         RadioButton blue = findViewById(R.id.Blue);
         RadioButton song1 = findViewById(R.id.Song1);
         RadioButton song2 = findViewById(R.id.Song2);
+        RadioButton nosong = findViewById(R.id.nosong);
 
         Button setNicknameButton = findViewById(R.id.set);
         Button backButton = findViewById(R.id.menu);
@@ -58,8 +59,11 @@ public class CustomizationActivity extends AbstractActivity {
         if (profile.getProfileSong() == 0){
             songs.check(R.id.Song1);
         }
-        else{
+        else if (profile.getProfileSong() == 1){
             songs.check(R.id.Song2);
+        }
+        else{
+            songs.check(R.id.nosong);
         }
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +104,13 @@ public class CustomizationActivity extends AbstractActivity {
             public void onClick(View v) {
                 profile.setProfileSong(thisActivity, 1);
                 app.changeMusic(1);
+            }
+        });
+
+        nosong.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                profile.setProfileSong(thisActivity, 3);
+                 app.changeMusic(3);
             }
         });
 

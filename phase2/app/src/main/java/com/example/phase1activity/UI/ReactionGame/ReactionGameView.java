@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
@@ -38,8 +39,8 @@ public class ReactionGameView extends AbstractActivity
   Button menu;
   /** Pictures instructing the user. */
   ImageView instructions;
-  /** Text saying how much time user has left in the bank. */
-  TextView timeText;
+  /** ProgressBar saying how much time user has left in the bank. */
+  ProgressBar timeLeft;
 
   /**
    * Populates the screen with objects, and sets their functionality.
@@ -55,8 +56,8 @@ public class ReactionGameView extends AbstractActivity
     nextbtn = findViewById(R.id.Next);
     btn = findViewById(R.id.reactButton);
     menu = findViewById(R.id.button12);
-    timeText = findViewById(R.id.timeText);
-    timeText.setText("Time left in the bank: 8000 ms");
+    timeLeft = findViewById(R.id.timeLeft);
+    timeLeft.setProgress(100);
 
     btn.setOnClickListener(this);
     colourButton(btn, R.drawable.reaction_red, R.drawable.reaction_blue, R.drawable.reaction_green);
@@ -117,6 +118,16 @@ public class ReactionGameView extends AbstractActivity
   }
 
   /**
+   * Update the progress bar displayed below the button to displau time left
+   *
+   * @param time The amount of time remaining
+   */
+  public void updateTimeLeft(double time) {
+    int fraction = (int) (100 * time / 8000);
+    timeLeft.setProgress(Math.min(100, fraction));
+  }
+
+  /**
    * Updates the text showing current score.
    *
    * @param toThisScore score to set ScoreView to show.
@@ -140,18 +151,6 @@ public class ReactionGameView extends AbstractActivity
     app.setProfileReactionTime(this, reactionTime / 1000);
     app.updateProfileMoves(this, moves);
     app.updateProfileScore(this, score);
-  }
-
-  /** Update timeText. */
-  @SuppressLint("SetTextI18n")
-  public void setTimeText(int timeLeft) {
-    String FIRST = "Time left in the bank: ";
-    String LAST = " ms";
-
-    if(timeLeft > 0){
-      timeText.setText(FIRST + timeLeft + LAST);
-    }
-    else{timeText.setText(FIRST + 0 + LAST);}
   }
 
   /** Disable btn. */

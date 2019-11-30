@@ -1,6 +1,6 @@
 package com.example.phase1activity.Core.Transmission.ReactionGame;
 
-import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManager;
+import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManagerImpl;
 import com.example.phase1activity.UI.ReactionGame.ReactionGameViewInterface;
 
 import dagger.Module;
@@ -38,12 +38,12 @@ public class ReactionGameModule {
   }
 
   /**
-   * Provide a ReactionGameManager object.
+   * Provide a ReactionGameManagerImpl object.
    *
    * @return the manager.
    */
   @Provides
-  public ReactionGameManager provideManager() {
-    return new ReactionGameManager("easy");
+  public ReactionGameManagerImpl provideManager() {
+    return new ReactionGameManagerImpl("easy");
   }
 }

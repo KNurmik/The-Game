@@ -14,6 +14,7 @@ import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
+import com.example.phase1activity.UI.MazeGame.MazeInstructionsActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
@@ -110,7 +111,7 @@ public class MatchingGameActivity extends AbstractActivity
           @Override
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeMenuActivity.class));
+            startActivity(new Intent(MatchingGameActivity.this, MazeInstructionsActivity.class));
           }
         });
 

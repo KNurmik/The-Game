@@ -5,36 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_beige"
-    tools:context=".UI.MatchingGame.MatchingInstructionsActivity">
+    tools:context=".UI.MazeGame.MazeInstructionsActivity">
 
     <ImageView
-        android:id="@+id/matchInstructions"
+        android:id="@+id/reactInstructions"
         android:layout_width="380dp"
         android:layout_height="560dp"
-        app:layout_constraintBottom_toTopOf="@+id/startMatching"
+        app:layout_constraintBottom_toTopOf="@+id/startGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matchingtitle"
-        app:srcCompat="@drawable/match_instructions" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/maze_instructions" />
+
+    <Button
+        android:id="@+id/startGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/next_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/matchingtitle"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/matching_game"
+        android:text="@string/maze_game"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/startMatching"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

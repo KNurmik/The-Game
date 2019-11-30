@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
 import com.example.phase1activity.UI.MatchingGame.MatchingInstructionsActivity;
+import com.example.phase1activity.UI.MazeGame.MazeInstructionsActivity;
 import com.example.phase1activity.UI.MazeGame.MazeMenuActivity;
 import com.example.phase1activity.UI.ReactionGame.ReactionInstructionsActivity;
 
@@ -127,7 +128,7 @@ public class StartActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 2);
-            startActivity(new Intent(StartActivity.this, MazeMenuActivity.class));
+            startActivity(new Intent(StartActivity.this, MazeInstructionsActivity.class));
             finish();
           }
         });
@@ -147,7 +148,7 @@ public class StartActivity extends AbstractActivity {
             }
             // Go to the maze game.
             else if (level == 2) {
-              startActivity(new Intent(StartActivity.this, MazeMenuActivity.class));
+              startActivity(new Intent(StartActivity.this, MazeInstructionsActivity.class));
               finish();
             }
           }

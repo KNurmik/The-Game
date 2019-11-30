@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.MenuScreens.LeaderboardViewImpl"></activity>
+        <activity android:name=".UI.MazeGame.MazeInstructionsActivity"></activity>
+        <activity android:name=".UI.MenuScreens.LeaderboardViewImpl" />
         <activity android:name=".UI.MenuScreens.CreditsActivity" />
         <activity android:name=".UI.MatchingGame.ChooseLevelActivity" />
         <activity android:name=".UI.MatchingGame.MatchingInstructionsActivity" />

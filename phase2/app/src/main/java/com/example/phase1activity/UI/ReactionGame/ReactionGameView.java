@@ -1,5 +1,6 @@
 package com.example.phase1activity.UI.ReactionGame;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -37,12 +38,15 @@ public class ReactionGameView extends AbstractActivity
   Button menu;
   /** Pictures instructing the user. */
   ImageView instructions;
+  /** Text saying how much time user has left in the bank. */
+  TextView timeText;
 
   /**
    * Populates the screen with objects, and sets their functionality.
    *
    * @param savedInstanceState is the saved instance state.
    */
+  @SuppressLint("SetTextI18n")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,6 +55,8 @@ public class ReactionGameView extends AbstractActivity
     nextbtn = findViewById(R.id.Next);
     btn = findViewById(R.id.reactButton);
     menu = findViewById(R.id.button12);
+    timeText = findViewById(R.id.timeText);
+    timeText.setText("Time left in the bank: 8000 ms");
 
     btn.setOnClickListener(this);
     colourButton(btn, R.drawable.reaction_red, R.drawable.reaction_blue, R.drawable.reaction_green);
@@ -63,11 +69,6 @@ public class ReactionGameView extends AbstractActivity
             .reactionGameModule(new ReactionGameModule(this))
             .build()
             .injectReactionGamePresenter();
-
-    // Game is started from the beginning, reset all profile stats to default values.
-    //    app.resetProfileMoves();
-    //    app.resetProfileRxnStat();
-    //    app.resetProfileScore();
 
     instructions = findViewById(R.id.instruction);
     instructions.setBackgroundResource(R.drawable.react_push);
@@ -139,6 +140,18 @@ public class ReactionGameView extends AbstractActivity
     app.setProfileReactionTime(this, reactionTime / 1000);
     app.updateProfileMoves(this, moves);
     app.updateProfileScore(this, score);
+  }
+
+  /** Update timeText. */
+  @SuppressLint("SetTextI18n")
+  public void setTimeText(int timeLeft) {
+    String FIRST = "Time left in the bank: ";
+    String LAST = " ms";
+
+    if(timeLeft > 0){
+      timeText.setText(FIRST + timeLeft + LAST);
+    }
+    else{timeText.setText(FIRST + 0 + LAST);}
   }
 
   /** Disable btn. */

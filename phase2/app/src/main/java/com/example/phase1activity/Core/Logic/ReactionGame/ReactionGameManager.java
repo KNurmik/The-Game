@@ -44,7 +44,7 @@ public class ReactionGameManager {
   /** Enum for keeping track of the state the game is in. */
   private State gameState = State.BEGINNING;
   /** How much time user has in the "bank" in milliseconds. */
-  private double timeLimit;
+  private int timeLimit;
 
   /**
    * Initialize ReactionGameManager. Tell Dagger how to construct this object.
@@ -169,7 +169,7 @@ public class ReactionGameManager {
   }
 
   /** @return the time user has left in the bank. */
-  public double getTimeLeft() {
+  public int getTimeLeft() {
     return timeLimit;
   }
 

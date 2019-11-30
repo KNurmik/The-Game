@@ -54,6 +54,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
+      view.setTimeText(manager.getTimeLeft());
     }
     // User reacted correctly.
     else if (manager.getGameState().equals(ReactionGameManager.State.REACT)) {
@@ -62,6 +63,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateScoreView(manager.getScore());
       manager.setGameState(ReactionGameManager.State.BEGINNING);
       totalClicks += 1;
+      view.setTimeText(manager.getTimeLeft());
     }
     // User has to spam button.
     else if (manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)) {
@@ -69,6 +71,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateGameStateView(R.drawable.react_spam);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
+      view.setTimeText(manager.getTimeLeft());
       // User has spammed enough.
       if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
         view.updateGameStateView(R.drawable.react_stop);
@@ -80,6 +83,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
           public void onFinish() {
             view.updateGameStateView(R.drawable.react_well);
             view.enableButton();
+            view.setTimeText(manager.getTimeLeft());
           }
         }.start();
       }
@@ -105,6 +109,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
       manager.setGameState(ReactionGameManager.State.DONTREACT);
       view.updateGameStateView(R.drawable.react_dont);
+      view.setTimeText(manager.getTimeLeft());
 
       // Randomize time to wait until prompting user to do something.
       double random = 0.5 + Math.random() * 4500;
@@ -125,7 +130,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
           double r = Math.random();
           if (r < 0.15) {
             manager.playSpamButton();
-            view.updateGameStateView(R.drawable.react_push);
+            view.updateGameStateView(R.drawable.react_spam);
           } else {
             manager.playSimpleReaction();
             // Update on-screen text.

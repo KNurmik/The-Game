@@ -46,4 +46,7 @@ public interface ReactionGameViewInterface {
 
   /** Re-enable the main button. */
   void enableButton();
+
+  /** Update text showing time left */
+  void setTimeText(int timeLeft);
 }

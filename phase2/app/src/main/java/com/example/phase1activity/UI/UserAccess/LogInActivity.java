@@ -14,6 +14,7 @@ import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessModule;
 import com.example.phase1activity.Core.Transmission.UserAccess.UserAccessPresenter;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
+import com.example.phase1activity.UI.MenuScreens.MainActivity;
 import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 import javax.inject.Inject;
@@ -34,6 +35,8 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
 
   /** The button used to attempt to login */
   Button btn;
+
+  Button back;
 
   /** UserAccessPresenter object responsible for handling user input. */
   @Inject UserAccessPresenter presenter;
@@ -60,6 +63,7 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
     passwordText = findViewById(R.id.PasswordText);
     instructionText = findViewById(R.id.logInInstructionText);
     btn = findViewById(R.id.logInButton);
+    back = findViewById(R.id.back);
 
     final Activity thisActivity = this;
 
@@ -70,7 +74,16 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
             presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
           }
         });
-  }
+
+    back.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this, MainActivity.class));
+              }
+            });
+}
+
 
   /** @return what the user has entered in usernameText. */
   private String getUsername() {

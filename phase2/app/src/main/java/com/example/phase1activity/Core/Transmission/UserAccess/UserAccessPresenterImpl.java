@@ -70,14 +70,14 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
       view.updateInstructionText("Username is taken!", Color.RED);
       view.clearTextFields();
     }
-    // Password is not in valid format.
-    else if (result == UserAccessManager.Result.ERROR_PASSWORD) {
-      view.updateInstructionText("Password must be non-empty, and 8 characters or less. No commas!", Color.RED);
-      view.clearTextFields();
-    }
     // Username is not in valid format.
     else if (result == UserAccessManager.Result.ERROR_USERNAME) {
-      view.updateInstructionText("Password must be non-empty, and 8 characters or less. No commas!", Color.RED);
+      view.updateInstructionText("Username must have length 1-8 characters. No commas!", Color.RED);
+      view.clearTextFields();
+    }
+    // Password is not in valid format.
+    else if (result == UserAccessManager.Result.ERROR_PASSWORD) {
+      view.updateInstructionText("Password must have length 1-8 characters. No commas!", Color.RED);
       view.clearTextFields();
     }
     // Successful login/registration.

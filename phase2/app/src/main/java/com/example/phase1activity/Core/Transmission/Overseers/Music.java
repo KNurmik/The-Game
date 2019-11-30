@@ -35,4 +35,9 @@ public class Music {
     player.setVolume(100, 100);
     player.start();
   }
+
+  public void stopMusic(){
+    player.stop();
+    player.release();
+  }
 }

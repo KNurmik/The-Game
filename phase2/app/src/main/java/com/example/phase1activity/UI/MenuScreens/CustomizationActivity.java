@@ -104,8 +104,8 @@ public class CustomizationActivity extends AbstractActivity {
         });
 
         setNicknameButton.setOnClickListener(new View.OnClickListener() {
-            String VALID_NICKNAME_MESSAGE =  "New nickname set successfully.";
-            String INVALID_NICKNAME_MESSAGE = "Nicknames must be between 1-8 characters. No commas!";
+            final String VALID_NICKNAME_MESSAGE =  "New nickname set successfully.";
+            final String INVALID_NICKNAME_MESSAGE = "Nicknames must be between 1-8 characters. No commas!";
             public void onClick(View v) {
                 if (0 < nicknameEntry.getText().toString().length() &&
                         nicknameEntry.getText().toString().length() < 9 &&

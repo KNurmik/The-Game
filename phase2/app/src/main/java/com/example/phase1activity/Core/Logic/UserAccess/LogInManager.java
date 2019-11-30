@@ -13,12 +13,16 @@ import java.util.Set;
 
 /** A class to manage logging in. */
 public class LogInManager extends UserAccessManager {
+
   /**
-   * @param context The current context
-   * @param username username of the profile
-   * @param password password of the profile
-   * @param app the instance of AppManager
-   * @return the string "valid login"
+   * If there exists a user with the inputted username-password combination, build a new profile
+   * with user attributes that match the saved data, and set it as the app manager's profile.
+   *
+   * @param context context of the app.
+   * @param username an inputted username.
+   * @param password an inputted password.
+   * @param app the AppManager that is running.
+   * @return a Result enum that reflects whether the action was successful.
    */
   public Result UserAccessAction(
       Context context, String username, String password, AppManager app) {

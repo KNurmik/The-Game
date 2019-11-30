@@ -2,7 +2,7 @@ package com.example.phase1activity.Core.Transmission.MatchingGame;
 
 import android.widget.Button;
 
-import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
+import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManagerImpl;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivityInterface;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class MatchingGameModule {
 
   /** @return the manager object to be injected into presenter. */
   @Provides
-  MatchingGameManager provideManager() {
-    return new MatchingGameManager(buttonList.size());
+  MatchingGameManagerImpl provideManager() {
+    return new MatchingGameManagerImpl(buttonList.size());
   }
 }

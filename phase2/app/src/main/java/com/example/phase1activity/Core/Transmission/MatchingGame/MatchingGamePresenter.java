@@ -3,8 +3,8 @@ package com.example.phase1activity.Core.Transmission.MatchingGame;
 import android.widget.Button;
 
 import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManager;
+import com.example.phase1activity.Core.Logic.MatchingGame.MatchingGameManagerImpl;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
-import com.example.phase1activity.R;
 import com.example.phase1activity.UI.MatchingGame.MatchingGameActivityInterface;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   /** A map of cards to their respective values. */
   private Map<Button, String> cardsToValues = new HashMap<>();
 
-  /** This MatchingGameActivity's MatchingGameManager */
+  /** This MatchingGameActivity's MatchingGameManagerImpl */
   private MatchingGameManager manager;
 
   /** The string to be displayed next to the number of turns taken. */
@@ -42,7 +42,7 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   public MatchingGamePresenter(List<Button> buttonList, MatchingGameActivityInterface view, int numCards) {
 
     assignCardValues(buttonList, numCards);
-    manager = new MatchingGameManager(this.cardsToValues.size());
+    manager = new MatchingGameManagerImpl(this.cardsToValues.size());
     this.view = view;
   }
 
@@ -122,8 +122,8 @@ public class MatchingGamePresenter implements MatchingGamePresenterInterface {
     }
   }
 
-  /** @param manager the MatchingGameManager to set manager to. */
-  public void setManager(MatchingGameManager manager) {
+  /** @param manager the MatchingGameManagerImpl to set manager to. */
+  public void setManager(MatchingGameManagerImpl manager) {
     this.manager = manager;
   }
 }

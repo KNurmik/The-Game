@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
 import com.example.phase1activity.Core.Logic.MazeGame.Maze;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
+import com.example.phase1activity.Core.Logic.MazeGame.MazeManagerImpl;
 import com.example.phase1activity.UI.MazeGame.MazeGameActivity;
 import com.example.phase1activity.UI.MazeGame.MazeGameViewInterface;
 
@@ -30,7 +31,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
   @Inject
   public MazeGamePresenter(MazeGameViewInterface view, boolean difficulty) {
     Maze maze = new Maze(8, 11);
-    mazeManager = new MazeManager(maze, difficulty);
+    mazeManager = new MazeManagerImpl(maze, difficulty);
     this.view = view;
     score = 0;
     drawView = view.getView();
@@ -41,7 +42,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    *
    * @param manager The new MazeManager
    */
-  public void setManager(MazeManager manager) {
+  public void setManager(MazeManagerImpl manager) {
     this.mazeManager = manager;
   }
 

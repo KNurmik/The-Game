@@ -12,13 +12,16 @@ import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 public class RegisterManager extends UserAccessManager {
 
   /**
-   * Function to sign up.
+   * If the inputted username and password are a valid combination, store a new user with the
+   * specified username and password, and default values. Build a new
+   * profile with user attributes that match the saved data, and set it as the app manager's
+   * profile.
    *
-   * @param context context of the app
-   * @param username username you input
-   * @param password password you input
-   * @param app instance of the AppManager that is running
-   * @return a string "valid combination" if the registration is successful
+   * @param context context of the app.
+   * @param username an inputted username.
+   * @param password an inputted password.
+   * @param app the AppManager that is running.
+   * @return a Result enum that reflects whether the action was successful.
    */
   public Result UserAccessAction(
       Context context, String username, String password, AppManager app) {

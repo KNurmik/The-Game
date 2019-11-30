@@ -14,11 +14,11 @@ import javax.inject.Inject;
 public class MazeGamePresenter implements MazeGamePresenterInterface {
 
   /** The MazeManager for this presenter */
-  public MazeManager mazeManager;
+  private MazeManager mazeManager;
   /** The MazeGameViewInterface for this presenter */
-  public MazeGameViewInterface view;
+  private MazeGameViewInterface view;
   /** The score of the user */
-  public int score;
+  private int score;
   /** The MazeGameActivity.DrawView for this presenter */
   private MazeGameActivity.DrawView drawView;
 
@@ -58,11 +58,11 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
   }
 
   public void setPaintText(int color) {
-    mazeManager.mazeObject.player.setPaintText(color);
+    mazeManager.getMazeObject().player.setPaintText(color);
   }
 
   public int getPlayerMoves() {
-    return mazeManager.mazeObject.player.moves;
+    return mazeManager.getMazeObject().player.getMoves();
   }
   /**
    * Every time the player touches the screen, record the movement and if it moves the player to a

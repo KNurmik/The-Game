@@ -11,17 +11,17 @@ public class Maze {
   /** The character that this maze is using. */
   public Character player;
   /** The coin in the maze. */
-  public Coin coin;
+  private Coin coin;
   /** The block that the player needs to get to in order to win. */
-  public MazeBlock winningBlock;
+  private MazeBlock winningBlock;
   /** The first teleporting block */
-  public MazeBlock teleportBlock1;
+  private MazeBlock teleportBlock1;
   /** The second teleporting block */
-  public MazeBlock teleportBlock2;
+  private MazeBlock teleportBlock2;
   /** A list containing all of the walls in the maze. */
-  List<Wall> mazeWalls;
+  private List<Wall> mazeWalls;
   /** A list containing all the outer walls of the maze */
-  List<Wall> outerWalls;
+  private List<Wall> outerWalls;
   /** The height of the maze. */
   private int mazeHeight;
   /** The Width of the maze. */
@@ -46,35 +46,71 @@ public class Maze {
     createMaze();
   }
 
+  /** @return list of all the maze walls. */
+  List<Wall> getMazeWalls() {
+    return mazeWalls;
+  }
+  /** @return list of all the outer walls of the maze. */
+  List<Wall> getOuterWalls() {
+    return outerWalls;
+  }
+  /** @return the first teleport maze block. */
+  MazeBlock getTeleportBlock1() {
+    return teleportBlock1;
+  }
+  /** @return the second teleport maze block. */
+  MazeBlock getTeleportBlock2() {
+    return teleportBlock2;
+  }
+  /** @return the exiting maze block. */
+  MazeBlock getWinningBlock() {
+    return winningBlock;
+  }
+  /** @return the coin in the maze. */
+  Coin getCoin() {
+    return coin;
+  }
   /** Create a player at the bottom left block of the maze. */
   void createPlayer() {
     this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
   }
 
+  /** Create the coin and teleporting blocks by randomly assigning a unique Maze Block to each. */
   private void createFeatures() {
     ArrayList<Integer> col = new ArrayList<>();
     for (int i = 1; i < 8; i++) {
       col.add(i);
     }
-    Collections.shuffle(col);
+    Collections.shuffle(col); // Randomize a collection of possible columns for the features
     ArrayList<Integer> row = new ArrayList<>();
     for (int i = 1; i < 8; i++) {
       row.add(i);
     }
-    Collections.shuffle(row);
+    Collections.shuffle(row); // Randomize a collection of possible rows for the features
 
-    this.coin = new Coin(mazeBlocks[col.get(0)][row.get(0)]);
+    this.coin =
+        new Coin(
+            mazeBlocks[col.get(0)][
+                row.get(0)]); // Assign the first int in the col and row collection to the coin
 
-    mazeBlocks[col.get(1)][row.get(1)].setTeleportBlock(true);
-    teleportBlock1 = mazeBlocks[col.get(1)][row.get(1)];
-    mazeBlocks[col.get(2)][row.get(2)].setTeleportBlock(true);
-    teleportBlock2 = mazeBlocks[col.get(2)][row.get(2)];
+    mazeBlocks[col.get(1)][row.get(1)].setTeleportBlock(
+        true); // Set this maze block to a teleport block
+    teleportBlock1 =
+        mazeBlocks[col.get(1)][
+            row.get(1)]; // Assign the second int in the col and row collection to the coin
+    mazeBlocks[col.get(2)][row.get(2)].setTeleportBlock(
+        true); // Set this maze block to a teleport block
+    teleportBlock2 =
+        mazeBlocks[col.get(2)][
+            row.get(2)]; // Assign the third int in the col and row collection to the coin
   }
 
+  /** Set the coins visit attribute to true so that the coin no longer exists in the maze */
   void removeCoin() {
     this.coin.setVisited(true);
   }
 
+  /** Set the teleport maze blocks to null so that they no longer exists in the maze */
   void removeTeleportBlocks() {
     this.teleportBlock1 = null;
     this.teleportBlock2 = null;
@@ -135,6 +171,7 @@ public class Maze {
         }
       }
     }
+    // Add the coin and teleporting blocks to the maze.
     createFeatures();
     // The winning block is always in the top right corner of the maze.
     winningBlock = mazeBlocks[mazeWidth - 1][0];

@@ -5,13 +5,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-public class Coin {
+class Coin {
 
   /** The maze block that the character is in. */
-  public MazeBlock mazeBlock;
+  private MazeBlock mazeBlock;
   /** Paint attribute for the character */
   private Paint paintText = new Paint();
-
+  /** Boolean variable representing if the character has reached the coin */
   private boolean visited;
 
   Coin(MazeBlock block) {
@@ -21,11 +21,15 @@ public class Coin {
     visited = false;
   }
 
-  public boolean isVisited() {
+  MazeBlock getMazeBlock() {
+    return mazeBlock;
+  }
+
+  boolean isVisited() {
     return visited;
   }
 
-  public void setVisited(boolean visited) {
+  void setVisited(boolean visited) {
     this.visited = visited;
   }
 
@@ -34,7 +38,7 @@ public class Coin {
    *
    * @return the x coordinate of the character in Android coordinates.
    */
-  public int coordinateX() {
+  private int coordinateX() {
     return mazeBlock.getX() * 100 + 173;
   }
 
@@ -43,7 +47,7 @@ public class Coin {
    *
    * @return the y coordinate of the character in Android coordinates.
    */
-  public int coordinateY() {
+  private int coordinateY() {
     return mazeBlock.getY() * 100 + 210;
   }
 

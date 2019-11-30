@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.example.phase1activity.Core.Transmission.Overseers.AppManager;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
-import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
-import com.example.phase1activity.Core.Transmission.Saving.ISaver;
 
 /**
  * Customization Activity
@@ -27,7 +25,7 @@ public class CustomizationActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customization);
 
-        // Initialize buttons and text fields
+        // Initialize buttons and text fields.
         RadioButton red = findViewById(R.id.Red);
         RadioButton green = findViewById(R.id.Green);
         RadioButton blue = findViewById(R.id.Blue);
@@ -43,7 +41,7 @@ public class CustomizationActivity extends AbstractActivity {
 
         final AppManager profile = app;
 
-        // The two radio groups used to select a colour and song.
+        // Initialize radio groups used to select a colour and song.
         RadioGroup colours = findViewById(R.id.radioGroup1);
         RadioGroup songs = findViewById(R.id.radioGroup2);
 
@@ -106,8 +104,8 @@ public class CustomizationActivity extends AbstractActivity {
         });
 
         setNicknameButton.setOnClickListener(new View.OnClickListener() {
-            String VALID_NICKNAME_MESSAGE =  "New nickname set succesfully.";
-            String INVALID_NICKNAME_MESSAGE = "Don't use commas. Keep it below 9 characters.";
+            String VALID_NICKNAME_MESSAGE =  "New nickname set successfully.";
+            String INVALID_NICKNAME_MESSAGE = "Nicknames must be between 1-8 characters. No commas!";
             public void onClick(View v) {
                 if (0 < nicknameEntry.getText().toString().length() &&
                         nicknameEntry.getText().toString().length() < 9 &&

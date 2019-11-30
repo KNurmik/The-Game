@@ -1,13 +1,9 @@
 package com.example.phase1activity.Core.Transmission.Saving;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * An interface defining the methods needed for any game-saving mechanism (no matter the OS it is
- * specific to.
- */
+/** An interface defining the methods needed for any game-saving system. */
 public interface ISaver {
     /**
      * Save contents.

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-/** A game saving mechanism specific to AndroidStudio. */
+/** A game-saving mechanism specific to AndroidStudio. */
 public class AndroidSaver implements ISaver {
 
   /** The file to read and write data to. */
@@ -99,6 +99,9 @@ public class AndroidSaver implements ISaver {
       attributeTypes.add(AttributeType.TOTAL_SCORE);
       attributeTypes.add(AttributeType.FASTEST_RXN_TIME);
       attributeTypes.add(AttributeType.TOTAL_MOVES);
+
+      // Change the user's attribute of type attributeType to newAttribute, and keep all other
+      // attributes the same, as previously defined in the userInfo.txt file.
       for (AttributeType userAttr : attributeTypes) {
         if (userAttr.equals(attributeType)) {
           lineToSave.append(newAttribute);
@@ -113,9 +116,9 @@ public class AndroidSaver implements ISaver {
   }
 
   /**
-   * Load contents.
+   * Load saved contents.
    *
-   * @return previously saved contents.
+   * @return previously-saved contents.
    */
   public String loadData() {
     StringBuilder data = new StringBuilder();
@@ -127,7 +130,7 @@ public class AndroidSaver implements ISaver {
         }
       }
     } catch (IOException e) {
-      Log.e(TAG, "Cannot load data: " + SAVE_FILE);
+      Log.e(TAG, "Cannot load data from: " + SAVE_FILE);
     }
 
     return data.toString();

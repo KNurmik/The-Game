@@ -8,13 +8,15 @@ public class MazeManagerImpl implements MazeManager {
 
   /** The maze that will be displayed on the phone. */
   private Maze mazeObject;
-
+  /** True if the maze game is easy. */
+  private boolean difficulty;
   /** Constructs the MazeManager. */
   @Inject
-  public MazeManagerImpl(Maze maze) {
+  public MazeManagerImpl(Maze maze, boolean difficulty) {
 
     this.mazeObject = maze;
-    // Randomly delete maze walls so that there is a path from the starting block to the exit.
+    this.difficulty = difficulty;
+    // Randomly deletes maze walls such that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
   }
@@ -93,10 +95,17 @@ public class MazeManagerImpl implements MazeManager {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
-    if (mazeObject.getCoin().isVisited()) {
-      return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 5000);
+    if (difficulty) { // Easy game produces less points than the extreme version of the game.
+      if (mazeObject.getCoin().isVisited()) {
+        return (int) (15000 / Math.pow((1.1), mazeObject.player.getMoves()) + 5000);
+      }
+      return (int) (15000 / Math.pow((1.1), mazeObject.player.getMoves()));
+    } else {
+      if (mazeObject.getCoin().isVisited()) {
+        return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 5000);
+      }
+      return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()));
     }
-    return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()));
   }
 
   /**

@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-class Coin {
+public class Coin {
 
   /** The maze block that the character is in. */
   private MazeBlock mazeBlock;
@@ -14,7 +14,7 @@ class Coin {
   /** Boolean variable representing if the character has reached the coin */
   private boolean visited;
 
-  Coin(MazeBlock block) {
+  public Coin(MazeBlock block) {
     mazeBlock = block;
     paintText.setColor(Color.YELLOW);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);
@@ -56,7 +56,7 @@ class Coin {
    *
    * @param canvas the canvas that the device is using.
    */
-  void draw(Canvas canvas) {
+  public void draw(Canvas canvas) {
     if (!visited) {
       canvas.drawCircle(coordinateX(), coordinateY(), 40, paintText);
     }

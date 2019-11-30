@@ -1,6 +1,6 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
-import android.graphics.Canvas;
+import java.util.List;
 
 public interface MazeManager {
   /** @return the mazeObject for this maze manager. */
@@ -12,7 +12,7 @@ public interface MazeManager {
    *
    * @param canvas the canvas.
    */
-  void draw(Canvas canvas);
+  // void draw(Canvas canvas);
 
   /**
    * Return true if and only if the character is on the winning block and the user has one the game.
@@ -60,4 +60,16 @@ public interface MazeManager {
    * @param d the direction that the user wants to move the maze character.
    */
   void movePlayer(Character.Direction d);
+
+  Character getMazePlayer();
+
+  Coin getCoin();
+
+  MazeBlock getTeleportBlock1();
+
+  MazeBlock getTeleportBlock2();
+
+  List<Wall> getMazeWalls();
+
+  List<Wall> getOuterWalls();
 }

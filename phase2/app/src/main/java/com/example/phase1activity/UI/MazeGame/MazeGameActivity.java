@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 import static android.graphics.Color.rgb;
 
-/** class for the activity_the_maze.xml */
+/** A maze game activity. */
 public class MazeGameActivity extends AbstractActivity implements MazeGameViewInterface {
   public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
   /** The nickname for the user */
@@ -33,7 +33,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
   private DrawView drawView;
 
   /**
-   * Creates a new drawView, mazeManager, sets the score to 0 and sets the character color to the
+   * Create a new drawView, mazeManager, sets the score to 0 and sets the character color to the
    * customized color that the user chose
    *
    * @param savedInstanceState the bundle that creates the drawView
@@ -63,7 +63,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     startActivity(intent);
   }
 
-  /** Updates the player's score and moves. */
+  /** Update the player's score and moves. */
   public void updateProfileStatistics() {
     app.updateProfileMoves(this, presenter.getPlayerMoves());
     app.updateProfileScore(this, presenter.getScore());
@@ -85,7 +85,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     }
 
     /**
-     * Draws all the contents of the maze game.
+     * Draw all the contents of the maze game.
      *
      * @param canvas the Canvas.
      */
@@ -106,7 +106,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     }
 
     /**
-     * Draws all the walls of the neighbours and their neighbours of the current block of the
+     * Draw all the walls of the neighbours and their neighbours of the current block of the
      * player.
      *
      * @param canvas the Canvas.
@@ -129,7 +129,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     }
 
     /**
-     * Draws all the maze walls.
+     * Draw all the maze walls.
      *
      * @param canvas The canvas.
      */
@@ -140,7 +140,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     }
 
     /**
-     * Draws the two teleporting blocks if they have not been used yet.
+     * Draw the two teleporting blocks if they have not been used yet.
      *
      * @param canvas the canvas.
      */
@@ -161,14 +161,14 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
             paint);
       }
     }
-    /** Draws the maze, character and displays the current score of the player */
+    /** Draw the maze, character and displays the current score of the player */
     @Override
     public void onDraw(Canvas canvas) {
       super.onDraw(canvas);
       paint.setColor(playerColor);
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
       // Draws the current score of the player
-      canvas.drawText(playerNickname + " current score: " + presenter.getScore(), 75, 1500, paint);
+      canvas.drawText(playerNickname + " score: " + presenter.getScore(), 75, 1500, paint);
       drawMaze(canvas); // draws the maze and character
       if (presenter.checkWin()) {
         updateProfileStatistics(); // updates the number of score and moves for the user's profile

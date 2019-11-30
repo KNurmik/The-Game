@@ -142,14 +142,14 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
   /** Set sortedUsers to a list of users, sorted by total score. */
   void sortByScore() {
     presenter.presentBestScores();
-    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: score over all plays.";
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: total score.";
     statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 
   /** Set sortedUsers to a list of users, sorted by total moves. */
   void sortByMoves() {
     presenter.presentMostMoves();
-    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: moves over all plays.";
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: total moves.";
     statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 

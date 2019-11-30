@@ -14,7 +14,7 @@ public class MazeManagerImpl implements MazeManager {
   public MazeManagerImpl(Maze maze) {
 
     this.mazeObject = maze;
-    // Randomly deletes maze walls such that there is a path from the starting block to the exit.
+    // Randomly delete maze walls so that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
   }

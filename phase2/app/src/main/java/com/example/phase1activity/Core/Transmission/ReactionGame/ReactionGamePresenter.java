@@ -1,10 +1,10 @@
 package com.example.phase1activity.Core.Transmission.ReactionGame;
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.CountDownTimer;
 
 import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManager;
+import com.example.phase1activity.Core.Logic.ReactionGame.ReactionGameManagerImpl;
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.ReactionGame.ReactionGameViewInterface;
 
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 /**
  * Class responsible for "presenter" role in MVP architecture. Serves as a middleman between
- * ReactionGameManager and ReactionGameView. Tells view what to display based on computations done
+ * ReactionGameManagerImpl and ReactionGameView. Tells view what to display based on computations done
  * by the manager.
  */
 public class ReactionGamePresenter implements ReactionGamePresenterInterface {
@@ -46,34 +46,34 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
   public void handleClick() {
 
     // Turn hasn't stated, begin the game.
-    if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
+    if (manager.getGameState().equals(ReactionGameManagerImpl.State.BEGINNING)) {
       beginGame();
     }
     // Game has begun, user pressed button too early.
-    else if (manager.getGameState().equals(ReactionGameManager.State.DONTREACT)) {
+    else if (manager.getGameState().equals(ReactionGameManagerImpl.State.DONTREACT)) {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
       view.setTimeText(manager.getTimeLeft());
     }
     // User reacted correctly.
-    else if (manager.getGameState().equals(ReactionGameManager.State.REACT)) {
+    else if (manager.getGameState().equals(ReactionGameManagerImpl.State.REACT)) {
       manager.press();
       view.updateGameStateView(R.drawable.react_well);
       view.updateScoreView(manager.getScore());
-      manager.setGameState(ReactionGameManager.State.BEGINNING);
+      manager.setGameState(ReactionGameManagerImpl.State.BEGINNING);
       totalClicks += 1;
       view.setTimeText(manager.getTimeLeft());
     }
     // User has to spam button.
-    else if (manager.getGameState().equals(ReactionGameManager.State.SPAMBUTTON)) {
+    else if (manager.getGameState().equals(ReactionGameManagerImpl.State.SPAMBUTTON)) {
       manager.press();
       view.updateGameStateView(R.drawable.react_spam);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
       view.setTimeText(manager.getTimeLeft());
       // User has spammed enough.
-      if (manager.getGameState().equals(ReactionGameManager.State.BEGINNING)) {
+      if (manager.getGameState().equals(ReactionGameManagerImpl.State.BEGINNING)) {
         view.updateGameStateView(R.drawable.react_stop);
         view.disableButton();
         new CountDownTimer(1000, 1000) {
@@ -90,7 +90,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     }
 
     // Game is over.
-    else if (manager.getGameState().equals(ReactionGameManager.State.GAMEOVER)) {
+    else if (manager.getGameState().equals(ReactionGameManagerImpl.State.GAMEOVER)) {
       view.endActivity();
     }
   }
@@ -107,7 +107,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     // If user has time left in the bank.
     if (manager.isTimeLeft()) {
 
-      manager.setGameState(ReactionGameManager.State.DONTREACT);
+      manager.setGameState(ReactionGameManagerImpl.State.DONTREACT);
       view.updateGameStateView(R.drawable.react_dont);
       view.setTimeText(manager.getTimeLeft());
 
@@ -116,7 +116,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       new CountDownTimer((long) random, 1000) {
 
         public void onTick(long millisUntilFinished) {
-          if (manager.getGameState().equals(ReactionGameManager.State.DONTREACT)) {
+          if (manager.getGameState().equals(ReactionGameManagerImpl.State.DONTREACT)) {
             double confuseRandom = Math.random();
             if (confuseRandom < 0.3) {
               view.updateGameStateView(R.drawable.react_dont_trick);
@@ -144,14 +144,14 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
     // User does not have time left in the bank.
     else {
       view.updateGameStateView(R.drawable.react_end);
-      manager.setGameState(ReactionGameManager.State.GAMEOVER);
+      manager.setGameState(ReactionGameManagerImpl.State.GAMEOVER);
       view.updateProfileStatistics(manager.getFastestReaction(), totalClicks, manager.getScore());
       view.updateScoreView(manager.getScore());
     }
   }
 
-  /** @param manager ReactionGameManager to set this.manager to. */
-  public void setManager(ReactionGameManager manager) {
+  /** @param manager ReactionGameManagerImpl to set this.manager to. */
+  public void setManager(ReactionGameManagerImpl manager) {
     this.manager = manager;
   }
 }

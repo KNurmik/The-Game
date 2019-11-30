@@ -49,6 +49,9 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
   /** A list of textviews that display the user scores. */
   List<TextView> scoreTextViews;
 
+  /** The textview that displays a description of the statistic the leaderboard is sorted by. */
+  TextView statDescription;
+
   /**
    * Create references to all LeaderboardViewImpl view objects. Set the text of each TextView to
    * "-". Set button on-click listeners.
@@ -74,6 +77,8 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
     fourthPlaceScore = findViewById(R.id.fourthPlaceStat);
     fifthPlaceScore = findViewById(R.id.fifthPlaceStat);
 
+    statDescription = findViewById(R.id.statDescription);
+
     userTextViews = new ArrayList<>();
     userTextViews.add(firstPlace);
     userTextViews.add(secondPlace);
@@ -92,6 +97,8 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
       userTextViews.get(i).setText("-");
       scoreTextViews.get(i).setText("-");
     }
+
+    statDescription.setText("");
 
     Button sortByScore = findViewById(R.id.sortByScore);
     Button sortByMoves = findViewById(R.id.sortByMoves);
@@ -135,16 +142,22 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
   /** Set sortedUsers to a list of users, sorted by total score. */
   void sortByScore() {
     presenter.presentBestScores();
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: score over all plays.";
+    statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 
   /** Set sortedUsers to a list of users, sorted by total moves. */
   void sortByMoves() {
     presenter.presentMostMoves();
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: moves over all plays.";
+    statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 
   /** Set sortedUsers to a list of users, sorted by fastest reaction. */
   void sortByReaction() {
     presenter.presentFastestReactions();
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: reaction time.";
+    statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 
   /** Set the text of all TextView objects to the stats of their respective users in sortedUsers. */

@@ -94,9 +94,9 @@ public class MazeManagerImpl implements MazeManager {
    */
   public int calculateScore() {
     if (mazeObject.getCoin().isVisited()) {
-      return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 6000);
+      return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 5000);
     }
-    return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 1000);
+    return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()));
   }
 
   /**

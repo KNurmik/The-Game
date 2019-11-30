@@ -35,6 +35,7 @@ public class StartActivity extends AbstractActivity {
     Button startReact = findViewById(R.id.startReact);
     Button startMatch = findViewById(R.id.startMatch);
     Button startMaze = findViewById(R.id.startMaze);
+    Button logOut = findViewById(R.id.logout);
 
     TextView userLevelDisplay = findViewById(R.id.userLevelDisplay);
 
@@ -78,6 +79,15 @@ public class StartActivity extends AbstractActivity {
             finish();
           }
         });
+
+      logOut.setOnClickListener(
+              new View.OnClickListener() {
+                  public void onClick(View v) {
+                      startActivity(new Intent(StartActivity.this, MainActivity.class));
+                      app.stopMusic();
+                      finish();
+                  }
+              });
 
     final Activity activity = this;
 

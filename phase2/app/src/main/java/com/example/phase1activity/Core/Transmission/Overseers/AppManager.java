@@ -47,6 +47,10 @@ public class AppManager extends Application {
     player.changeMusic(this, n);
   }
 
+  public void stopMusic(){
+    player.stopMusic();
+  }
+
   public void updateGlobalStats() {
     this.globalStats.updateGlobalStats();
   }

@@ -9,9 +9,9 @@ import android.graphics.Typeface;
 public class Character {
 
   /** The maze block that the character is in. */
-  public MazeBlock currentBlock;
+  private MazeBlock currentBlock;
   /** The number of moves this character has taken in the maze. */
-  public int moves;
+  private int moves;
   /** Paint attribute for the character */
   private Paint paintText = new Paint();
 
@@ -33,12 +33,36 @@ public class Character {
    *
    * @param currentBlock the MazeBlock that the character will go to.
    */
-  private void setCurrentBlock(MazeBlock currentBlock) {
+  void setCurrentBlock(MazeBlock currentBlock) {
     this.currentBlock = currentBlock;
   }
 
+  /**
+   * Getter for currentBlock attribut.
+   *
+   * @return The current maze block that the character is on.
+   */
+  MazeBlock getCurrentBlock() {
+    return currentBlock;
+  }
+
+  /**
+   * Set the color of the character object in the maze.
+   *
+   * @param color the color of the character.
+   */
   public void setPaintText(int color) {
     paintText.setColor(color);
+  }
+
+  /** @return the number of moves that the character has made each game */
+  public int getMoves() {
+    return moves;
+  }
+
+  /** @param moves Increments the player's moves by moves */
+  public void setMoves(int moves) {
+    this.moves += moves;
   }
 
   /**
@@ -46,7 +70,7 @@ public class Character {
    *
    * @param direction the direction that the user wishes the character to move in.
    */
-  public void move(Direction direction) {
+  void move(Direction direction) {
     switch (direction) {
       case UP: // moves up if the MazeItem above is a MazeBlock
         if (currentBlock.getUp() instanceof MazeBlock) {
@@ -81,7 +105,7 @@ public class Character {
    *
    * @return the x coordinate of the character in Android coordinates.
    */
-  public int coordinateX() {
+  int coordinateX() {
     return currentBlock.getX() * 100 + 173;
   }
 
@@ -90,7 +114,7 @@ public class Character {
    *
    * @return the y coordinate of the character in Android coordinates.
    */
-  public int coordinateY() {
+  int coordinateY() {
     return currentBlock.getY() * 100 + 210;
   }
 

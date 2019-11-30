@@ -9,7 +9,7 @@ import javax.inject.Inject;
 public class MazeManager {
 
   /** The maze that will be displayed on the phone */
-  public Maze mazeObject;
+  private Maze mazeObject;
 
   private boolean difficulty;
   /** Constructs the MazeManager */
@@ -23,6 +23,10 @@ public class MazeManager {
     mazeObject.createPlayer();
   }
 
+  /** @return the mazeObject for this maze manager. */
+  public Maze getMazeObject() {
+    return mazeObject;
+  }
   /**
    * Draws every outer wall of the maze as well as any walls that are neighbours of neighbours of
    * the currentBlock that the player is on , as well as the player
@@ -34,26 +38,29 @@ public class MazeManager {
     paint.setColor(Color.BLACK);
     paint.setTextSize(75);
     mazeObject.player.draw(canvas);
-    mazeObject.coin.draw(canvas);
-    if (mazeObject.teleportBlock1 != null) {
+    mazeObject.getCoin().draw(canvas);
+    // Draw the teleporting blocks if they have not been accessed yet.
+    if (mazeObject.getTeleportBlock1() != null) {
       canvas.drawCircle(
-          mazeObject.teleportBlock1.getX() * 100 + 173,
-          mazeObject.teleportBlock1.getY() * 100 + 210,
+          mazeObject.getTeleportBlock1().getX() * 100 + 173,
+          mazeObject.getTeleportBlock1().getY() * 100 + 210,
           40,
           paint);
       canvas.drawCircle(
-          mazeObject.teleportBlock2.getX() * 100 + 173,
-          mazeObject.teleportBlock2.getY() * 100 + 210,
+          mazeObject.getTeleportBlock2().getX() * 100 + 173,
+          mazeObject.getTeleportBlock2().getY() * 100 + 210,
           40,
           paint);
     }
 
-    for (Wall wall : mazeObject.outerWalls) {
+    for (Wall wall : mazeObject.getOuterWalls()) {
       wall.draw(canvas);
     }
-    for (Wall wall : mazeObject.mazeWalls) {
-      if (!difficulty) {
-        for (MazeBlock currentNeighbour : mazeObject.player.currentBlock.getNeighboursNeighbour()) {
+    for (Wall wall : mazeObject.getMazeWalls()) {
+      if (!difficulty) { // If the user chooses the extreme setting, only draw walls that are near
+        // the character in the maze/
+        for (MazeBlock currentNeighbour :
+            mazeObject.player.getCurrentBlock().getNeighboursNeighbour()) {
           for (MazeItem neighbourWall : currentNeighbour.getNeighbourWalls()) {
             if (wall == neighbourWall) { // If the wall is a wall of the currentNeighbour or
               // currentNeighbour2 (which is a neighbour of currentNeighbour)
@@ -62,8 +69,8 @@ public class MazeManager {
           }
         }
 
-      } else {
-        for (Wall wall2 : mazeObject.mazeWalls) {
+      } else { // Draw all walls in the maze if the user chose the easy setting.
+        for (Wall wall2 : mazeObject.getMazeWalls()) {
           wall2.draw(canvas);
         }
       }
@@ -71,28 +78,37 @@ public class MazeManager {
   }
 
   /**
-   * Returns true if and only if the character is on the winning block and the user has one the game
+   * Returns true if and only if the character is on the winning block and the user has one the
+   * game.
    *
    * @return Whether the player is currently standing on the winning block or not.
    */
   public boolean checkWin() {
-    return mazeObject.player.currentBlock == mazeObject.winningBlock;
+    return mazeObject.player.getCurrentBlock() == mazeObject.getWinningBlock();
   }
 
+  /**
+   * If the player obtains the coin, increase the points of the user and remove the coin from the
+   * maze.
+   */
   public void gotCoin() {
-    if (mazeObject.player.currentBlock == mazeObject.coin.mazeBlock
-        && !(mazeObject.coin.isVisited())) {
+    if (mazeObject.player.getCurrentBlock() == mazeObject.getCoin().getMazeBlock()
+        && !(mazeObject.getCoin().isVisited())) {
       mazeObject.removeCoin();
     }
   }
 
+  /**
+   * If the player steps onto a teleporting maze block, move the user to the other teleporting maze
+   * block and remove the two teleporting maze blocks from the maze.
+   */
   public void teleport() {
 
-    if (mazeObject.player.currentBlock == mazeObject.teleportBlock1) {
-      mazeObject.player.currentBlock = mazeObject.teleportBlock2;
+    if (mazeObject.player.getCurrentBlock() == mazeObject.getTeleportBlock1()) {
+      mazeObject.player.setCurrentBlock(mazeObject.getTeleportBlock2());
       mazeObject.removeTeleportBlocks();
-    } else if (mazeObject.player.currentBlock == mazeObject.teleportBlock2) {
-      mazeObject.player.currentBlock = mazeObject.teleportBlock1;
+    } else if (mazeObject.player.getCurrentBlock() == mazeObject.getTeleportBlock2()) {
+      mazeObject.player.setCurrentBlock(mazeObject.getTeleportBlock1());
       mazeObject.removeTeleportBlocks();
     }
   }
@@ -103,20 +119,35 @@ public class MazeManager {
    * @return The updated score of the player after they move
    */
   public int calculateScore() {
-    if (mazeObject.coin.isVisited()) {
-      return (int) (20000 / Math.pow((1.1), mazeObject.player.moves) + 6000);
+    if (mazeObject.getCoin().isVisited()) {
+      return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 6000);
     }
-    return (int) (20000 / Math.pow((1.1), mazeObject.player.moves) + 1000);
+    return (int) (20000 / Math.pow((1.1), mazeObject.player.getMoves()) + 1000);
   }
 
+  /**
+   * Get the x coordinate of the player
+   *
+   * @return the x coordinate of the player
+   */
   public int getPlayerX() {
     return mazeObject.player.coordinateX();
   }
 
+  /**
+   * Get the y coordinate of the player
+   *
+   * @return the y coordinate of the player
+   */
   public int getPlayerY() {
     return mazeObject.player.coordinateY();
   }
 
+  /**
+   * Move the player according to the direction d given.
+   *
+   * @param d the direction that the user wants to move the maze character.
+   */
   public void movePlayer(Character.Direction d) {
     if (d == Character.Direction.DOWN) {
       mazeObject.player.move(Character.Direction.DOWN);

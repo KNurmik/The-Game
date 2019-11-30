@@ -232,4 +232,35 @@ class Profile {
   String getPassword() {
     return this.password;
   }
+
+  /** @return the user's level. */
+  int getUserLevel() {
+    int userLevel = 0;
+
+    if (totalScoreStat >= 10000000) {
+      userLevel += 3;
+    } else if (totalScoreStat >= 100000) {
+      userLevel += 2;
+    } else if (totalScoreStat >= 10000) {
+      userLevel += 1;
+    }
+
+    if (totalMovesStat >= 10000) {
+      userLevel += 3;
+    } else if (totalMovesStat >= 1000) {
+      userLevel += 2;
+    } else if (totalMovesStat >= 100) {
+      userLevel += 1;
+    }
+
+    if (fastestRxnStat < 0.05) {
+      userLevel += 3;
+    } else if (fastestRxnStat <  0.3) {
+      userLevel += 2;
+    } else if (fastestRxnStat < 0.4) {
+      userLevel += 1;
+    }
+
+    return userLevel;
+  }
 }

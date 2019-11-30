@@ -216,4 +216,6 @@ public class AppManager extends Application {
   public boolean getMazeGameDifficulty(){return easyMazeGame;}
 
   public void setMazeGameDifficulty(boolean difficulty){easyMazeGame = difficulty;}
+
+  public int getUserLevel() { return profile.getUserLevel(); }
 }

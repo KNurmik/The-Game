@@ -21,23 +21,33 @@ public interface MazeGamePresenterInterface {
    */
   boolean onTouchEvent(MotionEvent event);
 
+  /** @param profileColour the color that the user chose in customizations. */
   void setPaintText(int profileColour);
 
+  /** @return the score of this maze game. */
   int getScore();
 
+  /** @return ture if the character block is on the winning block */
   boolean checkWin();
-  // void drawTheView(Canvas canvas);
+
+  /** @return the number of moves of the player for this maze game. */
   int getPlayerMoves();
 
+  /** @return the character instances from this classes  MazeManger instance. */
   Character getMazePlayer();
 
+  /** @return the coin instance from this classes MazeManger instance. */
   Coin getCoin();
 
+  /** @return the first teleport maze block instance from this classes MazeManger instance. */
   MazeBlock getTeleportBlock1();
 
+  /** @return the second teleport maze block instance from this classes MazeManger instance. */
   MazeBlock getTeleportBlock2();
 
+  /** @return the list of maze walls from this classes MazeManger instance. */
   List<Wall> getMazeWalls();
 
+  /** @return the list of outer maze walls from this classes MazeManger instance. */
   List<Wall> getOuterWalls();
 }

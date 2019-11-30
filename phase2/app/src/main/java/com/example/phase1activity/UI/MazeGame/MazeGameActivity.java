@@ -51,6 +51,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     presenter.setPaintText(app.getProfileColour());
   }
 
+  /** @return the drawView instances of this View. */
   public DrawView getView() {
     return drawView;
   }
@@ -83,22 +84,33 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       paint.setTextSize(75);
     }
 
+    /**
+     * Draws all the contents of the maze game.
+     *
+     * @param canvas the Canvas.
+     */
     public void drawMaze(Canvas canvas) {
 
+      // Draws the player, coin and teleporting blocks.
       presenter.getMazePlayer().draw(canvas);
       presenter.getCoin().draw(canvas);
       drawTeleportBlocks(canvas);
 
       if (!app
           .getMazeGameDifficulty()) { // If the user chooses the extreme setting, only draw walls
-                                      // that are near
-        // the character in the maze/
+        // that are near the character in the maze
         drawHardGame(canvas);
       } else { // Draw all walls in the maze if the user chose the easy setting.
         drawEasyGame(canvas);
       }
     }
 
+    /**
+     * Draws all the walls of the neighbours and their neighbours of the current block of the
+     * player.
+     *
+     * @param canvas the Canvas.
+     */
     private void drawHardGame(Canvas canvas) {
       for (Wall wall : presenter.getOuterWalls()) {
         wall.draw(canvas);
@@ -116,12 +128,22 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       }
     }
 
+    /**
+     * Draws all the maze walls.
+     *
+     * @param canvas The canvas.
+     */
     private void drawEasyGame(Canvas canvas) {
       for (Wall wall : presenter.getMazeWalls()) {
         wall.draw(canvas);
       }
     }
 
+    /**
+     * Draws the two teleporting blocks if they have not been used yet.
+     *
+     * @param canvas the canvas.
+     */
     public void drawTeleportBlocks(Canvas canvas) {
       Paint paint = new Paint();
       paint.setColor(Color.BLACK);
@@ -145,7 +167,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       super.onDraw(canvas);
       paint.setColor(playerColor);
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
-      // Draws the string displaying if the user has escaped the maze and the current score
+      // Draws the current score of the player
       canvas.drawText(playerNickname + " current score: " + presenter.getScore(), 75, 1500, paint);
       drawMaze(canvas); // draws the maze and character
       if (presenter.checkWin()) {

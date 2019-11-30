@@ -44,15 +44,7 @@ public class MazeBlock extends MazeItem {
     neighboursWalls = new ArrayList<>();
   }
 
-  public boolean isVisited() {
-    return visited;
-  }
-
-  public void setVisited(boolean visited) {
-    this.visited = visited;
-  }
-
-  public void setTeleportBlock(boolean teleportBlock) {
+  void setTeleportBlock(boolean teleportBlock) {
     this.teleportBlock = teleportBlock;
   }
 
@@ -86,6 +78,9 @@ public class MazeBlock extends MazeItem {
     }
   }
 
+  /**
+   * @return a list of maze blocks that are the neighbours of this neighbours.
+   */
   public List<MazeBlock> getNeighboursNeighbour() {
     for (MazeBlock neighbour : neighbours) {
       neighboursNeighbours.add(neighbour);

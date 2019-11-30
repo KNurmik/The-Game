@@ -61,15 +61,21 @@ public interface MazeManager {
    */
   void movePlayer(Character.Direction d);
 
+  /** @return the character instances from this classes maze instance. */
   Character getMazePlayer();
 
+  /** @return the coin instance from this classes maze instance. */
   Coin getCoin();
 
+  /** @return the first teleport maze block instance from this classes maze instance. */
   MazeBlock getTeleportBlock1();
 
+  /** @return the second teleport maze block instance from this classes maze instance. */
   MazeBlock getTeleportBlock2();
 
+  /** @return the list of maze walls from this classes maze instance. */
   List<Wall> getMazeWalls();
 
+  /** @return the list of outer maze walls from this classes maze instance. */
   List<Wall> getOuterWalls();
 }

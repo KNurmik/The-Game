@@ -37,16 +37,6 @@ public class MazeMenuActivity extends AbstractActivity {
                 });
     }
 
-    /**
-     * Called when the user taps the Send button
-     */
-    public void startMazeGame(View view) {
-        Intent intent = new Intent(this, MazeGameActivity.class);
-        // EditText editText = (EditText) findViewById(R.id.editText);
-        // String message = editText.getText().toString();
-        // intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
 
 
 }

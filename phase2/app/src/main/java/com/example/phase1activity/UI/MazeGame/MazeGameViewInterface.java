@@ -1,8 +1,13 @@
 package com.example.phase1activity.UI.MazeGame;
 
 public interface MazeGameViewInterface {
-    void updateProfileStatistics();
-    MazeGameActivity.DrawView getView();
-    void finishMaze();
 
+  /** Updates the profile statistics if the user finished the game */
+  void updateProfileStatistics();
+
+  /** @return the drawView instances of this View. */
+  MazeGameActivity.DrawView getView();
+
+  /** The maze is finished then move onto the next screen. */
+  void finishMaze();
 }

@@ -30,15 +30,6 @@ public class MazeItem {
   }
 
   /**
-   * Setter for MazeItem.x
-   *
-   * @param x The new x value of this MazeItem
-   */
-  public void setX(int x) {
-    this.x = x;
-  }
-
-  /**
    * Getter for MazeItem.y
    *
    * @return y
@@ -47,12 +38,4 @@ public class MazeItem {
     return y;
   }
 
-  /**
-   * Setter for MazeItem.y
-   *
-   * @param y The new y value of this MazeItem
-   */
-  public void setY(int y) {
-    this.y = y;
-  }
 }

@@ -14,7 +14,7 @@ public class Coin {
   /** Boolean variable representing if the character has reached the coin */
   private boolean visited;
 
-  public Coin(MazeBlock block) {
+  Coin(MazeBlock block) {
     mazeBlock = block;
     paintText.setColor(Color.YELLOW);
     paintText.setTypeface(Typeface.DEFAULT_BOLD);

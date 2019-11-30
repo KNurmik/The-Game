@@ -50,46 +50,52 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     this.mazeManager = manager;
   }
 
+  /** @return the score of this maze game. */
   public int getScore() {
     return score;
   }
 
-  //  public void drawTheView(Canvas canvas) {
-  //    mazeManager.draw(canvas);
-  //  }
-
+  /** @return ture if the character block is on the winning block */
   public boolean checkWin() {
     return mazeManager.checkWin();
   }
 
+  /** @param color the color that the user chose in customizations. */
   public void setPaintText(int color) {
     mazeManager.getMazeObject().player.setPaintText(color);
   }
 
+  /** @return the number of moves of the player for this maze game. */
   public int getPlayerMoves() {
     return mazeManager.getMazeObject().player.getMoves();
   }
 
+  /** @return the character instances from this classes MazeManger instance. */
   public Character getMazePlayer() {
     return mazeManager.getMazePlayer();
   }
 
+  /** @return the coin instance from this classes MazeManger instance. */
   public Coin getCoin() {
     return mazeManager.getCoin();
   }
 
+  /** @return the first teleport maze block instance from this classes MazeManger instance. */
   public MazeBlock getTeleportBlock1() {
     return mazeManager.getTeleportBlock1();
   }
 
+  /** @return the second teleport maze block instance from this classes MazeManger instance. */
   public MazeBlock getTeleportBlock2() {
     return mazeManager.getTeleportBlock2();
   }
 
+  /** @return the list of maze walls from this classes MazeManger instance. */
   public List<Wall> getMazeWalls() {
     return mazeManager.getMazeWalls();
   }
 
+  /** @return the list of outer maze walls from this classes MazeManger instance. */
   public List<Wall> getOuterWalls() {
     return mazeManager.getOuterWalls();
   }

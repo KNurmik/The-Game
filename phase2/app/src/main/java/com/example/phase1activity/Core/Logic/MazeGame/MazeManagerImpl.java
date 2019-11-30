@@ -19,26 +19,30 @@ public class MazeManagerImpl implements MazeManager {
     mazeObject.createPlayer();
   }
 
+  /** @return the character instance from this classes maze instance. */
   public Character getMazePlayer() {
     return mazeObject.player;
   }
-
+  /** @return the coin instance from this classes maze instance. */
   public Coin getCoin() {
     return mazeObject.getCoin();
   }
 
+  /** @return the first teleport maze block instance from this classes maze instance. */
   public MazeBlock getTeleportBlock1() {
     return mazeObject.getTeleportBlock1();
   }
 
+  /** @return the second teleport maze block instance from this classes maze instance. */
   public MazeBlock getTeleportBlock2() {
     return mazeObject.getTeleportBlock2();
   }
 
+  /** @return the list of maze walls from this classes maze instance. */
   public List<Wall> getMazeWalls() {
     return mazeObject.getMazeWalls();
   }
-
+  /** @return the list of outer maze walls from this classes maze instance. */
   public List<Wall> getOuterWalls() {
     return mazeObject.getOuterWalls();
   }

@@ -21,7 +21,6 @@ public class MazeManager {
     // Randomly deletes maze walls such that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
-    mazeObject.createCoin();
   }
 
   /**
@@ -63,14 +62,11 @@ public class MazeManager {
           }
         }
 
-
-        }else{
-        for (Wall wall2: mazeObject.mazeWalls){
+      } else {
+        for (Wall wall2 : mazeObject.mazeWalls) {
           wall2.draw(canvas);
         }
-
       }
-
     }
   }
 

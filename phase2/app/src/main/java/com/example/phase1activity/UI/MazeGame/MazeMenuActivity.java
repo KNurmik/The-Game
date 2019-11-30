@@ -7,8 +7,6 @@ import android.widget.Button;
 
 import com.example.phase1activity.R;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
-import com.example.phase1activity.UI.MenuScreens.CustomizationActivity;
-import com.example.phase1activity.UI.MenuScreens.StartActivity;
 
 /**
  * The activity that is displayed after completing the matching game, before starting the maze itself

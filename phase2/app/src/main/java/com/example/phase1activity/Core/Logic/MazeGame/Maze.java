@@ -1,8 +1,8 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 /** A maze. */
@@ -51,34 +51,43 @@ public class Maze {
     this.player = new Character(mazeBlocks[0][mazeHeight - 1]);
   }
 
-  void createCoin() {
-    Random random = new Random();
-    int col = random.nextInt(8);
-    int row = random.nextInt(11);
-    this.coin = new Coin(mazeBlocks[col][row]);
+  private void createFeatures() {
+    ArrayList<Integer> col = new ArrayList<>();
+    for (int i = 1; i < 8; i++) {
+      col.add(i);
+    }
+    Collections.shuffle(col);
+    ArrayList<Integer> row = new ArrayList<>();
+    for (int i = 1; i < 8; i++) {
+      row.add(i);
+    }
+    Collections.shuffle(row);
+
+    this.coin = new Coin(mazeBlocks[col.get(0)][row.get(0)]);
+
+    mazeBlocks[col.get(1)][row.get(1)].setTeleportBlock(true);
+    teleportBlock1 = mazeBlocks[col.get(1)][row.get(1)];
+    mazeBlocks[col.get(2)][row.get(2)].setTeleportBlock(true);
+    teleportBlock2 = mazeBlocks[col.get(2)][row.get(2)];
   }
 
-  public void removeCoin() {
+  void removeCoin() {
     this.coin.setVisited(true);
   }
 
-  public void removeTeleportBlocks() {
+  void removeTeleportBlocks() {
     this.teleportBlock1 = null;
     this.teleportBlock2 = null;
   }
   /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
   private void createMaze() {
-    Random random = new Random();
-    int col1 = random.nextInt(8);
-    int row1 = random.nextInt(11);
-    int col2 = random.nextInt(8);
-    int row2 = random.nextInt(11);
 
     // Draws all the possible walls first and make the walls the left, right, up, down of the
     // surrounding maze blocks.
     for (int i = 0; i < mazeWidth; i++) {
       for (int j = 0; j < mazeHeight; j++) {
         mazeBlocks[i][j] = new MazeBlock(i, j);
+
         // The leftmost walls are added
         if (i == 0) {
           Wall newWall = new Wall(i, j, false);
@@ -124,16 +133,9 @@ public class Maze {
           mazeWalls.add(newWall);
           outerWalls.add(newWall);
         }
-        if (i == col1 && j == row1) {
-          mazeBlocks[i][j].setTeleportBlock(true);
-          teleportBlock1 = mazeBlocks[i][j];
-        }
-        if (i == col2 && j == row2) {
-          mazeBlocks[i][j].setTeleportBlock(true);
-          teleportBlock2 = mazeBlocks[i][j];
-        }
       }
     }
+    createFeatures();
     // The winning block is always in the top right corner of the maze.
     winningBlock = mazeBlocks[mazeWidth - 1][0];
   }
@@ -142,7 +144,7 @@ public class Maze {
    * Randomly remove walls between maze blocks until there is at least one path connecting evey maze
    * block
    */
-  public void createRandomMaze() {
+  void createRandomMaze() {
     Stack<MazeBlock> stack = new Stack<>();
     MazeBlock currentBlock;
     currentBlock = mazeBlocks[0][0]; // Set the currentBlock to the bottom left block
@@ -171,7 +173,7 @@ public class Maze {
    * @param currentBlock one of the maze blocks
    * @param nextBlock the other maze block
    */
-  public void removeWall(MazeBlock currentBlock, MazeBlock nextBlock) {
+  private void removeWall(MazeBlock currentBlock, MazeBlock nextBlock) {
     if (currentBlock.getRight() == nextBlock.getLeft()) {
       deleteWall(currentBlock.getRight()); // Delete the wall between the maze blocks
       nextBlock.createHorzLink(

@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.phase1activity.Core.Logic.MazeGame.MazeBlock;
+import com.example.phase1activity.Core.Logic.MazeGame.MazeItem;
+import com.example.phase1activity.Core.Logic.MazeGame.Wall;
 import com.example.phase1activity.Core.Transmission.MazeGame.MazeGamePresenter;
 import com.example.phase1activity.Core.Transmission.MazeGame.MazeGamePresenterInterface;
 import com.example.phase1activity.UI.Abstract.AbstractActivity;
@@ -24,6 +27,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
   public String playerNickname;
   /** The color of the user */
   public int playerColor;
+
   @Inject MazeGamePresenterInterface presenter;
   /** The drawView attribute that allows the app to draw the maze and character */
   private DrawView drawView;
@@ -43,7 +47,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     setContentView(drawView);
     playerNickname = app.getProfileNickname();
     playerColor = app.getProfileColour();
-    presenter = new MazeGamePresenter(this, app.getMazeGameDifficulty());
+    presenter = new MazeGamePresenter(this);
     presenter.setPaintText(app.getProfileColour());
   }
 
@@ -79,6 +83,62 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       paint.setTextSize(75);
     }
 
+    public void drawMaze(Canvas canvas) {
+
+      presenter.getMazePlayer().draw(canvas);
+      presenter.getCoin().draw(canvas);
+      drawTeleportBlocks(canvas);
+
+      if (!app
+          .getMazeGameDifficulty()) { // If the user chooses the extreme setting, only draw walls
+                                      // that are near
+        // the character in the maze/
+        drawHardGame(canvas);
+      } else { // Draw all walls in the maze if the user chose the easy setting.
+        drawEasyGame(canvas);
+      }
+    }
+
+    private void drawHardGame(Canvas canvas) {
+      for (Wall wall : presenter.getOuterWalls()) {
+        wall.draw(canvas);
+      }
+      for (Wall wall : presenter.getMazeWalls()) {
+        for (MazeBlock currentNeighbour :
+            presenter.getMazePlayer().getCurrentBlock().getNeighboursNeighbour()) {
+          for (MazeItem neighbourWall : currentNeighbour.getNeighbourWalls()) {
+            if (wall == neighbourWall) { // If the wall is a wall of the currentNeighbour or
+              // currentNeighbour2 (which is a neighbour of currentNeighbour)
+              wall.draw(canvas);
+            }
+          }
+        }
+      }
+    }
+
+    private void drawEasyGame(Canvas canvas) {
+      for (Wall wall : presenter.getMazeWalls()) {
+        wall.draw(canvas);
+      }
+    }
+
+    public void drawTeleportBlocks(Canvas canvas) {
+      Paint paint = new Paint();
+      paint.setColor(Color.BLACK);
+      paint.setTextSize(75);
+      if (presenter.getTeleportBlock1() != null) {
+        canvas.drawCircle(
+            presenter.getTeleportBlock1().getX() * 100 + 173,
+            presenter.getTeleportBlock1().getY() * 100 + 210,
+            40,
+            paint);
+        canvas.drawCircle(
+            presenter.getTeleportBlock2().getX() * 100 + 173,
+            presenter.getTeleportBlock2().getY() * 100 + 210,
+            40,
+            paint);
+      }
+    }
     /** Draws the maze, character and displays the current score of the player */
     @Override
     public void onDraw(Canvas canvas) {
@@ -87,7 +147,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
       // Draws the string displaying if the user has escaped the maze and the current score
       canvas.drawText(playerNickname + " current score: " + presenter.getScore(), 75, 1500, paint);
-      presenter.drawTheView(canvas); // draws the maze and character
+      drawMaze(canvas); // draws the maze and character
       if (presenter.checkWin()) {
         updateProfileStatistics(); // updates the number of score and moves for the user's profile
         canvas.drawText(playerNickname + " escaped the maze!", 75, 1400, paint);

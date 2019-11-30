@@ -1,14 +1,18 @@
 package com.example.phase1activity.Core.Transmission.MazeGame;
 
-import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.phase1activity.Core.Logic.MazeGame.Character;
+import com.example.phase1activity.Core.Logic.MazeGame.Coin;
 import com.example.phase1activity.Core.Logic.MazeGame.Maze;
+import com.example.phase1activity.Core.Logic.MazeGame.MazeBlock;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManager;
 import com.example.phase1activity.Core.Logic.MazeGame.MazeManagerImpl;
+import com.example.phase1activity.Core.Logic.MazeGame.Wall;
 import com.example.phase1activity.UI.MazeGame.MazeGameActivity;
 import com.example.phase1activity.UI.MazeGame.MazeGameViewInterface;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,9 +33,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
    * @param view The MazeGameViewInterface.
    */
   @Inject
-  public MazeGamePresenter(MazeGameViewInterface view, boolean difficulty) {
+  public MazeGamePresenter(MazeGameViewInterface view) {
     Maze maze = new Maze(8, 11);
-    mazeManager = new MazeManagerImpl(maze, difficulty);
+    mazeManager = new MazeManagerImpl(maze);
     this.view = view;
     score = 0;
     drawView = view.getView();
@@ -50,9 +54,9 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     return score;
   }
 
-  public void drawTheView(Canvas canvas) {
-    mazeManager.draw(canvas);
-  }
+  //  public void drawTheView(Canvas canvas) {
+  //    mazeManager.draw(canvas);
+  //  }
 
   public boolean checkWin() {
     return mazeManager.checkWin();
@@ -65,6 +69,31 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
   public int getPlayerMoves() {
     return mazeManager.getMazeObject().player.getMoves();
   }
+
+  public Character getMazePlayer() {
+    return mazeManager.getMazePlayer();
+  }
+
+  public Coin getCoin() {
+    return mazeManager.getCoin();
+  }
+
+  public MazeBlock getTeleportBlock1() {
+    return mazeManager.getTeleportBlock1();
+  }
+
+  public MazeBlock getTeleportBlock2() {
+    return mazeManager.getTeleportBlock2();
+  }
+
+  public List<Wall> getMazeWalls() {
+    return mazeManager.getMazeWalls();
+  }
+
+  public List<Wall> getOuterWalls() {
+    return mazeManager.getOuterWalls();
+  }
+
   /**
    * Every time the player touches the screen, record the movement and if it moves the player to a
    * new MazeBlock move it and redraw the maze to show so.

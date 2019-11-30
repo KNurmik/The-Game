@@ -29,21 +29,21 @@ public class Character {
   }
 
   /**
+   * Getter for currentBlock attribut.
+   *
+   * @return The current maze block that the character is on.
+   */
+  public MazeBlock getCurrentBlock() {
+    return currentBlock;
+  }
+
+  /**
    * Change the block that the character is located in.
    *
    * @param currentBlock the MazeBlock that the character will go to.
    */
   void setCurrentBlock(MazeBlock currentBlock) {
     this.currentBlock = currentBlock;
-  }
-
-  /**
-   * Getter for currentBlock attribut.
-   *
-   * @return The current maze block that the character is on.
-   */
-  MazeBlock getCurrentBlock() {
-    return currentBlock;
   }
 
   /**
@@ -123,7 +123,7 @@ public class Character {
    *
    * @param canvas the canvas that the device is using.
    */
-  void draw(Canvas canvas) {
+  public void draw(Canvas canvas) {
     canvas.drawCircle(coordinateX(), coordinateY(), 40, paintText);
   }
 

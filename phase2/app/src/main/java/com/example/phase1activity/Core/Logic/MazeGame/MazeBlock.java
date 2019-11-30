@@ -86,7 +86,7 @@ public class MazeBlock extends MazeItem {
     }
   }
 
-  List<MazeBlock> getNeighboursNeighbour() {
+  public List<MazeBlock> getNeighboursNeighbour() {
     for (MazeBlock neighbour : neighbours) {
       neighboursNeighbours.add(neighbour);
     }
@@ -97,7 +97,7 @@ public class MazeBlock extends MazeItem {
    *
    * @return The neighbourWalls list
    */
-  List<MazeItem> getNeighbourWalls() {
+  public List<MazeItem> getNeighbourWalls() {
     return neighboursWalls;
   }
 

@@ -29,15 +29,22 @@ public class Music {
 
   /** Changes the music to the song that the user chooses in their profile */
   public void changeMusic(Context context, int n) {
-    player.release();
-    player = MediaPlayer.create(context, Tracks[n]);
-    player.setLooping(true);
-    player.setVolume(100, 100);
-    player.start();
-  }
+    if (n == 3) {
+      stopMusic();
+    } else {
+      player.release();
+      player = MediaPlayer.create(context, Tracks[n]);
+      player.setLooping(true);
+      player.setVolume(100, 100);
+      player.start();
+      }
+    }
 
   public void stopMusic(){
-    player.stop();
-    player.release();
+    if (player != null) {
+      player.pause();
+      player.stop();
+      player.release();
+    }
   }
 }

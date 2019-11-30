@@ -115,6 +115,15 @@
             android:text="Song 2"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="146dp" />
+
+        <RadioButton
+            android:id="@+id/nosong"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:text="No Music"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="146dp" />
     </RadioGroup>
 
     <Button

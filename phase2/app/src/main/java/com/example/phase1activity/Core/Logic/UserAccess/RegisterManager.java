@@ -26,10 +26,10 @@ public class RegisterManager extends UserAccessManager {
     ISaver iSaver = new AndroidSaver(context);
     if (iSaver.getExistingUsernames().contains(username)) {
       return Result.TAKEN;
-    } else if (!isValidPassword(password)) {
-      return Result.ERROR_PASSWORD;
     } else if (!isValidUsername(username)) {
       return Result.ERROR_USERNAME;
+    } else if (!isValidPassword(password)) {
+      return Result.ERROR_PASSWORD;
     } else {
       // Save the new user's information with default values.
       final String DEFAULT_VALUES = "," + Color.RED + ",0,0,0,5,0";

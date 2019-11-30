@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 /** A maze wall. */
-class Wall extends MazeItem {
+public class Wall extends MazeItem {
 
   /** Whether this wall is horizontal or vertical. */
   private final boolean horizontal;
@@ -51,7 +51,7 @@ class Wall extends MazeItem {
    *
    * @param canvas the canvas to draw the Wall onto.
    */
-  void draw(Canvas canvas) {
+  public void draw(Canvas canvas) {
     if (isHorz()) {
       canvas.drawLine(
           (float) (getX() * 100 + 125),

@@ -12,8 +12,8 @@ import javax.inject.Inject;
 
 /**
  * Class responsible for "presenter" role in MVP architecture. Serves as a middleman between
- * ReactionGameManagerImpl and ReactionGameView. Tells view what to display based on computations done
- * by the manager.
+ * ReactionGameManagerImpl and ReactionGameView. Tells view what to display based on computations
+ * done by the manager.
  */
 public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
@@ -54,7 +54,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       manager.press();
       view.updateGameStateView(R.drawable.react_soon);
       totalClicks += 1;
-      view.setTimeText(manager.getTimeLeft());
+      view.updateTimeLeft(manager.getTimeLeft());
     }
     // User reacted correctly.
     else if (manager.getGameState().equals(ReactionGameManagerImpl.State.REACT)) {
@@ -63,7 +63,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateScoreView(manager.getScore());
       manager.setGameState(ReactionGameManagerImpl.State.BEGINNING);
       totalClicks += 1;
-      view.setTimeText(manager.getTimeLeft());
+      view.updateTimeLeft(manager.getTimeLeft());
     }
     // User has to spam button.
     else if (manager.getGameState().equals(ReactionGameManagerImpl.State.SPAMBUTTON)) {
@@ -71,7 +71,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
       view.updateGameStateView(R.drawable.react_spam);
       view.updateScoreView(manager.getScore());
       totalClicks += 1;
-      view.setTimeText(manager.getTimeLeft());
+      view.updateTimeLeft(manager.getTimeLeft());
       // User has spammed enough.
       if (manager.getGameState().equals(ReactionGameManagerImpl.State.BEGINNING)) {
         view.updateGameStateView(R.drawable.react_stop);
@@ -83,7 +83,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
           public void onFinish() {
             view.updateGameStateView(R.drawable.react_well);
             view.enableButton();
-            view.setTimeText(manager.getTimeLeft());
+            view.updateTimeLeft(manager.getTimeLeft());
           }
         }.start();
       }
@@ -109,7 +109,7 @@ public class ReactionGamePresenter implements ReactionGamePresenterInterface {
 
       manager.setGameState(ReactionGameManagerImpl.State.DONTREACT);
       view.updateGameStateView(R.drawable.react_dont);
-      view.setTimeText(manager.getTimeLeft());
+      view.updateTimeLeft(manager.getTimeLeft());
 
       // Randomize time to wait until prompting user to do something.
       double random = 0.5 + Math.random() * 4500;

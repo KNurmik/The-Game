@@ -1,8 +1,6 @@
 package com.example.phase1activity.Core.Logic.MazeGame;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -11,73 +9,43 @@ public class MazeManagerImpl implements MazeManager {
   /** The maze that will be displayed on the phone. */
   private Maze mazeObject;
 
-  private boolean difficulty;
   /** Constructs the MazeManager. */
   @Inject
-  public MazeManagerImpl(Maze maze, boolean difficulty) {
+  public MazeManagerImpl(Maze maze) {
 
     this.mazeObject = maze;
-    this.difficulty = difficulty;
     // Randomly deletes maze walls such that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
   }
 
+  public Character getMazePlayer() {
+    return mazeObject.player;
+  }
+
+  public Coin getCoin() {
+    return mazeObject.getCoin();
+  }
+
+  public MazeBlock getTeleportBlock1() {
+    return mazeObject.getTeleportBlock1();
+  }
+
+  public MazeBlock getTeleportBlock2() {
+    return mazeObject.getTeleportBlock2();
+  }
+
+  public List<Wall> getMazeWalls() {
+    return mazeObject.getMazeWalls();
+  }
+
+  public List<Wall> getOuterWalls() {
+    return mazeObject.getOuterWalls();
+  }
+
   /** @return the mazeObject for this maze manager. */
   public Maze getMazeObject() {
     return mazeObject;
-  }
-
-  // TODO: drawing should be done in the view, commanded by the presenter.
-  // TODO: create helper methods, this method is too long.
-  /**
-   * Draw every outer wall of the maze as well as any walls that are neighbours of neighbours of the
-   * currentBlock that the player is on, as well as the player.
-   *
-   * @param canvas the canvas.
-   */
-  public void draw(Canvas canvas) {
-    Paint paint = new Paint();
-    paint.setColor(Color.BLACK);
-    paint.setTextSize(75);
-    mazeObject.player.draw(canvas);
-    mazeObject.getCoin().draw(canvas);
-    // Draw the teleporting blocks if they have not been accessed yet.
-    if (mazeObject.getTeleportBlock1() != null) {
-      canvas.drawCircle(
-          mazeObject.getTeleportBlock1().getX() * 100 + 173,
-          mazeObject.getTeleportBlock1().getY() * 100 + 210,
-          40,
-          paint);
-      canvas.drawCircle(
-          mazeObject.getTeleportBlock2().getX() * 100 + 173,
-          mazeObject.getTeleportBlock2().getY() * 100 + 210,
-          40,
-          paint);
-    }
-
-    for (Wall wall : mazeObject.getOuterWalls()) {
-      wall.draw(canvas);
-    }
-    for (Wall wall : mazeObject.getMazeWalls()) {
-      if (!difficulty) { // If the user chooses the extreme setting, only draw walls that are near
-        // the character in the maze/
-        for (MazeBlock currentNeighbour :
-            mazeObject.player.getCurrentBlock().getNeighboursNeighbour()) {
-          for (MazeItem neighbourWall : currentNeighbour.getNeighbourWalls()) {
-            if (wall == neighbourWall) { // If the wall is a wall of the currentNeighbour or
-              // currentNeighbour2 (which is a neighbour of currentNeighbour)
-              wall.draw(canvas);
-            }
-          }
-        }
-
-      } else { // Draw all walls in the maze if the user chose the easy setting.
-        for (Wall wall2 : mazeObject.getMazeWalls()) {
-          wall2.draw(canvas);
-        }
-      }
-    }
   }
 
   /**

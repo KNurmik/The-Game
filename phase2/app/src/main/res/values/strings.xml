@@ -3,4 +3,5 @@
     <string name="edit_nickname">Enter a nickname</string>
     <string name="set_nickname">Set</string>
     <string name="matching_game">Matching Game</string>
+    <string name="time_left">Time Left:</string>
 </resources>

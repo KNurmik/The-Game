@@ -15,6 +15,13 @@ public interface ReactionGameViewInterface {
   void updateGameStateView(@DrawableRes int newState);
 
   /**
+   * Update the progress bar displayed below the button to displau time left
+   *
+   * @param time The amount of time remaining
+   */
+  void updateTimeLeft(double time);
+
+  /**
    * Update user's current score on the screen.
    *
    * @param toThisScore int representing user's current score.
@@ -46,7 +53,4 @@ public interface ReactionGameViewInterface {
 
   /** Re-enable the main button. */
   void enableButton();
-
-  /** Update text showing time left */
-  void setTimeText(int timeLeft);
 }

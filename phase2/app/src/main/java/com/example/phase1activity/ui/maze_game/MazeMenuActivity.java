@@ -8,35 +8,30 @@ import android.widget.Button;
 import com.example.phase1activity.R;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 
-/**
- * The activity that is displayed after completing the matching game, before starting the maze itself
- */
+/** Activity allowing user to choose what difficulty they want to play MazeGame with. */
 public class MazeMenuActivity extends AbstractActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maze_menu);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_maze_menu);
 
-        Button easyButton = findViewById(R.id.easyBtn);
-        Button hardButton = findViewById(R.id.extremeBtn);
+    Button easyButton = findViewById(R.id.easyBtn);
+    Button hardButton = findViewById(R.id.extremeBtn);
 
-        easyButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        app.setMazeGameDifficulty(true);
-                        startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
-                    }
-                });
-        hardButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        app.setMazeGameDifficulty(false);
-                        startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
-                    }
-                });
-    }
-
-
-
+    easyButton.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            app.setMazeGameDifficulty(true);
+            startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
+          }
+        });
+    hardButton.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            app.setMazeGameDifficulty(false);
+            startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
+          }
+        });
+  }
 }

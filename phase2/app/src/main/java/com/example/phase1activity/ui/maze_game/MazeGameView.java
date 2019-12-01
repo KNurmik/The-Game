@@ -1,5 +1,6 @@
 package com.example.phase1activity.ui.maze_game;
 
+/** Interface for the view class responsible for displaying the MazeGame. */
 public interface MazeGameView {
 
   /** Updates the profile statistics if the user finished the game */
@@ -8,6 +9,6 @@ public interface MazeGameView {
   /** @return the drawView instances of this View. */
   MazeGameViewImpl.DrawView getView();
 
-  /** The maze is finished then move onto the next screen. */
+  /** The maze is finished, move onto the next screen. */
   void finishMaze();
 }

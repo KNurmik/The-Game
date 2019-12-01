@@ -1,5 +1,6 @@
 package com.example.phase1activity.ui.maze_game;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
 
 import static android.graphics.Color.rgb;
 
-/** A maze game activity. */
+/** The maze game activity. */
 public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
   public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
   /** The nickname for the user */
@@ -26,8 +27,8 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
   /** The color of the user */
   public int playerColor;
 
-  @Inject
-  MazeGamePresenter presenter;
+  /** Presenter responsible for handling user input. Injected using Dagger. */
+  @Inject MazeGamePresenter presenter;
   /** The drawView attribute that allows the app to draw the maze and character */
   private DrawView drawView;
 
@@ -105,8 +106,7 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
     }
 
     /**
-     * Draw all the walls of the neighbours and their neighbours of the current block of the
-     * player.
+     * Draw all the walls of the neighbours and their neighbours of the current block of the player.
      *
      * @param canvas the Canvas.
      */
@@ -184,6 +184,7 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
      * @param event Event of the player touching the screen
      * @return true whenever the player touches the screen
      */
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
       return presenter.onTouchEvent(event);

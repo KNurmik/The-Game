@@ -14,12 +14,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/** A presenter for some maze game, that relays information to and from its view and manager. */
+/** A presenter for some maze game, relays information to and from its view and manager. */
 public class MazeGamePresenterImpl implements MazeGamePresenter {
 
   /** The MazeManager for this presenter */
   private MazeManager mazeManager;
-  /** The MazeGameViewInterface for this presenter */
+  /** The MazeGameView for this presenter */
   private MazeGameView view;
   /** The score of the user */
   private int score;
@@ -29,10 +29,10 @@ public class MazeGamePresenterImpl implements MazeGamePresenter {
   /**
    * Constructor for the presenter.
    *
-   * @param view The MazeGameViewInterface.
+   * @param view the view creating this presenter.
    */
   @Inject
-  public MazeGamePresenterImpl(MazeGameView view, boolean difficulty) {
+  MazeGamePresenterImpl(MazeGameView view, boolean difficulty) {
     Maze maze = new Maze(8, 11);
     mazeManager = new MazeManagerImpl(maze, difficulty);
     this.view = view;

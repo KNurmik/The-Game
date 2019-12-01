@@ -15,9 +15,9 @@ public class LogInManager extends UserAccessManager {
 
   /**
    * If there exists a user with the inputted username-password combination, build a new profile
-   * with user attributes that match the saved data, and set it as the app manager's profile.
+   * with user attributes that match the saved data, and set it as the appManager manager's profile.
    *
-   * @param context context of the app.
+   * @param context context of the appManager.
    * @param username an inputted username.
    * @param password an inputted password.
    * @param app the AppManager that is running.

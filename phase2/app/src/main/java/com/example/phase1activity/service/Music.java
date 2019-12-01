@@ -7,7 +7,7 @@ import com.example.phase1activity.R;
 
 import javax.inject.Inject;
 
-/** A controller for the music player. */
+/** A controller for the music musicPlayer. */
 public class Music {
   private MediaPlayer player;
 

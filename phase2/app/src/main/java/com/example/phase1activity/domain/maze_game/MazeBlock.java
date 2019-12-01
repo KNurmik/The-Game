@@ -46,6 +46,7 @@ public class MazeBlock extends MazeItem {
 
   /**
    * Set this maze block to be a teleporting block
+   *
    * @param teleportBlock true if the current block is a teleporting block.
    */
   void setTeleportBlock(boolean teleportBlock) {
@@ -82,9 +83,7 @@ public class MazeBlock extends MazeItem {
     }
   }
 
-  /**
-   * @return a list of maze blocks that are the neighbours of this neighbours.
-   */
+  /** @return a list of maze blocks that are the neighbours of this neighbours. */
   public List<MazeBlock> getNeighboursNeighbour() {
     for (MazeBlock neighbour : neighbours) {
       neighboursNeighbours.add(neighbour);

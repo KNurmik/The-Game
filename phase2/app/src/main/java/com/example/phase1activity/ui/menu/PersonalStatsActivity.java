@@ -18,17 +18,17 @@ public class PersonalStatsActivity extends AbstractActivity {
 
     // Displays Total Score
     TextView total = findViewById(R.id.total);
-    String temp1 = "Total score: " + app.getProfileTotalScoreStat();
+    String temp1 = "Total score: " + appManager.getProfileTotalScoreStat();
     total.setText(temp1);
 
     // Displays Total Moves
     TextView moves = findViewById(R.id.moves);
-    String temp2 = "Total moves: " + app.getProfileTotalMovesStat();
+    String temp2 = "Total moves: " + appManager.getProfileTotalMovesStat();
     moves.setText(temp2);
 
     // Displays Fastest Reaction Time
     TextView reaction = findViewById(R.id.reaction);
-    String temp3 = "Fastest reaction: " + app.getProfileFastestRxnStat() + " s";
+    String temp3 = "Fastest reaction: " + appManager.getProfileFastestRxnStat() + " s";
     reaction.setText(temp3);
 
     Button backButton = findViewById(R.id.backButton);

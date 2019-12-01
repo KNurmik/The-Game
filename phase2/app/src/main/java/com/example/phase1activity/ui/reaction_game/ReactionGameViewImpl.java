@@ -79,7 +79,7 @@ public class ReactionGameViewImpl extends AbstractActivity
     nextbtn.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 1);
+            appManager.setProfileGameLevel(activity, 1);
             startActivity(
                 new Intent(ReactionGameViewImpl.this, MatchingInstructionsActivity.class));
           }
@@ -131,7 +131,7 @@ public class ReactionGameViewImpl extends AbstractActivity
    * @param toThisScore score to set ScoreView to show.
    */
   public void updateScoreView(int toThisScore) {
-    String toThis = app.getProfileNickname() + "'s score is: " + toThisScore;
+    String toThis = appManager.getProfileNickname() + "'s score is: " + toThisScore;
     TextView textView = findViewById(R.id.scoreView);
     textView.setText(toThis);
   }
@@ -146,9 +146,9 @@ public class ReactionGameViewImpl extends AbstractActivity
    */
   @Override
   public void updateProfileStatistics(double reactionTime, int moves, int score) {
-    app.setProfileReactionTime(this, reactionTime / 1000);
-    app.updateProfileMoves(this, moves);
-    app.updateProfileScore(this, score);
+    appManager.setProfileReactionTime(this, reactionTime / 1000);
+    appManager.updateProfileMoves(this, moves);
+    appManager.updateProfileScore(this, score);
   }
 
   /** Disable btn. */

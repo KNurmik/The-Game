@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.phase1activity.domain.user_access.UserAccessManager;
-import com.example.phase1activity.ui.user_access.DaggerUserAccessComponent;
 import com.example.phase1activity.R;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 import com.example.phase1activity.ui.menu.MainActivity;
@@ -69,7 +68,7 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), app);
+            presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), appManager);
           }
         });
 
@@ -117,6 +116,6 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
   /** End this Activity and proceed to the main menu. */
   public void endActivity() {
     startActivity(new Intent(LogInActivity.this, StartActivity.class));
-    app.changeMusic(app.getProfileSong());
+    appManager.changeMusic(appManager.getProfileSong());
   }
 }

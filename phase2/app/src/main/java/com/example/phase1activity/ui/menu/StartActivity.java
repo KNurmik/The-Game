@@ -27,7 +27,7 @@ public class StartActivity extends AbstractActivity {
   /** The previously played level, set to 0 by default */
   int level;
 
-  /** A numerical representation of the user's progress in the app */
+  /** A numerical representation of the user's progress in the appManager */
   int userLevel;
 
   @SuppressLint("SetTextI18n")
@@ -35,8 +35,8 @@ public class StartActivity extends AbstractActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_start);
-    level = app.getProfileGameLevel();
-    userLevel = app.getUserLevel();
+    level = appManager.getProfileGameLevel();
+    userLevel = appManager.getUserLevel();
 
     // Buttons on the screen.
     Button settingsButton = findViewById(R.id.settings);
@@ -55,7 +55,7 @@ public class StartActivity extends AbstractActivity {
     colourButton(levelBox, R.drawable.level_red, R.drawable.level_blue, R.drawable.level_green);
 
     userLevelDisplay.setText(Integer.toString(userLevel));
-    int colour = app.getProfileColour();
+    int colour = appManager.getProfileColour();
     if (colour == Color.RED) {
       userLevelDisplay.setTextColor(rgb(113, 31, 31));
     } else if (colour == Color.BLUE) {
@@ -94,7 +94,7 @@ public class StartActivity extends AbstractActivity {
     globalButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.updateGlobalStats();
+            appManager.updateGlobalStats();
             startActivity(new Intent(StartActivity.this, LeaderboardViewImpl.class));
             finish();
           }
@@ -104,7 +104,7 @@ public class StartActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             startActivity(new Intent(StartActivity.this, MainActivity.class));
-            app.stopMusic();
+            appManager.stopMusic();
             finish();
           }
         });
@@ -114,7 +114,7 @@ public class StartActivity extends AbstractActivity {
     startReact.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 0);
+            appManager.setProfileGameLevel(activity, 0);
             startActivity(new Intent(StartActivity.this, ReactionInstructionsActivity.class));
             finish();
           }
@@ -123,7 +123,7 @@ public class StartActivity extends AbstractActivity {
     startMatch.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 1);
+            appManager.setProfileGameLevel(activity, 1);
             startActivity(new Intent(StartActivity.this, MatchingInstructionsActivity.class));
             finish();
           }
@@ -132,7 +132,7 @@ public class StartActivity extends AbstractActivity {
     startMaze.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 2);
+            appManager.setProfileGameLevel(activity, 2);
             startActivity(new Intent(StartActivity.this, MazeInstructionsActivity.class));
             finish();
           }

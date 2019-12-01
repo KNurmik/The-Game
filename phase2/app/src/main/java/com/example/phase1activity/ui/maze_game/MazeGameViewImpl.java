@@ -29,7 +29,7 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
 
   /** Presenter responsible for handling user input. Injected using Dagger. */
   @Inject MazeGamePresenter presenter;
-  /** The drawView attribute that allows the app to draw the maze and character */
+  /** The drawView attribute that allows the appManager to draw the maze and character */
   private DrawView drawView;
 
   /**
@@ -45,10 +45,10 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
     drawView = new DrawView(this);
     drawView.setBackgroundColor(rgb(240, 237, 214));
     setContentView(drawView);
-    playerNickname = app.getProfileNickname();
-    playerColor = app.getProfileColour();
-    presenter = new MazeGamePresenterImpl(this, app.getMazeGameDifficulty());
-    presenter.setPaintText(app.getProfileColour());
+    playerNickname = appManager.getProfileNickname();
+    playerColor = appManager.getProfileColour();
+    presenter = new MazeGamePresenterImpl(this, appManager.getMazeGameDifficulty());
+    presenter.setPaintText(appManager.getProfileColour());
   }
 
   /** @return the drawView instances of this View. */
@@ -65,8 +65,8 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
 
   /** Update the player's score and moves. */
   public void updateProfileStatistics() {
-    app.updateProfileMoves(this, presenter.getPlayerMoves());
-    app.updateProfileScore(this, presenter.getScore());
+    appManager.updateProfileMoves(this, presenter.getPlayerMoves());
+    appManager.updateProfileScore(this, presenter.getScore());
   }
 
   /** DrawView class that allows the drawing of the everything on the screen for the maze game */
@@ -96,7 +96,7 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
       presenter.getCoin().draw(canvas);
       drawTeleportBlocks(canvas);
 
-      if (!app
+      if (!appManager
           .getMazeGameDifficulty()) { // If the user chooses the extreme setting, only draw walls
         // that are near the character in the maze
         drawHardGame(canvas);

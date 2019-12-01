@@ -38,7 +38,7 @@ public class CustomizationActivity extends AbstractActivity {
     final TextView nicknameErrorMessage = findViewById(R.id.errorMessage);
     nicknameErrorMessage.setText("");
 
-    final AppManager profile = app;
+    final AppManager profile = appManager;
 
     // Initialize radio groups used to select a colour and song.
     RadioGroup colours = findViewById(R.id.radioGroup1);
@@ -94,7 +94,7 @@ public class CustomizationActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             profile.setProfileSong(thisActivity, 0);
-            app.changeMusic(0);
+            appManager.changeMusic(0);
           }
         });
 
@@ -102,7 +102,7 @@ public class CustomizationActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             profile.setProfileSong(thisActivity, 1);
-            app.changeMusic(1);
+            appManager.changeMusic(1);
           }
         });
 
@@ -110,7 +110,7 @@ public class CustomizationActivity extends AbstractActivity {
         new View.OnClickListener() {
           public void onClick(View v) {
             profile.setProfileSong(thisActivity, 3);
-            app.changeMusic(3);
+            appManager.changeMusic(3);
           }
         });
 

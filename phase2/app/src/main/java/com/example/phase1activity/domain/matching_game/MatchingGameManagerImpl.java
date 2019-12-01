@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 /** A class for managing backend processes of a matching game. */
-public class MatchingGameManagerImpl implements MatchingGameManager{
+public class MatchingGameManagerImpl implements MatchingGameManager {
 
   /** The number of turns taken. */
   private int turnsTaken = 0;
@@ -20,8 +20,8 @@ public class MatchingGameManagerImpl implements MatchingGameManager{
   private int numCards;
 
   /**
-   * Cards clicked in this MatchingGameManagerImpl's respective MatchingGameActivity that have yet to be
-   * checked for a potential match.
+   * Cards clicked in this MatchingGameManagerImpl's respective MatchingGameActivity that have yet
+   * to be checked for a potential match.
    */
   private Button[] cardsClicked = new Button[2];
 

@@ -16,7 +16,7 @@ public abstract class UserAccessManager {
   /**
    * Handle a user's attempt to login/register.
    *
-   * @param context context of the app.
+   * @param context context of the appManager.
    * @param username an inputted username.
    * @param password an inputted password.
    * @param app the AppManager that is running.

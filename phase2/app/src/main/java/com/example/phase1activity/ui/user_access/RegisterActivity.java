@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.phase1activity.service.AppManager;
-import com.example.phase1activity.ui.user_access.DaggerUserAccessComponent;
 import com.example.phase1activity.R;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 import com.example.phase1activity.ui.menu.MainActivity;
@@ -117,6 +116,6 @@ public class RegisterActivity extends AbstractActivity implements UserAccessView
   /** End this Activity and open up the main menu. */
   public void endActivity() {
     startActivity(new Intent(RegisterActivity.this, StartActivity.class));
-    app.changeMusic(app.getProfileSong());
+    appManager.changeMusic(appManager.getProfileSong());
   }
 }

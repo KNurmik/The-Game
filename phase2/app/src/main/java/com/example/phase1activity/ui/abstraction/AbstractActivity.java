@@ -8,28 +8,29 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1activity.service.AppManager;
+import com.example.phase1activity.service.AppManagerInterface;
 
 /** Base activity, every Activity in the application inherits this class */
 public abstract class AbstractActivity extends AppCompatActivity {
-  public AppManager app;
+  public AppManagerInterface appManager;
 
   /**
    * Creates the abstract activity for all activities.
    *
-   * @param savedInstanceState the bundle that creates the app manager.
+   * @param savedInstanceState the bundle that creates the appManager manager.
    */
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    app = (AppManager) getApplication();
+    appManager = (AppManager) getApplication();
   }
 
   /**
-   * Getter for app manager.
+   * Getter for appManager manager.
    *
-   * @return the app manager attribute.
+   * @return the appManager manager attribute.
    */
-  public AppManager getAppManager() {
-    return app;
+  public AppManagerInterface getAppManager() {
+    return appManager;
   }
 
   /**
@@ -40,7 +41,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
    */
   public void colourButton(
       View btn, @DrawableRes int red, @DrawableRes int blue, @DrawableRes int green) {
-    int colour = app.getProfileColour();
+    int colour = appManager.getProfileColour();
 
     if (colour == Color.RED) { // If the user selects red color in customization.
       btn.setBackgroundResource(red);

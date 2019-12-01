@@ -37,5 +37,4 @@ public class MazeItem {
   public int getY() {
     return y;
   }
-
 }

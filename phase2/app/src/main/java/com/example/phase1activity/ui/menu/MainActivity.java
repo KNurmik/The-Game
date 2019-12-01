@@ -10,7 +10,7 @@ import com.example.phase1activity.ui.abstraction.AbstractActivity;
 import com.example.phase1activity.ui.user_access.LogInActivity;
 import com.example.phase1activity.ui.user_access.RegisterActivity;
 
-/** The activity opened when user launches the app. */
+/** The activity opened when user launches the appManager. */
 public class MainActivity extends AbstractActivity {
 
   @Override

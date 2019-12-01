@@ -74,7 +74,7 @@ public class MatchingGameViewImpl extends AbstractActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_matching_game);
-    numCards = this.app.getMatchingGameLevel();
+    numCards = this.appManager.getMatchingGameLevel();
 
     initializeViews();
     populateButtonList();
@@ -106,7 +106,7 @@ public class MatchingGameViewImpl extends AbstractActivity
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 2);
+            appManager.setProfileGameLevel(activity, 2);
             startActivity(new Intent(MatchingGameViewImpl.this, MazeInstructionsActivity.class));
           }
         });
@@ -116,7 +116,7 @@ public class MatchingGameViewImpl extends AbstractActivity
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            app.setProfileGameLevel(activity, 2);
+            appManager.setProfileGameLevel(activity, 2);
             startActivity(new Intent(MatchingGameViewImpl.this, StartActivity.class));
           }
         });
@@ -211,7 +211,7 @@ public class MatchingGameViewImpl extends AbstractActivity
   public void onClick(View view) {
     popUp.setVisibility(View.INVISIBLE);
     Button button = (Button) view;
-    presenter.handleClick(button, app);
+    presenter.handleClick(button, appManager);
   }
 
   /** Display popup that user did not get a matching pair. */
@@ -298,7 +298,7 @@ public class MatchingGameViewImpl extends AbstractActivity
 
   /** Update profile statistics. */
   public void updateProfileStats(int score, int moves) {
-    this.app.updateProfileScore(this, score);
-    this.app.updateProfileMoves(this, moves);
+    this.appManager.updateProfileScore(this, score);
+    this.appManager.updateProfileMoves(this, moves);
   }
 }

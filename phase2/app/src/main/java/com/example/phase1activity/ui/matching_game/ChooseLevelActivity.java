@@ -8,9 +8,6 @@ import android.widget.Button;
 import com.example.phase1activity.R;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Activity where the user can choose to select the difficulty for MatchingGame.
  */
@@ -30,7 +27,7 @@ public class ChooseLevelActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        app.setMatchingGameLevel(6);
+                        appManager.setMatchingGameLevel(6);
                         startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
                     }
                 });
@@ -39,7 +36,7 @@ public class ChooseLevelActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        app.setMatchingGameLevel(8);
+                        appManager.setMatchingGameLevel(8);
                         startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
                     }
                 });
@@ -48,7 +45,7 @@ public class ChooseLevelActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        app.setMatchingGameLevel(10);
+                        appManager.setMatchingGameLevel(10);
                         startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
                     }
                 });
@@ -57,7 +54,7 @@ public class ChooseLevelActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        app.setMatchingGameLevel(12);
+                        appManager.setMatchingGameLevel(12);
                         startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
                     }
                 });

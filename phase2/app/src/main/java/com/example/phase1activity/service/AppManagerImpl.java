@@ -11,8 +11,7 @@ import javax.inject.Inject;
 public class AppManagerImpl extends Application implements AppManager {
 
   /** An keeper of user stats. */
-  @Inject
-  GlobalStats globalStats;
+  @Inject GlobalStats globalStats;
 
   /** A player of music. */
   @Inject Music musicPlayer;
@@ -23,8 +22,9 @@ public class AppManagerImpl extends Application implements AppManager {
   /** The level of difficulty the matching game is to played on. */
   private int matchingGameLevel;
 
-  /** A boolean that returns true iff the last playthrough of the maze game was on easy mode,
-   * and false otherwise.
+  /**
+   * A boolean that returns true iff the last playthrough of the maze game was on easy mode, and
+   * false otherwise.
    */
   private boolean easyMazeGame;
 
@@ -61,7 +61,7 @@ public class AppManagerImpl extends Application implements AppManager {
   }
 
   /** Stop the appManager's music. */
-  public void stopMusic(){
+  public void stopMusic() {
     musicPlayer.stopMusic();
   }
 
@@ -184,9 +184,10 @@ public class AppManagerImpl extends Application implements AppManager {
   }
 
   /**
-   * Get the nickname of this appManager manager's profile.
+   * Set the nickname of this appManager manager's profile.
    *
-   * @return the nickname of this appManager manager's profile.
+   * @param activity the activity this change is being made from.
+   * @param name a nickname.
    */
   public void setProfileNickname(Activity activity, String name) {
     this.profile.setNickname(activity, name);
@@ -242,20 +243,27 @@ public class AppManagerImpl extends Application implements AppManager {
   }
 
   /**
-   * Get the maze game difficulty of this appManager manager's profile during the user's last playthrough.
+   * Get the maze game difficulty of this appManager manager's profile during the user's last
+   * playthrough.
    *
    * @return the maze game difficulty of this appManager manager's profile during the user's last
    *     playthrough.
    */
-  public boolean getMazeGameDifficulty(){return easyMazeGame;}
+  public boolean getMazeGameDifficulty() {
+    return easyMazeGame;
+  }
 
   /**
    * Set the maze game difficulty of this appManager manager's profile.
    *
    * @param difficulty a boolean evaluating to true iff the maze game is to be set to easy
-   * difficulty.
+   *     difficulty.
    */
-  public void setMazeGameDifficulty(boolean difficulty){easyMazeGame = difficulty;}
+  public void setMazeGameDifficulty(boolean difficulty) {
+    easyMazeGame = difficulty;
+  }
 
-  public int getUserLevel() { return profile.getUserLevel(); }
+  public int getUserLevel() {
+    return profile.getUserLevel();
+  }
 }

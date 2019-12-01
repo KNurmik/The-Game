@@ -9,9 +9,9 @@ import dagger.Provides;
 
 /** Dagger module for telling Dagger how to create Music and GlobalStats objects. */
 @Module
-public class AppManagerModule {
+class AppManagerModule {
 
-  //TODO: add descriptions
+  // TODO: add descriptions
   private Context context;
   private int songNumber;
   private String nameOne;

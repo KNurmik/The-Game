@@ -52,8 +52,6 @@ public interface MazeGamePresenter {
   /** @return the list of outer maze walls from this classes MazeManger instance. */
   List<Wall> getOuterWalls();
 
-  /**
-   * @param manager the manager to set MazeManager to.
-   */
+  /** @param manager the manager to set MazeManager to. */
   void setMazeManager(MazeManager manager);
 }

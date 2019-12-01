@@ -70,8 +70,7 @@ class Profile {
   void setColour(Activity activity, int colour) {
     AndroidSaver iSaver = new AndroidSaver(activity);
     this.colour = colour;
-    iSaver.saveAttribute(
-            username, String.valueOf(colour), AndroidSaver.AttributeType.COLOUR);
+    iSaver.saveAttribute(username, String.valueOf(colour), AndroidSaver.AttributeType.COLOUR);
   }
 
   /**
@@ -137,8 +136,7 @@ class Profile {
   void setNickname(Activity activity, String nickname) {
     AndroidSaver iSaver = new AndroidSaver(activity);
     this.nickname = nickname;
-    iSaver.saveAttribute(
-            username, nickname, AndroidSaver.AttributeType.NICKNAME);
+    iSaver.saveAttribute(username, nickname, AndroidSaver.AttributeType.NICKNAME);
   }
 
   /**
@@ -150,8 +148,7 @@ class Profile {
   void setSong(Activity activity, int newSongIndex) {
     AndroidSaver iSaver = new AndroidSaver(activity);
     this.song = newSongIndex;
-    iSaver.saveAttribute(
-            username, String.valueOf(newSongIndex), AndroidSaver.AttributeType.SONG);
+    iSaver.saveAttribute(username, String.valueOf(newSongIndex), AndroidSaver.AttributeType.SONG);
   }
 
   /**
@@ -166,7 +163,7 @@ class Profile {
       AndroidSaver iSaver = new AndroidSaver(activity);
       this.fastestRxnStat = newStat;
       iSaver.saveAttribute(
-              username, String.valueOf(fastestRxnStat), AndroidSaver.AttributeType.FASTEST_RXN_TIME);
+          username, String.valueOf(fastestRxnStat), AndroidSaver.AttributeType.FASTEST_RXN_TIME);
     }
   }
 
@@ -180,7 +177,7 @@ class Profile {
     AndroidSaver iSaver = new AndroidSaver(activity);
     this.totalMovesStat += moves;
     iSaver.saveAttribute(
-            username, String.valueOf(totalMovesStat), AndroidSaver.AttributeType.TOTAL_MOVES);
+        username, String.valueOf(totalMovesStat), AndroidSaver.AttributeType.TOTAL_MOVES);
   }
 
   /**
@@ -193,23 +190,8 @@ class Profile {
     AndroidSaver iSaver = new AndroidSaver(activity);
     this.totalScoreStat += score;
     iSaver.saveAttribute(
-            username, String.valueOf(totalScoreStat), AndroidSaver.AttributeType.TOTAL_SCORE);
+        username, String.valueOf(totalScoreStat), AndroidSaver.AttributeType.TOTAL_SCORE);
   }
-
-//  /** Reset totalScoreStat to 0. */
-//  void resetTotalScoreStat() {
-//    totalScoreStat = 0;
-//  }
-//
-//  /** Reset totalMovesStat to 0. */
-//  void resetTotalMovesStat() {
-//    totalMovesStat = 0;
-//  }
-//
-//  /** Reset fastestRxnStat to 5. */
-//  void resetFastestRxnStat() {
-//    fastestRxnStat = 5;
-//  }
 
   /** @return fastestRxnStat. */
   double getFastestRxnStat() {
@@ -253,7 +235,7 @@ class Profile {
 
     if (fastestRxnStat < 0.05) {
       userLevel += 3;
-    } else if (fastestRxnStat <  0.3) {
+    } else if (fastestRxnStat < 0.3) {
       userLevel += 2;
     } else if (fastestRxnStat < 0.4) {
       userLevel += 1;

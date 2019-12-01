@@ -50,10 +50,10 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
 
     // Inject presenter.
     presenter =
-            DaggerMazeGameComponent.builder()
-                    .mazeGameModule(new MazeGameModule(this, appManager.getMazeGameDifficulty()))
-                    .build()
-                    .injectPresenter();
+        DaggerMazeGameComponent.builder()
+            .mazeGameModule(new MazeGameModule(this, appManager.getMazeGameDifficulty()))
+            .build()
+            .injectPresenter();
 
     presenter.setPaintText(appManager.getProfileColour());
   }

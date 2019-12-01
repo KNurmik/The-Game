@@ -8,7 +8,7 @@ import com.example.phase1activity.R;
 import javax.inject.Inject;
 
 /** A controller for the music musicPlayer. */
-public class Music {
+class Music {
   private MediaPlayer player;
 
   /** The first song option */
@@ -21,14 +21,14 @@ public class Music {
   private final int[] Tracks = new int[] {song1, song2};
 
   @Inject
-  public Music(Context context, int n) {
+  Music(Context context, int n) {
     this.player = MediaPlayer.create(context, Tracks[n]);
     player.setLooping(true);
     player.setVolume(100, 100);
   }
 
   /** Changes the music to the song that the user chooses in their profile */
-  public void changeMusic(Context context, int n) {
+  void changeMusic(Context context, int n) {
     if (n == 3) {
       stopMusic();
     } else {
@@ -37,11 +37,11 @@ public class Music {
       player.setLooping(true);
       player.setVolume(100, 100);
       player.start();
-      }
     }
+  }
 
-    /** Stop the music from playing. */
-  public void stopMusic(){
+  /** Stop the music from playing. */
+  void stopMusic() {
     if (player != null) {
       player.pause();
       player.stop();

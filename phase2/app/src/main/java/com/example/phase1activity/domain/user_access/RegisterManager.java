@@ -13,9 +13,8 @@ public class RegisterManager extends UserAccessManager {
 
   /**
    * If the inputted username and password are a valid combination, store a new user with the
-   * specified username and password, and default values. Build a new
-   * profile with user attributes that match the saved data, and set it as the appManager manager's
-   * profile.
+   * specified username and password, and default values. Build a new profile with user attributes
+   * that match the saved data, and set it as the appManager manager's profile.
    *
    * @param context context of the appManager.
    * @param username an inputted username.

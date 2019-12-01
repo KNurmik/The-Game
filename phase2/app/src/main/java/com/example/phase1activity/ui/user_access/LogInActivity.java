@@ -68,7 +68,8 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            presenter.handleUserAccessAttempt(thisActivity, getUsername(), getPassword(), appManager);
+            presenter.handleUserAccessAttempt(
+                thisActivity, getUsername(), getPassword(), appManager);
           }
         });
 

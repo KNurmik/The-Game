@@ -26,8 +26,13 @@ public class LeaderBoardByScore implements LeaderBoardSorting {
     for (String username : saver.getHighScores().keySet()) {
       // Obtains the total score of the user in the across all games
       int userBestScore =
-              saver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE).intValue();
-      String nickname = saver.getExistingUserData().get(username).get(SaverInterface.AttributeType.NICKNAME);
+          saver
+              .getHighScores()
+              .get(username)
+              .get(AndroidSaver.AttributeType.TOTAL_SCORE)
+              .intValue();
+      String nickname =
+          saver.getExistingUserData().get(username).get(SaverInterface.AttributeType.NICKNAME);
 
       // A smaller list storing the user's nickname and their total moves.
       List<Object> listEntry = new ArrayList<>();

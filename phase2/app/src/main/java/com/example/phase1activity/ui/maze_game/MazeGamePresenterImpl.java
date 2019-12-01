@@ -18,8 +18,7 @@ import javax.inject.Inject;
 public class MazeGamePresenterImpl implements MazeGamePresenter {
 
   /** The MazeManager for this presenter */
-  @Inject
-  MazeManager mazeManager;
+  @Inject MazeManager mazeManager;
   /** The MazeGameView for this presenter */
   private MazeGameView view;
   /** The score of the user */
@@ -34,8 +33,8 @@ public class MazeGamePresenterImpl implements MazeGamePresenter {
    */
   @Inject
   MazeGamePresenterImpl(MazeGameView view, boolean difficulty) {
-    //Maze maze = new Maze(8, 11);
-    //mazeManager = new MazeManagerImpl(maze, difficulty);
+    // Maze maze = new Maze(8, 11);
+    // mazeManager = new MazeManagerImpl(maze, difficulty);
     this.view = view;
     score = 0;
     drawView = view.getView();

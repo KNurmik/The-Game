@@ -20,17 +20,14 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-/**
- * Activity responsible for displaying MatchingGame.
- */
+/** Activity responsible for displaying MatchingGame. */
 public class MatchingGameViewImpl extends AbstractActivity
     implements View.OnClickListener, MatchingGameView {
 
   /**
    * Presenter responsible for handling user actions. Injected using Dagger dependency injection.
    */
-  @Inject
-  MatchingGamePresenter presenter;
+  @Inject MatchingGamePresenter presenter;
 
   /** The string to be displayed on the back of each card. */
   public static final String BACKOFCARD = "CLICK ME!";
@@ -82,11 +79,11 @@ public class MatchingGameViewImpl extends AbstractActivity
 
     // Inject presenter.
     presenter =
-            DaggerMatchingGameComponent.builder()
-                    .matchingGameModule(
-                            new MatchingGameModule(this, buttonList.subList(0, numCards), numCards))
-                    .build()
-                    .injectMatchingGamePresenter();
+        DaggerMatchingGameComponent.builder()
+            .matchingGameModule(
+                new MatchingGameModule(this, buttonList.subList(0, numCards), numCards))
+            .build()
+            .injectMatchingGamePresenter();
 
     final Activity activity = this;
 
@@ -253,45 +250,45 @@ public class MatchingGameViewImpl extends AbstractActivity
     switch (Objects.requireNonNull(cardsToValues.get(button))) {
       case "line":
         colourButton(
-                button,
-                R.drawable.match_line_red,
-                R.drawable.match_line_blue,
-                R.drawable.match_line_green);
+            button,
+            R.drawable.match_line_red,
+            R.drawable.match_line_blue,
+            R.drawable.match_line_green);
         break;
       case "square":
         colourButton(
-                button,
-                R.drawable.match_square_red,
-                R.drawable.match_square_blue,
-                R.drawable.match_square_green);
+            button,
+            R.drawable.match_square_red,
+            R.drawable.match_square_blue,
+            R.drawable.match_square_green);
         break;
       case "triangle":
         colourButton(
-                button,
-                R.drawable.match_triangle_red,
-                R.drawable.match_triangle_blue,
-                R.drawable.match_triangle_green);
+            button,
+            R.drawable.match_triangle_red,
+            R.drawable.match_triangle_blue,
+            R.drawable.match_triangle_green);
         break;
       case "wave":
         colourButton(
-                button,
-                R.drawable.match_wave_red,
-                R.drawable.match_wave_blue,
-                R.drawable.match_wave_green);
+            button,
+            R.drawable.match_wave_red,
+            R.drawable.match_wave_blue,
+            R.drawable.match_wave_green);
         break;
       case "circle":
         colourButton(
-                button,
-                R.drawable.match_circle_red,
-                R.drawable.match_circle_blue,
-                R.drawable.match_circle_green);
+            button,
+            R.drawable.match_circle_red,
+            R.drawable.match_circle_blue,
+            R.drawable.match_circle_green);
         break;
       case "equal":
         colourButton(
-                button,
-                R.drawable.match_equal_red,
-                R.drawable.match_equal_blue,
-                R.drawable.match_equal_green);
+            button,
+            R.drawable.match_equal_red,
+            R.drawable.match_equal_blue,
+            R.drawable.match_equal_green);
         break;
     }
   }

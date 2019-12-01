@@ -5,9 +5,7 @@ import android.widget.Button;
 import java.util.List;
 import java.util.Map;
 
-/**
- * View interface for displaying MatchingGame.
- */
+/** View interface for displaying MatchingGame. */
 public interface MatchingGameView {
   /**
    * Set the statistic to be displayed to statDisplayText.

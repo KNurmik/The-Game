@@ -75,7 +75,7 @@ public interface AppManager {
    * @param activity the activity that this change is made from.
    * @param n a game level.
    */
-  public void setProfileGameLevel(Activity activity, int n);
+  void setProfileGameLevel(Activity activity, int n);
 
   /**
    * Set this appManager manager's profile's fastest reaction time.
@@ -158,7 +158,8 @@ public interface AppManager {
   void setMatchingGameLevel(int level);
 
   /**
-   * Get the maze game difficulty of this appManager manager's profile during the user's last playthrough.
+   * Get the maze game difficulty of this appManager manager's profile during the user's last
+   * playthrough.
    *
    * @return the maze game difficulty of this appManager manager's profile during the user's last
    *     playthrough.

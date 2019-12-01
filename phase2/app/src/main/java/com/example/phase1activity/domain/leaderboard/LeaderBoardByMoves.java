@@ -20,20 +20,29 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
    * statistic.
    *
    * @param iSaver the saver to read data from.
-   * @return a list of players and their statistics.
+   * @return a sorted list of players and their statistics.
    */
   public List<List<Object>> sortPlayers(ISaver iSaver) {
     List<List<Object>> usersWithMostMoves = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
+      // Obtains the total number of moves the user has taken
       int userBestMoves =
-          iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES).intValue();
-      String nickname = iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
+              iSaver
+                      .getHighScores()
+                      .get(username)
+                      .get(AndroidSaver.AttributeType.TOTAL_MOVES)
+                      .intValue();
+      String nickname =
+              iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
+
+      // A smaller list storing the user's nickname and their number of moves.
       List<Object> listEntry = new ArrayList<>();
       listEntry.add(0, nickname);
       listEntry.add(1, userBestMoves);
 
       boolean userAddedToList = false;
 
+      // Inserts the list entry into the sorted list
       for (int i = 0; i < usersWithMostMoves.size(); i++) {
         if (userBestMoves > (int) usersWithMostMoves.get(i).get(1)) {
           usersWithMostMoves.add(i, listEntry);
@@ -41,6 +50,7 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
           break;
         }
       }
+      // If the number of moves is not greater than any other entries in the list so far.
       if (!userAddedToList) {
         usersWithMostMoves.add(listEntry);
       }

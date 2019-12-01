@@ -20,20 +20,25 @@ public class LeaderBoardByReactionTime implements LeaderBoardSorting {
    * statistic.
    *
    * @param iSaver the saver to read the data from.
-   * @return a list of players along with their statistics.
+   * @return a sorted list of players along with their statistics.
    */
   public List<List<Object>> sortPlayers(ISaver iSaver) {
     List<List<Object>> usersWithFastestReactions = new ArrayList<>();
     for (String username : iSaver.getHighScores().keySet()) {
+      // Obtains the fastest reaction time by the user in the reaction game
       double userFastestReaction =
           iSaver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
-      String nickname = iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
+      String nickname =
+              iSaver.getExistingUserData().get(username).get(ISaver.AttributeType.NICKNAME);
+
+      // A smaller list storing the user's nickname and their fastest reaction time.
       List<Object> listEntry = new ArrayList<>();
       listEntry.add(0, nickname);
       listEntry.add(1, userFastestReaction);
 
       boolean userAddedToList = false;
 
+      // Inserts the list entry into the sorted list
       for (int i = 0; i < usersWithFastestReactions.size(); i++) {
         if (userFastestReaction < (double) usersWithFastestReactions.get(i).get(1)) {
           usersWithFastestReactions.add(i, listEntry);
@@ -41,6 +46,7 @@ public class LeaderBoardByReactionTime implements LeaderBoardSorting {
           break;
         }
       }
+      // If the reaction time is not faster than any other entries in the list so far.
       if (!userAddedToList) {
         usersWithFastestReactions.add(listEntry);
       }

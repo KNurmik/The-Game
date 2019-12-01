@@ -13,8 +13,6 @@ import com.example.phase1activity.ui.abstraction.AbstractActivity;
 import com.example.phase1activity.ui.maze_game.MazeInstructionsActivity;
 import com.example.phase1activity.ui.menu.StartActivity;
 
-import com.example.phase1activity.ui.matching_game.DaggerMatchingGameComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,13 +20,14 @@ import java.util.Map;
 import javax.inject.Inject;
 
 /** A MatchingGameActivity. */
-public class MatchingGameActivity extends AbstractActivity
-    implements View.OnClickListener, MatchingGameActivityInterface {
+public class MatchingGameViewImpl extends AbstractActivity
+    implements View.OnClickListener, MatchingGameView {
 
   /**
    * Presenter responsible for handling user actions. Injected using Dagger dependency injection.
    */
-  @Inject MatchingGamePresenterInterface presenter;
+  @Inject
+  MatchingGamePresenter presenter;
 
   /** The string to be displayed on the back of each card. */
   public static final String BACKOFCARD = "CLICK ME!";
@@ -96,7 +95,7 @@ public class MatchingGameActivity extends AbstractActivity
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
+            startActivity(new Intent(MatchingGameViewImpl.this, StartActivity.class));
           }
         });
 
@@ -106,7 +105,7 @@ public class MatchingGameActivity extends AbstractActivity
           @Override
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 2);
-            startActivity(new Intent(MatchingGameActivity.this, MazeInstructionsActivity.class));
+            startActivity(new Intent(MatchingGameViewImpl.this, MazeInstructionsActivity.class));
           }
         });
 
@@ -116,7 +115,7 @@ public class MatchingGameActivity extends AbstractActivity
           @Override
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 2);
-            startActivity(new Intent(MatchingGameActivity.this, StartActivity.class));
+            startActivity(new Intent(MatchingGameViewImpl.this, StartActivity.class));
           }
         });
   }

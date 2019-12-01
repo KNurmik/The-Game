@@ -25,14 +25,14 @@ public class MazeMenuActivity extends AbstractActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         app.setMazeGameDifficulty(true);
-                        startActivity(new Intent(MazeMenuActivity.this, MazeGameActivity.class));
+                        startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
                     }
                 });
         hardButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         app.setMazeGameDifficulty(false);
-                        startActivity(new Intent(MazeMenuActivity.this, MazeGameActivity.class));
+                        startActivity(new Intent(MazeMenuActivity.this, MazeGameViewImpl.class));
                     }
                 });
     }

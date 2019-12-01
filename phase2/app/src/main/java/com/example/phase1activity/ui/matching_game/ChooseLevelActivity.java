@@ -29,7 +29,7 @@ public class ChooseLevelActivity extends AbstractActivity {
             @Override
             public void onClick(View v) {
                 app.setMatchingGameLevel(6);
-                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameActivity.class));
+                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
             }
         });
 
@@ -37,7 +37,7 @@ public class ChooseLevelActivity extends AbstractActivity {
             @Override
             public void onClick(View v) {
                 app.setMatchingGameLevel(8);
-                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameActivity.class));
+                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
             }
         });
 
@@ -45,7 +45,7 @@ public class ChooseLevelActivity extends AbstractActivity {
             @Override
             public void onClick(View v) {
                 app.setMatchingGameLevel(10);
-                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameActivity.class));
+                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
             }
         });
 
@@ -53,7 +53,7 @@ public class ChooseLevelActivity extends AbstractActivity {
             @Override
             public void onClick(View v) {
                 app.setMatchingGameLevel(12);
-                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameActivity.class));
+                startActivity(new Intent(ChooseLevelActivity.this, MatchingGameViewImpl.class));
             }
         });
     }

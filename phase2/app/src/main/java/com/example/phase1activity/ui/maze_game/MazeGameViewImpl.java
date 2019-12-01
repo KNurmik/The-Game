@@ -167,7 +167,7 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
       paint.setColor(playerColor);
       canvas.drawRect(825, 160, 920, 255, paint); // Draws the exit
       // Draws the current score of the player
-      canvas.drawText(playerNickname + " score: " + presenter.getScore(), 75, 1500, paint);
+      canvas.drawText(playerNickname + "'s score: " + presenter.getScore(), 75, 1500, paint);
       drawMaze(canvas); // draws the maze and character
       if (presenter.checkWin()) {
         updateProfileStatistics(); // updates the number of score and moves for the user's profile

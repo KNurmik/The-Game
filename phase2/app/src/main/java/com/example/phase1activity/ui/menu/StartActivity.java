@@ -30,6 +30,9 @@ public class StartActivity extends AbstractActivity {
   /** A numerical representation of the user's progress in the appManager */
   int userLevel;
 
+  /** The user's nickname */
+  String nickname;
+
   @SuppressLint("SetTextI18n")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,9 @@ public class StartActivity extends AbstractActivity {
     setContentView(R.layout.activity_start);
     level = appManager.getProfileGameLevel();
     userLevel = appManager.getUserLevel();
+    nickname = appManager.getProfileNickname();
 
-    // Buttons on the screen.
+    // Initialize buttons on the screen.
     Button settingsButton = findViewById(R.id.settings);
     Button leaderButton = findViewById(R.id.stat);
     Button startButton = findViewById(R.id.start);
@@ -48,20 +52,26 @@ public class StartActivity extends AbstractActivity {
     Button startMaze = findViewById(R.id.startMaze);
     Button logOut = findViewById(R.id.logout);
 
-    // Displaying user's level.
+    // Displaying user's level and nickname.
     TextView userLevelDisplay = findViewById(R.id.userLevelDisplay);
     ImageView levelBox = findViewById(R.id.levelBox);
+    TextView nicknameDisplay = findViewById(R.id.nicknameDisplay);
 
     colourButton(levelBox, R.drawable.level_red, R.drawable.level_blue, R.drawable.level_green);
 
+    // Edit the user's level display.
+    nicknameDisplay.setText(nickname);
     userLevelDisplay.setText(Integer.toString(userLevel));
     int colour = appManager.getProfileColour();
     if (colour == Color.RED) {
       userLevelDisplay.setTextColor(rgb(113, 31, 31));
+      nicknameDisplay.setTextColor(rgb(113, 31, 31));
     } else if (colour == Color.BLUE) {
       userLevelDisplay.setTextColor(rgb(28, 57, 114));
+      nicknameDisplay.setTextColor(rgb(28, 57, 114));
     } else {
       userLevelDisplay.setTextColor(rgb(25, 99, 30));
+      nicknameDisplay.setTextColor(rgb(25, 99, 30));
     }
 
     // Set the color of each button to the color the user chooses in their profile.

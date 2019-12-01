@@ -28,7 +28,7 @@ public class PersonalStatsActivity extends AbstractActivity {
 
     // Displays Fastest Reaction Time
     TextView reaction = findViewById(R.id.reaction);
-    String temp3 = "Fastest reaction: " + appManager.getProfileFastestRxnStat() + " s";
+    String temp3 = "Fastest reaction: " + appManager.getProfileFastestRxnStat() + "s";
     reaction.setText(temp3);
 
     Button backButton = findViewById(R.id.backButton);

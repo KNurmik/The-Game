@@ -155,7 +155,7 @@ public class LeaderboardViewImpl extends AbstractActivity implements Leaderboard
   /** Set sortedUsers to a list of users, sorted by fastest reaction. */
   void sortByReaction() {
     presenter.presentFastestReactions();
-    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: fastest reaction time.";
+    String LEADERBOARD_SORT_MSG = "The leaderboard is sorted by: fastest reaction time (s).";
     statDescription.setText(LEADERBOARD_SORT_MSG);
   }
 

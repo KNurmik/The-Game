@@ -109,7 +109,7 @@ public class MatchingGamePresenterImpl implements MatchingGamePresenter {
       }
 
       if (matchesToBeMadeAfter == 0) {
-        double score = manager.getScore();
+        int score = manager.getScore();
         String statDisplayText = SCORE + score;
         view.setDisplayStat(statDisplayText);
         view.updateNextLevelButton();

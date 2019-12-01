@@ -95,9 +95,11 @@
         android:id="@+id/levelBox"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -108,12 +110,12 @@
         android:layout_alignTop="@id/levelBox"
         android:layout_alignRight="@id/levelBox"
         android:layout_alignBottom="@id/levelBox"
-        android:layout_marginBottom="48dp"
         android:gravity="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/levelBox"
+        app:layout_constraintEnd_toEndOf="@+id/levelBox"
+        app:layout_constraintStart_toStartOf="@+id/levelBox"
+        app:layout_constraintTop_toTopOf="@+id/levelBox" />
 
     <Button
         android:id="@+id/logout"
@@ -134,4 +136,16 @@
         app:layout_constraintBottom_toTopOf="@+id/startMatch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/nicknameDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="36dp"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/levelBox" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.example.phase1activity.domain.leaderboard;
 import android.content.Context;
 
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.ISaver;
+import com.example.phase1activity.service.SaverInterface;
 import com.example.phase1activity.ui.leaderboard.DaggerLeaderboardComponent;
 import com.example.phase1activity.ui.leaderboard.LeaderboardModule;
 
@@ -11,26 +11,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * Responsible for obtaining sorted lists of users and their greatest statistics.
- */
+//TODO: add desc.
 public class GlobalStats {
 
-  /** The android saver. */
-  private ISaver iSaver;
-
-  /**
-   * A list of users and their respective score sorted by highest score.
-   */
-  private List<List<Object>> usersWithBestScores;
-  /**
-   * A list of users and their respective reaction time sorted by lowest reaction time.
-   */
-  private List<List<Object>> usersWithFastestReactions;
-  /**
-   * A list of users and their respective moves sorted by most moves.
-   */
-  private List<List<Object>> usersWithMostMoves;
+  private SaverInterface saver;
+  public List<List<Object>> usersWithBestScores;
+  public List<List<Object>> usersWithFastestReactions;
+  public List<List<Object>> usersWithMostMoves;
 
   /** Sorting strategy for displaying the best users on the leaderboard. */
   private LeaderBoardSorting sorter;
@@ -42,10 +29,9 @@ public class GlobalStats {
    */
   @Inject
   public GlobalStats(Context context) {
-    iSaver = new AndroidSaver(context);
+    saver = new AndroidSaver(context);
   }
 
-  /** Updates the three sorted lists of users and their best statistics */
   public void updateGlobalStats() {
     this.usersWithBestScores = getSortedPlayers(SortType.BY_BEST_SCORE);
     this.usersWithMostMoves = getSortedPlayers(SortType.BY_MOST_MOVES);
@@ -73,7 +59,7 @@ public class GlobalStats {
             .build()
             .injectLeaderBoardSorting();
 
-    return sorter.sortPlayers(iSaver);
+    return sorter.sortPlayers(saver);
   }
 
   /** @return a list of players sorted by total score, along with the statistic. */

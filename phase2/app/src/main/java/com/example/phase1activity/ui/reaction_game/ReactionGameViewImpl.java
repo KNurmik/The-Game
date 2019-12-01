@@ -63,7 +63,7 @@ public class ReactionGameViewImpl extends AbstractActivity
 
     // Dependency injection using Dagger.
     presenter =
-        DaggerApplicationComponent.builder()
+        DaggerReactionGameComponent.builder()
             .reactionGameModule(new ReactionGameModule(this))
             .build()
             .injectReactionGamePresenter();
@@ -80,7 +80,8 @@ public class ReactionGameViewImpl extends AbstractActivity
         new View.OnClickListener() {
           public void onClick(View v) {
             app.setProfileGameLevel(activity, 1);
-            startActivity(new Intent(ReactionGameViewImpl.this, MatchingInstructionsActivity.class));
+            startActivity(
+                new Intent(ReactionGameViewImpl.this, MatchingInstructionsActivity.class));
           }
         });
 

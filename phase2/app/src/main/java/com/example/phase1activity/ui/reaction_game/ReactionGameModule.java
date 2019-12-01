@@ -31,7 +31,8 @@ public class ReactionGameModule {
    */
   @Provides
   public ReactionGamePresenter providePresenter() {
-    ReactionGamePresenterImpl presenter = new ReactionGamePresenterImpl(view, view.getColorStateList());
+    ReactionGamePresenterImpl presenter =
+        new ReactionGamePresenterImpl(view, view.getColorStateList());
     presenter.setManager(provideManager());
     return presenter;
   }

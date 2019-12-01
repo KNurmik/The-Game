@@ -11,8 +11,8 @@ import javax.inject.Inject;
 
 /**
  * Class responsible for "presenter" role in MVP architecture. Serves as a middleman between
- * ReactionGameManagerImpl and ReactionGameViewImpl. Tells view what to display based on computations
- * done by the manager.
+ * ReactionGameManagerImpl and ReactionGameViewImpl. Tells view what to display based on
+ * computations done by the manager.
  */
 public class ReactionGamePresenterImpl implements ReactionGamePresenter {
 

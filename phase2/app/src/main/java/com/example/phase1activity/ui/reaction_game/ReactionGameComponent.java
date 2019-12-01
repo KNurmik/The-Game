@@ -4,7 +4,7 @@ import dagger.Component;
 
 /** Dagger component for controlling which object to inject. */
 @Component(modules = ReactionGameModule.class)
-public interface ApplicationComponent {
+public interface ReactionGameComponent {
 
   /**
    * Inject object of type ReactionGamePresenter.

@@ -33,7 +33,7 @@ public class AppManagerImpl extends Application implements AppManager {
 
     // Dagger module for injecting.
     AppManagerModule module =
-        new AppManagerModule(this, 1, "None", "None", "None", 0.0, 5.0, 100.0);
+            new AppManagerModule(this, 1);
 
     // Inject musicPlayer.
     musicPlayer =

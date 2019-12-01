@@ -7,9 +7,9 @@ import dagger.Component;
 public interface ApplicationComponent {
 
   /**
-   * Inject object of type ReactionGamePresenterInterface.
+   * Inject object of type ReactionGamePresenter.
    *
    * @return Presenter object as a PresenterInterface.
    */
-  ReactionGamePresenterInterface injectReactionGamePresenter();
+  ReactionGamePresenter injectReactionGamePresenter();
 }

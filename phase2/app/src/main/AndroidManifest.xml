@@ -16,7 +16,7 @@
         <activity android:name=".ui.matching_game.ChooseLevelActivity" />
         <activity android:name=".ui.matching_game.MatchingInstructionsActivity" />
         <activity android:name=".ui.maze_game.MazeFinishActivity" />
-        <activity android:name=".ui.reaction_game.ReactionGameView" />
+        <activity android:name=".ui.reaction_game.ReactionGameViewImpl" />
         <activity android:name=".ui.reaction_game.ReactionInstructionsActivity" />
         <activity android:name=".ui.maze_game.MazeMenuActivity" />
         <activity android:name=".ui.maze_game.MazeGameActivity" />

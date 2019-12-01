@@ -29,7 +29,7 @@ public class ReactionInstructionsActivity extends AbstractActivity {
           /** Allow user to continue to the game using the button. */
           @Override
           public void onClick(View v) {
-            startActivity(new Intent(ReactionInstructionsActivity.this, ReactionGameView.class));
+            startActivity(new Intent(ReactionInstructionsActivity.this, ReactionGameViewImpl.class));
           }
         });
   }

@@ -6,21 +6,21 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Dagger module, which allows for ReactionGamePresenter to be injected as a
- * ReactionGamePresenterInterface type object.
+ * Dagger module, which allows for ReactionGamePresenterImpl to be injected as a
+ * ReactionGamePresenter type object.
  */
 @Module
 public class ReactionGameModule {
 
   /** View that is injected with the presenter. */
-  ReactionGameViewInterface view;
+  ReactionGameView view;
 
   /**
    * Assign view.
    *
-   * @param view ReactionGameViewInterface to be injected.
+   * @param view ReactionGameView to be injected.
    */
-  public ReactionGameModule(ReactionGameViewInterface view) {
+  public ReactionGameModule(ReactionGameView view) {
     this.view = view;
   }
 
@@ -30,8 +30,8 @@ public class ReactionGameModule {
    * @return Presenter as PresenterInterface.
    */
   @Provides
-  public ReactionGamePresenterInterface providePresenter() {
-    ReactionGamePresenter presenter = new ReactionGamePresenter(view, view.getColorStateList());
+  public ReactionGamePresenter providePresenter() {
+    ReactionGamePresenterImpl presenter = new ReactionGamePresenterImpl(view, view.getColorStateList());
     presenter.setManager(provideManager());
     return presenter;
   }

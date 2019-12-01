@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_beige"
-    tools:context=".UI.MazeGame.MazeFinishActivity">
+    tools:context=".ui.maze_game.MazeFinishActivity">
 
     <TextView
         android:id="@+id/textView4"

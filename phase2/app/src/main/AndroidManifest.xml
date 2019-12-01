@@ -3,30 +3,30 @@
     package="com.example.phase1activity">
 
     <application
-        android:name=".Core.Transmission.Overseers.AppManager"
+        android:name=".service.AppManager"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.MazeGame.MazeInstructionsActivity"></activity>
-        <activity android:name=".UI.MenuScreens.LeaderboardViewImpl" />
-        <activity android:name=".UI.MenuScreens.CreditsActivity" />
-        <activity android:name=".UI.MatchingGame.ChooseLevelActivity" />
-        <activity android:name=".UI.MatchingGame.MatchingInstructionsActivity" />
-        <activity android:name=".UI.MazeGame.MazeFinishActivity" />
-        <activity android:name=".UI.ReactionGame.ReactionGameView" />
-        <activity android:name=".UI.ReactionGame.ReactionInstructionsActivity" />
-        <activity android:name=".UI.MazeGame.MazeMenuActivity" />
-        <activity android:name=".UI.MazeGame.MazeGameActivity" />
-        <activity android:name=".UI.MenuScreens.PersonalStatsActivity" />
-        <activity android:name=".UI.MenuScreens.StartActivity" />
-        <activity android:name=".UI.MenuScreens.CustomizationActivity" />
-        <activity android:name=".UI.MatchingGame.MatchingGameActivity" />
-        <activity android:name=".UI.UserAccess.RegisterActivity" />
-        <activity android:name=".UI.UserAccess.LogInActivity" />
-        <activity android:name=".UI.MenuScreens.MainActivity">
+        <activity android:name=".ui.maze_game.MazeInstructionsActivity"></activity>
+        <activity android:name=".ui.leaderboard.LeaderboardViewImpl" />
+        <activity android:name=".ui.menu.CreditsActivity" />
+        <activity android:name=".ui.matching_game.ChooseLevelActivity" />
+        <activity android:name=".ui.matching_game.MatchingInstructionsActivity" />
+        <activity android:name=".ui.maze_game.MazeFinishActivity" />
+        <activity android:name=".ui.reaction_game.ReactionGameView" />
+        <activity android:name=".ui.reaction_game.ReactionInstructionsActivity" />
+        <activity android:name=".ui.maze_game.MazeMenuActivity" />
+        <activity android:name=".ui.maze_game.MazeGameActivity" />
+        <activity android:name=".ui.menu.PersonalStatsActivity" />
+        <activity android:name=".ui.menu.StartActivity" />
+        <activity android:name=".ui.menu.CustomizationActivity" />
+        <activity android:name=".ui.matching_game.MatchingGameActivity" />
+        <activity android:name=".ui.user_access.RegisterActivity" />
+        <activity android:name=".ui.user_access.LogInActivity" />
+        <activity android:name=".ui.menu.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

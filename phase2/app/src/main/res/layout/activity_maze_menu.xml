@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_beige"
-    tools:context=".UI.MazeGame.MazeMenuActivity">
+    tools:context=".ui.maze_game.MazeMenuActivity">
 
     <Button
         android:id="@+id/extremeBtn"

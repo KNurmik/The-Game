@@ -1,8 +1,10 @@
 Dear TA,
 
-For this app to run successfully, you may need to install a dependency.
+The complete project is located in the phase2 directory.
 
-To do so, follow these instructions:
+
+For this app to run successfully, you may need to install dependencies. Most likely this will not
+be an issue, but just to be sure, here are step-by-step instructions:
 
 1. Go to File -> Project Structure -> Dependencies -> app
 
@@ -15,10 +17,12 @@ To do so, follow these instructions:
 This dependency is necessary for an imported stopwatch object, which was impossible to implement
 using pre-existing Java and Android Studio packages.
 
+4. Similarly, you may have to search for "dagger", and add the result with Group ID
+   "com.google.dagger".
+
+This dependency is necessary for implementing dependency injection.
+
 Thank you for understanding!
-
-
-TODO: May need guide for Dagger dependency.
 
 ####################################################################################################
 

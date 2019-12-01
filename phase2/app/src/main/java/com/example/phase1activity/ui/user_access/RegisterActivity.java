@@ -74,12 +74,12 @@ public class RegisterActivity extends AbstractActivity implements UserAccessView
         });
 
     back.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-              }
-            });
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+          }
+        });
   }
 
   /** @return what the user has entered in usernameText. */

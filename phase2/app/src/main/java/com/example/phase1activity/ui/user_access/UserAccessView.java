@@ -1,5 +1,6 @@
 package com.example.phase1activity.ui.user_access;
 
+/** Interface for login and register activities. */
 public interface UserAccessView {
 
   /** @return whether user is trying to login (return "login) or register (return "register"). */

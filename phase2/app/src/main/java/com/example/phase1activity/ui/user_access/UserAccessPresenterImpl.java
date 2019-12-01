@@ -18,7 +18,7 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
   /** Manager responsible for logic computations. Injected using Dagger dependency injection. */
   @Inject UserAccessManager manager;
   /** View responsible for taking in user input and displaying things on the screen. */
-  UserAccessView view;
+  private UserAccessView view;
 
   /**
    * Create an instance of this class. Tell UserAccessModule how to create this object.
@@ -26,7 +26,7 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
    * @param view the UserAccessView object creating this Presenter.
    */
   @Inject
-  public UserAccessPresenterImpl(UserAccessView view) {
+  UserAccessPresenterImpl(UserAccessView view) {
     this.view = view;
   }
 
@@ -57,7 +57,7 @@ public class UserAccessPresenterImpl implements UserAccessPresenter {
    *
    * @param result the result of the computations done by manager.
    */
-  public void handleUserAccessResult(UserAccessManager.Result result) {
+  private void handleUserAccessResult(UserAccessManager.Result result) {
     // If there is no match with the username or password.
     if (result == UserAccessManager.Result.INCORRECT) {
       view.updateInstructionText("Incorrect username-password combination.", Color.RED);

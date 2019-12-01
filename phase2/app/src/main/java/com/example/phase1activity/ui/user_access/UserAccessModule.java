@@ -7,31 +7,38 @@ import com.example.phase1activity.domain.user_access.UserAccessManager;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Dagger module telling Dagger how to create objects of type UserAccessPresenter and
+ * UserAccessManager.
+ */
 @Module
-public class UserAccessModule {
+class UserAccessModule {
 
-    UserAccessView view;
-    String action;
+  /** The view to be injected. */
+  private UserAccessView view;
+  /** The action the view is trying to do. */
+  private String action;
 
-    public UserAccessModule(UserAccessView view){
-        this.view = view;
-        this.action = view.getAction();
+  UserAccessModule(UserAccessView view) {
+    this.view = view;
+    this.action = view.getAction();
+  }
+
+  /** Provide an object of UserAccessPresenterImpl as UserAccessPresenter. */
+  @Provides
+  UserAccessPresenter providePresenter() {
+    UserAccessPresenterImpl presenter = new UserAccessPresenterImpl(view);
+    presenter.setManager(provideManager());
+    return presenter;
+  }
+
+  /** Provide an object of UserAccessManager */
+  @Provides
+  UserAccessManager provideManager() {
+    if (action.equals("login")) {
+      return new LogInManager();
+    } else {
+      return new RegisterManager();
     }
-
-    @Provides
-    public UserAccessPresenter providePresenter(){
-        UserAccessPresenterImpl presenter = new UserAccessPresenterImpl(view);
-        presenter.setManager(provideManager());
-        return presenter;
-    }
-
-    @Provides
-    public UserAccessManager provideManager(){
-        if(action.equals("login")){
-            return new LogInManager();
-        }
-        else{
-            return new RegisterManager();
-        }
-    }
+  }
 }

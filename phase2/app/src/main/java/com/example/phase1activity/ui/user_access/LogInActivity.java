@@ -74,14 +74,13 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
         });
 
     back.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, MainActivity.class));
-              }
-            });
-}
-
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            startActivity(new Intent(LogInActivity.this, MainActivity.class));
+          }
+        });
+  }
 
   /** @return what the user has entered in usernameText. */
   private String getUsername() {
@@ -120,5 +119,4 @@ public class LogInActivity extends AbstractActivity implements UserAccessView {
     startActivity(new Intent(LogInActivity.this, StartActivity.class));
     app.changeMusic(app.getProfileSong());
   }
-
 }

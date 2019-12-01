@@ -11,10 +11,6 @@ public class Wall extends MazeItem {
   /** Return true iff this wall is horizontal. */
   private final boolean horizontal;
 
-  //TODO: why is this not accessed? Is it unnecessary?
-  /** A string, representing this wall's appearance. */
-  private String appearance;
-
   private Paint paintText = new Paint();
 
   /**
@@ -27,12 +23,6 @@ public class Wall extends MazeItem {
   Wall(int a, int b, boolean horz) {
     super(a, b);
     horizontal = horz;
-
-    if (horz) {
-      appearance = "_";
-    } else {
-      appearance = "|";
-    }
 
     paintText.setStrokeWidth(10);
     paintText.setColor(Color.BLACK);

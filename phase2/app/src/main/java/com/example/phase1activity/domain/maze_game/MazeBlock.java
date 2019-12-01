@@ -44,7 +44,10 @@ public class MazeBlock extends MazeItem {
     neighboursWalls = new ArrayList<>();
   }
 
-  // TODO: add Javadoc. Also, why is teleportBlock never accessed?
+  /**
+   * Set this maze block to be a teleporting block
+   * @param teleportBlock true if the current block is a teleporting block.
+   */
   void setTeleportBlock(boolean teleportBlock) {
     this.teleportBlock = teleportBlock;
   }

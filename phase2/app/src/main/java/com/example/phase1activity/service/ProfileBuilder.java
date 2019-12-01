@@ -1,5 +1,6 @@
 package com.example.phase1activity.service;
-// TODO: add desc.
+
+/** A builder class for user profiles. */
 public class ProfileBuilder {
   /** The user id. */
   private String username;

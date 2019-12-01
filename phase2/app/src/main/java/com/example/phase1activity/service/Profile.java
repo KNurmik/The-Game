@@ -3,7 +3,7 @@ package com.example.phase1activity.service;
 import android.app.Activity;
 import android.graphics.Color;
 
-// TODO: add desc.
+/** A user profile. */
 class Profile {
   /** The user's username. */
   private String username;

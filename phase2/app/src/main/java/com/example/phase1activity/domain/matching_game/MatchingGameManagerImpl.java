@@ -67,11 +67,6 @@ public class MatchingGameManagerImpl implements MatchingGameManager {
   private void takeTurn(Button[] cards, Map<Button, String> cardValues) {
     this.turnsTaken++;
 
-    try {
-      TimeUnit.SECONDS.sleep(1 / 2);
-    } catch (InterruptedException e) {
-    } // TODO: replace empty catch block with a log
-
     if (cardValues.get(cards[0]).equals(cardValues.get(cards[1]))) {
       this.matchesToBeMade--;
     }

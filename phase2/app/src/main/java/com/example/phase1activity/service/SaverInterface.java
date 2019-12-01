@@ -37,9 +37,11 @@ public interface SaverInterface {
       String username, String newAttribute, AndroidSaver.AttributeType attributeType);
 
   /**
-   * Return a map of usernames to a map of highest score types to their respective values.
+   * Return a map of usernames to a map of highest score types to their respective values for each
+   * username.
    *
-   * @return a map of usernames to a map of highest score types to their respective values.
+   * @return a map of usernames to a map of highest score types to their respective values for each
+   *     username
    */
   Map<String, Map<AndroidSaver.AttributeType, Double>> getHighScores();
 

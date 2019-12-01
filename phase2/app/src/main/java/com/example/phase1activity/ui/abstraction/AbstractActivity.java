@@ -8,11 +8,10 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1activity.service.AppManager;
-import com.example.phase1activity.service.AppManagerInterface;
 
 /** Base activity, every Activity in the application inherits this class */
 public abstract class AbstractActivity extends AppCompatActivity {
-  public AppManagerInterface appManager;
+  public AppManager appManager;
 
   /**
    * Creates the abstract activity for all activities.
@@ -29,7 +28,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
    *
    * @return the appManager manager attribute.
    */
-  public AppManagerInterface getAppManager() {
+  public AppManager getAppManager() {
     return appManager;
   }
 

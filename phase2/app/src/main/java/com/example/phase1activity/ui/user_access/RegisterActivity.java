@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.R;
+import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 import com.example.phase1activity.ui.menu.MainActivity;
 import com.example.phase1activity.ui.menu.StartActivity;

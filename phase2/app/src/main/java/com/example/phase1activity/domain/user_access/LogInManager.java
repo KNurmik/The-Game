@@ -1,7 +1,6 @@
 package com.example.phase1activity.domain.user_access;
 
 import android.content.Context;
-
 import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.service.ProfileBuilder;
 import com.example.phase1activity.service.AndroidSaver;

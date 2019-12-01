@@ -11,8 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.R;
+import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 
 /** Activity for user to customize their profile settings. */

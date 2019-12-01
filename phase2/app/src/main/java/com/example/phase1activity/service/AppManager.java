@@ -1,110 +1,51 @@
 package com.example.phase1activity.service;
 
 import android.app.Activity;
-import android.app.Application;
-
-import com.example.phase1activity.domain.leaderboard.GlobalStats;
-
-import javax.inject.Inject;
 
 /** A facade that oversees application processes. */
-public class AppManager extends Application implements AppManagerInterface {
-
-  /** An keeper of user stats. */
-  @Inject
-  GlobalStats globalStats;
-
-  /** A player of music. */
-  @Inject Music musicPlayer;
-
-  /** The profile the appManager is using. */
-  private Profile profile;
-
-  /** The level of difficulty the matching game is to played on. */
-  private int matchingGameLevel;
-
-  /** A boolean that returns true iff the last playthrough of the maze game was on easy mode,
-   * and false otherwise.
-   */
-  private boolean easyMazeGame;
-
-  @Override
-  public void onCreate() {
-
-    // Dagger module for injecting.
-    AppManagerModule module =
-        new AppManagerModule(this, 1, "None", "None", "None", 0.0, 5.0, 100.0);
-
-    // Inject musicPlayer.
-    musicPlayer =
-        DaggerAppManagerComponent.builder()
-            .appManagerModule(module)
-            .build()
-            .injectAppManagerPlayer();
-
-    // Inject globalStats.
-    globalStats =
-        DaggerAppManagerComponent.builder()
-            .appManagerModule(module)
-            .build()
-            .injectAppManagerGlobalStats();
-    super.onCreate();
-  }
+public interface AppManager {
 
   /**
    * Change the appManager's music to the song referenced by index n.
    *
    * @param n a song index.
    */
-  public void changeMusic(int n) {
-    musicPlayer.changeMusic(this, n);
-  }
+  void changeMusic(int n);
 
   /** Stop the appManager's music. */
-  public void stopMusic(){
-    musicPlayer.stopMusic();
-  }
+  void stopMusic();
 
   /** Update user statistics in GlobalStats. */
-  public void updateGlobalStats() {
-    this.globalStats.updateGlobalStats();
-  }
+  void updateGlobalStats();
 
   /**
    * Getter for the profile that the application is using.
    *
    * @return the profile that the application is using.
    */
-  public Profile getProfile() {
-    return this.profile;
-  }
+  Profile getProfile();
 
   /**
    * Set this appManager manager's profile.
    *
    * @param profile a user profile.
    */
-  public void setProfile(Profile profile) {
-    this.profile = profile;
-  }
+  void setProfile(Profile profile);
 
   /**
-   * Getter for profile's selected colour
+   * Get the colour preference of this appManager manager's profile.
    *
-   * @return profile.colour
+   * @return an int representing colour preference of this appManager manager's profile.
    */
-  public int getProfileColour() {
-    return this.profile.getColour();
-  }
+  int getProfileColour();
 
   /**
-   * Setter for profile's selected colour.
+   * Set the colour preference of thia appManager manager's profile to color.
    *
-   * @param color the color of the profile.
+   * @param activity the activity that the change is being made from.
+   * @param color a color.
    */
-  public void setProfileColour(Activity activity, int color) {
-    this.profile.setColour(activity, color);
-  }
+  void setProfileColour(Activity activity, int color);
 
   /**
    * Set the song preference of this appManager manager's profile to the song referenced by index n.
@@ -112,27 +53,21 @@ public class AppManager extends Application implements AppManagerInterface {
    * @param activity the activity that the change is being made from.
    * @param n a song index.
    */
-  public void setProfileSong(Activity activity, int n) {
-    this.profile.setSong(activity, n);
-  }
+  void setProfileSong(Activity activity, int n);
 
   /**
    * Get the index of the song preference of this appManager manger's profile.
    *
    * @return the index of the song preference of this appManager manager's profile.
    */
-  public int getProfileSong() {
-    return this.profile.getSong();
-  }
+  int getProfileSong();
 
   /**
    * Get the game level that this appManager manger's profile is playing through.
    *
    * @return the game level that this appManager manger's profile is playing through.
    */
-  public int getProfileGameLevel() {
-    return this.profile.getGameLevel();
-  }
+  int getProfileGameLevel();
 
   /**
    * Set the game level that this appManager manger's profile is playing through.
@@ -140,9 +75,7 @@ public class AppManager extends Application implements AppManagerInterface {
    * @param activity the activity that this change is made from.
    * @param n a game level.
    */
-  public void setProfileGameLevel(Activity activity, int n) {
-    this.profile.setGameLevel(activity, n);
-  }
+  public void setProfileGameLevel(Activity activity, int n);
 
   /**
    * Set this appManager manager's profile's fastest reaction time.
@@ -150,9 +83,7 @@ public class AppManager extends Application implements AppManagerInterface {
    * @param activity the activity that the change is being made from.
    * @param time an amount of time in seconds.
    */
-  public void setProfileReactionTime(Activity activity, double time) {
-    profile.setFastestRxnStat(activity, time);
-  }
+  void setProfileReactionTime(Activity activity, double time);
 
   /**
    * Increment this appManager manager's profile's moves stat.
@@ -160,9 +91,7 @@ public class AppManager extends Application implements AppManagerInterface {
    * @param activity the activity that the change is being made from.
    * @param moves a number of moves.
    */
-  public void updateProfileMoves(Activity activity, int moves) {
-    profile.incrementTotalMovesStat(activity, moves);
-  }
+  void updateProfileMoves(Activity activity, int moves);
 
   /**
    * Increment this appManager manager's profile's moves stat.
@@ -170,76 +99,63 @@ public class AppManager extends Application implements AppManagerInterface {
    * @param activity the activity that the change is being made from.
    * @param score a score.
    */
-  public void updateProfileScore(Activity activity, int score) {
-    profile.incrementTotalScoreStat(activity, score);
-  }
-
-  /**
-   * Getter for the profile's nickname
-   *
-   * @return profile.nickname
-   */
-  public String getProfileNickname() {
-    return profile.getNickname();
-  }
+  void updateProfileScore(Activity activity, int score);
 
   /**
    * Get the nickname of this appManager manager's profile.
    *
    * @return the nickname of this appManager manager's profile.
    */
-  public void setProfileNickname(Activity activity, String name) {
-    this.profile.setNickname(activity, name);
-  }
+  String getProfileNickname();
 
-  public String getProfilePassword() {
-    return this.profile.getPassword();
-  }
+  /**
+   * Setter for the profile's nickname
+   *
+   * @param name the nickname
+   */
+  void setProfileNickname(Activity activity, String name);
 
   /**
    * Get the fastest reaction stat of this appManager manager's profile.
    *
    * @return the fastest reaction stat of this appManager manager's profile.
    */
-  public double getProfileFastestRxnStat() {
-    return profile.getFastestRxnStat();
-  }
+  double getProfileFastestRxnStat();
 
   /**
    * Get the total score stat of this appManager manager's profile.
    *
    * @return the total score stat of this appManager manager's profile.
    */
-  public int getProfileTotalScoreStat() {
-    return profile.getTotalScoreStat();
-  }
+  int getProfileTotalScoreStat();
 
   /**
    * Get the total moves stat of this appManager manager's profile.
    *
    * @return the total moves stat of this appManager manager's profile.
    */
-  public int getProfileTotalMovesStat() {
-    return profile.getTotalMovesStat();
-  }
+  int getProfileTotalMovesStat();
+
+  /**
+   * Get the user level of this appManager manager's profile.
+   *
+   * @return the user level of this appManager manager's profile.
+   */
+  int getUserLevel();
 
   /**
    * Get the matching game level of this appManager manager's profile.
    *
    * @return the matching game level of this appManager manager's profile.
    */
-  public int getMatchingGameLevel() {
-    return matchingGameLevel;
-  }
+  int getMatchingGameLevel();
 
   /**
    * Set the matching game level of this appManager manager's profile.
    *
    * @param level a level index.
    */
-  public void setMatchingGameLevel(int level) {
-    matchingGameLevel = level;
-  }
+  void setMatchingGameLevel(int level);
 
   /**
    * Get the maze game difficulty of this appManager manager's profile during the user's last playthrough.
@@ -247,15 +163,13 @@ public class AppManager extends Application implements AppManagerInterface {
    * @return the maze game difficulty of this appManager manager's profile during the user's last
    *     playthrough.
    */
-  public boolean getMazeGameDifficulty(){return easyMazeGame;}
+  boolean getMazeGameDifficulty();
 
   /**
    * Set the maze game difficulty of this appManager manager's profile.
    *
    * @param difficulty a boolean evaluating to true iff the maze game is to be set to easy
-   * difficulty.
+   *     difficulty.
    */
-  public void setMazeGameDifficulty(boolean difficulty){easyMazeGame = difficulty;}
-
-  public int getUserLevel() { return profile.getUserLevel(); }
+  void setMazeGameDifficulty(boolean difficulty);
 }

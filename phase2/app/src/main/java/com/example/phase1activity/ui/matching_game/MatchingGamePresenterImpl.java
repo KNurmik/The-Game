@@ -39,7 +39,7 @@ public class MatchingGamePresenterImpl implements MatchingGamePresenter {
 
   /** Initialize this MatchingGamePresenter */
   @Inject
-  public MatchingGamePresenterImpl(List<Button> buttonList, MatchingGameView view, int numCards) {
+  MatchingGamePresenterImpl(List<Button> buttonList, MatchingGameView view, int numCards) {
 
     assignCardValues(buttonList, numCards);
     manager = new MatchingGameManagerImpl(this.cardsToValues.size());
@@ -80,8 +80,8 @@ public class MatchingGamePresenterImpl implements MatchingGamePresenter {
   }
 
   /**
-   * If button is a card, record the click. If there are no matches left to be made,
-   * display the final score, and update the user's statistics.
+   * If button is a card, record the click. If there are no matches left to be made, display the
+   * final score, and update the user's statistics.
    *
    * @param button the button that was clicked.
    * @param app the AppManager.

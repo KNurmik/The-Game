@@ -7,5 +7,5 @@ import dagger.Component;
 public interface MatchingGameComponent {
 
   /** @return MatchingGamePresenterInterface object to be injected. */
-  MatchingGamePresenterInterface injectMatchingGamePresenter();
+  MatchingGamePresenter injectMatchingGamePresenter();
 }

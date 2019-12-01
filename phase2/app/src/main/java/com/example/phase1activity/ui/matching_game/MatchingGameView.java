@@ -5,7 +5,7 @@ import android.widget.Button;
 import java.util.List;
 import java.util.Map;
 
-public interface MatchingGameActivityInterface {
+public interface MatchingGameView {
   /**
    * Set the statistic to be displayed to statDisplayText.
    *

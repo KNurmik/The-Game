@@ -19,14 +19,15 @@ import javax.inject.Inject;
 import static android.graphics.Color.rgb;
 
 /** A maze game activity. */
-public class MazeGameActivity extends AbstractActivity implements MazeGameViewInterface {
+public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
   public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
   /** The nickname for the user */
   public String playerNickname;
   /** The color of the user */
   public int playerColor;
 
-  @Inject MazeGamePresenterInterface presenter;
+  @Inject
+  MazeGamePresenter presenter;
   /** The drawView attribute that allows the app to draw the maze and character */
   private DrawView drawView;
 
@@ -45,7 +46,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
     setContentView(drawView);
     playerNickname = app.getProfileNickname();
     playerColor = app.getProfileColour();
-    presenter = new MazeGamePresenter(this, app.getMazeGameDifficulty());
+    presenter = new MazeGamePresenterImpl(this, app.getMazeGameDifficulty());
     presenter.setPaintText(app.getProfileColour());
   }
 
@@ -56,7 +57,7 @@ public class MazeGameActivity extends AbstractActivity implements MazeGameViewIn
 
   /** The maze is finished then move onto the next screen. */
   public void finishMaze() {
-    Intent intent = new Intent(MazeGameActivity.this, MazeFinishActivity.class);
+    Intent intent = new Intent(MazeGameViewImpl.this, MazeFinishActivity.class);
     intent.putExtra(EXTRA_MESSAGE, presenter.getScore());
     startActivity(intent);
   }

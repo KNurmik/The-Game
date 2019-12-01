@@ -19,11 +19,11 @@
         <activity android:name=".ui.reaction_game.ReactionGameViewImpl" />
         <activity android:name=".ui.reaction_game.ReactionInstructionsActivity" />
         <activity android:name=".ui.maze_game.MazeMenuActivity" />
-        <activity android:name=".ui.maze_game.MazeGameActivity" />
+        <activity android:name=".ui.maze_game.MazeGameViewImpl" />
         <activity android:name=".ui.menu.PersonalStatsActivity" />
         <activity android:name=".ui.menu.StartActivity" />
         <activity android:name=".ui.menu.CustomizationActivity" />
-        <activity android:name=".ui.matching_game.MatchingGameActivity" />
+        <activity android:name=".ui.matching_game.MatchingGameViewImpl" />
         <activity android:name=".ui.user_access.RegisterActivity" />
         <activity android:name=".ui.user_access.LogInActivity" />
         <activity android:name=".ui.menu.MainActivity">

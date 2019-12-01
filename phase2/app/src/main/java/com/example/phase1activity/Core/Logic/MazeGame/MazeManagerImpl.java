@@ -6,17 +6,18 @@ import javax.inject.Inject;
 
 public class MazeManagerImpl implements MazeManager {
 
-  /** The maze that will be displayed on the phone. */
+  /** The maze to be displayed. */
   private Maze mazeObject;
-  /** True if the maze game is easy. */
+  /** True iff the maze game is easy. */
   private boolean difficulty;
-  /** Constructs the MazeManager. */
+
+  /** Construct the MazeManager. */
   @Inject
   public MazeManagerImpl(Maze maze, boolean difficulty) {
 
     this.mazeObject = maze;
     this.difficulty = difficulty;
-    // Randomly deletes maze walls such that there is a path from the starting block to the exit.
+    // Randomly delete maze walls so that there is a path from the starting block to the exit.
     mazeObject.createRandomMaze();
     mazeObject.createPlayer();
   }

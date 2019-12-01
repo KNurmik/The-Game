@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-/** A maze. */
+/** A maze for the maze game */
 public class Maze {
 
   /** The character that this maze is using. */
@@ -14,9 +14,9 @@ public class Maze {
   private Coin coin;
   /** The block that the player needs to get to in order to win. */
   private MazeBlock winningBlock;
-  /** The first teleporting block */
+  /** The first teleporting block. */
   private MazeBlock teleportBlock1;
-  /** The second teleporting block */
+  /** The second teleporting block. */
   private MazeBlock teleportBlock2;
   /** A list containing all of the walls in the maze. */
   private List<Wall> mazeWalls;
@@ -105,32 +105,32 @@ public class Maze {
             row.get(2)]; // Assign the third int in the col and row collection to the coin
   }
 
-  /** Set the coins visit attribute to true so that the coin no longer exists in the maze */
+  /** Set the visited coin attribute to true so that the coin no longer exists in the maze. */
   void removeCoin() {
     this.coin.setVisited(true);
   }
 
-  /** Set the teleport maze blocks to null so that they no longer exists in the maze */
+  /** Set the teleport maze blocks to null so that they no longer exist in the maze. */
   void removeTeleportBlocks() {
     this.teleportBlock1 = null;
     this.teleportBlock2 = null;
   }
-  /** Create the Maze, and add all the Walls and MazeBlocks it's respective arrays and lists. */
+  /** Create the maze, and add all the Walls and MazeBlocks in it's respective collections. */
   private void createMaze() {
 
-    // Draws all the possible walls first and make the walls the left, right, up, down of the
+    // Draw all the possible walls first and make the walls the left, right, up, down of the
     // surrounding maze blocks.
     for (int i = 0; i < mazeWidth; i++) {
       for (int j = 0; j < mazeHeight; j++) {
         mazeBlocks[i][j] = new MazeBlock(i, j);
 
-        // The leftmost walls are added
+        // The leftmost walls are added.
         if (i == 0) {
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
           mazeWalls.add(newWall);
           outerWalls.add(newWall);
-        } else { // The left walls for the mazeBlock
+        } else {
           Wall newWall = new Wall(i, j, false);
           mazeBlocks[i][j].setLeft(newWall);
           mazeBlocks[i - 1][j].setRight(newWall);

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+/** A coin class for the maze game. */
 public class Coin {
 
   /** The maze block that the character is in. */

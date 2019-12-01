@@ -1,5 +1,5 @@
 package com.example.phase1activity.Core.Transmission.Overseers;
-
+// TODO: add desc.
 public class ProfileBuilder {
   /** The user id. */
   private String username;

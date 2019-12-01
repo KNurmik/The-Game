@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+/** A presenter for some maze game, that relays information to and from its view and manager. */
 public class MazeGamePresenter implements MazeGamePresenterInterface {
 
   /** The MazeManager for this presenter */
@@ -55,7 +56,7 @@ public class MazeGamePresenter implements MazeGamePresenterInterface {
     return score;
   }
 
-  /** @return ture if the character block is on the winning block */
+  /** @return true iff the character block is on the winning block */
   public boolean checkWin() {
     return mazeManager.checkWin();
   }

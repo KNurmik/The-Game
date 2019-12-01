@@ -8,9 +8,11 @@ import android.graphics.Typeface;
 /** A maze wall. */
 public class Wall extends MazeItem {
 
-  /** Whether this wall is horizontal or vertical. */
+  /** Return true iff this wall is horizontal. */
   private final boolean horizontal;
-  /** A string representing this wall's appearance. */
+
+  //TODO: why is this not accessed? Is it unnecessary?
+  /** A string, representing this wall's appearance. */
   private String appearance;
 
   private Paint paintText = new Paint();
@@ -40,14 +42,14 @@ public class Wall extends MazeItem {
   /**
    * Return true if this wall is horizontal, and false otherwise.
    *
-   * @return true iff the wall goes from left to right.
+   * @return true iff the wall is horizontal.
    */
   boolean isHorz() {
     return horizontal;
   }
 
   /**
-   * Draw the Wall on the phone screen.
+   * Draw this Wall.
    *
    * @param canvas the canvas to draw the Wall onto.
    */

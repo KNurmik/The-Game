@@ -9,6 +9,7 @@ import dagger.Provides;
 @Module
 public class AppManagerModule {
 
+  //TODO: add descriptions
   private Context context;
   private int songNumber;
   private String nameOne;

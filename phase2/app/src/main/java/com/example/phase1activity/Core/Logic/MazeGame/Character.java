@@ -5,14 +5,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-/** A character class. */
+/** A character class for the maze game. */
 public class Character {
 
   /** The maze block that the character is in. */
   private MazeBlock currentBlock;
   /** The number of moves this character has taken in the maze. */
   private int moves;
-  /** Paint attribute for the character */
+  /** Paint attribute for the character. */
   private Paint paintText = new Paint();
 
   /**
@@ -29,7 +29,7 @@ public class Character {
   }
 
   /**
-   * Getter for currentBlock attribut.
+   * Getter for currentBlock attribute.
    *
    * @return The current maze block that the character is on.
    */

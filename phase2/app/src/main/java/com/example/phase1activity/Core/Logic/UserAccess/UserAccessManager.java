@@ -49,6 +49,7 @@ public abstract class UserAccessManager {
         && !password.contains(",");
   }
 
+  /** A representation of the result of some user access attempt. */
   public enum Result {
     INCORRECT,
     TAKEN,

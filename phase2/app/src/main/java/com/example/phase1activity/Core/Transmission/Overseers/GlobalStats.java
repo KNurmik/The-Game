@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+//TODO: add desc.
 public class GlobalStats {
 
   private ISaver iSaver;

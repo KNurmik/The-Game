@@ -4,6 +4,7 @@ import android.widget.Button;
 
 import java.util.Map;
 
+/** A class for managing backend processes of a matching game. */
 public interface MatchingGameManager {
     /**
      * * Record that card was clicked. That is, if cardsClicked is empty, add card to cardsClicked. If
@@ -18,7 +19,7 @@ public interface MatchingGameManager {
     boolean recordClick(Button card, Map<Button, String> cardValues);
 
     /**
-     * Returns number of turns that have been made.
+     * Returns number of matches left to be made.
      *
      * @return the number of matches left to be made.
      */

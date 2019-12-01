@@ -9,7 +9,7 @@ import com.example.phase1activity.Core.Logic.MazeGame.Wall;
 
 import java.util.List;
 
-/** Interface for MazeGamePresenter. */
+/** A presenter for some maze game, that relays information to and from its view and manager. */
 public interface MazeGamePresenterInterface {
 
   /**
@@ -27,7 +27,7 @@ public interface MazeGamePresenterInterface {
   /** @return the score of this maze game. */
   int getScore();
 
-  /** @return ture if the character block is on the winning block */
+  /** @return true iff the character block is on the winning block */
   boolean checkWin();
 
   /** @return the number of moves of the player for this maze game. */

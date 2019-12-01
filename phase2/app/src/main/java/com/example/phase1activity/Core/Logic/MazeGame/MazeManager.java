@@ -7,7 +7,7 @@ public interface MazeManager {
   Maze getMazeObject();
 
   /**
-   * Draws every outer wall of the maze as well as any walls that are neighbours of neighbours of
+   * Draw every outer wall of the maze as well as any walls that are neighbours of neighbours of
    * the currentBlock that the player is on, as well as the player.
    *
    * @param canvas the canvas.

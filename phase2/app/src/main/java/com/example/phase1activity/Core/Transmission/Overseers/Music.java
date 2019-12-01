@@ -40,6 +40,7 @@ public class Music {
       }
     }
 
+    /** Stop the music from playing. */
   public void stopMusic(){
     if (player != null) {
       player.pause();

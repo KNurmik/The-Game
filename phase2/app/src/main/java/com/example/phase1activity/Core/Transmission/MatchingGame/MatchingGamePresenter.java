@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+/** A presenter for some matching game, that relays information to and from its view and manager. */
 public class MatchingGamePresenter implements MatchingGamePresenterInterface {
   /** The string to be displayed on the back of each card. */
   private final String BACKOFCARD = "CLICK ME!";

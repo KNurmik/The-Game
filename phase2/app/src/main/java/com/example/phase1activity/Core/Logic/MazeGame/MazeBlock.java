@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class MazeBlock extends MazeItem {
 
-  /** Boolean variable whether the mazeBlock as a path to another maze block. */
+  /** Boolean variable evaluating to whether the mazeBlock as a path to another maze block. */
   boolean visited;
   /** A boolean that is true if and only if the block is a teleporting block */
   private boolean teleportBlock;
@@ -44,6 +44,7 @@ public class MazeBlock extends MazeItem {
     neighboursWalls = new ArrayList<>();
   }
 
+  // TODO: add Javadoc. Also, why is teleportBlock never accessed?
   void setTeleportBlock(boolean teleportBlock) {
     this.teleportBlock = teleportBlock;
   }

@@ -14,9 +14,7 @@ import javax.inject.Inject;
 
 import dagger.Provides;
 
-/**
- * A MatchingGameManagerImpl that keeps track of information for some respective MatchingGameActivity.
- */
+/** A class for managing backend processes of a matching game. */
 public class MatchingGameManagerImpl implements MatchingGameManager{
 
   /** The number of turns taken. */
@@ -98,7 +96,7 @@ public class MatchingGameManagerImpl implements MatchingGameManager{
   }
 
   /**
-   * Returns number of turns that have been made.
+   * Returns number of matches left to be made.
    *
    * @return the number of matches left to be made.
    */

@@ -5,7 +5,7 @@ import android.graphics.Color;
 
 import com.example.phase1activity.Core.Transmission.Saving.AndroidSaver;
 import com.example.phase1activity.Core.Transmission.Saving.ISaver;
-
+// TODO: add desc.
 class Profile {
   /** The user's username. */
   private String username;

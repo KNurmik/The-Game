@@ -11,7 +11,7 @@ public interface LeaderBoardSorting {
    * Sort the list of players and return a list of players and their statistics.
    *
    * @param saver the ISaver object to be used for
-   * @return a list of players along with their statistic.
+   * @return a sorted list of players along with their statistic.
    */
   List<List<Object>> sortPlayers(ISaver saver);
 }

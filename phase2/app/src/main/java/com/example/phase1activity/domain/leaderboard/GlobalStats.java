@@ -3,7 +3,7 @@ package com.example.phase1activity.domain.leaderboard;
 import android.content.Context;
 
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.ISaver;
+import com.example.phase1activity.service.SaverInterface;
 import com.example.phase1activity.ui.leaderboard.DaggerLeaderboardComponent;
 import com.example.phase1activity.ui.leaderboard.LeaderboardModule;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 //TODO: add desc.
 public class GlobalStats {
 
-  private ISaver iSaver;
+  private SaverInterface saver;
   public List<List<Object>> usersWithBestScores;
   public List<List<Object>> usersWithFastestReactions;
   public List<List<Object>> usersWithMostMoves;
@@ -29,7 +29,7 @@ public class GlobalStats {
    */
   @Inject
   public GlobalStats(Context context) {
-    iSaver = new AndroidSaver(context);
+    saver = new AndroidSaver(context);
   }
 
   public void updateGlobalStats() {
@@ -59,7 +59,7 @@ public class GlobalStats {
             .build()
             .injectLeaderBoardSorting();
 
-    return sorter.sortPlayers(iSaver);
+    return sorter.sortPlayers(saver);
   }
 
   /** @return a list of players sorted by total score, along with the statistic. */

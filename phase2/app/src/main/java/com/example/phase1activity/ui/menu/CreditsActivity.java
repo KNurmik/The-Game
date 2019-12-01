@@ -9,21 +9,23 @@ import android.widget.Button;
 
 import com.example.phase1activity.R;
 
+/** Activity for presenting authorship. */
 public class CreditsActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_credits);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_credits);
 
-        Button backButton = findViewById(R.id.backButton);
+    Button backButton = findViewById(R.id.backButton);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Opens MainActivity.
-                startActivity(new Intent(CreditsActivity.this, MainActivity.class));
-            }
+    backButton.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            // Opens MainActivity.
+            startActivity(new Intent(CreditsActivity.this, MainActivity.class));
+          }
         });
-    }
+  }
 }

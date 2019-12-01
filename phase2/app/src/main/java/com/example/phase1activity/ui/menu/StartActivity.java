@@ -1,5 +1,6 @@
 package com.example.phase1activity.ui.menu;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,6 +30,7 @@ public class StartActivity extends AbstractActivity {
   /** A numerical representation of the user's progress in the app */
   int userLevel;
 
+  @SuppressLint("SetTextI18n")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class StartActivity extends AbstractActivity {
     level = app.getProfileGameLevel();
     userLevel = app.getUserLevel();
 
+    // Buttons on the screen.
     Button settingsButton = findViewById(R.id.settings);
     Button leaderButton = findViewById(R.id.stat);
     Button startButton = findViewById(R.id.start);
@@ -45,6 +48,7 @@ public class StartActivity extends AbstractActivity {
     Button startMaze = findViewById(R.id.startMaze);
     Button logOut = findViewById(R.id.logout);
 
+    // Displaying user's level.
     TextView userLevelDisplay = findViewById(R.id.userLevelDisplay);
     ImageView levelBox = findViewById(R.id.levelBox);
 
@@ -70,6 +74,7 @@ public class StartActivity extends AbstractActivity {
         R.drawable.leaderboard_blue,
         R.drawable.leaderboard_green);
 
+    // Add button functionality.
     settingsButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
@@ -133,6 +138,7 @@ public class StartActivity extends AbstractActivity {
           }
         });
 
+    // Open up the game user last played.
     startButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {

@@ -68,7 +68,7 @@ class Profile {
    * @param colour a colour.
    */
   void setColour(Activity activity, int colour) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.colour = colour;
     iSaver.saveAttribute(
             username, String.valueOf(colour), AndroidSaver.AttributeType.COLOUR);
@@ -105,7 +105,7 @@ class Profile {
    * @param n a level.
    */
   void setGameLevel(Activity activity, int n) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.gameLevel = n;
     iSaver.saveAttribute(
         username, String.valueOf(gameLevel), AndroidSaver.AttributeType.GAME_LEVEL);
@@ -135,7 +135,7 @@ class Profile {
    * @param nickname a nickname.
    */
   void setNickname(Activity activity, String nickname) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.nickname = nickname;
     iSaver.saveAttribute(
             username, nickname, AndroidSaver.AttributeType.NICKNAME);
@@ -148,7 +148,7 @@ class Profile {
    * @param newSongIndex the index of a song.
    */
   void setSong(Activity activity, int newSongIndex) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.song = newSongIndex;
     iSaver.saveAttribute(
             username, String.valueOf(newSongIndex), AndroidSaver.AttributeType.SONG);
@@ -163,7 +163,7 @@ class Profile {
    */
   void setFastestRxnStat(Activity activity, double newStat) {
     if (this.fastestRxnStat > newStat) {
-      ISaver iSaver = new AndroidSaver(activity);
+      AndroidSaver iSaver = new AndroidSaver(activity);
       this.fastestRxnStat = newStat;
       iSaver.saveAttribute(
               username, String.valueOf(fastestRxnStat), AndroidSaver.AttributeType.FASTEST_RXN_TIME);
@@ -177,7 +177,7 @@ class Profile {
    * @param moves a number of moves.
    */
   void incrementTotalMovesStat(Activity activity, int moves) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.totalMovesStat += moves;
     iSaver.saveAttribute(
             username, String.valueOf(totalMovesStat), AndroidSaver.AttributeType.TOTAL_MOVES);
@@ -190,7 +190,7 @@ class Profile {
    * @param score a score.
    */
   void incrementTotalScoreStat(Activity activity, int score) {
-    ISaver iSaver = new AndroidSaver(activity);
+    AndroidSaver iSaver = new AndroidSaver(activity);
     this.totalScoreStat += score;
     iSaver.saveAttribute(
             username, String.valueOf(totalScoreStat), AndroidSaver.AttributeType.TOTAL_SCORE);

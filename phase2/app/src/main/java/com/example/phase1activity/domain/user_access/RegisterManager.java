@@ -6,7 +6,7 @@ import android.graphics.Color;
 import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.service.ProfileBuilder;
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.ISaver;
+import com.example.phase1activity.service.SaverInterface;
 
 /** A class that manages registration of new users. */
 public class RegisterManager extends UserAccessManager {
@@ -26,7 +26,7 @@ public class RegisterManager extends UserAccessManager {
   public Result UserAccessAction(
       Context context, String username, String password, AppManager app) {
     // Deal with invalid username-password combinations.
-    ISaver iSaver = new AndroidSaver(context);
+    SaverInterface iSaver = new AndroidSaver(context);
     if (iSaver.getExistingUsernames().contains(username)) {
       return Result.TAKEN;
     } else if (!isValidUsername(username)) {

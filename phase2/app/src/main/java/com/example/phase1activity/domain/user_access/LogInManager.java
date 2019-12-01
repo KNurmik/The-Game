@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.service.ProfileBuilder;
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.ISaver;
+import com.example.phase1activity.service.SaverInterface;
 
 import java.util.Map;
 import java.util.Set;
@@ -34,19 +34,19 @@ public class LogInManager extends UserAccessManager {
       return Result.INCORRECT;
     } else {
       // Retrieve user's saved info.
-      ISaver iSaver = new AndroidSaver(context.getApplicationContext());
+      AndroidSaver iSaver = new AndroidSaver(context.getApplicationContext());
       Map<String, Map<AndroidSaver.AttributeType, String>> userData = iSaver.getExistingUserData();
-      String nickname = userData.get(username).get(ISaver.AttributeType.NICKNAME);
-      int colour = Integer.parseInt(userData.get(username).get(ISaver.AttributeType.COLOUR));
+      String nickname = userData.get(username).get(AndroidSaver.AttributeType.NICKNAME);
+      int colour = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.COLOUR));
       int gameLevel =
-          Integer.parseInt(userData.get(username).get(ISaver.AttributeType.GAME_LEVEL));
-      int song = Integer.parseInt(userData.get(username).get(ISaver.AttributeType.SONG));
+          Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.GAME_LEVEL));
+      int song = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.SONG));
       int totalScoreStat =
-          Integer.valueOf(userData.get(username).get(ISaver.AttributeType.TOTAL_SCORE));
+          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_SCORE));
       double fastestRxnStat =
-          Double.valueOf(userData.get(username).get(ISaver.AttributeType.FASTEST_RXN_TIME));
+          Double.valueOf(userData.get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME));
       int totalMovesStat =
-          Integer.valueOf(userData.get(username).get(ISaver.AttributeType.TOTAL_MOVES));
+          Integer.valueOf(userData.get(username).get(AndroidSaver.AttributeType.TOTAL_MOVES));
       // Create a new profile containing the existing user's info, and set it as the AppManager's
       // current profile.
       app.setProfile(
@@ -75,7 +75,7 @@ public class LogInManager extends UserAccessManager {
    * @return turns a boolean whether the login was valid or not.
    */
   private boolean isValidLogin(Context context, String username, String password) {
-    ISaver iSaver = new AndroidSaver(context.getApplicationContext());
+    SaverInterface iSaver = new AndroidSaver(context.getApplicationContext());
     Set<String> existingUsernames = iSaver.getExistingUsernames();
 
     if (existingUsernames.contains(username)) {

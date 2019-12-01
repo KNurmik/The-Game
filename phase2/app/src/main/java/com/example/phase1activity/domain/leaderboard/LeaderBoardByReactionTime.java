@@ -25,15 +25,19 @@ public class LeaderBoardByReactionTime implements LeaderBoardSorting {
   public List<List<Object>> sortPlayers(SaverInterface saver) {
     List<List<Object>> usersWithFastestReactions = new ArrayList<>();
     for (String username : saver.getHighScores().keySet()) {
+      // Obtains the fastest reaction time by the user in the reaction game
       double userFastestReaction =
               saver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
       String nickname = saver.getExistingUserData().get(username).get(SaverInterface.AttributeType.NICKNAME);
+
+      // A smaller list storing the user's nickname and their fastest reaction time.
       List<Object> listEntry = new ArrayList<>();
       listEntry.add(0, nickname);
       listEntry.add(1, userFastestReaction);
 
       boolean userAddedToList = false;
 
+      // Inserts the list entry into the sorted list
       for (int i = 0; i < usersWithFastestReactions.size(); i++) {
         if (userFastestReaction < (double) usersWithFastestReactions.get(i).get(1)) {
           usersWithFastestReactions.add(i, listEntry);

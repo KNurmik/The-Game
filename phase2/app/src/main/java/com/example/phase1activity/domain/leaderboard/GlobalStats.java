@@ -11,13 +11,26 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-//TODO: add desc.
+/**
+ * Responsible for obtaining sorted lists of users and their greatest statistics.
+ */
 public class GlobalStats {
 
+  /** The android saver. */
   private SaverInterface saver;
-  public List<List<Object>> usersWithBestScores;
-  public List<List<Object>> usersWithFastestReactions;
-  public List<List<Object>> usersWithMostMoves;
+
+  /**
+   * A list of users and their respective score sorted by highest score.
+   */
+  List<List<Object>> usersWithBestScores;
+  /**
+   * A list of users and their respective reaction time sorted by lowest reaction time.
+   */
+  List<List<Object>> usersWithFastestReactions;
+  /**
+   * A list of users and their respective moves sorted by most moves.
+   */
+  List<List<Object>> usersWithMostMoves;
 
   /** Sorting strategy for displaying the best users on the leaderboard. */
   private LeaderBoardSorting sorter;
@@ -32,6 +45,7 @@ public class GlobalStats {
     saver = new AndroidSaver(context);
   }
 
+  /** Updates the three sorted lists of users and their best statistics */
   public void updateGlobalStats() {
     this.usersWithBestScores = getSortedPlayers(SortType.BY_BEST_SCORE);
     this.usersWithMostMoves = getSortedPlayers(SortType.BY_MOST_MOVES);

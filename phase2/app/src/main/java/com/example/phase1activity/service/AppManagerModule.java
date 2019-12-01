@@ -19,9 +19,9 @@ class AppManagerModule {
   /** The number of the song to use. */
   private int songNumber;
 
-  AppManagerModule(Context context, int n) {
+    AppManagerModule(Context context, int songNumber) {
     this.context = context;
-    songNumber = n;
+        this.songNumber = songNumber;
   }
 
   /** @return Music object to inject. */

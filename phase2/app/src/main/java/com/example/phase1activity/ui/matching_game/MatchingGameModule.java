@@ -11,7 +11,7 @@ import dagger.Provides;
 
 /** Dagger module allowing for MatchingGamePresenter to be injected as an interface. */
 @Module
-public class MatchingGameModule {
+class MatchingGameModule {
 
   /** Activity that is injected with the presenter. */
   private MatchingGameView view;
@@ -28,8 +28,7 @@ public class MatchingGameModule {
    * @param view the Activity to be injected.
    * @param buttonList a list of buttons within view.
    */
-  public MatchingGameModule(
-          MatchingGameView view, List<Button> buttonList, int numCards) {
+  MatchingGameModule(MatchingGameView view, List<Button> buttonList, int numCards) {
     this.view = view;
     this.buttonList = buttonList;
     this.numCards = numCards;
@@ -37,7 +36,7 @@ public class MatchingGameModule {
 
   /** @return the interface object to be injected as a MatchingGamePresenter object. */
   @Provides
-  public MatchingGamePresenter providePresenter() {
+  MatchingGamePresenter providePresenter() {
     MatchingGamePresenterImpl presenter = new MatchingGamePresenterImpl(buttonList, view, numCards);
     presenter.setManager(provideManager());
     return presenter;

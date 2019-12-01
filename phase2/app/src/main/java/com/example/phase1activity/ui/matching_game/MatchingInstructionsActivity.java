@@ -8,6 +8,9 @@ import android.widget.Button;
 import com.example.phase1activity.R;
 import com.example.phase1activity.ui.abstraction.AbstractActivity;
 
+/**
+ * Activity showing instructions for MatchingGame.
+ */
 public class MatchingInstructionsActivity extends AbstractActivity {
 
     @Override
@@ -19,7 +22,7 @@ public class MatchingInstructionsActivity extends AbstractActivity {
         colourButton(btn, R.drawable.start_red, R.drawable.start_blue, R.drawable.start_green);
         btn.setOnClickListener(
                 new View.OnClickListener() {
-                    /** Allow user to continue to the game using the button. */
+                    // Allow user to continue to the game using the button.
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MatchingInstructionsActivity.this, ChooseLevelActivity.class));

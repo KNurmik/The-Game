@@ -16,10 +16,13 @@ import com.example.phase1activity.ui.menu.StartActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
-/** A MatchingGameActivity. */
+/**
+ * Activity responsible for displaying MatchingGame.
+ */
 public class MatchingGameViewImpl extends AbstractActivity
     implements View.OnClickListener, MatchingGameView {
 
@@ -54,6 +57,7 @@ public class MatchingGameViewImpl extends AbstractActivity
 
   List<Button> buttonList;
 
+  /** The number of cards to be displayed on the screen at the beginning of the game. */
   int numCards;
 
   /** The user's selected colour in their profile */
@@ -79,12 +83,10 @@ public class MatchingGameViewImpl extends AbstractActivity
     // Inject presenter.
     presenter =
             DaggerMatchingGameComponent.builder()
-                    .matchingGameModule(new MatchingGameModule(this, buttonList.subList(0, numCards), numCards))
+                    .matchingGameModule(
+                            new MatchingGameModule(this, buttonList.subList(0, numCards), numCards))
                     .build()
                     .injectMatchingGamePresenter();
-
-//    String userNickname = app.getProfileNickname();
-//    setDisplayNickname(userNickname);
 
     final Activity activity = this;
 
@@ -175,6 +177,7 @@ public class MatchingGameViewImpl extends AbstractActivity
     buttonList.add(button12);
   }
 
+  /** Create refrences to objects on the screen. */
   private void initializeViews() {
     popUp = findViewById(R.id.noMatch);
     skipLevel = findViewById(R.id.nextLevel);
@@ -211,22 +214,28 @@ public class MatchingGameViewImpl extends AbstractActivity
     presenter.handleClick(button, app);
   }
 
-  /** NEEDS DESC.  */
+  /** Display popup that user did not get a matching pair. */
   public void showNoMatchPopup() {
     popUp.setVisibility(View.VISIBLE);
   }
 
-  /** NEEDS DESC.  */
+  /** Hide the popup. */
   public void hideNoMatchPopup() {
-      popUp.setVisibility(View.INVISIBLE);
+    popUp.setVisibility(View.INVISIBLE);
   }
 
+  /**
+   * Hide the inputted buttons.
+   *
+   * @param buttons buttons that are faced up.
+   */
   public void hideFaceUpButtons(List<Button> buttons) {
     for (Button card : buttons) {
       card.setVisibility(View.INVISIBLE);
     }
   }
 
+  /** Flip all of the buttons that are faced up. */
   public void flipFaceUpButtons() {
     for (Button button : buttonList) {
       colourButton(button, R.drawable.square_red, R.drawable.square_blue, R.drawable.square_green);
@@ -234,29 +243,60 @@ public class MatchingGameViewImpl extends AbstractActivity
     }
   }
 
+  /**
+   * Assign an image to the inputted button.
+   *
+   * @param button the button in question.
+   * @param cardsToValues a map of cards to values.
+   */
   public void setButtonImage(Button button, Map<Button, String> cardsToValues) {
-    switch (cardsToValues.get(button)) {
+    switch (Objects.requireNonNull(cardsToValues.get(button))) {
       case "line":
-        colourButton(button, R.drawable.match_line_red, R.drawable.match_line_blue, R.drawable.match_line_green);
+        colourButton(
+                button,
+                R.drawable.match_line_red,
+                R.drawable.match_line_blue,
+                R.drawable.match_line_green);
         break;
       case "square":
-        colourButton(button, R.drawable.match_square_red, R.drawable.match_square_blue, R.drawable.match_square_green);
+        colourButton(
+                button,
+                R.drawable.match_square_red,
+                R.drawable.match_square_blue,
+                R.drawable.match_square_green);
         break;
       case "triangle":
-        colourButton(button, R.drawable.match_triangle_red, R.drawable.match_triangle_blue, R.drawable.match_triangle_green);
+        colourButton(
+                button,
+                R.drawable.match_triangle_red,
+                R.drawable.match_triangle_blue,
+                R.drawable.match_triangle_green);
         break;
       case "wave":
-        colourButton(button, R.drawable.match_wave_red, R.drawable.match_wave_blue, R.drawable.match_wave_green);
+        colourButton(
+                button,
+                R.drawable.match_wave_red,
+                R.drawable.match_wave_blue,
+                R.drawable.match_wave_green);
         break;
       case "circle":
-        colourButton(button, R.drawable.match_circle_red, R.drawable.match_circle_blue, R.drawable.match_circle_green);
+        colourButton(
+                button,
+                R.drawable.match_circle_red,
+                R.drawable.match_circle_blue,
+                R.drawable.match_circle_green);
         break;
       case "equal":
-        colourButton(button, R.drawable.match_equal_red, R.drawable.match_equal_blue, R.drawable.match_equal_green);
+        colourButton(
+                button,
+                R.drawable.match_equal_red,
+                R.drawable.match_equal_blue,
+                R.drawable.match_equal_green);
         break;
     }
   }
 
+  /** Update profile statistics. */
   public void updateProfileStats(int score, int moves) {
     this.app.updateProfileScore(this, score);
     this.app.updateProfileMoves(this, moves);

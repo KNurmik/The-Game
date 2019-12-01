@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import com.example.phase1activity.domain.maze_game.Character;
 import com.example.phase1activity.domain.maze_game.Coin;
 import com.example.phase1activity.domain.maze_game.MazeBlock;
+import com.example.phase1activity.domain.maze_game.MazeManager;
 import com.example.phase1activity.domain.maze_game.Wall;
 
 import java.util.List;
@@ -50,4 +51,9 @@ public interface MazeGamePresenter {
 
   /** @return the list of outer maze walls from this classes MazeManger instance. */
   List<Wall> getOuterWalls();
+
+  /**
+   * @param manager the manager to set MazeManager to.
+   */
+  void setMazeManager(MazeManager manager);
 }

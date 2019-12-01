@@ -47,7 +47,14 @@ public class MazeGameViewImpl extends AbstractActivity implements MazeGameView {
     setContentView(drawView);
     playerNickname = appManager.getProfileNickname();
     playerColor = appManager.getProfileColour();
-    presenter = new MazeGamePresenterImpl(this, appManager.getMazeGameDifficulty());
+
+    // Inject presenter.
+    presenter =
+            DaggerMazeGameComponent.builder()
+                    .mazeGameModule(new MazeGameModule(this, appManager.getMazeGameDifficulty()))
+                    .build()
+                    .injectPresenter();
+
     presenter.setPaintText(appManager.getProfileColour());
   }
 

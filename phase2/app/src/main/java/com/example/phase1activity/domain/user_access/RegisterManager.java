@@ -33,9 +33,7 @@ public class RegisterManager extends UserAccessManager {
     } else if (!isValidPassword(password)) {
       return Result.ERROR_PASSWORD;
     } else {
-      // Save the new user's information with default values.
-      final String DEFAULT_VALUES = "," + Color.RED + ",0,0,0,5,0";
-      iSaver.saveData(username + "," + password + "," + username + DEFAULT_VALUES);
+      iSaver.saveNewProfile(username, password);
       app.setProfile(
           new ProfileBuilder()
               .setUsername(username)

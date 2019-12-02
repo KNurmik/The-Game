@@ -11,17 +11,15 @@ import dagger.Provides;
 @Module
 class AppManagerModule {
 
-  /**
-   * The context calling this module.
-   */
+  /** The context calling this module. */
   private Context context;
 
   /** The number of the song to use. */
   private int songNumber;
 
-    AppManagerModule(Context context, int songNumber) {
+  AppManagerModule(Context context, int songNumber) {
     this.context = context;
-        this.songNumber = songNumber;
+    this.songNumber = songNumber;
   }
 
   /** @return Music object to inject. */

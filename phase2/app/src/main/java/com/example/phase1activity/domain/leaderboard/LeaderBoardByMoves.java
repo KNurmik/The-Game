@@ -31,8 +31,7 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
               .get(username)
               .get(AndroidSaver.AttributeType.TOTAL_MOVES)
               .intValue();
-      String nickname =
-          saver.getExistingUserData().get(username).get(Saver.AttributeType.NICKNAME);
+      String nickname = saver.getExistingUserData().get(username).get(Saver.AttributeType.NICKNAME);
 
       // A smaller list storing the user's nickname and their number of moves.
       List<Object> listEntry = new ArrayList<>();

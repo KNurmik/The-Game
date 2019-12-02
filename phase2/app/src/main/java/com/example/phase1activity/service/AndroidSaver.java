@@ -3,6 +3,7 @@
 package com.example.phase1activity.service;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 
 import java.io.FileNotFoundException;
@@ -73,6 +74,18 @@ public class AndroidSaver implements Saver {
     }
     out.println(contents);
     out.close();
+  }
+
+  /**
+   * Save a new profile with username and password, and default values.
+   *
+   * @param username a username.
+   * @param password a password.
+   */
+  public void saveNewProfile(String username, String password) {
+    final String DEFAULT_VALUES =
+        username + "," + password + "," + username + "," + Color.RED + ",0,0,0,5,0";
+    saveData(DEFAULT_VALUES);
   }
 
   /**

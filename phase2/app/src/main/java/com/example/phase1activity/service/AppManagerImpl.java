@@ -32,8 +32,7 @@ public class AppManagerImpl extends Application implements AppManager {
   public void onCreate() {
 
     // Dagger module for injecting.
-    AppManagerModule module =
-            new AppManagerModule(this, 1);
+    AppManagerModule module = new AppManagerModule(this, 1);
 
     // Inject musicPlayer.
     musicPlayer =

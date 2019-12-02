@@ -13,6 +13,14 @@ public interface Saver {
   void saveData(String contents);
 
   /**
+   * Save a new profile with username and password, and default values.
+   *
+   * @param username a username.
+   * @param password a password.
+   */
+  void saveNewProfile(String username, String password);
+
+  /**
    * Load contents.
    *
    * @return previously saved contents.
@@ -33,8 +41,7 @@ public interface Saver {
    */
   Set<String> getExistingUsernames();
 
-  void saveAttribute(
-      String username, String newAttribute, Saver.AttributeType attributeType);
+  void saveAttribute(String username, String newAttribute, Saver.AttributeType attributeType);
 
   /**
    * Return a map of usernames to a map of highest score types to their respective values for each

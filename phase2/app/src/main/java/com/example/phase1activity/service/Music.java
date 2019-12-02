@@ -42,7 +42,7 @@ class Music {
 
   /** Stop the music from playing. */
   void stopMusic() {
-    if (player != null) {
+      if (player != null && !player.isPlaying()) {
       player.pause();
       player.stop();
       player.release();

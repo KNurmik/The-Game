@@ -3,7 +3,7 @@ package com.example.phase1activity.domain.leaderboard;
 import android.content.Context;
 
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.SaverInterface;
+import com.example.phase1activity.service.Saver;
 import com.example.phase1activity.ui.leaderboard.DaggerLeaderboardComponent;
 import com.example.phase1activity.ui.leaderboard.LeaderboardModule;
 
@@ -15,14 +15,7 @@ import javax.inject.Inject;
 public class GlobalStats {
 
   /** The android saver. */
-  private SaverInterface saver;
-
-  /** A list of users and their respective score sorted by highest score. */
-  private List<List<Object>> usersWithBestScores;
-  /** A list of users and their respective reaction time sorted by lowest reaction time. */
-  private List<List<Object>> usersWithFastestReactions;
-  /** A list of users and their respective moves sorted by most moves. */
-  private List<List<Object>> usersWithMostMoves;
+  private Saver saver;
 
   /** Sorting strategy for displaying the best users on the leaderboard. */
   private LeaderBoardSorting sorter;
@@ -35,13 +28,6 @@ public class GlobalStats {
   @Inject
   public GlobalStats(Context context) {
     saver = new AndroidSaver(context);
-  }
-
-  /** Updates the three sorted lists of users and their best statistics */
-  public void updateGlobalStats() {
-    this.usersWithBestScores = getSortedPlayers(SortType.BY_BEST_SCORE);
-    this.usersWithMostMoves = getSortedPlayers(SortType.BY_MOST_MOVES);
-    this.usersWithFastestReactions = getSortedPlayers(SortType.BY_FASTEST_REACTION);
   }
 
   /** Enum for choosing what sort of sorting strategy to use. */

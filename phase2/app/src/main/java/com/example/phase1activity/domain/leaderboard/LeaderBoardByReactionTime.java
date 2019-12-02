@@ -1,7 +1,7 @@
 package com.example.phase1activity.domain.leaderboard;
 
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.SaverInterface;
+import com.example.phase1activity.service.Saver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +22,14 @@ public class LeaderBoardByReactionTime implements LeaderBoardSorting {
    * @param saver the saver to read the data from.
    * @return a list of players along with their statistics.
    */
-  public List<List<Object>> sortPlayers(SaverInterface saver) {
+  public List<List<Object>> sortPlayers(Saver saver) {
     List<List<Object>> usersWithFastestReactions = new ArrayList<>();
     for (String username : saver.getHighScores().keySet()) {
       // Obtains the fastest reaction time by the user in the reaction game
       double userFastestReaction =
           saver.getHighScores().get(username).get(AndroidSaver.AttributeType.FASTEST_RXN_TIME);
       String nickname =
-          saver.getExistingUserData().get(username).get(SaverInterface.AttributeType.NICKNAME);
+          saver.getExistingUserData().get(username).get(Saver.AttributeType.NICKNAME);
 
       // A smaller list storing the user's nickname and their fastest reaction time.
       List<Object> listEntry = new ArrayList<>();

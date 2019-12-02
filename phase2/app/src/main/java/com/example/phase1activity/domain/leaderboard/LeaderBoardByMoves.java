@@ -1,7 +1,7 @@
 package com.example.phase1activity.domain.leaderboard;
 
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.SaverInterface;
+import com.example.phase1activity.service.Saver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
    * @param saver the saver to read data from.
    * @return a list of players and their statistics.
    */
-  public List<List<Object>> sortPlayers(SaverInterface saver) {
+  public List<List<Object>> sortPlayers(Saver saver) {
     List<List<Object>> usersWithMostMoves = new ArrayList<>();
     for (String username : saver.getHighScores().keySet()) {
       int userBestMoves =
@@ -32,7 +32,7 @@ public class LeaderBoardByMoves implements LeaderBoardSorting {
               .get(AndroidSaver.AttributeType.TOTAL_MOVES)
               .intValue();
       String nickname =
-          saver.getExistingUserData().get(username).get(SaverInterface.AttributeType.NICKNAME);
+          saver.getExistingUserData().get(username).get(Saver.AttributeType.NICKNAME);
 
       // A smaller list storing the user's nickname and their number of moves.
       List<Object> listEntry = new ArrayList<>();

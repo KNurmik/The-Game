@@ -1,6 +1,6 @@
 package com.example.phase1activity.domain.leaderboard;
 
-import com.example.phase1activity.service.SaverInterface;
+import com.example.phase1activity.service.Saver;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface LeaderBoardSorting {
    * @param saver the ISaver object to be used for
    * @return a sorted list of players along with their statistic.
    */
-  List<List<Object>> sortPlayers(SaverInterface saver);
+  List<List<Object>> sortPlayers(Saver saver);
 }

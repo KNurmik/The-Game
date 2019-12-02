@@ -15,9 +15,6 @@ public interface AppManager {
   /** Stop the appManager's music. */
   void stopMusic();
 
-  /** Update user statistics in GlobalStats. */
-  void updateGlobalStats();
-
   /**
    * Getter for the profile that the application is using.
    *

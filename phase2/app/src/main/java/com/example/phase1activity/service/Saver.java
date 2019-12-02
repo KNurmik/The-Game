@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 /** An interface defining the methods needed for any game-saving system. */
-public interface SaverInterface {
+public interface Saver {
   /**
    * Save contents.
    *
@@ -24,7 +24,7 @@ public interface SaverInterface {
    *
    * @return a string array of user data, split by individual entries to the saving system.
    */
-  Map<String, Map<AndroidSaver.AttributeType, String>> getExistingUserData();
+  Map<String, Map<Saver.AttributeType, String>> getExistingUserData();
 
   /**
    * Return a map of usernames to a map of username attribute names to their objects.
@@ -34,7 +34,7 @@ public interface SaverInterface {
   Set<String> getExistingUsernames();
 
   void saveAttribute(
-      String username, String newAttribute, AndroidSaver.AttributeType attributeType);
+      String username, String newAttribute, Saver.AttributeType attributeType);
 
   /**
    * Return a map of usernames to a map of highest score types to their respective values for each
@@ -43,7 +43,7 @@ public interface SaverInterface {
    * @return a map of usernames to a map of highest score types to their respective values for each
    *     username
    */
-  Map<String, Map<AndroidSaver.AttributeType, Double>> getHighScores();
+  Map<String, Map<Saver.AttributeType, Double>> getHighScores();
 
   enum AttributeType {
     PASSWORD,

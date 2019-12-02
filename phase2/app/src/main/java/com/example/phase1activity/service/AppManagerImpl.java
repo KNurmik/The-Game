@@ -65,11 +65,6 @@ public class AppManagerImpl extends Application implements AppManager {
     musicPlayer.stopMusic();
   }
 
-  /** Update user statistics in GlobalStats. */
-  public void updateGlobalStats() {
-    this.globalStats.updateGlobalStats();
-  }
-
   /**
    * Getter for the profile that the application is using.
    *

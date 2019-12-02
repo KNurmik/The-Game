@@ -17,7 +17,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /** A game-saving mechanism specific to AndroidStudio. */
-public class AndroidSaver implements SaverInterface {
+public class AndroidSaver implements Saver {
 
   /** The file to read and write data to. */
   private static final String SAVE_FILE = "userInfo.txt";

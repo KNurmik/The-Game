@@ -104,7 +104,6 @@ public class StartActivity extends AbstractActivity {
     globalButton.setOnClickListener(
         new View.OnClickListener() {
           public void onClick(View v) {
-            appManager.updateGlobalStats();
             startActivity(new Intent(StartActivity.this, LeaderboardViewImpl.class));
             finish();
           }

@@ -4,7 +4,7 @@ import android.content.Context;
 import com.example.phase1activity.service.AppManager;
 import com.example.phase1activity.service.ProfileBuilder;
 import com.example.phase1activity.service.AndroidSaver;
-import com.example.phase1activity.service.SaverInterface;
+import com.example.phase1activity.service.Saver;
 
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +33,7 @@ public class LogInManager extends UserAccessManager {
       return Result.INCORRECT;
     } else {
       // Retrieve user's saved info.
-      AndroidSaver iSaver = new AndroidSaver(context.getApplicationContext());
+      Saver iSaver = new AndroidSaver(context.getApplicationContext());
       Map<String, Map<AndroidSaver.AttributeType, String>> userData = iSaver.getExistingUserData();
       String nickname = userData.get(username).get(AndroidSaver.AttributeType.NICKNAME);
       int colour = Integer.parseInt(userData.get(username).get(AndroidSaver.AttributeType.COLOUR));
@@ -74,7 +74,7 @@ public class LogInManager extends UserAccessManager {
    * @return turns a boolean whether the login was valid or not.
    */
   private boolean isValidLogin(Context context, String username, String password) {
-    SaverInterface iSaver = new AndroidSaver(context.getApplicationContext());
+    Saver iSaver = new AndroidSaver(context.getApplicationContext());
     Set<String> existingUsernames = iSaver.getExistingUsernames();
 
     if (existingUsernames.contains(username)) {

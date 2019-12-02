@@ -32,7 +32,6 @@ class Music {
     if (n == 3) {
       stopMusic();
     } else {
-      player.release();
       player = MediaPlayer.create(context, Tracks[n]);
       player.setLooping(true);
       player.setVolume(100, 100);
@@ -42,10 +41,12 @@ class Music {
 
   /** Stop the music from playing. */
   void stopMusic() {
-      if (player != null && !player.isPlaying()) {
+      if (player != null) {
       player.pause();
       player.stop();
       player.release();
+          player = null;
+
     }
   }
 }

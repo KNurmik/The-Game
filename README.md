@@ -6,8 +6,6 @@ A three part Android game integrated with as many design patterns as we could ~~
 
 The app can be run by opening the 'phase 2' folder as a project in Android Studio.
 
-All of the interesting code can be found in https://github.com/KNurmik/The-Game/tree/final/phase2/app/src/main/java/com/example/phase1activity.
-
 ## Installing dependencies
 
 For this app to run successfully, you may need to install dependencies. Most likely this will not be an issue, but just to be sure, here are some step-by-step instructions:

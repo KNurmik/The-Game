@@ -1,6 +1,12 @@
 # The Game
 
-A three part Android game integrated with as many design patterns as we could ~~humanly~~ android-ly fit. The Game consists of a reaction game, a matching game, and a auto-generating maze game. 
+A three part Android game integrated with as many design patterns as we could ~~humanly~~ android-ly fit. The Game consists of a reaction game, a matching game, and an auto-generating maze game. 
+
+## Project Location
+
+The app can be run by opening the 'phase 2' folder as a project in Android Studio.
+
+All of the interesting code can be found in https://github.com/KNurmik/The-Game/tree/final/phase2/app/src/main/java/com/example/phase1activity.
 
 ## Installing dependencies
 

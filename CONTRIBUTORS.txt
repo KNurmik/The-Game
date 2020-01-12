@@ -1,0 +1,7 @@
+Copyright 2019. Karl Hendrik Nurmeots, Mark Vartolaş, Olivia Li, Ramzi Dajani, Henry Leung.
+
+This project is licensed under the Apache License, Version 2.0, refer to 'LICENSE.txt'.
+
+Note that because this project was developed on our school's Git repo using school accounts,
+the commit statistics shown by GitHub are not accurate. Refer to the commit logs for an exact
+overview of the commit history.
